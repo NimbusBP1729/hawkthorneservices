@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><map height="24" orientation="orthogonal" tileheight="24" tilewidth="24" version="1.0" width="80">
+ <properties><property name="blended tiles" value="2,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,62,63,64,65,66,67,68,69,70,71,72,73,74,75,78,79,80,81,82,83,84,85,86,87,88,89,90,92,93,94,95,96,98,99,100,101,102,103,104,105,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,128,129,130,131,132,133,134,135,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,158,159,160,161,162,163,164,165,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,218,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,386,387,388,389,390,391,392,396,397,398,399,400,401,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419,420,421,422,426,427,428,429,430,431,433,434,435,436,437,438,439,440,441,443,444,445,446,447,448,449,450,451,452,456,457,458,459,460,461,463,464,465,466,467,468,469,470,471,473,474,475,476,477,478,479,480,481,482,486,487,488,489,490,491,492,493,494,495,500,501,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,41,45,46,47,48,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,8,9,10,11,12,13,14,15,20,21,22,23,24,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,108,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,135,136,137,138,139,140,141,142,143,144,145,147,148,149,150,151,152,153,154,155,156,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,203,204,205,208,209,210,211,212,213,214,217,218,219,220,222,223,224,227,228,229,232,233,234,235,236,237,238,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,357,358,360,361,362,363,364,365,366,367,368,371,372,373,374,375,376,377,378,381,382,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,408,409,410,411,412,413,414,415,416,417,418,419,420,421,422,423,424,425,429,430,432,433,434,435,436,437,438,439,440,441,444,445,449,453,454,455,456,457,458,459,460,461,462,463,464,465,468,469,472,473,474,475,476,477,478,479,480,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,69,70,72,73,74,77,78,82,83,84,85,86,103,104,105,1,2,3,4,5,6,7,8,9,13,15,16,19,20,21,22,26,27,28,29,30,31,32,33,34,35,39,40,41,42,43,44,45,46,47,48,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,133,134,135,136,137,138,139,140,141,142,143,144,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,1,3,5,7,8,9,10,11,13,17,18,19,21,22,23,25,26,27,28,29,30,31,33,35,36,37,39,41,42,45,46,47,48,51,52,54,55,56,58,59,60,61,63,64,66,67,68,69,70,71,73,74,75,79,80,81,82,83,84,85,87,89,90,91,94,95,96,97,98,100,101,102,103,104,105,106,107,108,109,111,112,113,114,115,116,117,118,119,120,9,10,11,15,16,21,22,32,33,36,37,38,48,49,56,59,62,67,68,69,70,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,2,4,5,7,8,9,10,11,12,13,14,16,18,19,20,21,22,24,25,26,27,28,29,30,31,32,33,35,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,60,61,62,63,64,65,66,67,68,69,71,72,74,75,76,77,78,79,80,81,82,83,84,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,24,26,27,30,31,33,35,36,39,40,42,43,44,45,46,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,72"/>
+  <property name="blue" value="250"/>
+  <property name="green" value="222"/>
+  <property name="offset" value="10"/>
+  <property name="red" value="115"/>
+  <property name="soundtrack" value="forest"/>
+  <property name="title" value="Forest 2"/>
+ </properties>
+ <tileset firstgid="1" name="forest" tileheight="24" tilewidth="24">
+  <image height="192" source="../images/tilesets/forest.png" width="216"/>
+ </tileset>
+ <layer height="24" name="clouds 2" opacity="0.98" width="80">
+  <properties>
+   <property name="parallax" value="0.6"/>
+  </properties>
+  <data compression="zlib" encoding="base64">
+   eJzt0MEJACAMA0An0hUczdE6moUOUcQ7COQZMgYAAMDfZmZVTvbTPOc5+dlelcge3XsAAADgZxfXEQR1
+  </data>
+ </layer>
+ <layer height="24" name="clouds" width="80">
+  <properties>
+   <property name="parallax" value="0.6"/>
+  </properties>
+  <data compression="zlib" encoding="base64">
+   eJzt1NEJwDAIBcBM1KzQ0TJaRquQblC0IHcg+OVDBMcAALq4ouapFf1KzEib/6fY6Z6ndvQ7MSNtPnRV8d86q/hvb447fVB1JwAAAHp7ACuNETM=
+  </data>
+ </layer>
+ <layer height="24" name="leaves" width="80">
+  <properties>
+   <property name="parallax" value="0.7"/>
+  </properties>
+  <data compression="zlib" encoding="base64">
+   eJztmEEOwyAMBH3INVefeUqfxlPylD6tQSJqqRDFJl5AZSVfokSbjNYGshHRJqyd6EmN2uu9fKuXpaTsFr9UPfgx0SHw8i1e1urBrzZ7V528XYufpdD8JNmbIYNoftLsxfx5rZ+1Ruc3Mrugkfndsc5bC8lPOvsWv1TS3l38UinXDpUXShp+2u9ioBdKWn7IDI7cx2h+SC+EtPzidx2hSv3F8Z6rFr/6GaU5q/0rv9wZ9bz26MWP373hpM9KNAM/yRmOv+aE9b+H0flJspebF7Pwi+/qPgvdu7m90Uz8LKqVXyjLGdibD4KfZQZ787mLX2mvtPj9VulcaMnvBSGLPFY=
+  </data>
+ </layer>
+ <layer height="24" name="leaves2" width="80">
+  <data compression="zlib" encoding="base64">
+   eJztlcENwyAMRRE9tscOkFMPnaqjdJSMwmg1KpEQLdTYRHaJn4RygET2ywecM4w6V+fWc2XA3CJdn2aiOw/P1oA1QaxA5UDGmu78e81Tqj7tmD8eGH9pDy9CJaoFc/aZxzrY7JnDTyjZy/w9BEpWBTgguZv5LjmlgYGaP/PH27uz+8NAvTdmP/v29jdz9iKbv5ST8G3Nke7de+f/jv6KfkM+T/Xm6S2I0uvvAvlo9W3+2vzq+1/9QS5Wynsj/I0YvXVQuDXmsPfiaMq+qXk7sj9u9rbv7F2rVn/xaf76yM8tyx8djr/yO5w6XnDgH4g=
+  </data>
+ </layer>
+ <layer height="24" name="background" width="80">
+  <data compression="zlib" encoding="base64">
+   eJztmE1ugzAQhS11kwWLbtgRahY0wu0hejQfpUfJ0ToOWDWDsZ8BhYR4pCf+BuP5eDYWQjxuFKS3gOi63q1zTxCZ3/IohfgJscv8/GG4EZffGLvMbxqI5zK/cVi/oZ7L/MYR+0bE+J1I77R/un/Xd49ygedclS/sv7XsXn3srhm3KL+GciRtrZpNK9g3yH8TJrKv16db7an8FOV0tLVSiX00/Bt2LMX/+5CJ7W0d3INdX69Pt9pT5z6EH2fE71fs2G2vg6oMxzeWo33nuQdRfujch/DjjELXlvCrSOeAPkhfEVGOplxdOXU3w771oJpnN+GHfncfgV9L+gzoArRBOZpydevUrRbyS1mzHIWfz8P1cM2OYYRf6prlKPx8bbj3FQLjl7pezvzG/FJjDb/YvG8VC4Qf+eKa2sa9+MU41DNtx+q2QhjXgfsNh2Fev/I+DP9WpOkL+j5R1c5zqpnzqv9mRd//Gn6ILgC/wuFnudn1Rrtxf7h/25nzz8TP9WDB/oNmfhg/40HfP+TMD+fHvXd0fn/wyqo8
+  </data>
+ </layer>
+ <layer height="24" name="foreground" width="80">
+  <data compression="zlib" encoding="base64">
+   eJztls0OwiAMgPGg8eTfzS0ad9G4o76gj26RkHQkgKPQMe2XNGQzUPpZtiklCIIgCP/HWqnXzoxs+WK5FiiEIXPxt4J9Ls0YpMb+4yBW9xZ+35iRtE5uvvVX2nOOug+wxp7ZXwP5GnTtq4PbXwfX1HUemfaWmt+9z+mvJ/qDPtT9yI4vf8if/Z+fhLz6HBzN+CHVH16nJewnFdwHrXO/9DPlgqIbOVefd8r8XEx1fjV3FP3I/LpfQ/O58PW/+54pwS/4OwXiXDi3r377XVKTP9+7/RqIW+E9TdV/Ob9zavNna4s9P2o5v3PGuhPSEH80xB8N8UejBn9vgSUsMg==
+  </data>
+ </layer>
+ <layer height="24" name="trees" width="80">
+  <data compression="zlib" encoding="base64">
+   eJztlsENwyAMRemhPfTQHlggo2SUjNJROgqjdJQaUSTLMmpo4gLKf5KFEhJs/9gB58bjSnYqGM09/uXTypc1R9bPOzeT34kb3Ztq1jiyfqXcazRsoZ9f6etTH89stbXxjVLuNXlrubDvsHqdWmTs0ZfQKshn6DpYxvBr3fj0zoubpXbM5xIt+5JaxfwuNHdOY7f69YKm351yuaVxd/1KvWddO1ZI/WR+e+sX4X3Ae2FENK20Pgc6vdWB3P/zvtY6rlEonFNDy5hGAvptA/ptQzvf9PBfHgns/wAAAAAAoFfeuNEqmg==
+  </data>
+ </layer>
+ <objectgroup height="24" name="nodes" width="80">
+  <object height="49" name="main" type="door" width="24" x="48" y="406"/>
+  <object height="24" name="next" type="door" width="24" x="1896" y="216">
+   <properties>
+    <property name="instant" value="true"/>
+    <property name="level" value="forest-3"/>
+    <property name="to" value="main"/>
+   </properties>
+  </object>
+  <object height="24" name="leaf" type="material" width="24" x="360" y="287"/>
+  <object height="24" name="leaf" type="material" width="24" x="1224" y="238"/>
+  <object height="24" name="leaf" type="material" width="24" x="1777" y="383"/>
+  <object height="24" name="stick" type="material" width="24" x="311" y="287"/>
+  <object height="24" name="rock" type="material" width="24" x="863" y="431"/>
+  <object height="24" name="rock" type="material" width="24" x="1465" y="408"/>
+  <object height="24" name="stick" type="material" width="24" x="933" y="294"/>
+  <object height="24" name="stick" type="material" width="23" x="714" y="155"/>
+  <object height="24" name="stick" type="material" width="23" x="772" y="96"/>
+  <object height="24" name="stick" type="material" width="23" x="1158" y="84"/>
+  <object height="24" name="stick" type="material" width="23" x="1828" y="95"/>
+  <object height="24" name="stick" type="material" width="23" x="32" y="216"/>
+  <object height="24" name="next2" type="door" width="24" x="1896" y="384">
+   <properties>
+    <property name="instant" value="true"/>
+    <property name="level" value="forest-3"/>
+    <property name="to" value="main"/>
+   </properties>
+  </object>
+  <object height="24" type="enemy" width="24" x="240" y="288">
+   <properties>
+    <property name="enemytype" value="acorn"/>
+   </properties>
+  </object>
+  <object height="24" type="enemy" width="24" x="648" y="336">
+   <properties>
+    <property name="enemytype" value="acorn"/>
+   </properties>
+  </object>
+  <object height="24" type="enemy" width="24" x="768" y="288">
+   <properties>
+    <property name="enemytype" value="acorn"/>
+   </properties>
+  </object>
+  <object height="24" type="enemy" width="24" x="672" y="336">
+   <properties>
+    <property name="enemytype" value="acorn"/>
+   </properties>
+  </object>
+  <object height="24" type="enemy" width="24" x="1032" y="432">
+   <properties>
+    <property name="enemytype" value="acorn"/>
+   </properties>
+  </object>
+  <object height="24" type="enemy" width="24" x="984" y="216">
+   <properties>
+    <property name="enemytype" value="acorn"/>
+   </properties>
+  </object>
+  <object height="24" type="enemy" width="24" x="1392" y="408">
+   <properties>
+    <property name="enemytype" value="acorn"/>
+   </properties>
+  </object>
+  <object height="24" type="enemy" width="24" x="1440" y="408">
+   <properties>
+    <property name="enemytype" value="acorn"/>
+   </properties>
+  </object>
+  <object height="24" type="enemy" width="24" x="1848" y="216">
+   <properties>
+    <property name="enemytype" value="acorn"/>
+   </properties>
+  </object>
+  <object height="24" type="enemy" width="24" x="1824" y="384">
+   <properties>
+    <property name="enemytype" value="acorn"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="1597" y="456">
+   <properties>
+    <property name="enemytype" value="fish"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="1284" y="480">
+   <properties>
+    <property name="enemytype" value="fish"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="1128" y="480">
+   <properties>
+    <property name="enemytype" value="fish"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="312" y="480">
+   <properties>
+    <property name="enemytype" value="fish"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="480" y="480">
+   <properties>
+    <property name="enemytype" value="fish"/>
+   </properties>
+  </object>
+  <object height="96" type="liquid" width="384" x="240" y="480">
+   <properties>
+    <property name="foreground" value="false"/>
+    <property name="speed" value="0.2"/>
+    <property name="sprite" value="images/waterfall.png"/>
+    <property name="uniform" value="true"/>
+   </properties>
+  </object>
+  <object height="96" type="liquid" width="48" x="1127" y="480">
+   <properties>
+    <property name="foreground" value="false"/>
+    <property name="speed" value="0.2"/>
+    <property name="sprite" value="images/waterfall.png"/>
+    <property name="uniform" value="true"/>
+   </properties>
+  </object>
+  <object height="96" type="liquid" width="72" x="1271" y="480">
+   <properties>
+    <property name="foreground" value="false"/>
+    <property name="speed" value="0.2"/>
+    <property name="sprite" value="images/waterfall.png"/>
+    <property name="uniform" value="true"/>
+   </properties>
+  </object>
+  <object height="120" type="liquid" width="120" x="1559" y="456">
+   <properties>
+    <property name="foreground" value="false"/>
+    <property name="speed" value="0.2"/>
+    <property name="sprite" value="images/waterfall.png"/>
+    <property name="uniform" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#2228a4" height="24" name="platform" width="80">
+  <object height="24" width="120" x="1800" y="240"/>
+  <object height="24" width="48" x="1704" y="240"/>
+  <object height="24" width="24" x="1536" y="264"/>
+  <object height="24" width="96" x="1344" y="216"/>
+  <object height="24" width="24" x="1104" y="312"/>
+  <object height="24" width="216" x="816" y="240"/>
+  <object height="24" width="120" x="720" y="312"/>
+  <object height="24" width="120" x="624" y="360"/>
+  <object height="24" width="48" x="192" y="312"/>
+  <object height="24" width="192" x="0" y="384"/>
+  <object height="24" width="36" x="1213" y="264"/>
+  <object height="24" width="360" x="240" y="312">
+   <properties>
+    <property name="drop" value="false"/>
+   </properties>
+  </object>
+  <object height="24" width="72" x="600" y="312"/>
+  <object height="24" width="24" x="600" y="360">
+   <properties>
+    <property name="drop" value="false"/>
+   </properties>
+  </object>
+  <object height="24" width="48" x="1128" y="312">
+   <properties>
+    <property name="drop" value="false"/>
+   </properties>
+  </object>
+  <object height="24" width="48" x="1176" y="312"/>
+  <object height="24" width="24" x="1320" y="216">
+   <properties>
+    <property name="drop" value="false"/>
+   </properties>
+  </object>
+  <object height="24" width="24" x="1560" y="264">
+   <properties>
+    <property name="drop" value="false"/>
+   </properties>
+  </object>
+  <object height="26" width="34" x="1129" y="216"/>
+  <object height="22" width="35" x="61" y="288"/>
+  <object height="22" width="35" x="888" y="384"/>
+ </objectgroup>
+ <objectgroup color="#3999a4" height="24" name="floor" width="80">
+  <object height="120" width="240" x="0" y="456"/>
+  <object height="120" width="504" x="624" y="456"/>
+  <object height="120" width="96" x="1176" y="456"/>
+  <object height="144" width="216" x="1344" y="432"/>
+  <object height="168" width="240" x="1680" y="408"/>
+ </objectgroup>
+</map>

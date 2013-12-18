@@ -6,12 +6,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
-import org.apache.commons.cli.PosixParser;
-
 import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.gamestate.Levels;
@@ -35,23 +29,7 @@ public class Main {
 	public static void main(String[] args) {
 		// LwjglApplication la = new LwjglApplication(new
 		// Main(),"foo",800,600,true);
-		CommandLineParser parser = new PosixParser();
-		Options options = new Options();
-		options.addOption("p", "port", true, "select a port");
-		options.addOption("d", "debug", false, "enable debug logger");
-		CommandLine line = null;
-		try {
-			line = parser.parse(options, args);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
 		int port = 12346;
-		if (line.hasOption("port")) {
-			port = Integer.parseInt(line.getOptionValue("port"));
-		}
-		if (line.hasOption("debug")) {
-			Server.DEBUG = true;
-		}
 		System.out.println("Using port " + port);
 		Main m = new Main(port);
 		while (true) {

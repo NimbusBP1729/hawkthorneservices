@@ -6,13 +6,12 @@ package com.projecthawkthorne.server;
 
 import java.net.InetAddress;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import com.badlogic.gdx.graphics.g2d.tiled.TiledObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.datastructures.Queue;
 import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
@@ -131,17 +130,17 @@ public class Player extends Humanoid implements Timeable {
 		this.inventory = new Inventory(this);
 	}
 
-	private static TiledObject getPlayerTiledObject() {
-		TiledObject obj = new TiledObject();
-		obj.x = 0;
-		obj.y = 0;
-		obj.width = Math.round(48);
-		obj.height = Math.round(48);
-		obj.type = "player";
-		obj.name = Integer.toString(Player.playerCount++);
-		obj.properties = new HashMap<String, String>();
-		obj.properties.put("bbox_width", Integer.toString(Math.round(18)));
-		obj.properties.put("bbox_height", Integer.toString(Math.round(44)));
+	private static RectangleMapObject getPlayerTiledObject() {
+		RectangleMapObject obj = new RectangleMapObject();
+		obj.getRectangle().x = 0;
+		obj.getRectangle().y = 0;
+		obj.getRectangle().width = Math.round(48);
+		obj.getRectangle().height = Math.round(48);
+		//TODO: figure out what the other guy intended to use "type for"
+		obj.getProperties().put("type", "player");
+		obj.setName(Integer.toString(Player.playerCount++));
+		obj.getProperties().put("bbox_width", Integer.toString(Math.round(18)));
+		obj.getProperties().put("bbox_height", Integer.toString(Math.round(44)));
 		return obj;
 	}
 

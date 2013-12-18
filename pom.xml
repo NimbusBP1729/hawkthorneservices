@@ -65,9 +65,7 @@
 
 	<modules>
 		<module>core</module>
-    <module>hardoncollider</module>
-    <module>hawkthorne-server</module>
-    <module>hawkthorne-client</module>
-    <module>hawkthorne-common</module>
-  </modules>
+		<module>hawkthorne-common</module>
+		<module>hawkthorne-server</module>
+	</modules>
 </project>

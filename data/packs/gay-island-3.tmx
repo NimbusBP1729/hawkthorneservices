@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><map height="22" orientation="orthogonal" tileheight="24" tilewidth="24" version="1.0" width="120">
+ <properties><property name="blended tiles" value="2,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,62,63,64,65,66,67,68,69,70,71,72,73,74,75,78,79,80,81,82,83,84,85,86,87,88,89,90,92,93,94,95,96,98,99,100,101,102,103,104,105,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,128,129,130,131,132,133,134,135,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,158,159,160,161,162,163,164,165,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,218,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,386,387,388,389,390,391,392,396,397,398,399,400,401,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419,420,421,422,426,427,428,429,430,431,433,434,435,436,437,438,439,440,441,443,444,445,446,447,448,449,450,451,452,456,457,458,459,460,461,463,464,465,466,467,468,469,470,471,473,474,475,476,477,478,479,480,481,482,486,487,488,489,490,491,492,493,494,495,500,501,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,41,45,46,47,48,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,8,9,10,11,12,13,14,15,20,21,22,23,24,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,108,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,135,136,137,138,139,140,141,142,143,144,145,147,148,149,150,151,152,153,154,155,156,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,203,204,205,208,209,210,211,212,213,214,217,218,219,220,222,223,224,227,228,229,232,233,234,235,236,237,238,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,357,358,360,361,362,363,364,365,366,367,368,371,372,373,374,375,376,377,378,381,382,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,408,409,410,411,412,413,414,415,416,417,418,419,420,421,422,423,424,425,429,430,432,433,434,435,436,437,438,439,440,441,444,445,449,453,454,455,456,457,458,459,460,461,462,463,464,465,468,469,472,473,474,475,476,477,478,479,480,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,69,70,72,73,74,77,78,82,83,84,85,86,103,104,105,1,2,3,4,5,6,7,8,9,13,15,16,19,20,21,22,26,27,28,29,30,31,32,33,34,35,39,40,41,42,43,44,45,46,47,48,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,133,134,135,136,137,138,139,140,141,142,143,144,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,1,3,5,7,8,9,10,11,13,17,18,19,21,22,23,25,26,27,28,29,30,31,33,35,36,37,39,41,42,45,46,47,48,51,52,54,55,56,58,59,60,61,63,64,66,67,68,69,70,71,73,74,75,79,80,81,82,83,84,85,87,89,90,91,94,95,96,97,98,100,101,102,103,104,105,106,107,108,109,111,112,113,114,115,116,117,118,119,120,9,10,11,15,16,21,22,32,33,36,37,38,48,49,56,59,62,67,68,69,70,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,2,4,5,7,8,9,10,11,12,13,14,16,18,19,20,21,22,24,25,26,27,28,29,30,31,32,33,35,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,60,61,62,63,64,65,66,67,68,69,71,72,74,75,76,77,78,79,80,81,82,83,84,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,24,26,27,30,31,33,35,36,39,40,42,43,44,45,46,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,72,1,2,3,4,6,7,8,9,10,11,15,16,20,21,22,23,24,28,29,30,32,36,37,38,39,40,44,45,46,48,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,23,24,25,26,29,30,33,34,36,37,39,41,42,43,44,45,46,49,52,53,54,55,58,59,64,65,66,67,68,69,70,71,73,74,75,78,79,80,81,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,107,109,116,117,119,120,121,122,123,124,125,126,127,128,129,130,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,181,182,186,187,188,189,190,191,192,193,194,196,197,198,199,201,202,203,204,207,208,212,213,214,215,216,217,218,219,220,222,223,224,225,227,228,229,230,233,234,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,259,260,264,265,266,269,270,271,272,273,274,275,276,277,278,279,281,282,283,284,285,286,290,291,292,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,342,343,344,345,346,347,348,350,353,354,355,356,357,358,359,360,361,362,363,364,366,367,368,369,370,371,372,373,374,376,377,378,379,380,381,382,383,384,385,386,389,390,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,407,409,410,411,412,415,416,417,418,419,420,421,422,423,424,425,426,427,428,429,430,431,432,433,435,436,437,438,441,442,443,444,445,446,447,448,451,452,453,454,455,456,459,460,461,462,463,464,467,468,469,471,472,473,474,477,479,480,481,482,485,486,487,489,490,491,492,493,494,495,497,498,499,500,503,505,506,507,508,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,529,530,531,532,533,534,537,538,539,541,542,543,544,545,546,547,548,549,551,552,553,554,555,556,557,559,560,561,562,563,564,565,566,567,568,569,570,571,572,573,574,575,576,577,578,579,580,581,582,583,584,585,586,587,588,589,590,591,592,593,594,595,596,597,598,599,600,601,602,603,604,605,606,607,608,609,610,611,612,613,614,615,616,617,618,619,620,621,622,623,624,625,626,627,628,629,630,631,632,635,636,638,639,641,642,643,644,645,646,647,648,649,650,651,652,653,654,655,656,657,658,659,660,661,662,664,665,666,667,668,669,670,671,672,673,674,675,676"/>
+  <property name="offset" value="8"/>
+  <property name="soundtrack" value="daylight"/>
+ </properties>
+ <tileset firstgid="1" name="gay-island" tileheight="24" tilewidth="24">
+  <image height="624" source="../images/tilesets/gay-island.png" width="624"/>
+ </tileset>
+ <layer height="22" name="sky" width="120">
+  <properties>
+   <property name="parallax" value="0"/>
+  </properties>
+  <data compression="zlib" encoding="base64">
+   eJztkVEJw1AUxd4+qmM6pqM6qqMqpmO/tTAdM9GrYXAIgROIgeR8rOsUuMpf0N/6Nwv9rX+z0N/6Nwv9rX+z0N/6Nwv9rX+z0N/6Nwv9rX+z0N/6N8sx7QzSnazs084g3cnKa9oZpDtZeU47g3QnK9u0M0h3svJb6zJId7LynXYG6U5WPtPOIN3JynvaGaQ7WaG/9W8W+lv/ZqG/9W+WG2Ljkdc=
+  </data>
+ </layer>
+ <layer height="22" name="rainbow" width="120">
+  <properties>
+   <property name="parallax" value="0.3"/>
+  </properties>
+  <data compression="zlib" encoding="base64">
+   eJzt1M0Jg0AUhdFh+ogxVRiTKsxPE9aRwr1bXWUhCOM58O0fXHilAAAAALB1qaV06Zr6dKtHX8Sehux5T2N6pKd9mzJlz1d6p0/62vfU/PO2+edt+/efz3UdbfnVdQAAAHtaAIpJCrM=
+  </data>
+ </layer>
+ <layer height="22" name="penis" width="120">
+  <properties>
+   <property name="parallax" value="0.3"/>
+  </properties>
+  <data compression="zlib" encoding="base64">
+   eJzt1kEKhDAMQNH2ao7HUI/hzPHNUiQ0GWhaDP9BN1ZE+luxFAAAAAAzLbWUj4y1zn4TRNik6y7j6NSX/TJea81PufaV8evUo/d+ga215v/09ZzN3vsFttaa3+esfp6zSd/xvH2tfp529B3P29dq85zXzjt9x4vqq5137Rn8U8eK6qvdr13jnzrW7L58s2PRNzf65kbf3OibG31zo+87XJmFdsM=
+  </data>
+ </layer>
+ <layer height="22" name="penis2" width="120">
+  <properties>
+   <property name="parallax" value="0.5"/>
+  </properties>
+  <data compression="zlib" encoding="base64">
+   eJzt1cENgCAQRcGlOG1D+69CC+AACWZxM3PeA8nLDxEAAAAAzDhaxNmyX8FXrrftre+WVmxP332taKPvvnptZjc90tcfnaPXZnaPI/c2nkPf2vStTd/a9K1N39r0rU3f/3kAG5oe2w==
+  </data>
+ </layer>
+ <layer height="22" name="clouds" width="120">
+  <properties>
+   <property name="parallax" value="0.58"/>
+  </properties>
+  <data compression="zlib" encoding="base64">
+   eJzt2MsRgCAMhGFsx1cbaBlII5buHmjAA0NI/m8md1yd7EhKABDDvaRXE96qDDbN7iyLqvdbnT0TYsn6fq82I3dVNnAGj4ryfNqM3FXFwBlmcCifk4wwKSt9ElXvHrXSJ1HRo8B4vfas17uS2bBnfeL/CsAf3E36RtcDAACrPmDgEY8=
+  </data>
+ </layer>
+ <layer height="22" name="filler" width="120">
+  <data compression="zlib" encoding="base64">
+   eJzt1MEJgDAMQNHiim7iBG7huuJBEA89qLRpfA9KroFPUwoAAADAPyy9F6Bqm3pvAPTiPsd23uf7rNF0HE/6Mg59c3vT152Oz//NTd/c9M1N3zjmy/uKvnE06rsecwc2ohbC
+  </data>
+ </layer>
+ <layer height="22" name="floor2" width="120">
+  <data compression="zlib" encoding="base64">
+   eJzt1cEJgDAMQNHgVnYNHcgprOPaQwUPLTRQEoz/QfAmNl+oCAAAAADgz5LIsZbn7Emmp0DPXvpu5Tl7dtNToIe+sdFXr95pmnG7rzz7avbU2s+5iOQ6lurONOP2v3v21eyp9T76Dn/rJ/s+8qvzZdCavvSlL32jo29s9I2NvrHRFyPoG9tI3xvd7iSA
+  </data>
+ </layer>
+ <layer height="22" name="floor" width="120">
+  <data compression="zlib" encoding="base64">
+   eJztl1tSgzAUho/32xK86yqouoriJrR90Vfr8GDVFVgf1ZW4NP/IhEY8CRkSCuL5Z75ph5I05OMkQCSRSCQSiUQikUgkEkk/crdMNLFgyzVIDMaLGaqkRl7gcWbBdGgyBVf5908F/L61dgGSH+Hq9d7idwh3NkZweoP+NH3OgChL5ljv+yQ/t6p90Q93bmi4en3tqV89r6HzmKKP4RxykVa3L/rhzo2RJ7h7juhX7cdd3IP1vIbOo69fV50u0u873H0YHrE+ZxMDvV7r/ZVjbPg9B6MO7sF1/CpH5XvV16+rTmP63QCbYAtsgx1y7xOo32xmoOvZXH9ddMXvoLQWu/za1m7V5oI51qbfFbAK1sA6OAYn4NQ9liIuv7f0d/ymJZcuv7bfuuR3CajX1H1wAA7BkeP/m/Cr9l71vvRIzTwP2sLVXyy/D+R+Rm4SfT3q+nbxuUd+Puv49RnP1NJn0+H8xPJbZz5joccTOg4fvyF9qjDPk3TGzDWXS/q+f6zvi+K3fb/MfuRd41Vtxa/4Fb95xO+v4//C7xfxwrao
+  </data>
+ </layer>
+ <layer height="22" name="foreground" width="120">
+  <data compression="zlib" encoding="base64">
+   eJztmE1OAjEYhr/pSTyM4RiKZ9CFPwtxJbD0Z6FGMgILwxnU+JO4ca8ulHgE9QQ+gw3BZKKMtp3ifE/ypJT5QlteZtogoiiKosRCE1vYLnsikTAQaQw81oemiz3s2/4p3sho3mNiX4NL/lO+x0bmzmjP8cK+p/nObr6bhsnglvnsd8j3nvYBH21NyHzzxiqbIWsdeqz3yQG5HuLRRL6vtG/4bmvyvnNfa4gx31mE53A6be0TPssoU+9ovm7oFMg3JFXNN9vvqrDukM+KGLhL5CVri+S7nIisJPnXFthnF7GOS+brtRb9NjaNNLbxL/NWiuHq/l0lvzVcx42JfFNe97CPXbI90XyD4irfHfLbxT3cNz/XK2Eoa/+tMe68yGUt8LhV4gqvpZxzJdmmtq0HHjpqvjvj/OYzsv8TyjhXar5KEVz87pX4uZ1CRVEURakqH91ncbQ=
+  </data>
+ </layer>
+ <layer height="22" name="leaves" width="120">
+  <data compression="zlib" encoding="base64">
+   eJzt100KgzAQBeBnL9FtrtGucjSP4iWydy+SKwhFeo1OkICVAa1NG5u+D2bhb+I8iMQB9g4glgPqroK9VUAsOa6RgJex5P1mXnLOpHj3HjI++lmFb1+53/YvPpOb+1K+XulN7v4w33T5ar3J3Z8d+R5q/luEOSv54h/y9dP4Qyy/Mpfl/VueyU37xnHKdIg1Fprvp0nfGumf0Uqutbnnl5K2tpWeb/jPnU9opNpldYXlq61tv7C+vSP85yRLtVLtSSgf5ls25ls25lu2i9QVz3uRlHsSIiIiIiIiIiIioiN7AM/TtI8=
+  </data>
+ </layer>
+ <objectgroup height="22" name="wall" width="120">
+  <object height="48" width="192" x="0" y="288"/>
+  <object height="48" width="120" x="144" y="192"/>
+  <object height="48" width="48" x="144" y="240"/>
+  <object height="48" width="144" x="0" y="216"/>
+  <object height="96" width="48" x="240" y="288"/>
+  <object height="48" width="216" x="0" y="408"/>
+  <object height="72" width="48" x="216" y="384"/>
+  <object height="144" width="48" x="264" y="384"/>
+  <object height="96" width="504" x="384" y="432"/>
+  <object height="144" width="72" x="936" y="384"/>
+  <object height="192" width="48" x="1056" y="336"/>
+  <object height="264" width="72" x="1152" y="264"/>
+  <object height="192" width="72" x="1320" y="336"/>
+  <object height="216" width="48" x="1464" y="312"/>
+  <object height="96" width="744" x="1512" y="384"/>
+ </objectgroup>
+ <objectgroup height="22" name="platform" width="120">
+  <object height="24" width="288" x="2232" y="264"/>
+  <object height="20" width="93" x="2593" y="251"/>
+  <object height="24" width="120" x="2736" y="288"/>
+  <object height="24" width="144" x="2616" y="216"/>
+  <object height="24" width="192" x="2712" y="168"/>
+  <object height="24" width="168" x="1824" y="288"/>
+  <object height="24" width="168" x="1968" y="240"/>
+  <object height="24" width="48" x="2136" y="336"/>
+  <object height="24" width="288" x="1584" y="240"/>
+  <object height="24" width="552" x="1488" y="168"/>
+  <object height="24" width="336" x="456" y="264"/>
+  <object height="24" width="72" x="2688" y="120"/>
+  <object x="2281" y="385">
+   <polygon points="0,0 24,0 288,-72 408,-72 408,24 0,24"/>
+  </object>
+ </objectgroup>
+ <objectgroup height="22" name="nodes" width="120">
+  <object height="168" type="door" width="24" x="2856" y="0">
+   <properties>
+    <property name="instant" value="true"/>
+    <property name="level" value="winterwonderland"/>
+    <property name="to" value="main"/>
+   </properties>
+  </object>
+  <object height="48" type="door" width="24" x="24" y="360">
+   <properties>
+    <property name="level" value="gay-island-2"/>
+    <property name="to" value="next"/>
+   </properties>
+  </object>
+  <object height="24" name="rock" type="material" width="24" x="624" y="240"/>
+  <object height="24" name="rock" type="material" width="24" x="1632" y="360"/>
+  <object height="24" name="stick" type="material" width="24" x="1536" y="24"/>
+  <object height="24" name="stick" type="material" width="24" x="1896" y="48"/>
+  <object height="24" name="leaf" type="material" width="24" x="432" y="408"/>
+  <object height="24" name="leaf" type="material" width="24" x="2208" y="360"/>
+  <object height="48" type="enemy" width="48" x="2352" y="216">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="2064" y="336">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="1824" y="336">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="1680" y="336">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="2040" y="192">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="1920" y="120">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="1752" y="192">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="768" y="384">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="552" y="384">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="528" y="216">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+  <object height="288" type="liquid" width="168" x="552" y="240">
+   <properties>
+    <property name="fade" value="true"/>
+    <property name="opacity" value="0.31"/>
+    <property name="speed" value="0.1"/>
+    <property name="sprite" value="images/waterfall.png"/>
+    <property name="uniform" value="true"/>
+   </properties>
+  </object>
+  <object height="24" name="rock" type="material" width="24" x="144" y="384"/>
+  <object height="48" name="main" type="door" width="24" x="24" y="360"/>
+  <object height="48" type="enemy" width="48" x="1920" y="336">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+  <object height="48" type="enemy" width="48" x="1704" y="120">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

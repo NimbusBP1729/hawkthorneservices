@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="60" height="14" tilewidth="24" tileheight="24">
+ <properties>
+  <property name="blue" value="124"/>
+  <property name="floor" value="9"/>
+  <property name="green" value="163"/>
+  <property name="red" value="195"/>
+  <property name="soundtrack" value="town"/>
+  <property name="title" value="Town"/>
+ </properties>
+ <tileset firstgid="1" name="town" tilewidth="24" tileheight="24">
+  <image source="../images/tilesets/town.png" width="360" height="96"/>
+ </tileset>
+ <layer name="mountains" width="60" height="14">
+  <properties>
+   <property name="parallax" value="0.2"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFwxmYAbE6hG7AJkZInlw7BgpIIGGY/yRwYGzyhMIBi/oFNPYSXoDLb6RgXOGAK+wG0s/U8C85eKDAqH9H/Tvq31H/DhX/joJRMJwAAHU/IVs=
+  </data>
+ </layer>
+ <layer name="treeline" width="60" height="14">
+  <properties>
+   <property name="parallax" value="0.5"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztkVEKwCAMQ4M36A16dI/i0bbJBiJV63BsgzzIh1JjogAhhPwDAaICaaXn7hel0uo77hKQO6drrRMZtTEnp28p6XhZPmUOdxkHRZ7s3cqoxp8F43y9b81o530sjyf6jjKO5mbleZ83+n5B7EsIOdgAYWYhfw==
+  </data>
+ </layer>
+ <layer name="reeds" width="60" height="14">
+  <properties>
+   <property name="parallax" value="0.9"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztkMENACEIBG3FCo7+qzMmPgwZkPtdzp2Eh7LiaGtCCCHEfTyrvk7VM8vNfVtFuer8qlPmQXP2OnlSLupZkPNrwlx+d/JvmL0Orv4ceZHnKd9fzKJ19O/ZneQkxF8Z3PcU3A==
+  </data>
+ </layer>
+ <layer name="buildings" width="60" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztlE0KgCAUhKdl4qJNLWxRR+loHqWjdJSO0ntEEfanhUXpwIAuHsxn8wKioqJcpMgFoHOg5XtK51cDeZYEmhKomVuN9+7lSF5FrHpi5fPfeZVh+bE+0x7yPlpLUJ+XvNxtYN5p/VQOV1HOfuNbdWdz0phh3mXH2cKBe8rh+58gsO6mspjbmrnybkc5hAdeafTSltfs8w6vvpPD9r2SwJwF5iowD2m7Ii0=
+  </data>
+ </layer>
+ <layer name="foreground" width="60" height="14" opacity="0.56">
+  <data encoding="base64" compression="zlib">
+   eJztk0sLgCAQhL1K10C69qK69aK/509vJSITUXRFifxgDj5mmD0sIZkMjgJEL/HEVaJT/mzmJnWBiPSpC3jiu4t7oJxQflfELhaG9wE0Kpoe7yvHpTfV+E09MIj9a0EdaLH8PTR3TDnbMkw9BBUiw5Xa8i7Pe/dT57VlhOiBZQVtoNnDyyQ/8cyQe4A4JiOT+TInwbwLqQ==
+  </data>
+ </layer>
+ <layer name="accents" width="60" height="14" opacity="0.49">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDAfADMQsQMwKxGxAzA7EHAPqIvIBMX4RwqIPKNZAW5fRBmDzizgRakayfzmBWISKbsIHeIGYD4j5ydQ/1OJXBohlgViOTP1Dzb/aQKwDxLpk6qenf40huMGcTH0gthUQWwOxDZo4sQDmF2S96P4dBaNgqAMA9pMKsw==
+  </data>
+ </layer>
+ <objectgroup name="nodes" width="60" height="14">
+  <object type="cow" x="415" y="206" width="84" height="60"/>
+  <object name="main" type="door" x="24" y="216" width="24" height="48"/>
+  <object type="door" x="1416" y="120" width="24" height="144">
+   <properties>
+    <property name="instant" value="true"/>
+    <property name="level" value="overworld"/>
+   </properties>
+  </object>
+  <object name="tavern" type="door" x="360" y="216" width="24" height="48">
+   <properties>
+    <property name="level" value="tavern"/>
+    <property name="to" value="main"/>
+   </properties>
+  </object>
+  <object name="blacksmith" type="door" x="1176" y="216" width="24" height="48">
+   <properties>
+    <property name="level" value="blacksmith"/>
+    <property name="to" value="main"/>
+   </properties>
+  </object>
+  <object name="house" type="door" x="768" y="216" width="24" height="48">
+   <properties>
+    <property name="level" value="house"/>
+    <property name="to" value="main"/>
+   </properties>
+  </object>
+  <object type="climbable" x="558" y="169" width="16" height="94"/>
+  <object type="enemy" x="134" y="40" width="45" height="52">
+   <properties>
+    <property name="enemytype" value="manicorn"/>
+   </properties>
+  </object>
+  <object type="enemy" x="427" y="171" width="25" height="23">
+   <properties>
+    <property name="enemytype" value="hippy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="floor" width="60" height="14">
+  <object x="0" y="264" width="1440" height="72"/>
+ </objectgroup>
+ <objectgroup name="platform" width="60" height="14">
+  <object x="720" y="185" width="110" height="22">
+   <polyline points="0,0 47,-25 117,10 -2,10 -1,0"/>
+  </object>
+  <object x="562" y="172" width="110" height="22"/>
+  <object x="625" y="74">
+   <polyline points="1,2 0,22 91,22 22,-11 1,0"/>
+  </object>
+  <object x="385" y="168" width="24" height="24"/>
+  <object x="600" y="48" width="24" height="24"/>
+  <object x="1082" y="192">
+   <polyline points="0,0 67,-32 116,-9 116,-1 1,1"/>
+  </object>
+  <object x="1200" y="168" width="24" height="24"/>
+  <object x="270" y="192">
+   <polyline points="0,0 65,-31 113,-9 113,6 1,6 1,1"/>
+  </object>
+  <object x="72" y="96" width="144" height="24"/>
+  <object x="1296" y="96" width="144" height="24"/>
+  <object x="912" y="191">
+   <polygon points="0,0 25,-23 49,-23 70,0"/>
+  </object>
+  <object x="912" y="239" width="71" height="12"/>
+ </objectgroup>
+</map>

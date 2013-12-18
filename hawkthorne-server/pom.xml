@@ -11,8 +11,11 @@
   <artifactId>hawkthorne-server</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>hawkthorne-server</name>
+
+  <packaging>jar</packaging>
   <url>http://maven.apache.org</url>
   <properties>
+    <mainClass>com.projecthawkthorne.server.Main</mainClass>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>

@@ -10,15 +10,16 @@ import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.g2d.tiled.TiledLoader;
-import com.badlogic.gdx.graphics.g2d.tiled.TiledMap;
-import com.badlogic.gdx.graphics.g2d.tiled.TiledObject;
-import com.badlogic.gdx.graphics.g2d.tiled.TiledObjectGroup;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
 import com.projecthawkthorne.hardoncollider.Collider;
@@ -49,10 +50,10 @@ public class Level implements Gamestate {
 	// private Collider collider;
 	private Gamestate spawnLevel;
 	private final String name;
-	private Map<String, Door> doors = new HashMap<String, Door>();
+	private java.util.Map<String, Door> doors = new HashMap<String, Door>();
 	private Boundary boundary = new Boundary();
 	private long lastTime = 0;
-	TiledMap map;
+	private com.badlogic.gdx.maps.Map map;
 	private Collider collider;
 
 	// private SpriteBatch batch = new SpriteBatch();
@@ -71,96 +72,70 @@ public class Level implements Gamestate {
 	}
 
 	private void loadNodes(String levelName) {
+		TmxMapLoader loader = new TmxMapLoader(new InternalFileHandleResolver());
 
-		try {
-			this.map = TiledLoader.createMap(Level.readFile(SRC_MAPS
-					+ levelName.trim() + ".tmx"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		this.boundary.width = map.width * map.tileWidth;
-		this.boundary.height = map.height * map.tileHeight;
+		this.map = loader.load(SRC_MAPS
+				+ levelName.trim() + ".tmx");
+		MapProperties prop = map.getProperties();
+		int mapWidth = prop.get("width", Integer.class);
+		int mapHeight = prop.get("height", Integer.class);
+		int tilePixelWidth = prop.get("tilewidth", Integer.class);
+		int tilePixelHeight = prop.get("tileheight", Integer.class);
+		
+		this.boundary.width = mapWidth * tilePixelWidth;
+		this.boundary.height = mapHeight * tilePixelHeight;
 
 		// floor is deprecated
-		TiledObjectGroup floorGroup = this.getNodeGroupByName("floor");
-		for (int i = 0; floorGroup != null && i < floorGroup.objects.size(); i++) {
-			TiledObject t = floorGroup.objects.get(i);
+		 MapLayer floorGroup = this.getNodeGroupByName("floor");
+		for (MapObject t : floorGroup.getObjects()) {
 			Node node;
-			if (t.properties == null) {
-				t.properties = new HashMap<String, String>();
-			}
-			t.properties.put("level", levelName);
-			node = new Floor(t, this);
+			t.getProperties().put("level", levelName);
+			node = new Floor((RectangleMapObject) t, this);
 			this.nodes.put(node.getId(), node);
 		}
 
-		TiledObjectGroup wallGroup = this.getNodeGroupByName("wall");
-		for (int i = 0; wallGroup != null && i < wallGroup.objects.size(); i++) {
-			TiledObject t = wallGroup.objects.get(i);
+		MapLayer wallGroup = this.getNodeGroupByName("wall");
+		for (MapObject t : wallGroup.getObjects()) {
 			Node node;
-			if (t.properties == null) {
-				t.properties = new HashMap<String, String>();
-			}
-			t.properties.put("level", levelName);
-			node = new Floor(t, this);
+			t.getProperties().put("level", levelName);
+			node = new Floor((RectangleMapObject) t, this);
 			this.nodes.put(node.getId(), node);
 		}
 
-		TiledObjectGroup platformGroup = this.getNodeGroupByName("platform");
-		for (int i = 0; platformGroup != null
-				&& i < platformGroup.objects.size(); i++) {
-			TiledObject t = platformGroup.objects.get(i);
+		MapLayer platformGroup = this.getNodeGroupByName("platform");
+		for (MapObject t : platformGroup.getObjects()) {
 			Node node;
-			if (t.properties == null) {
-				t.properties = new HashMap<String, String>(1);
-			}
-			t.properties.put("level", levelName);
-			node = new Platform(t, this);
+			t.getProperties().put("level", levelName);
+			node = new Platform((RectangleMapObject) t, this);
 			this.nodes.put(node.getId(), node);
 		}
 
-		TiledObjectGroup nodeGroup = this.getNodeGroupByName("nodes");
-		for (int i = 0; i < nodeGroup.objects.size(); i++) {
-			TiledObject t = nodeGroup.objects.get(i);
+		MapLayer nodeGroup = this.getNodeGroupByName("nodes");
+		for (MapObject t : nodeGroup.getObjects()) {
 			Node node;
-			if ("material".equals(t.type)) {
-				if (t.properties == null) {
-					t.properties = new HashMap<String, String>();
-				}
-				node = new Material(t, this);
+			if ("material".equals(t.getProperties().get("type",String.class))) {
+				node = new Material((RectangleMapObject) t, this);
 				this.nodes.put(node.getId(), node);
-			} else if ("door".equals(t.type)) {
-				if (t.properties == null) {
-					t.properties = new HashMap<String, String>();
-				}
-				node = new Door(t, this);
+			} else if ("door".equals(t.getProperties().get("type",String.class))) {
+				node = new Door((RectangleMapObject) t, this);
 				this.doors.put(node.name, (Door) node);
-			} else if ("enemy".equals(t.type)) {
-				if (t.properties == null) {
-					t.properties = new HashMap<String, String>();
-				}
+			} else if ("enemy".equals(t.getProperties().get("type",String.class))) {
 				// TODO: remove this chunk of code:
 				// i.e. deprecate 'enemytype' and have it
 				// represented as a 'name' in the .tmx file
-				if (t.properties.get("enemytype") != null) {
-					t.name = t.properties.get("enemytype");
+				if (t.getProperties().get("enemytype") != null) {
+					t.setName(t.getProperties().get("enemytype",String.class));
 				}
-				node = Enemy.create(t, this);
+				node = Enemy.create((RectangleMapObject) t, this);
 				this.nodes.put(node.getId(), node);
-			} else if ("climbable".equals(t.type)) {
-				if (t.properties == null) {
-					t.properties = new HashMap<String, String>();
-				}
-				node = new Ladder(t, this);
+			} else if ("climbable".equals(t.getProperties().get("type",String.class))) {
+				node = new Ladder((RectangleMapObject) t, this);
 				this.nodes.put(node.getId(), node);
-			} else if ("liquid".equals(t.type)) {
-				if (t.properties == null) {
-					t.properties = new HashMap<String, String>();
-				}
-				node = new Liquid(t, this);
+			} else if ("liquid".equals(t.getProperties().get("type",String.class))) {
+				node = new Liquid((RectangleMapObject) t, this);
 				this.nodes.put(node.getId(), node);
 			} else {
-				System.err.println("Unknown type:" + t.type);
+				System.err.println("Unknown type:" + t.getProperties().get("type"));
 			}
 		}
 
@@ -179,15 +154,8 @@ public class Level implements Gamestate {
 		}
 	}
 
-	private TiledObjectGroup getNodeGroupByName(String name) {
-		TiledObjectGroup nodeGroup = null;
-		for (int i = 0; i < this.map.objectGroups.size(); i++) {
-			if (this.map.objectGroups.get(i).name.equals(name)) {
-				nodeGroup = this.map.objectGroups.get(i);
-				break;
-			}
-		}
-		return nodeGroup;
+	private MapLayer getNodeGroupByName(String name) {
+		return this.map.getLayers().get(name);
 	}
 
 	public LevelMap getNodes() {

@@ -1,0 +1,8415 @@
+
+greendale-exterior1.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+greendale-exterior
+  rotate: false
+  xy: 2, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 260
+greendale-exterior
+  rotate: false
+  xy: 28, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 250
+greendale-exterior
+  rotate: false
+  xy: 54, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 249
+greendale-exterior
+  rotate: false
+  xy: 80, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 248
+greendale-exterior
+  rotate: false
+  xy: 106, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 246
+greendale-exterior
+  rotate: false
+  xy: 132, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 245
+greendale-exterior
+  rotate: false
+  xy: 158, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 244
+greendale-exterior
+  rotate: false
+  xy: 184, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 243
+greendale-exterior
+  rotate: false
+  xy: 210, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 242
+greendale-exterior
+  rotate: false
+  xy: 2, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 241
+greendale-exterior
+  rotate: false
+  xy: 28, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 230
+greendale-exterior
+  rotate: false
+  xy: 54, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 229
+greendale-exterior
+  rotate: false
+  xy: 80, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 228
+greendale-exterior
+  rotate: false
+  xy: 106, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 227
+greendale-exterior
+  rotate: false
+  xy: 132, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 226
+greendale-exterior
+  rotate: false
+  xy: 158, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 225
+greendale-exterior
+  rotate: false
+  xy: 184, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 224
+greendale-exterior
+  rotate: false
+  xy: 210, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 223
+greendale-exterior
+  rotate: false
+  xy: 2, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 222
+greendale-exterior
+  rotate: false
+  xy: 28, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 221
+greendale-exterior
+  rotate: false
+  xy: 54, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 212
+greendale-exterior
+  rotate: false
+  xy: 80, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 211
+greendale-exterior
+  rotate: false
+  xy: 106, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 210
+greendale-exterior
+  rotate: false
+  xy: 132, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 209
+greendale-exterior
+  rotate: false
+  xy: 158, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 208
+greendale-exterior
+  rotate: false
+  xy: 184, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 207
+greendale-exterior
+  rotate: false
+  xy: 210, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 206
+greendale-exterior
+  rotate: false
+  xy: 2, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 205
+greendale-exterior
+  rotate: false
+  xy: 28, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 204
+greendale-exterior
+  rotate: false
+  xy: 54, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 203
+greendale-exterior
+  rotate: false
+  xy: 80, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 202
+greendale-exterior
+  rotate: false
+  xy: 106, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 201
+greendale-exterior
+  rotate: false
+  xy: 132, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 191
+greendale-exterior
+  rotate: false
+  xy: 158, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 190
+greendale-exterior
+  rotate: false
+  xy: 184, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 189
+greendale-exterior
+  rotate: false
+  xy: 210, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 188
+greendale-exterior
+  rotate: false
+  xy: 2, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 187
+greendale-exterior
+  rotate: false
+  xy: 28, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 186
+greendale-exterior
+  rotate: false
+  xy: 54, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 185
+greendale-exterior
+  rotate: false
+  xy: 80, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 184
+greendale-exterior
+  rotate: false
+  xy: 106, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 183
+greendale-exterior
+  rotate: false
+  xy: 132, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 182
+greendale-exterior
+  rotate: false
+  xy: 158, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 181
+greendale-exterior
+  rotate: false
+  xy: 184, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 180
+greendale-exterior
+  rotate: false
+  xy: 210, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 179
+greendale-exterior
+  rotate: false
+  xy: 2, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 178
+greendale-exterior
+  rotate: false
+  xy: 28, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 177
+greendale-exterior
+  rotate: false
+  xy: 54, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 176
+greendale-exterior
+  rotate: false
+  xy: 80, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 175
+greendale-exterior
+  rotate: false
+  xy: 106, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 174
+greendale-exterior
+  rotate: false
+  xy: 132, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 173
+greendale-exterior
+  rotate: false
+  xy: 158, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 172
+greendale-exterior
+  rotate: false
+  xy: 184, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 169
+greendale-exterior
+  rotate: false
+  xy: 210, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 168
+greendale-exterior
+  rotate: false
+  xy: 2, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 167
+greendale-exterior
+  rotate: false
+  xy: 28, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 166
+greendale-exterior
+  rotate: false
+  xy: 54, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 165
+greendale-exterior
+  rotate: false
+  xy: 80, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 164
+greendale-exterior
+  rotate: false
+  xy: 106, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 163
+greendale-exterior
+  rotate: false
+  xy: 132, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 162
+greendale-exterior
+  rotate: false
+  xy: 158, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 161
+greendale-exterior
+  rotate: false
+  xy: 184, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 160
+greendale-exterior
+  rotate: false
+  xy: 210, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 158
+greendale-exterior
+  rotate: false
+  xy: 2, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 157
+greendale-exterior
+  rotate: false
+  xy: 28, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 156
+greendale-exterior
+  rotate: false
+  xy: 54, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 155
+greendale-exterior
+  rotate: false
+  xy: 80, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 154
+greendale-exterior
+  rotate: false
+  xy: 106, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 153
+greendale-exterior
+  rotate: false
+  xy: 132, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 152
+greendale-exterior
+  rotate: false
+  xy: 158, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 151
+greendale-exterior
+  rotate: false
+  xy: 184, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 150
+greendale-exterior
+  rotate: false
+  xy: 210, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 149
+greendale-exterior
+  rotate: false
+  xy: 2, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 148
+greendale-exterior
+  rotate: false
+  xy: 28, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 147
+greendale-exterior
+  rotate: false
+  xy: 54, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 146
+greendale-exterior
+  rotate: false
+  xy: 80, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 145
+greendale-exterior
+  rotate: false
+  xy: 106, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 144
+greendale-exterior
+  rotate: false
+  xy: 132, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 143
+greendale-exterior
+  rotate: false
+  xy: 158, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 142
+greendale-exterior
+  rotate: false
+  xy: 184, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 141
+greendale-exterior
+  rotate: false
+  xy: 210, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 140
+greendale-exterior
+  rotate: false
+  xy: 2, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 139
+greendale-exterior
+  rotate: false
+  xy: 28, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 138
+greendale-exterior
+  rotate: false
+  xy: 54, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 137
+greendale-exterior
+  rotate: false
+  xy: 80, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 136
+greendale-exterior
+  rotate: false
+  xy: 106, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 135
+greendale-exterior
+  rotate: false
+  xy: 132, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 134
+greendale-exterior
+  rotate: false
+  xy: 158, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 133
+greendale-exterior
+  rotate: false
+  xy: 184, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 132
+greendale-exterior
+  rotate: false
+  xy: 210, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 131
+greendale-exterior
+  rotate: false
+  xy: 2, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 130
+greendale-exterior
+  rotate: false
+  xy: 28, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 129
+greendale-exterior
+  rotate: false
+  xy: 54, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 128
+greendale-exterior
+  rotate: false
+  xy: 80, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 127
+greendale-exterior
+  rotate: false
+  xy: 106, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 126
+greendale-exterior
+  rotate: false
+  xy: 132, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 125
+greendale-exterior
+  rotate: false
+  xy: 158, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 124
+greendale-exterior
+  rotate: false
+  xy: 184, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 123
+greendale-exterior
+  rotate: false
+  xy: 210, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 122
+greendale-exterior
+  rotate: false
+  xy: 2, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 121
+greendale-exterior
+  rotate: false
+  xy: 28, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 120
+greendale-exterior
+  rotate: false
+  xy: 54, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 119
+greendale-exterior
+  rotate: false
+  xy: 80, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 118
+greendale-exterior
+  rotate: false
+  xy: 106, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 117
+greendale-exterior
+  rotate: false
+  xy: 132, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 116
+greendale-exterior
+  rotate: false
+  xy: 158, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 115
+greendale-exterior
+  rotate: false
+  xy: 184, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 114
+greendale-exterior
+  rotate: false
+  xy: 210, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 113
+greendale-exterior
+  rotate: false
+  xy: 2, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 112
+greendale-exterior
+  rotate: false
+  xy: 28, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 111
+greendale-exterior
+  rotate: false
+  xy: 54, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 110
+greendale-exterior
+  rotate: false
+  xy: 80, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 109
+greendale-exterior
+  rotate: false
+  xy: 106, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 108
+greendale-exterior
+  rotate: false
+  xy: 132, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 107
+greendale-exterior
+  rotate: false
+  xy: 158, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 106
+greendale-exterior
+  rotate: false
+  xy: 184, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 105
+greendale-exterior
+  rotate: false
+  xy: 210, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 104
+greendale-exterior
+  rotate: false
+  xy: 2, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 103
+greendale-exterior
+  rotate: false
+  xy: 28, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 102
+greendale-exterior
+  rotate: false
+  xy: 54, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 101
+greendale-exterior
+  rotate: false
+  xy: 80, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 100
+greendale-exterior
+  rotate: false
+  xy: 106, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 98
+greendale-exterior
+  rotate: false
+  xy: 132, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 97
+greendale-exterior
+  rotate: false
+  xy: 158, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 96
+greendale-exterior
+  rotate: false
+  xy: 184, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 95
+greendale-exterior
+  rotate: false
+  xy: 210, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 94
+greendale-exterior
+  rotate: false
+  xy: 2, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 93
+greendale-exterior
+  rotate: false
+  xy: 28, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 92
+greendale-exterior
+  rotate: false
+  xy: 54, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 91
+greendale-exterior
+  rotate: false
+  xy: 80, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 90
+greendale-exterior
+  rotate: false
+  xy: 106, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 89
+greendale-exterior
+  rotate: false
+  xy: 132, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 88
+greendale-exterior
+  rotate: false
+  xy: 158, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 87
+greendale-exterior
+  rotate: false
+  xy: 184, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 86
+greendale-exterior
+  rotate: false
+  xy: 210, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 85
+greendale-exterior
+  rotate: false
+  xy: 2, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 84
+greendale-exterior
+  rotate: false
+  xy: 28, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 83
+greendale-exterior
+  rotate: false
+  xy: 54, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 82
+greendale-exterior
+  rotate: false
+  xy: 80, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 81
+greendale-exterior
+  rotate: false
+  xy: 106, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 80
+greendale-exterior
+  rotate: false
+  xy: 132, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 76
+greendale-exterior
+  rotate: false
+  xy: 158, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 75
+greendale-exterior
+  rotate: false
+  xy: 184, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 74
+greendale-exterior
+  rotate: false
+  xy: 210, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 73
+greendale-exterior
+  rotate: false
+  xy: 2, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 72
+greendale-exterior
+  rotate: false
+  xy: 28, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 71
+greendale-exterior
+  rotate: false
+  xy: 54, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 70
+greendale-exterior
+  rotate: false
+  xy: 80, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 69
+greendale-exterior
+  rotate: false
+  xy: 106, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 68
+greendale-exterior
+  rotate: false
+  xy: 132, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 67
+greendale-exterior
+  rotate: false
+  xy: 158, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 66
+greendale-exterior
+  rotate: false
+  xy: 184, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 65
+greendale-exterior
+  rotate: false
+  xy: 210, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 64
+greendale-exterior
+  rotate: false
+  xy: 2, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 63
+greendale-exterior
+  rotate: false
+  xy: 28, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 62
+greendale-exterior
+  rotate: false
+  xy: 54, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 61
+greendale-exterior
+  rotate: false
+  xy: 80, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 60
+greendale-exterior
+  rotate: false
+  xy: 106, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 57
+greendale-exterior
+  rotate: false
+  xy: 132, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 56
+greendale-exterior
+  rotate: false
+  xy: 158, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 55
+greendale-exterior
+  rotate: false
+  xy: 184, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 54
+greendale-exterior
+  rotate: false
+  xy: 210, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 53
+greendale-exterior
+  rotate: false
+  xy: 2, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 52
+greendale-exterior
+  rotate: false
+  xy: 28, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 51
+greendale-exterior
+  rotate: false
+  xy: 54, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 50
+greendale-exterior
+  rotate: false
+  xy: 80, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 49
+greendale-exterior
+  rotate: false
+  xy: 106, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 48
+greendale-exterior
+  rotate: false
+  xy: 132, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 47
+greendale-exterior
+  rotate: false
+  xy: 158, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 46
+greendale-exterior
+  rotate: false
+  xy: 184, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 45
+greendale-exterior
+  rotate: false
+  xy: 210, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 44
+greendale-exterior
+  rotate: false
+  xy: 2, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 43
+greendale-exterior
+  rotate: false
+  xy: 28, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 42
+greendale-exterior
+  rotate: false
+  xy: 54, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 41
+greendale-exterior
+  rotate: false
+  xy: 80, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 40
+greendale-exterior
+  rotate: false
+  xy: 106, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 37
+greendale-exterior
+  rotate: false
+  xy: 132, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 36
+greendale-exterior
+  rotate: false
+  xy: 158, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 35
+greendale-exterior
+  rotate: false
+  xy: 184, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 30
+greendale-exterior
+  rotate: false
+  xy: 210, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 29
+greendale-exterior
+  rotate: false
+  xy: 2, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 28
+greendale-exterior
+  rotate: false
+  xy: 28, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 27
+greendale-exterior
+  rotate: false
+  xy: 54, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 26
+greendale-exterior
+  rotate: false
+  xy: 80, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 25
+greendale-exterior
+  rotate: false
+  xy: 106, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 24
+greendale-exterior
+  rotate: false
+  xy: 132, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 23
+greendale-exterior
+  rotate: false
+  xy: 158, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 22
+greendale-exterior
+  rotate: false
+  xy: 184, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 21
+greendale-exterior
+  rotate: false
+  xy: 210, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 20
+greendale-exterior
+  rotate: false
+  xy: 2, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 17
+greendale-exterior
+  rotate: false
+  xy: 28, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 16
+greendale-exterior
+  rotate: false
+  xy: 54, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 15
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 11
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 12
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 13
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 14
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 18
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 19
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 31
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 32
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 33
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 34
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 38
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 39
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 58
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 59
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 77
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 78
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 79
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 99
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 159
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 170
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 171
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 192
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 193
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 194
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 195
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 196
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 197
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 198
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 199
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 200
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 213
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 214
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 215
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 216
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 217
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 218
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 219
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 220
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 231
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 232
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 233
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 234
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 235
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 236
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 237
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 238
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 239
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 240
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 247
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 251
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 252
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 253
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 254
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 255
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 256
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 257
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 258
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 259
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 261
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 262
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 263
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 264
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 265
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 266
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 267
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 268
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 269
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 270
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 271
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 272
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 273
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 274
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 275
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 276
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 277
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 278
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 279
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 280
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 281
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 282
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 283
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 284
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 285
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 286
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 287
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 288
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 289
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 290
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 291
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 292
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 293
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 294
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 295
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 296
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 297
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 298
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 299
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 300
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 301
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 302
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 303
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 304
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 305
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 306
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 307
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 308
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 309
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 310
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 311
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 312
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 313
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 314
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 315
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 316
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 317
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 318
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 319
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 320
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 321
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 322
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 323
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 324
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 325
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 326
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 327
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 328
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 329
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 330
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 331
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 332
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 333
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 334
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 335
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 336
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 337
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 338
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 339
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 340
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 341
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 342
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 343
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 344
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 345
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 346
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 347
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 348
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 349
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 350
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 351
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 352
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 353
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 354
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 355
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 356
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 357
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 358
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 359
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 360
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 361
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 362
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 363
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 364
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 365
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 366
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 367
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 368
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 369
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 370
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 371
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 372
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 373
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 374
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 375
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 376
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 377
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 378
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 379
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 380
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 381
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 382
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 383
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 384
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 385
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 386
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 387
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 388
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 389
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 390
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 391
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 392
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 393
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 394
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 395
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 396
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 397
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 398
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 399
+greendale-exterior
+  rotate: false
+  xy: 106, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 10
+greendale-exterior
+  rotate: false
+  xy: 132, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 9
+greendale-exterior
+  rotate: false
+  xy: 158, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 8
+greendale-exterior
+  rotate: false
+  xy: 184, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 7
+greendale-exterior
+  rotate: false
+  xy: 210, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 6
+greendale-exterior
+  rotate: false
+  xy: 2, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 5
+greendale-exterior
+  rotate: false
+  xy: 28, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 4
+greendale-exterior
+  rotate: false
+  xy: 54, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 3
+greendale-exterior
+  rotate: false
+  xy: 80, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 2
+greendale-exterior
+  rotate: false
+  xy: 106, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 1
+greendale-exterior
+  rotate: false
+  xy: 132, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 0
+
+greendale-exterior2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+greendale-exterior
+  rotate: false
+  xy: 2, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 260
+greendale-exterior
+  rotate: false
+  xy: 28, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 250
+greendale-exterior
+  rotate: false
+  xy: 54, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 249
+greendale-exterior
+  rotate: false
+  xy: 80, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 248
+greendale-exterior
+  rotate: false
+  xy: 106, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 246
+greendale-exterior
+  rotate: false
+  xy: 132, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 245
+greendale-exterior
+  rotate: false
+  xy: 158, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 244
+greendale-exterior
+  rotate: false
+  xy: 184, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 243
+greendale-exterior
+  rotate: false
+  xy: 210, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 242
+greendale-exterior
+  rotate: false
+  xy: 2, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 241
+greendale-exterior
+  rotate: false
+  xy: 28, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 230
+greendale-exterior
+  rotate: false
+  xy: 54, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 229
+greendale-exterior
+  rotate: false
+  xy: 80, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 228
+greendale-exterior
+  rotate: false
+  xy: 106, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 227
+greendale-exterior
+  rotate: false
+  xy: 132, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 226
+greendale-exterior
+  rotate: false
+  xy: 158, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 225
+greendale-exterior
+  rotate: false
+  xy: 184, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 224
+greendale-exterior
+  rotate: false
+  xy: 210, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 223
+greendale-exterior
+  rotate: false
+  xy: 2, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 222
+greendale-exterior
+  rotate: false
+  xy: 28, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 221
+greendale-exterior
+  rotate: false
+  xy: 54, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 212
+greendale-exterior
+  rotate: false
+  xy: 80, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 211
+greendale-exterior
+  rotate: false
+  xy: 106, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 210
+greendale-exterior
+  rotate: false
+  xy: 132, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 209
+greendale-exterior
+  rotate: false
+  xy: 158, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 208
+greendale-exterior
+  rotate: false
+  xy: 184, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 207
+greendale-exterior
+  rotate: false
+  xy: 210, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 206
+greendale-exterior
+  rotate: false
+  xy: 2, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 205
+greendale-exterior
+  rotate: false
+  xy: 28, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 204
+greendale-exterior
+  rotate: false
+  xy: 54, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 203
+greendale-exterior
+  rotate: false
+  xy: 80, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 202
+greendale-exterior
+  rotate: false
+  xy: 106, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 201
+greendale-exterior
+  rotate: false
+  xy: 132, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 191
+greendale-exterior
+  rotate: false
+  xy: 158, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 190
+greendale-exterior
+  rotate: false
+  xy: 184, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 189
+greendale-exterior
+  rotate: false
+  xy: 210, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 188
+greendale-exterior
+  rotate: false
+  xy: 2, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 187
+greendale-exterior
+  rotate: false
+  xy: 28, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 186
+greendale-exterior
+  rotate: false
+  xy: 54, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 185
+greendale-exterior
+  rotate: false
+  xy: 80, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 184
+greendale-exterior
+  rotate: false
+  xy: 106, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 183
+greendale-exterior
+  rotate: false
+  xy: 132, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 182
+greendale-exterior
+  rotate: false
+  xy: 158, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 181
+greendale-exterior
+  rotate: false
+  xy: 184, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 180
+greendale-exterior
+  rotate: false
+  xy: 210, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 179
+greendale-exterior
+  rotate: false
+  xy: 2, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 178
+greendale-exterior
+  rotate: false
+  xy: 28, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 177
+greendale-exterior
+  rotate: false
+  xy: 54, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 176
+greendale-exterior
+  rotate: false
+  xy: 80, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 175
+greendale-exterior
+  rotate: false
+  xy: 106, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 174
+greendale-exterior
+  rotate: false
+  xy: 132, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 173
+greendale-exterior
+  rotate: false
+  xy: 158, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 172
+greendale-exterior
+  rotate: false
+  xy: 184, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 169
+greendale-exterior
+  rotate: false
+  xy: 210, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 168
+greendale-exterior
+  rotate: false
+  xy: 2, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 167
+greendale-exterior
+  rotate: false
+  xy: 28, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 166
+greendale-exterior
+  rotate: false
+  xy: 54, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 165
+greendale-exterior
+  rotate: false
+  xy: 80, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 164
+greendale-exterior
+  rotate: false
+  xy: 106, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 163
+greendale-exterior
+  rotate: false
+  xy: 132, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 162
+greendale-exterior
+  rotate: false
+  xy: 158, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 161
+greendale-exterior
+  rotate: false
+  xy: 184, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 160
+greendale-exterior
+  rotate: false
+  xy: 210, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 158
+greendale-exterior
+  rotate: false
+  xy: 2, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 157
+greendale-exterior
+  rotate: false
+  xy: 28, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 156
+greendale-exterior
+  rotate: false
+  xy: 54, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 155
+greendale-exterior
+  rotate: false
+  xy: 80, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 154
+greendale-exterior
+  rotate: false
+  xy: 106, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 153
+greendale-exterior
+  rotate: false
+  xy: 132, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 152
+greendale-exterior
+  rotate: false
+  xy: 158, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 151
+greendale-exterior
+  rotate: false
+  xy: 184, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 150
+greendale-exterior
+  rotate: false
+  xy: 210, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 149
+greendale-exterior
+  rotate: false
+  xy: 2, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 148
+greendale-exterior
+  rotate: false
+  xy: 28, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 147
+greendale-exterior
+  rotate: false
+  xy: 54, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 146
+greendale-exterior
+  rotate: false
+  xy: 80, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 145
+greendale-exterior
+  rotate: false
+  xy: 106, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 144
+greendale-exterior
+  rotate: false
+  xy: 132, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 143
+greendale-exterior
+  rotate: false
+  xy: 158, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 142
+greendale-exterior
+  rotate: false
+  xy: 184, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 141
+greendale-exterior
+  rotate: false
+  xy: 210, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 140
+greendale-exterior
+  rotate: false
+  xy: 2, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 139
+greendale-exterior
+  rotate: false
+  xy: 28, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 138
+greendale-exterior
+  rotate: false
+  xy: 54, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 137
+greendale-exterior
+  rotate: false
+  xy: 80, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 136
+greendale-exterior
+  rotate: false
+  xy: 106, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 135
+greendale-exterior
+  rotate: false
+  xy: 132, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 134
+greendale-exterior
+  rotate: false
+  xy: 158, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 133
+greendale-exterior
+  rotate: false
+  xy: 184, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 132
+greendale-exterior
+  rotate: false
+  xy: 210, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 131
+greendale-exterior
+  rotate: false
+  xy: 2, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 130
+greendale-exterior
+  rotate: false
+  xy: 28, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 129
+greendale-exterior
+  rotate: false
+  xy: 54, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 128
+greendale-exterior
+  rotate: false
+  xy: 80, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 127
+greendale-exterior
+  rotate: false
+  xy: 106, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 126
+greendale-exterior
+  rotate: false
+  xy: 132, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 125
+greendale-exterior
+  rotate: false
+  xy: 158, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 124
+greendale-exterior
+  rotate: false
+  xy: 184, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 123
+greendale-exterior
+  rotate: false
+  xy: 210, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 122
+greendale-exterior
+  rotate: false
+  xy: 2, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 121
+greendale-exterior
+  rotate: false
+  xy: 28, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 120
+greendale-exterior
+  rotate: false
+  xy: 54, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 119
+greendale-exterior
+  rotate: false
+  xy: 80, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 118
+greendale-exterior
+  rotate: false
+  xy: 106, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 117
+greendale-exterior
+  rotate: false
+  xy: 132, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 116
+greendale-exterior
+  rotate: false
+  xy: 158, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 115
+greendale-exterior
+  rotate: false
+  xy: 184, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 114
+greendale-exterior
+  rotate: false
+  xy: 210, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 113
+greendale-exterior
+  rotate: false
+  xy: 2, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 112
+greendale-exterior
+  rotate: false
+  xy: 28, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 111
+greendale-exterior
+  rotate: false
+  xy: 54, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 110
+greendale-exterior
+  rotate: false
+  xy: 80, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 109
+greendale-exterior
+  rotate: false
+  xy: 106, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 108
+greendale-exterior
+  rotate: false
+  xy: 132, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 107
+greendale-exterior
+  rotate: false
+  xy: 158, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 106
+greendale-exterior
+  rotate: false
+  xy: 184, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 105
+greendale-exterior
+  rotate: false
+  xy: 210, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 104
+greendale-exterior
+  rotate: false
+  xy: 2, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 103
+greendale-exterior
+  rotate: false
+  xy: 28, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 102
+greendale-exterior
+  rotate: false
+  xy: 54, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 101
+greendale-exterior
+  rotate: false
+  xy: 80, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 100
+greendale-exterior
+  rotate: false
+  xy: 106, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 98
+greendale-exterior
+  rotate: false
+  xy: 132, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 97
+greendale-exterior
+  rotate: false
+  xy: 158, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 96
+greendale-exterior
+  rotate: false
+  xy: 184, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 95
+greendale-exterior
+  rotate: false
+  xy: 210, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 94
+greendale-exterior
+  rotate: false
+  xy: 2, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 93
+greendale-exterior
+  rotate: false
+  xy: 28, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 92
+greendale-exterior
+  rotate: false
+  xy: 54, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 91
+greendale-exterior
+  rotate: false
+  xy: 80, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 90
+greendale-exterior
+  rotate: false
+  xy: 106, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 89
+greendale-exterior
+  rotate: false
+  xy: 132, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 88
+greendale-exterior
+  rotate: false
+  xy: 158, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 87
+greendale-exterior
+  rotate: false
+  xy: 184, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 86
+greendale-exterior
+  rotate: false
+  xy: 210, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 85
+greendale-exterior
+  rotate: false
+  xy: 2, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 84
+greendale-exterior
+  rotate: false
+  xy: 28, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 83
+greendale-exterior
+  rotate: false
+  xy: 54, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 82
+greendale-exterior
+  rotate: false
+  xy: 80, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 81
+greendale-exterior
+  rotate: false
+  xy: 106, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 80
+greendale-exterior
+  rotate: false
+  xy: 132, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 76
+greendale-exterior
+  rotate: false
+  xy: 158, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 75
+greendale-exterior
+  rotate: false
+  xy: 184, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 74
+greendale-exterior
+  rotate: false
+  xy: 210, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 73
+greendale-exterior
+  rotate: false
+  xy: 2, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 72
+greendale-exterior
+  rotate: false
+  xy: 28, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 71
+greendale-exterior
+  rotate: false
+  xy: 54, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 70
+greendale-exterior
+  rotate: false
+  xy: 80, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 69
+greendale-exterior
+  rotate: false
+  xy: 106, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 68
+greendale-exterior
+  rotate: false
+  xy: 132, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 67
+greendale-exterior
+  rotate: false
+  xy: 158, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 66
+greendale-exterior
+  rotate: false
+  xy: 184, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 65
+greendale-exterior
+  rotate: false
+  xy: 210, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 64
+greendale-exterior
+  rotate: false
+  xy: 2, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 63
+greendale-exterior
+  rotate: false
+  xy: 28, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 62
+greendale-exterior
+  rotate: false
+  xy: 54, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 61
+greendale-exterior
+  rotate: false
+  xy: 80, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 60
+greendale-exterior
+  rotate: false
+  xy: 106, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 57
+greendale-exterior
+  rotate: false
+  xy: 132, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 56
+greendale-exterior
+  rotate: false
+  xy: 158, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 55
+greendale-exterior
+  rotate: false
+  xy: 184, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 54
+greendale-exterior
+  rotate: false
+  xy: 210, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 53
+greendale-exterior
+  rotate: false
+  xy: 2, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 52
+greendale-exterior
+  rotate: false
+  xy: 28, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 51
+greendale-exterior
+  rotate: false
+  xy: 54, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 50
+greendale-exterior
+  rotate: false
+  xy: 80, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 49
+greendale-exterior
+  rotate: false
+  xy: 106, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 48
+greendale-exterior
+  rotate: false
+  xy: 132, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 47
+greendale-exterior
+  rotate: false
+  xy: 158, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 46
+greendale-exterior
+  rotate: false
+  xy: 184, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 45
+greendale-exterior
+  rotate: false
+  xy: 210, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 44
+greendale-exterior
+  rotate: false
+  xy: 2, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 43
+greendale-exterior
+  rotate: false
+  xy: 28, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 42
+greendale-exterior
+  rotate: false
+  xy: 54, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 41
+greendale-exterior
+  rotate: false
+  xy: 80, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 40
+greendale-exterior
+  rotate: false
+  xy: 106, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 37
+greendale-exterior
+  rotate: false
+  xy: 132, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 36
+greendale-exterior
+  rotate: false
+  xy: 158, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 35
+greendale-exterior
+  rotate: false
+  xy: 184, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 30
+greendale-exterior
+  rotate: false
+  xy: 210, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 29
+greendale-exterior
+  rotate: false
+  xy: 2, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 28
+greendale-exterior
+  rotate: false
+  xy: 28, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 27
+greendale-exterior
+  rotate: false
+  xy: 54, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 26
+greendale-exterior
+  rotate: false
+  xy: 80, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 25
+greendale-exterior
+  rotate: false
+  xy: 106, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 24
+greendale-exterior
+  rotate: false
+  xy: 132, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 23
+greendale-exterior
+  rotate: false
+  xy: 158, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 22
+greendale-exterior
+  rotate: false
+  xy: 184, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 21
+greendale-exterior
+  rotate: false
+  xy: 210, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 20
+greendale-exterior
+  rotate: false
+  xy: 2, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 17
+greendale-exterior
+  rotate: false
+  xy: 28, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 16
+greendale-exterior
+  rotate: false
+  xy: 54, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 15
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 11
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 12
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 13
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 14
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 18
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 19
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 31
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 32
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 33
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 34
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 38
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 39
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 58
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 59
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 77
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 78
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 79
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 99
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 159
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 170
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 171
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 192
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 193
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 194
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 195
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 196
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 197
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 198
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 199
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 200
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 213
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 214
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 215
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 216
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 217
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 218
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 219
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 220
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 231
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 232
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 233
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 234
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 235
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 236
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 237
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 238
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 239
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 240
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 247
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 251
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 252
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 253
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 254
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 255
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 256
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 257
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 258
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 259
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 261
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 262
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 263
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 264
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 265
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 266
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 267
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 268
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 269
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 270
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 271
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 272
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 273
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 274
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 275
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 276
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 277
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 278
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 279
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 280
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 281
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 282
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 283
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 284
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 285
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 286
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 287
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 288
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 289
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 290
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 291
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 292
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 293
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 294
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 295
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 296
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 297
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 298
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 299
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 300
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 301
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 302
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 303
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 304
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 305
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 306
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 307
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 308
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 309
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 310
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 311
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 312
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 313
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 314
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 315
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 316
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 317
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 318
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 319
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 320
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 321
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 322
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 323
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 324
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 325
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 326
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 327
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 328
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 329
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 330
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 331
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 332
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 333
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 334
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 335
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 336
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 337
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 338
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 339
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 340
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 341
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 342
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 343
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 344
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 345
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 346
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 347
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 348
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 349
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 350
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 351
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 352
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 353
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 354
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 355
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 356
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 357
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 358
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 359
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 360
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 361
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 362
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 363
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 364
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 365
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 366
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 367
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 368
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 369
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 370
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 371
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 372
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 373
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 374
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 375
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 376
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 377
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 378
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 379
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 380
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 381
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 382
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 383
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 384
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 385
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 386
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 387
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 388
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 389
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 390
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 391
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 392
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 393
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 394
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 395
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 396
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 397
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 398
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 399
+greendale-exterior
+  rotate: false
+  xy: 106, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 10
+greendale-exterior
+  rotate: false
+  xy: 132, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 9
+greendale-exterior
+  rotate: false
+  xy: 158, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 8
+greendale-exterior
+  rotate: false
+  xy: 184, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 7
+greendale-exterior
+  rotate: false
+  xy: 210, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 6
+greendale-exterior
+  rotate: false
+  xy: 2, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 5
+greendale-exterior
+  rotate: false
+  xy: 28, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 4
+greendale-exterior
+  rotate: false
+  xy: 54, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 3
+greendale-exterior
+  rotate: false
+  xy: 80, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 2
+greendale-exterior
+  rotate: false
+  xy: 106, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 1
+greendale-exterior
+  rotate: false
+  xy: 132, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 0
+
+greendale-exterior3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+greendale-exterior
+  rotate: false
+  xy: 2, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 260
+greendale-exterior
+  rotate: false
+  xy: 28, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 250
+greendale-exterior
+  rotate: false
+  xy: 54, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 249
+greendale-exterior
+  rotate: false
+  xy: 80, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 248
+greendale-exterior
+  rotate: false
+  xy: 106, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 246
+greendale-exterior
+  rotate: false
+  xy: 132, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 245
+greendale-exterior
+  rotate: false
+  xy: 158, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 244
+greendale-exterior
+  rotate: false
+  xy: 184, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 243
+greendale-exterior
+  rotate: false
+  xy: 210, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 242
+greendale-exterior
+  rotate: false
+  xy: 2, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 241
+greendale-exterior
+  rotate: false
+  xy: 28, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 230
+greendale-exterior
+  rotate: false
+  xy: 54, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 229
+greendale-exterior
+  rotate: false
+  xy: 80, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 228
+greendale-exterior
+  rotate: false
+  xy: 106, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 227
+greendale-exterior
+  rotate: false
+  xy: 132, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 226
+greendale-exterior
+  rotate: false
+  xy: 158, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 225
+greendale-exterior
+  rotate: false
+  xy: 184, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 224
+greendale-exterior
+  rotate: false
+  xy: 210, 28
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 223
+greendale-exterior
+  rotate: false
+  xy: 2, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 222
+greendale-exterior
+  rotate: false
+  xy: 28, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 221
+greendale-exterior
+  rotate: false
+  xy: 54, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 212
+greendale-exterior
+  rotate: false
+  xy: 80, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 211
+greendale-exterior
+  rotate: false
+  xy: 106, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 210
+greendale-exterior
+  rotate: false
+  xy: 132, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 209
+greendale-exterior
+  rotate: false
+  xy: 158, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 208
+greendale-exterior
+  rotate: false
+  xy: 184, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 207
+greendale-exterior
+  rotate: false
+  xy: 210, 54
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 206
+greendale-exterior
+  rotate: false
+  xy: 2, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 205
+greendale-exterior
+  rotate: false
+  xy: 28, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 204
+greendale-exterior
+  rotate: false
+  xy: 54, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 203
+greendale-exterior
+  rotate: false
+  xy: 80, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 202
+greendale-exterior
+  rotate: false
+  xy: 106, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 201
+greendale-exterior
+  rotate: false
+  xy: 132, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 191
+greendale-exterior
+  rotate: false
+  xy: 158, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 190
+greendale-exterior
+  rotate: false
+  xy: 184, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 189
+greendale-exterior
+  rotate: false
+  xy: 210, 80
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 188
+greendale-exterior
+  rotate: false
+  xy: 2, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 187
+greendale-exterior
+  rotate: false
+  xy: 28, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 186
+greendale-exterior
+  rotate: false
+  xy: 54, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 185
+greendale-exterior
+  rotate: false
+  xy: 80, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 184
+greendale-exterior
+  rotate: false
+  xy: 106, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 183
+greendale-exterior
+  rotate: false
+  xy: 132, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 182
+greendale-exterior
+  rotate: false
+  xy: 158, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 181
+greendale-exterior
+  rotate: false
+  xy: 184, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 180
+greendale-exterior
+  rotate: false
+  xy: 210, 106
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 179
+greendale-exterior
+  rotate: false
+  xy: 2, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 178
+greendale-exterior
+  rotate: false
+  xy: 28, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 177
+greendale-exterior
+  rotate: false
+  xy: 54, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 176
+greendale-exterior
+  rotate: false
+  xy: 80, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 175
+greendale-exterior
+  rotate: false
+  xy: 106, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 174
+greendale-exterior
+  rotate: false
+  xy: 132, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 173
+greendale-exterior
+  rotate: false
+  xy: 158, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 172
+greendale-exterior
+  rotate: false
+  xy: 184, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 169
+greendale-exterior
+  rotate: false
+  xy: 210, 132
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 168
+greendale-exterior
+  rotate: false
+  xy: 2, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 167
+greendale-exterior
+  rotate: false
+  xy: 28, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 166
+greendale-exterior
+  rotate: false
+  xy: 54, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 165
+greendale-exterior
+  rotate: false
+  xy: 80, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 164
+greendale-exterior
+  rotate: false
+  xy: 106, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 163
+greendale-exterior
+  rotate: false
+  xy: 132, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 162
+greendale-exterior
+  rotate: false
+  xy: 158, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 161
+greendale-exterior
+  rotate: false
+  xy: 184, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 160
+greendale-exterior
+  rotate: false
+  xy: 210, 158
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 158
+greendale-exterior
+  rotate: false
+  xy: 2, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 157
+greendale-exterior
+  rotate: false
+  xy: 28, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 156
+greendale-exterior
+  rotate: false
+  xy: 54, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 155
+greendale-exterior
+  rotate: false
+  xy: 80, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 154
+greendale-exterior
+  rotate: false
+  xy: 106, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 153
+greendale-exterior
+  rotate: false
+  xy: 132, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 152
+greendale-exterior
+  rotate: false
+  xy: 158, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 151
+greendale-exterior
+  rotate: false
+  xy: 184, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 150
+greendale-exterior
+  rotate: false
+  xy: 210, 184
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 149
+greendale-exterior
+  rotate: false
+  xy: 2, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 148
+greendale-exterior
+  rotate: false
+  xy: 28, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 147
+greendale-exterior
+  rotate: false
+  xy: 54, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 146
+greendale-exterior
+  rotate: false
+  xy: 80, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 145
+greendale-exterior
+  rotate: false
+  xy: 106, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 144
+greendale-exterior
+  rotate: false
+  xy: 132, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 143
+greendale-exterior
+  rotate: false
+  xy: 158, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 142
+greendale-exterior
+  rotate: false
+  xy: 184, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 141
+greendale-exterior
+  rotate: false
+  xy: 210, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 140
+greendale-exterior
+  rotate: false
+  xy: 2, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 139
+greendale-exterior
+  rotate: false
+  xy: 28, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 138
+greendale-exterior
+  rotate: false
+  xy: 54, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 137
+greendale-exterior
+  rotate: false
+  xy: 80, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 136
+greendale-exterior
+  rotate: false
+  xy: 106, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 135
+greendale-exterior
+  rotate: false
+  xy: 132, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 134
+greendale-exterior
+  rotate: false
+  xy: 158, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 133
+greendale-exterior
+  rotate: false
+  xy: 184, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 132
+greendale-exterior
+  rotate: false
+  xy: 210, 236
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 131
+greendale-exterior
+  rotate: false
+  xy: 2, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 130
+greendale-exterior
+  rotate: false
+  xy: 28, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 129
+greendale-exterior
+  rotate: false
+  xy: 54, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 128
+greendale-exterior
+  rotate: false
+  xy: 80, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 127
+greendale-exterior
+  rotate: false
+  xy: 106, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 126
+greendale-exterior
+  rotate: false
+  xy: 132, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 125
+greendale-exterior
+  rotate: false
+  xy: 158, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 124
+greendale-exterior
+  rotate: false
+  xy: 184, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 123
+greendale-exterior
+  rotate: false
+  xy: 210, 262
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 122
+greendale-exterior
+  rotate: false
+  xy: 2, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 121
+greendale-exterior
+  rotate: false
+  xy: 28, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 120
+greendale-exterior
+  rotate: false
+  xy: 54, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 119
+greendale-exterior
+  rotate: false
+  xy: 80, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 118
+greendale-exterior
+  rotate: false
+  xy: 106, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 117
+greendale-exterior
+  rotate: false
+  xy: 132, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 116
+greendale-exterior
+  rotate: false
+  xy: 158, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 115
+greendale-exterior
+  rotate: false
+  xy: 184, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 114
+greendale-exterior
+  rotate: false
+  xy: 210, 288
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 113
+greendale-exterior
+  rotate: false
+  xy: 2, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 112
+greendale-exterior
+  rotate: false
+  xy: 28, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 111
+greendale-exterior
+  rotate: false
+  xy: 54, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 110
+greendale-exterior
+  rotate: false
+  xy: 80, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 109
+greendale-exterior
+  rotate: false
+  xy: 106, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 108
+greendale-exterior
+  rotate: false
+  xy: 132, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 107
+greendale-exterior
+  rotate: false
+  xy: 158, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 106
+greendale-exterior
+  rotate: false
+  xy: 184, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 105
+greendale-exterior
+  rotate: false
+  xy: 210, 314
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 104
+greendale-exterior
+  rotate: false
+  xy: 2, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 103
+greendale-exterior
+  rotate: false
+  xy: 28, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 102
+greendale-exterior
+  rotate: false
+  xy: 54, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 101
+greendale-exterior
+  rotate: false
+  xy: 80, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 100
+greendale-exterior
+  rotate: false
+  xy: 106, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 98
+greendale-exterior
+  rotate: false
+  xy: 132, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 97
+greendale-exterior
+  rotate: false
+  xy: 158, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 96
+greendale-exterior
+  rotate: false
+  xy: 184, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 95
+greendale-exterior
+  rotate: false
+  xy: 210, 340
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 94
+greendale-exterior
+  rotate: false
+  xy: 2, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 93
+greendale-exterior
+  rotate: false
+  xy: 28, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 92
+greendale-exterior
+  rotate: false
+  xy: 54, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 91
+greendale-exterior
+  rotate: false
+  xy: 80, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 90
+greendale-exterior
+  rotate: false
+  xy: 106, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 89
+greendale-exterior
+  rotate: false
+  xy: 132, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 88
+greendale-exterior
+  rotate: false
+  xy: 158, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 87
+greendale-exterior
+  rotate: false
+  xy: 184, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 86
+greendale-exterior
+  rotate: false
+  xy: 210, 366
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 85
+greendale-exterior
+  rotate: false
+  xy: 2, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 84
+greendale-exterior
+  rotate: false
+  xy: 28, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 83
+greendale-exterior
+  rotate: false
+  xy: 54, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 82
+greendale-exterior
+  rotate: false
+  xy: 80, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 81
+greendale-exterior
+  rotate: false
+  xy: 106, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 80
+greendale-exterior
+  rotate: false
+  xy: 132, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 76
+greendale-exterior
+  rotate: false
+  xy: 158, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 75
+greendale-exterior
+  rotate: false
+  xy: 184, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 74
+greendale-exterior
+  rotate: false
+  xy: 210, 392
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 73
+greendale-exterior
+  rotate: false
+  xy: 2, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 72
+greendale-exterior
+  rotate: false
+  xy: 28, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 71
+greendale-exterior
+  rotate: false
+  xy: 54, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 70
+greendale-exterior
+  rotate: false
+  xy: 80, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 69
+greendale-exterior
+  rotate: false
+  xy: 106, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 68
+greendale-exterior
+  rotate: false
+  xy: 132, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 67
+greendale-exterior
+  rotate: false
+  xy: 158, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 66
+greendale-exterior
+  rotate: false
+  xy: 184, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 65
+greendale-exterior
+  rotate: false
+  xy: 210, 418
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 64
+greendale-exterior
+  rotate: false
+  xy: 2, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 63
+greendale-exterior
+  rotate: false
+  xy: 28, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 62
+greendale-exterior
+  rotate: false
+  xy: 54, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 61
+greendale-exterior
+  rotate: false
+  xy: 80, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 60
+greendale-exterior
+  rotate: false
+  xy: 106, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 57
+greendale-exterior
+  rotate: false
+  xy: 132, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 56
+greendale-exterior
+  rotate: false
+  xy: 158, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 55
+greendale-exterior
+  rotate: false
+  xy: 184, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 54
+greendale-exterior
+  rotate: false
+  xy: 210, 444
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 53
+greendale-exterior
+  rotate: false
+  xy: 2, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 52
+greendale-exterior
+  rotate: false
+  xy: 28, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 51
+greendale-exterior
+  rotate: false
+  xy: 54, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 50
+greendale-exterior
+  rotate: false
+  xy: 80, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 49
+greendale-exterior
+  rotate: false
+  xy: 106, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 48
+greendale-exterior
+  rotate: false
+  xy: 132, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 47
+greendale-exterior
+  rotate: false
+  xy: 158, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 46
+greendale-exterior
+  rotate: false
+  xy: 184, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 45
+greendale-exterior
+  rotate: false
+  xy: 210, 470
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 44
+greendale-exterior
+  rotate: false
+  xy: 2, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 43
+greendale-exterior
+  rotate: false
+  xy: 28, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 42
+greendale-exterior
+  rotate: false
+  xy: 54, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 41
+greendale-exterior
+  rotate: false
+  xy: 80, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 40
+greendale-exterior
+  rotate: false
+  xy: 106, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 37
+greendale-exterior
+  rotate: false
+  xy: 132, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 36
+greendale-exterior
+  rotate: false
+  xy: 158, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 35
+greendale-exterior
+  rotate: false
+  xy: 184, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 30
+greendale-exterior
+  rotate: false
+  xy: 210, 496
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 29
+greendale-exterior
+  rotate: false
+  xy: 2, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 28
+greendale-exterior
+  rotate: false
+  xy: 28, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 27
+greendale-exterior
+  rotate: false
+  xy: 54, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 26
+greendale-exterior
+  rotate: false
+  xy: 80, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 25
+greendale-exterior
+  rotate: false
+  xy: 106, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 24
+greendale-exterior
+  rotate: false
+  xy: 132, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 23
+greendale-exterior
+  rotate: false
+  xy: 158, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 22
+greendale-exterior
+  rotate: false
+  xy: 184, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 21
+greendale-exterior
+  rotate: false
+  xy: 210, 522
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 20
+greendale-exterior
+  rotate: false
+  xy: 2, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 17
+greendale-exterior
+  rotate: false
+  xy: 28, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 16
+greendale-exterior
+  rotate: false
+  xy: 54, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 15
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 11
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 12
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 13
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 14
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 18
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 19
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 31
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 32
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 33
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 34
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 38
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 39
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 58
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 59
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 77
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 78
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 79
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 99
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 159
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 170
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 171
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 192
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 193
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 194
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 195
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 196
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 197
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 198
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 199
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 200
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 213
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 214
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 215
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 216
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 217
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 218
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 219
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 220
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 231
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 232
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 233
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 234
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 235
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 236
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 237
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 238
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 239
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 240
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 247
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 251
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 252
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 253
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 254
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 255
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 256
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 257
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 258
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 259
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 261
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 262
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 263
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 264
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 265
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 266
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 267
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 268
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 269
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 270
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 271
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 272
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 273
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 274
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 275
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 276
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 277
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 278
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 279
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 280
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 281
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 282
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 283
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 284
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 285
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 286
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 287
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 288
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 289
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 290
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 291
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 292
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 293
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 294
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 295
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 296
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 297
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 298
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 299
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 300
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 301
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 302
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 303
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 304
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 305
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 306
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 307
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 308
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 309
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 310
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 311
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 312
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 313
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 314
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 315
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 316
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 317
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 318
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 319
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 320
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 321
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 322
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 323
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 324
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 325
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 326
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 327
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 328
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 329
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 330
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 331
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 332
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 333
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 334
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 335
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 336
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 337
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 338
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 339
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 340
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 341
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 342
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 343
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 344
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 345
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 346
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 347
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 348
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 349
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 350
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 351
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 352
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 353
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 354
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 355
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 356
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 357
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 358
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 359
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 360
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 361
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 362
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 363
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 364
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 365
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 366
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 367
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 368
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 369
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 370
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 371
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 372
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 373
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 374
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 375
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 376
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 377
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 378
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 379
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 380
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 381
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 382
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 383
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 384
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 385
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 386
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 387
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 388
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 389
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 390
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 391
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 392
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 393
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 394
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 395
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 396
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 397
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 398
+greendale-exterior
+  rotate: false
+  xy: 80, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 399
+greendale-exterior
+  rotate: false
+  xy: 106, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 10
+greendale-exterior
+  rotate: false
+  xy: 132, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 9
+greendale-exterior
+  rotate: false
+  xy: 158, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 8
+greendale-exterior
+  rotate: false
+  xy: 184, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 7
+greendale-exterior
+  rotate: false
+  xy: 210, 548
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 6
+greendale-exterior
+  rotate: false
+  xy: 2, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 5
+greendale-exterior
+  rotate: false
+  xy: 28, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 4
+greendale-exterior
+  rotate: false
+  xy: 54, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 3
+greendale-exterior
+  rotate: false
+  xy: 80, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 2
+greendale-exterior
+  rotate: false
+  xy: 106, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 1
+greendale-exterior
+  rotate: false
+  xy: 132, 574
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: 0
