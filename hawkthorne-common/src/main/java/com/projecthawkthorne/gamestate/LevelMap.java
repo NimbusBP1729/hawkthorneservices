@@ -7,18 +7,18 @@ import java.util.Map;
 import com.projecthawkthorne.server.nodes.Node;
 
 public class LevelMap {
-	Map<Integer, Node> map = new HashMap<Integer, Node>();
+	Map<Integer, Node> nodeMap = new HashMap<Integer, Node>();
 
 	public void put(int id, Node node) {
-		map.put(id, node);
+		nodeMap.put(id, node);
 	}
 
 	public Collection<Node> values() {
-		return map.values();
+		return nodeMap.values();
 	}
 
 	public Node remove(int id) {
-		return map.remove(id);
+		return nodeMap.remove(id);
 	}
 
 }

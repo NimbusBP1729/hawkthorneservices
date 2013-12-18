@@ -1,23 +1,44 @@
 package com.projecthawkthorne.gamestate;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.projecthawkthorne.server.Player;
 import com.projecthawkthorne.server.nodes.Door;
 
-public interface Gamestate {
+public abstract class Gamestate {
 
-	String getName();
+	private Set<Player> players = new HashSet<Player>();
 
-	void addPlayer(Player player);
+	public abstract String getName();
 
-	boolean removePlayer(Player p);
+	final void addPlayer(Player player) {
+		if (players.contains(player)) {
+			System.err.println("player has already been added to "
+					+ this.getName());
+		} else {
+			players.add(player);
+		}
+	}
 
-	LevelMap getNodes();
+	final boolean removePlayer(Player p) {
+		return players.remove(p);
+	}
 
-	Door getDoor(String string);
+	public abstract void update();
 
-	void update();
+	public final Set<Player> getPlayers() {
+		return players;
+	}
 
-	Set<Player> getPlayers();
+	public Door getDoor(String doorName) {
+		throw new UnsupportedOperationException("this class:("
+				+ this.getClass().getName() + ") has no doors");
+	}
+
+	public LevelMap getNodes() {
+		throw new UnsupportedOperationException("this class:("
+				+ this.getClass().getName() + ") has no nodes");
+	}
+
 }

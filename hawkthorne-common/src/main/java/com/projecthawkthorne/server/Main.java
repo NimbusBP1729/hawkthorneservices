@@ -23,7 +23,7 @@ public class Main {
 		super();
 		System.out.println("starting the server");
 		server = Server.createSingleton(port);
-		levels = new Levels();
+		levels = Levels.getSingleton();
 	}
 
 	public static void main(String[] args) {

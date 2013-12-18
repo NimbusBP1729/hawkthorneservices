@@ -28,7 +28,7 @@ public class HawkthorneGame extends Game {
 	// currently the town is the only file that conforms to new schema
 	// i.e. tileset image width and height are powers of 2
 	// and uses CSV encoding
-	public static final String START_LEVEL = "multiplayer";
+	public static final String START_LEVEL = "introduction";
 	public static boolean DEBUG = true;
 	Client client = Client.getSingleton();
 	private BitmapFont font;
@@ -136,7 +136,7 @@ public class HawkthorneGame extends Game {
 		if (tileMapRenderer == null) {
 			tileMapRenderer = new OrthogonalTiledMapRenderer(map);
 		}
-		//tileMapRenderer.render(mapCam);
+		// tileMapRenderer.render(mapCam);
 		tileMapRenderer.render();
 
 		spriteBatch.setProjectionMatrix(cam.combined);

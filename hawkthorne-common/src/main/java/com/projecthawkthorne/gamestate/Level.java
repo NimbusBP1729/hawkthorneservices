@@ -40,7 +40,7 @@ import com.projecthawkthorne.server.nodes.Platform;
  * 
  * @author Patrick
  */
-public class Level implements Gamestate {
+public class Level extends Gamestate {
 
 	private static final String SRC_MAPS = "src/maps/";
 	private static final boolean IGNORE_GUI = true;
@@ -74,19 +74,18 @@ public class Level implements Gamestate {
 	private void loadNodes(String levelName) {
 		TmxMapLoader loader = new TmxMapLoader(new InternalFileHandleResolver());
 
-		this.map = loader.load(SRC_MAPS
-				+ levelName.trim() + ".tmx");
+		this.map = loader.load(SRC_MAPS + levelName.trim() + ".tmx");
 		MapProperties prop = map.getProperties();
 		int mapWidth = prop.get("width", Integer.class);
 		int mapHeight = prop.get("height", Integer.class);
 		int tilePixelWidth = prop.get("tilewidth", Integer.class);
 		int tilePixelHeight = prop.get("tileheight", Integer.class);
-		
+
 		this.boundary.width = mapWidth * tilePixelWidth;
 		this.boundary.height = mapHeight * tilePixelHeight;
 
 		// floor is deprecated
-		 MapLayer floorGroup = this.getNodeGroupByName("floor");
+		MapLayer floorGroup = this.getNodeGroupByName("floor");
 		for (MapObject t : floorGroup.getObjects()) {
 			Node node;
 			t.getProperties().put("level", levelName);
@@ -113,29 +112,34 @@ public class Level implements Gamestate {
 		MapLayer nodeGroup = this.getNodeGroupByName("nodes");
 		for (MapObject t : nodeGroup.getObjects()) {
 			Node node;
-			if ("material".equals(t.getProperties().get("type",String.class))) {
+			if ("material".equals(t.getProperties().get("type", String.class))) {
 				node = new Material((RectangleMapObject) t, this);
 				this.nodes.put(node.getId(), node);
-			} else if ("door".equals(t.getProperties().get("type",String.class))) {
+			} else if ("door".equals(t.getProperties()
+					.get("type", String.class))) {
 				node = new Door((RectangleMapObject) t, this);
 				this.doors.put(node.name, (Door) node);
-			} else if ("enemy".equals(t.getProperties().get("type",String.class))) {
+			} else if ("enemy".equals(t.getProperties().get("type",
+					String.class))) {
 				// TODO: remove this chunk of code:
 				// i.e. deprecate 'enemytype' and have it
 				// represented as a 'name' in the .tmx file
 				if (t.getProperties().get("enemytype") != null) {
-					t.setName(t.getProperties().get("enemytype",String.class));
+					t.setName(t.getProperties().get("enemytype", String.class));
 				}
 				node = Enemy.create((RectangleMapObject) t, this);
 				this.nodes.put(node.getId(), node);
-			} else if ("climbable".equals(t.getProperties().get("type",String.class))) {
+			} else if ("climbable".equals(t.getProperties().get("type",
+					String.class))) {
 				node = new Ladder((RectangleMapObject) t, this);
 				this.nodes.put(node.getId(), node);
-			} else if ("liquid".equals(t.getProperties().get("type",String.class))) {
+			} else if ("liquid".equals(t.getProperties().get("type",
+					String.class))) {
 				node = new Liquid((RectangleMapObject) t, this);
 				this.nodes.put(node.getId(), node);
 			} else {
-				System.err.println("Unknown type:" + t.getProperties().get("type"));
+				System.err.println("Unknown type:"
+						+ t.getProperties().get("type"));
 			}
 		}
 
@@ -158,12 +162,9 @@ public class Level implements Gamestate {
 		return this.map.getLayers().get(name);
 	}
 
+	@Override
 	public LevelMap getNodes() {
 		return nodes;
-	}
-
-	public Set<Player> getPlayers() {
-		return players;
 	}
 
 	public String getName() {
@@ -253,19 +254,12 @@ public class Level implements Gamestate {
 		return collider;
 	}
 
+	@Override
 	public Door getDoor(String doorName) {
 		try {
 			return this.doors.get(doorName);
 		} catch (Exception e) {
 			return null;
-		}
-	}
-
-	public void addPlayer(Player player) {
-		if (players.contains(player)) {
-			System.err.println("player already added");
-		} else {
-			players.add(player);
 		}
 	}
 
@@ -278,11 +272,6 @@ public class Level implements Gamestate {
 	 */
 	public Gamestate getSpawnLevel() {
 		return spawnLevel;
-	}
-
-	@Override
-	public boolean removePlayer(Player p) {
-		return this.players.remove(p);
 	}
 
 }

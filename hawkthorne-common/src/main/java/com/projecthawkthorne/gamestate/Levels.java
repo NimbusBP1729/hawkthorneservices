@@ -21,12 +21,21 @@ public class Levels {
 	private static final long serialVersionUID = 1L;
 	private static Server server = Server.getSingleton();
 	private Map<String, Gamestate> levelMap;
+	private static Levels singleton;
 
-	public Levels() {
+	private Levels() {
 		// use this constructor to initialize all
 		// gamestates that aren't levels
 		levelMap = new HashMap<String, Gamestate>();
 		this.put("overworld", new Overworld());
+		this.put("introduction", new Introduction());
+	}
+
+	public static Levels getSingleton() {
+		if (singleton == null) {
+			singleton = new Levels();
+		}
+		return singleton;
 	}
 
 	private void put(String levelName, Gamestate level) {
