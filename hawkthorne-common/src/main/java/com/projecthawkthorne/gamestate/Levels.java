@@ -8,10 +8,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.hardoncollider.Bound;
-import com.projecthawkthorne.server.Player;
-import com.projecthawkthorne.server.nodes.Door;
-import com.projecthawkthorne.socket.Server;
 
 /**
  * 
@@ -19,7 +18,6 @@ import com.projecthawkthorne.socket.Server;
  */
 public class Levels {
 	private static final long serialVersionUID = 1L;
-	private static Server server = Server.getSingleton();
 	private Map<String, Gamestate> levelMap;
 	private static Levels singleton;
 
@@ -95,13 +93,6 @@ public class Levels {
 			((Level) newLevel).getCollider().addBox(bb);
 			// this.moveBoundingBox();
 			// this.attack_box = PlayerAttack.new(collider,self);;
-		}
-
-		// TODO: client-side stateswitches like lobby and inventory
-		if (doReply) {
-			String msg = String.format("%s %s %s %s", player.id, "stateSwitch",
-					player.getLevel().getName(), newLevel.getName());
-			server.send(msg, player.getIp(), player.getPort());
 		}
 
 	}

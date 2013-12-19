@@ -3,8 +3,8 @@ package com.projecthawkthorne.gamestate;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.projecthawkthorne.server.Player;
-import com.projecthawkthorne.server.nodes.Door;
+import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.nodes.Door;
 
 public abstract class Gamestate {
 

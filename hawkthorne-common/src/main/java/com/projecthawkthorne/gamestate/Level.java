@@ -20,21 +20,21 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.projecthawkthorne.content.Boundary;
+import com.projecthawkthorne.content.Game;
+import com.projecthawkthorne.content.Keys;
+import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.nodes.Door;
+import com.projecthawkthorne.content.nodes.Enemy;
+import com.projecthawkthorne.content.nodes.Floor;
+import com.projecthawkthorne.content.nodes.Ladder;
+import com.projecthawkthorne.content.nodes.Liquid;
+import com.projecthawkthorne.content.nodes.Material;
+import com.projecthawkthorne.content.nodes.Node;
+import com.projecthawkthorne.content.nodes.Platform;
 import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
 import com.projecthawkthorne.hardoncollider.Collider;
-import com.projecthawkthorne.server.Boundary;
-import com.projecthawkthorne.server.Game;
-import com.projecthawkthorne.server.Keys;
-import com.projecthawkthorne.server.Player;
-import com.projecthawkthorne.server.nodes.Door;
-import com.projecthawkthorne.server.nodes.Enemy;
-import com.projecthawkthorne.server.nodes.Floor;
-import com.projecthawkthorne.server.nodes.Ladder;
-import com.projecthawkthorne.server.nodes.Liquid;
-import com.projecthawkthorne.server.nodes.Material;
-import com.projecthawkthorne.server.nodes.Node;
-import com.projecthawkthorne.server.nodes.Platform;
 
 /**
  * 

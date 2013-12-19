@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.projecthawkthorne.server.nodes.Node;
+import com.projecthawkthorne.content.nodes.Node;
 
 public class LevelMap {
 	Map<Integer, Node> nodeMap = new HashMap<Integer, Node>();
