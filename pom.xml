@@ -67,5 +67,6 @@
 		<module>core</module>
 		<module>hawkthorne-common</module>
 		<module>hawkthorne-server</module>
-	</modules>
+        <module>hawkthorne-client</module>
+  </modules>
 </project>
