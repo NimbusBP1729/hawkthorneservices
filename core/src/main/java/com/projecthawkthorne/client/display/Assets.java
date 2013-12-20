@@ -22,7 +22,11 @@ import java.util.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.projecthawkthorne.content.Direction;
+import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.nodes.Node;
 
 public class Assets {
 	private static final String SRC_IMAGES = "../data/images/";
@@ -60,7 +64,16 @@ public class Assets {
 	private static Texture defaultTexture;
 
 	public static Texture loadTexture(String file) {
-		return new Texture(Gdx.files.internal(file));
+		Texture t;
+		try {
+			t = new Texture(Gdx.files.internal(file));
+		} catch (Exception e) {
+			System.err.println("failed to load '" + file
+					+ "': using 'defaultTexture.png'");
+			t = new Texture(Gdx.files.internal("../data/images/"
+					+ "defaultTexture.png"));
+		}
+		return t;
 	}
 
 	public static void load() {
@@ -179,4 +192,27 @@ public class Assets {
 		sound.play(1);
 	}
 
+	public static void draw(SpriteBatch batch, Node node) {
+		String sheetPath = null;
+		if (node instanceof Player) {
+			Player plyr = (Player) node;
+			sheetPath = "characters/" + plyr.getCharacter().getName() + "/"
+					+ plyr.getCharacter().getCostume() + ".png";
+		} else if (node.type != null && node.name != null) {
+			sheetPath = node.type + "/" + node.name + ".png";
+		}
+		Texture t = Assets.spriteCache.get(sheetPath);
+		if (t == null) {
+			t = Assets.loadTexture("../data/images/" + sheetPath);
+			Assets.spriteCache.put(sheetPath, t);
+		}
+
+		if (node.direction == Direction.LEFT) {
+			batch.draw(t, node.x, node.y + node.height, node.width,
+					-node.height);
+		} else {
+			batch.draw(t, node.x + node.width, node.y + node.height,
+					-node.width, -node.height);
+		}
+	}
 }

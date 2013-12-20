@@ -42,7 +42,7 @@ import com.projecthawkthorne.hardoncollider.Collider;
  */
 public class Level extends Gamestate {
 
-	private static final String SRC_MAPS = "src/maps/";
+	public static final String SRC_MAPS = "../data/maps/";
 	private static final boolean IGNORE_GUI = true;
 	private String title;
 	private LevelMap nodes = new LevelMap();
@@ -86,27 +86,33 @@ public class Level extends Gamestate {
 
 		// floor is deprecated
 		MapLayer floorGroup = this.getNodeGroupByName("floor");
-		for (MapObject t : floorGroup.getObjects()) {
-			Node node;
-			t.getProperties().put("level", levelName);
-			node = new Floor((RectangleMapObject) t, this);
-			this.nodes.put(node.getId(), node);
+		if (floorGroup != null) {
+			for (MapObject t : floorGroup.getObjects()) {
+				Node node;
+				t.getProperties().put("level", levelName);
+				node = new Floor((RectangleMapObject) t, this);
+				this.nodes.put(node.getId(), node);
+			}
 		}
 
 		MapLayer wallGroup = this.getNodeGroupByName("wall");
-		for (MapObject t : wallGroup.getObjects()) {
-			Node node;
-			t.getProperties().put("level", levelName);
-			node = new Floor((RectangleMapObject) t, this);
-			this.nodes.put(node.getId(), node);
+		if (wallGroup != null) {
+			for (MapObject t : wallGroup.getObjects()) {
+				Node node;
+				t.getProperties().put("level", levelName);
+				node = new Floor((RectangleMapObject) t, this);
+				this.nodes.put(node.getId(), node);
+			}
 		}
 
 		MapLayer platformGroup = this.getNodeGroupByName("platform");
-		for (MapObject t : platformGroup.getObjects()) {
-			Node node;
-			t.getProperties().put("level", levelName);
-			node = new Platform((RectangleMapObject) t, this);
-			this.nodes.put(node.getId(), node);
+		if (platformGroup != null) {
+			for (MapObject t : platformGroup.getObjects()) {
+				Node node;
+				t.getProperties().put("level", levelName);
+				node = new Platform((RectangleMapObject) t, this);
+				this.nodes.put(node.getId(), node);
+			}
 		}
 
 		MapLayer nodeGroup = this.getNodeGroupByName("nodes");

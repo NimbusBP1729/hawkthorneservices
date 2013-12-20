@@ -18,6 +18,11 @@ public class Character {
 	private String name;
 	private String costume;
 
+	public Character() {
+		name = "abed";
+		costume = "base";
+	}
+
 	public boolean hasChanged() {
 		return changed;
 	}

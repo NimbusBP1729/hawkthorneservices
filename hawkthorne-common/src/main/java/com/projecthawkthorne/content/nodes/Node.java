@@ -40,7 +40,7 @@ public abstract class Node extends Collidable {
 	public float height;
 	protected State state = State.DEFAULT;
 	/** the type of the node */
-	public final String type;
+	public String type;
 	/**
 	 * the name of the node<br>
 	 * can be considered a subtype
@@ -79,6 +79,7 @@ public abstract class Node extends Collidable {
 	public static final float TILE_WIDTH = 24.0f;
 	/** the height of a single tile */
 	public static final float TILE_HEIGHT = 24.0f;
+	public static final String IMAGES_FOLDER = "../data/images";
 	/** the height of the bounding box */
 	protected float bbox_height = -1;
 	/** the width of the bounding box */
@@ -238,17 +239,21 @@ public abstract class Node extends Collidable {
 			this.y += corners[1];
 		} else {
 			if (this.properties.get("bbox_width") != null) {
-				this.bbox_width = (Float) (this.properties.get("bbox_width"));
+				this.bbox_width = Float.parseFloat(this.properties.get(
+						"bbox_width", String.class));
 			}
 			if (this.properties.get("bbox_height") != null) {
-				this.bbox_height = (Float) (this.properties.get("bbox_height"));
+				this.bbox_height = Float.parseFloat(this.properties.get(
+						"bbox_height", String.class));
 			}
 
 			if (this.bbox_width < 0 && this.properties.get("width") != null) {
-				this.bbox_width = (Float) (this.properties.get("width"));
+				this.bbox_width = Float.parseFloat(this.properties.get("width",
+						String.class));
 			}
 			if (this.bbox_height < 0 && this.properties.get("height") != null) {
-				this.bbox_height = (Float) (this.properties.get("height"));
+				this.bbox_height = Float.parseFloat(this.properties.get(
+						"height", String.class));
 			}
 			if (this.bbox_width < 0) {
 				this.bbox_width = width;
@@ -433,6 +438,14 @@ public abstract class Node extends Collidable {
 
 	public void collisionEnd(Collidable node) {
 		this.collideEnd((Node) node);
+	}
+
+	protected final boolean propToBoolean(Object obj) {
+		if (obj == null) {
+			return false;
+		} else {
+			return Boolean.parseBoolean((String) obj);
+		}
 	}
 
 }

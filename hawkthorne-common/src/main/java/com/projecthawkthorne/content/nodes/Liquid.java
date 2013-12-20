@@ -23,10 +23,10 @@ public class Liquid extends Node {
 		}
 		this.width = obj.getRectangle().width;
 		this.height = obj.getRectangle().height;
-		this.drag = obj.getProperties().get("drag") == null ? false : (Boolean)(obj.getProperties().get("drag"));
-		this.drown = obj.getProperties().get("drown") == null ? false : (Boolean)(obj.getProperties().get("drown"));
-		this.injure = obj.getProperties().get("injure") == null ? false : (Boolean)(obj.getProperties().get("injure"));
-		this.death = obj.getProperties().get("death") == null ? false : (Boolean)(obj.getProperties().get("death"));
+		this.drag = propToBoolean(obj.getProperties().get("drag"));
+		this.drown = propToBoolean(obj.getProperties().get("drown"));
+		this.injure = propToBoolean(obj.getProperties().get("injure"));
+		this.death = propToBoolean(obj.getProperties().get("death"));
 	}
 
 	@Override

@@ -1,7 +1,10 @@
 package com.projecthawkthorne.client;
 
-import java.net.DatagramPacket;
-import java.util.HashMap;
+import static com.projecthawkthorne.gamestate.Level.SRC_MAPS;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -20,24 +23,23 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.projecthawkthorne.client.audio.AudioCache;
 import com.projecthawkthorne.client.display.Assets;
-import com.projecthawkthorne.client.display.Node;
-import com.projecthawkthorne.client.display.Player;
-import com.projecthawkthorne.socket.Client;
+import com.projecthawkthorne.content.Player;
+//import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.nodes.Node;
+import com.projecthawkthorne.gamestate.Levels;
 
 public class HawkthorneGame extends Game {
 	// currently the town is the only file that conforms to new schema
 	// i.e. tileset image width and height are powers of 2
 	// and uses CSV encoding
-	public static final String START_LEVEL = "introduction";
+	public static final String START_LEVEL = "town";
 	public static boolean DEBUG = true;
-	Client client = Client.getSingleton();
 	private BitmapFont font;
 	private SpriteBatch spriteBatch;
 	private TiledMap map;
 	private TiledMapRenderer tileMapRenderer = null;
 	private OrthographicCamera cam;
 	private OrthographicCamera mapCam;
-	public static String SRC_MAPS = "../data/maps/";
 	private int offset;
 
 	@Override
@@ -76,12 +78,12 @@ public class HawkthorneGame extends Game {
 		}
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		try {
-			Player player = this.client.players.get(this.client.getEntity());
-			camX = player.getX() + player.width / 2;
+			// TODO: reimplement client
+			Player player = Player.getSingleton();
+			camX = player.x + player.width / 2;
 			// TODO: implement panning
 			int pan = 0;
-			camY = player.getY();// limit( limit(y, 0, offset) + pan, 0, offset
-									// );
+			camY = limit(limit(player.y, 0, offset) + pan, 0, offset);
 		} catch (Exception e) {
 			System.err.println("camera position error: using default (0,0)");
 			e.printStackTrace();
@@ -99,13 +101,12 @@ public class HawkthorneGame extends Game {
 			camY = camY - mapHeight * cam.zoom;
 		}
 		if (Gdx.input.isKeyPressed(Keys.Q)) {
-			System.out.println("camY      ==" + camY);
-			System.out.println("player,y  =="
-					+ this.client.players.get(this.client.getEntity()).getY());
-			System.out.println("offset    ==" + offset);
-			System.out.println("viewHeight==" + cam.viewportHeight);
-			System.out.println("mapHeight ==" + mapHeight);
-			System.out.println("tileHeight==" + tmtl.getTileHeight());
+			System.out.println("camY      =" + camY);
+			System.out.println("player.y  =" + Player.getSingleton().y);
+			System.out.println("offset    =" + offset);
+			System.out.println("viewHeight=" + cam.viewportHeight);
+			System.out.println("mapHeight =" + mapHeight);
+			System.out.println("tileHeight=" + tmtl.getTileHeight());
 			System.out.println();
 		}
 		// cam.position.set(tileMapRenderer.getMapWidthUnits() / 2,
@@ -115,34 +116,58 @@ public class HawkthorneGame extends Game {
 		cam.update(true);
 		mapCam.update(true);
 
-		client.update();
-
-		// receive a new bundle
-		DatagramPacket bundle = client.receive();
-
-		String msg;
-		while (bundle != null) {
-			msg = new String(bundle.getData());
-			if (msg.contains("poly")) {
-				int foo = 47;
-			} else if (msg.contains("player")) {
-				int foo = 53;
-			}
-			// process bundle if necessary
-			processBundle(bundle);
-			bundle = client.receive();
-		}
-
-		if (tileMapRenderer == null) {
-			tileMapRenderer = new OrthogonalTiledMapRenderer(map);
-		}
-		// tileMapRenderer.render(mapCam);
-		tileMapRenderer.render();
+		// TODO: reimplement this
+		// client.update();
+		//
+		// // receive a new bundle
+		// DatagramPacket bundle = client.receive();
+		//
+		// String msg;
+		// while (bundle != null) {
+		// msg = new String(bundle.getData());
+		// if (msg.contains("poly")) {
+		// int foo = 47;
+		// } else if (msg.contains("player")) {
+		// int foo = 53;
+		// }
+		// // process bundle if necessary
+		// processBundle(bundle);
+		// bundle = client.receive();
+		// }
 
 		spriteBatch.setProjectionMatrix(cam.combined);
+		if (tileMapRenderer == null) {
+			tileMapRenderer = new OrthogonalTiledMapRenderer(map, spriteBatch);
+		}
+		// tileMapRenderer.render(mapCam);
+		tileMapRenderer.setView(mapCam);
+		tileMapRenderer.render();
+
 		spriteBatch.begin();
-		client.draw(spriteBatch, cam);
+		this.draw(spriteBatch, cam);
 		spriteBatch.end();
+	}
+
+	public void draw(SpriteBatch batch, OrthographicCamera cam) {
+		long curTime = System.currentTimeMillis();
+		List<Node> liquids = new ArrayList<Node>();
+		Iterator<com.projecthawkthorne.content.nodes.Node> nit = Levels
+				.getSingleton().get(Player.getSingleton().getLevel().getName())
+				.getNodes().values().iterator();
+		while (nit.hasNext()) {
+			Node n = nit.next();
+			if (n.type == "liquid") {
+				liquids.add(n);
+			} else {
+				Assets.draw(batch, n);
+			}
+		}
+
+		Assets.draw(batch, Player.getSingleton());
+
+		for (Node liquid : liquids) {
+			Assets.draw(batch, liquid);
+		}
 	}
 
 	/**
@@ -163,42 +188,7 @@ public class HawkthorneGame extends Game {
 		}
 	}
 
-	private void processBundle(DatagramPacket bundle) {
-		if (bundle == null) {
-			return;
-		}
-		byte[] msg = bundle.getData();
-		String[] tokens = new String(msg).split("\\s+", 3);
-		String entity = tokens[0];
-		String cmd = tokens[1];
-		String params = tokens[2].trim();
-		if (cmd.equals("updatePlayer")) {
-			Player.unpack(this.client.players, params);
-		} else if (cmd.equals("updateObject")) {
-			Node.unpack(this.client.world, params);
-		} else if (cmd.equals("stateSwitch")) {
-			String[] chunks = params.split(" ");
-			String fromLevel = chunks[0];
-			String toLevel = chunks[1];
-			if (entity.equals(this.client.getEntity())) {
-				stateSwitch(fromLevel, toLevel);
-			}
-			// TODO:confirm it's a player
-			this.client.players.get(entity).levelName = toLevel;
-
-		} else if (cmd.equals("sound")) {
-			AudioCache.playSfx(params);
-		} else {
-			System.err.println("Unknown command:" + cmd);
-		}
-
-	}
-
 	private void stateSwitch(String fromLevel, String toLevel) {
-		if (!this.client.world.containsKey(toLevel)) {
-			this.client.world.put(toLevel, new HashMap<String, Node>());
-		}
-		this.client.setLevel(toLevel);
 
 		long startTime, endTime;
 
@@ -237,12 +227,14 @@ public class HawkthorneGame extends Game {
 		mapCam.zoom = 0.5f;
 
 		try {
-			offset = Integer.parseInt((String) map.getProperties()
-					.get("offset"));
+			offset = Integer.parseInt(map.getProperties().get("offset",
+					String.class));
 		} catch (Exception e) {
 			System.err.println("no offset found: using default '0'");
 			offset = 0;
 		}
+		// offset -= map.getProperties().get("height", Integer.class);
+		System.out.println("resolved offset is:" + offset);
 
 	}
 

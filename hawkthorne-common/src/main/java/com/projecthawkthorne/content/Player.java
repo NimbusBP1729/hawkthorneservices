@@ -4,12 +4,12 @@
  */
 package com.projecthawkthorne.content;
 
-import java.net.InetAddress;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.nodes.Climbable;
@@ -102,9 +102,10 @@ public class Player extends Humanoid implements Timeable {
 	private boolean isNew = true;
 	/** the list of nodes this player needs fresh information about */
 	public Set<Node> updateList = new HashSet<Node>();
+	private static Player singleton;
 
 	// :reset() //plyr:enter(collider)
-	public Player(String id, InetAddress ip, int port, Gamestate level) {
+	public Player(String id, Gamestate level) {
 		super(Player.getPlayerTiledObject(), level);
 		this.bboxOffsetX = 15;
 		this.bboxOffsetY = 4;
@@ -1001,6 +1002,14 @@ public class Player extends Humanoid implements Timeable {
 
 	public boolean isNew() {
 		return isNew;
+	}
+
+	public static Player getSingleton() {
+		if (singleton == null) {
+			singleton = new Player(UUID.randomUUID().toString(), Levels
+					.getSingleton().get("multiplayer"));
+		}
+		return singleton;
 	}
 
 }
