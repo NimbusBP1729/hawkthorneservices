@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.FloorCollidable;
-import com.projecthawkthorne.content.Keys;
+import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Level;
 
@@ -83,7 +83,7 @@ public class Platform extends Node {
 		Iterator<Player> it = this.playersTouched.iterator();
 		while (it.hasNext()) {
 			Player player = it.next();
-			if (player.getKeyDown(Keys.DOWN)) {
+			if (player.getIsKeyDown(GameKeys.DOWN)) {
 				player.down_dt = 0;
 			} else {
 				player.down_dt = player.down_dt + dt;
@@ -98,8 +98,8 @@ public class Platform extends Node {
 	}
 
 	@Override
-	public boolean playerKeypressed(Keys button, Player player) {
-		if (this.canDrop && button == Keys.DOWN && player.down_dt > 0
+	public boolean playerKeypressed(GameKeys button, Player player) {
+		if (this.canDrop && button == GameKeys.DOWN && player.down_dt > 0
 				&& player.down_dt < 150) {
 			player.dropFromPlatform(this);
 			return true;

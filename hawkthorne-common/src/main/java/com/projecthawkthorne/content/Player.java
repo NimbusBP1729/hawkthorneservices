@@ -46,8 +46,8 @@ import com.projecthawkthorne.timer.Timer;
 public class Player extends Humanoid implements Timeable {
 
 	private Character character = new Character();
-	private EnumMap<Keys, Boolean> keyDown = new EnumMap<Keys, Boolean>(
-			Keys.class);
+	private EnumMap<GameKeys, Boolean> keyDown = new EnumMap<GameKeys, Boolean>(
+			GameKeys.class);
 	public final String id;
 	public static int startingMoney = 0;
 	private boolean invulnerable = false;
@@ -104,6 +104,8 @@ public class Player extends Humanoid implements Timeable {
 	public Set<Node> updateList = new HashSet<Node>();
 	private static Player singleton;
 
+	public static final String START_LEVEL = "town";
+
 	// :reset() //plyr:enter(collider)
 	public Player(String id, Gamestate level) {
 		super(Player.getPlayerTiledObject(), level);
@@ -117,7 +119,7 @@ public class Player extends Humanoid implements Timeable {
 		this.id = id;
 
 		this.setSpriteStates(PlayerState.DEFAULT);
-		for (Keys button : Keys.values()) {
+		for (GameKeys button : GameKeys.values()) {
 			keyDown.put(button, false);
 		}
 
@@ -218,11 +220,11 @@ public class Player extends Humanoid implements Timeable {
 	}
 
 	@Override
-	public void setKeyDown(Keys button, boolean b) {
+	public void setIsKeyDown(GameKeys button, boolean b) {
 		this.keyDown.put(button, Boolean.valueOf(b));
 	}
 
-	public boolean getKeyDown(Keys button) {
+	public boolean getIsKeyDown(GameKeys button) {
 		return keyDown.get(button);
 	}
 
@@ -257,7 +259,7 @@ public class Player extends Humanoid implements Timeable {
 	 *            the button that was pressed
 	 * @return
 	 */
-	public boolean keypressed(Keys button) {
+	public boolean keypressed(GameKeys button) {
 		if (this.dead) {
 			return false;
 		}
@@ -267,16 +269,16 @@ public class Player extends Humanoid implements Timeable {
 		// return;
 		// }
 
-		if (button == Keys.SELECT && !this.interactive_collide) {
+		if (button == GameKeys.SELECT && !this.interactive_collide) {
 			if ((this.currently_held != null)
 					&& (this.currently_held instanceof Weapon)
-					&& this.keyDown.get(Keys.DOWN)) {
+					&& this.keyDown.get(GameKeys.DOWN)) {
 				Weapon weapon = (Weapon) this.currently_held;
 				weapon.unuse();
 				return true;
 			} else if ((this.currently_held != null)
 					&& (this.currently_held instanceof Weapon)
-					&& this.keyDown.get(Keys.UP)) {
+					&& this.keyDown.get(GameKeys.UP)) {
 				this.switchWeapon();
 				return true;
 			} else {
@@ -285,13 +287,13 @@ public class Player extends Humanoid implements Timeable {
 			}
 		}
 
-		if (button == Keys.INTERACT && !this.interactive_collide) {
+		if (button == GameKeys.INTERACT && !this.interactive_collide) {
 			if ((this.currently_held != null)
 					&& !(this.currently_held instanceof Weapon)) {
-				if (this.keyDown.get(Keys.DOWN)) {
+				if (this.keyDown.get(GameKeys.DOWN)) {
 					this.drop();
 					return true;
-				} else if (this.keyDown.get(Keys.UP)) {
+				} else if (this.keyDown.get(GameKeys.UP)) {
 					this.throw_vertical();
 					return true;
 				} else {
@@ -315,24 +317,24 @@ public class Player extends Humanoid implements Timeable {
 			}
 		}
 
-		if ((button == Keys.UP || button == Keys.DOWN)) {
+		if ((button == GameKeys.UP || button == GameKeys.DOWN)) {
 			if (this.getClimbable() != null) {
 				this.climb(this.getClimbable());
 				return true;
 			}
 		}
 		// taken from sonic physics http://info.sonicretro.org/SPG:Jumping
-		if (button == Keys.JUMP) {
+		if (button == GameKeys.JUMP) {
 			this.getJumpQueue().push("jump");
 			return true;
 		}
 		return false;
 	}
 
-	public void keyreleased(Keys button) { // taken from sonic physics
-											// http://info.sonicretro.org/SPG:Jumping
+	public void keyreleased(GameKeys button) { // taken from sonic physics
+												// http://info.sonicretro.org/SPG:Jumping
 
-		if (button == Keys.JUMP) {
+		if (button == GameKeys.JUMP) {
 			this.halfjumpQueue.push("jump");
 		}
 	}
@@ -408,10 +410,10 @@ public class Player extends Humanoid implements Timeable {
 		// if (this.jumping) {
 		// System.out.println("---" + this.y + "---" + dt);
 		// }
-		boolean DOWN_MOTION = this.keyDown.get(Keys.DOWN) && !isDead();
-		boolean UP_MOTION = this.keyDown.get(Keys.UP) && !isDead();
-		boolean LEFT_MOTION = this.keyDown.get(Keys.LEFT) && !isDead();
-		boolean RIGHT_MOTION = this.keyDown.get(Keys.RIGHT) && !isDead();
+		boolean DOWN_MOTION = this.keyDown.get(GameKeys.DOWN) && !isDead();
+		boolean UP_MOTION = this.keyDown.get(GameKeys.UP) && !isDead();
+		boolean LEFT_MOTION = this.keyDown.get(GameKeys.LEFT) && !isDead();
+		boolean RIGHT_MOTION = this.keyDown.get(GameKeys.RIGHT) && !isDead();
 
 		if (!this.isInvulnerable()) {
 			this.stopBlink();
@@ -1007,7 +1009,7 @@ public class Player extends Humanoid implements Timeable {
 	public static Player getSingleton() {
 		if (singleton == null) {
 			singleton = new Player(UUID.randomUUID().toString(), Levels
-					.getSingleton().get("multiplayer"));
+					.getSingleton().get(START_LEVEL));
 		}
 		return singleton;
 	}

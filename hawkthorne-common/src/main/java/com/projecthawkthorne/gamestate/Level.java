@@ -8,9 +8,7 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
@@ -22,7 +20,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.projecthawkthorne.content.Boundary;
 import com.projecthawkthorne.content.Game;
-import com.projecthawkthorne.content.Keys;
+import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.Enemy;
@@ -46,7 +44,6 @@ public class Level extends Gamestate {
 	private static final boolean IGNORE_GUI = true;
 	private String title;
 	private LevelMap nodes = new LevelMap();
-	private Set<Player> players = new HashSet<Player>();
 	// private Collider collider;
 	private Gamestate spawnLevel;
 	private final String name;
@@ -185,11 +182,8 @@ public class Level extends Gamestate {
 		this.lastTime = currentTime;
 		long maxDt = 100;
 		dt = maxDt < dt ? maxDt : dt;
-		Iterator<Player> pit = this.players.iterator();
-		while (pit.hasNext()) {
-			Player player = pit.next();
-			player.update(dt);
-		}
+		Player player = Player.getSingleton();
+		player.update(dt);
 		Iterator<Node> nit = this.nodes.values().iterator();
 		while (nit.hasNext()) {
 			try {
@@ -248,8 +242,8 @@ public class Level extends Gamestate {
 		Iterator<Collidable> it = player.getCollisionList().iterator();
 		while (it.hasNext()) {
 			Node node = (Node) it.next();
-			Keys button = Keys.valueOf(key);
-			node.setKeyDown(button, true);
+			GameKeys button = GameKeys.valueOf(key);
+			node.setIsKeyDown(button, true);
 		}
 	}
 

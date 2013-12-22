@@ -7,7 +7,7 @@ package com.projecthawkthorne.content.nodes;
 import java.util.Iterator;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.projecthawkthorne.content.Keys;
+import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Level;
 
@@ -26,7 +26,7 @@ public class Material extends Item {
 	}
 
 	@Override
-	public void setKeyDown(Keys button, boolean b) {
+	public void setIsKeyDown(GameKeys button, boolean b) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
@@ -39,7 +39,7 @@ public class Material extends Item {
 		Iterator<Player> it = this.playersTouched.iterator();
 		while (it.hasNext()) {
 			Player player = it.next();
-			if (player.getKeyDown(Keys.UP)) {
+			if (player.getIsKeyDown(GameKeys.UP)) {
 				player.getInventory().addItem(this);
 				this.die();
 			}

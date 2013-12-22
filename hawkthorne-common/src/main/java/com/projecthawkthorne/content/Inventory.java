@@ -39,7 +39,7 @@ public class Inventory {
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
-	void keypressed(Keys button) {
+	void keypressed(GameKeys button) {
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 

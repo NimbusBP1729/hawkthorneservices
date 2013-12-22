@@ -11,10 +11,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
@@ -23,18 +21,19 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.projecthawkthorne.client.audio.AudioCache;
 import com.projecthawkthorne.client.display.Assets;
+import com.projecthawkthorne.content.GameKeys;
+import com.projecthawkthorne.content.KeyMapping;
 import com.projecthawkthorne.content.Player;
 //import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Node;
+import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Levels;
 
 public class HawkthorneGame extends Game {
 	// currently the town is the only file that conforms to new schema
 	// i.e. tileset image width and height are powers of 2
 	// and uses CSV encoding
-	public static final String START_LEVEL = "town";
 	public static boolean DEBUG = true;
-	private BitmapFont font;
 	private SpriteBatch spriteBatch;
 	private TiledMap map;
 	private TiledMapRenderer tileMapRenderer = null;
@@ -46,13 +45,11 @@ public class HawkthorneGame extends Game {
 	public void create() {
 		Assets.load();
 
-		font = new BitmapFont();
-		font.setColor(Color.RED);
 		Gdx.files.internal(Node.IMAGES_FOLDER + "defaultObject.png");
 
 		spriteBatch = new SpriteBatch();
 
-		stateSwitch("overworld", START_LEVEL);
+		stateSwitch("overworld", Player.START_LEVEL);
 
 	}
 
@@ -77,9 +74,9 @@ public class HawkthorneGame extends Game {
 			Gdx.gl.glClearColor(1, 1, 1, 1);
 		}
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+		Player player = Player.getSingleton();
 		try {
 			// TODO: reimplement client
-			Player player = Player.getSingleton();
 			camX = player.x + player.width / 2;
 			// TODO: implement panning
 			int pan = 0;
@@ -95,20 +92,34 @@ public class HawkthorneGame extends Game {
 		int mapWidth = Math.round(tmtl.getWidth() * tmtl.getTileHeight());
 		camX = limit(camX, cam.zoom * cam.viewportWidth / 2, mapWidth
 				- cam.zoom * cam.viewportWidth / 2);
-		if (camY > offset * cam.zoom * tmtl.getTileHeight() * 2) {
+		if (camY >= offset * cam.zoom * tmtl.getTileHeight() * 2) {
 			camY = offset * cam.zoom * tmtl.getTileHeight();
 		} else {
 			camY = camY - mapHeight * cam.zoom;
 		}
 		if (Gdx.input.isKeyPressed(Keys.Q)) {
 			System.out.println("camY      =" + camY);
-			System.out.println("player.y  =" + Player.getSingleton().y);
+			System.out.println("player.x  =" + player.x);
+			System.out.println("player.y  =" + player.y);
 			System.out.println("offset    =" + offset);
 			System.out.println("viewHeight=" + cam.viewportHeight);
 			System.out.println("mapHeight =" + mapHeight);
 			System.out.println("tileHeight=" + tmtl.getTileHeight());
 			System.out.println();
 		}
+
+		for (GameKeys gk : GameKeys.values()) {
+			boolean oldValue = player.getIsKeyDown(gk);
+			boolean newValue = Gdx.input.isKeyPressed(KeyMapping
+					.gameKeyToInt(gk));
+			player.setIsKeyDown(gk, newValue);
+			if (!oldValue && newValue) {
+				player.keypressed(gk);
+			} else if (oldValue && !newValue) {
+				player.keyreleased(gk);
+			}
+		}
+
 		// cam.position.set(tileMapRenderer.getMapWidthUnits() / 2,
 		// tileMapRenderer.getMapHeightUnits() / 2, 0);
 		cam.position.set(camX, camY + mapHeight / 2, 0);
@@ -117,7 +128,11 @@ public class HawkthorneGame extends Game {
 		mapCam.update(true);
 
 		// TODO: reimplement this
-		// client.update();
+		// only tracking one player
+		// and only tracking that player's level
+		Gamestate level = Levels.getSingleton()
+				.get(player.getLevel().getName());
+		level.update();
 		//
 		// // receive a new bundle
 		// DatagramPacket bundle = client.receive();
@@ -156,9 +171,9 @@ public class HawkthorneGame extends Game {
 				.getNodes().values().iterator();
 		while (nit.hasNext()) {
 			Node n = nit.next();
-			if (n.type == "liquid") {
+			if ("liquid".equals(n.type)) {
 				liquids.add(n);
-			} else {
+			} else if (n.type != null) {
 				Assets.draw(batch, n);
 			}
 		}

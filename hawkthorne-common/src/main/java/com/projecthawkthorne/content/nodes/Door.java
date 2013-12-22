@@ -5,7 +5,7 @@
 package com.projecthawkthorne.content.nodes;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.projecthawkthorne.content.Keys;
+import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.gamestate.Levels;
@@ -41,7 +41,7 @@ public class Door extends Node {
 		Door door = level.getDoor(this.properties.get("to",String.class));
 		if (this.instant) {
 			Levels.switchState(level, door, player, true);
-		} else if (player.getKeyDown(Keys.INTERACT)) {
+		} else if (player.getIsKeyDown(GameKeys.INTERACT)) {
 			Levels.switchState(level, door, player, true);
 		}
 		player.isTransporting = false;

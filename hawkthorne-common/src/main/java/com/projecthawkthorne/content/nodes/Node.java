@@ -14,7 +14,7 @@ import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.Direction;
-import com.projecthawkthorne.content.Keys;
+import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
@@ -101,6 +101,10 @@ public abstract class Node extends Collidable {
 	private Collider collider;
 	/** the tiled object this object uses */
 	private RectangleMapObject obj;
+	/**
+	 * each client will have their own if this is final
+	 */
+	private final long creationTime = System.currentTimeMillis();
 
 	// private Texture bboxTexture;// = new
 	// Texture(Gdx.files.internal(IMAGES_FOLDER + "boundingBox.png"));
@@ -273,7 +277,7 @@ public abstract class Node extends Collidable {
 		this.bb.setUserData(this);
 	}
 
-	public void setKeyDown(Keys button, boolean b) {
+	public void setIsKeyDown(GameKeys button, boolean b) {
 	};
 
 	/**
@@ -411,7 +415,7 @@ public abstract class Node extends Collidable {
 	 *            the player who pressed it
 	 * @return true if the node handled the keypress
 	 */
-	public boolean playerKeypressed(Keys button, Player player) {
+	public boolean playerKeypressed(GameKeys button, Player player) {
 		return false;
 	}
 
@@ -446,6 +450,10 @@ public abstract class Node extends Collidable {
 		} else {
 			return Boolean.parseBoolean((String) obj);
 		}
+	}
+
+	public long getDuration() {
+		return System.currentTimeMillis() - creationTime;
 	}
 
 }

@@ -22,14 +22,18 @@ import java.util.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.content.Direction;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Node;
+import com.projecthawkthorne.content.nodes.State;
 
 public class Assets {
 	private static final String SRC_IMAGES = "../data/images/";
+	private static BitmapFont font = new BitmapFont(true);
 
 	/** */
 	public static Map<String, Texture> spriteCache = new HashMap<String, Texture>();
@@ -54,14 +58,15 @@ public class Assets {
 	private static HashMap<String, Animation> health;
 
 	/** top level map for all characters */
-	public static Map<String, Map<String, Map<String, Animation>>> characters;
+	public static Map<String, Map<String, Map<State, Animation>>> characters;
 	private static Texture abedBaseTexture;
-	private static Map<String, Map<String, Animation>> abed;
-	private static Map<String, Animation> base;
+	private static Map<String, Map<State, Animation>> abed;
+	private static Map<State, Animation> base;
 
 	/** map for default sprites */
 	public static HashMap<String, Animation> standard;
 	private static Texture defaultTexture;
+	private static Texture bboxTexture;
 
 	public static Texture loadTexture(String file) {
 		Texture t;
@@ -80,6 +85,7 @@ public class Assets {
 		//
 		standard = new HashMap<String, Animation>();
 		defaultTexture = loadTexture(SRC_IMAGES + "defaultTexture.png");
+		bboxTexture = loadTexture(SRC_IMAGES + "bboxTexture.png");
 
 		// create blank nodes map
 		nodes = new HashMap<String, Map<String, Map<String, Animation>>>();
@@ -160,24 +166,24 @@ public class Assets {
 
 		abedBaseTexture = loadTexture(SRC_IMAGES + "characters/abed/base.png");
 
-		characters = new HashMap<String, Map<String, Map<String, Animation>>>();
-		abed = new HashMap<String, Map<String, Animation>>();
-		base = new HashMap<String, Animation>();
-		base.put("idle", new Animation(0.2f,
+		characters = new HashMap<String, Map<String, Map<State, Animation>>>();
+		abed = new HashMap<String, Map<State, Animation>>();
+		base = new HashMap<State, Animation>();
+		base.put(State.IDLE, new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
 				new TextureRegion(abedBaseTexture, 0, 0, 48, 48)));
-		base.put("walk", new Animation(0.2f,
+		base.put(State.WALK, new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.LOOP,
 				new TextureRegion(abedBaseTexture, 48, 0, 48, 48),
 				new TextureRegion(abedBaseTexture, 96, 0, 48, 48),
 				new TextureRegion(abedBaseTexture, 144, 0, 48, 48)));
-		base.put("jump", new Animation(0.2f,
+		base.put(State.JUMP, new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
 				new TextureRegion(abedBaseTexture, 288, 0, 48, 48)));
-		base.put("crouch", new Animation(0.2f,
+		base.put(State.CROUCH, new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
 				new TextureRegion(abedBaseTexture, 8 * 48, 2 * 48, 48, 48)));
-		base.put("gaze", new Animation(0.2f,
+		base.put(State.GAZE, new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
 				new TextureRegion(abedBaseTexture, 7 * 48, 0 * 48, 48, 48)));
 		abed.put("base", base);
@@ -186,33 +192,99 @@ public class Assets {
 		standard.put("node", new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
 				new TextureRegion(defaultTexture, 288, 0, 48, 48)));
+		standard.put("bbox", new Animation(0.2f,
+				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
+				new TextureRegion(bboxTexture, 288, 0, 48, 48)));
 	}
 
 	public static void playSound(Sound sound) {
 		sound.play(1);
 	}
 
+	/**
+	 * draws the node if the type,name, and state are available
+	 * 
+	 * @param batch
+	 */
 	public static void draw(SpriteBatch batch, Node node) {
-		String sheetPath = null;
-		if (node instanceof Player) {
-			Player plyr = (Player) node;
-			sheetPath = "characters/" + plyr.getCharacter().getName() + "/"
-					+ plyr.getCharacter().getCostume() + ".png";
-		} else if (node.type != null && node.name != null) {
-			sheetPath = node.type + "/" + node.name + ".png";
-		}
-		Texture t = Assets.spriteCache.get(sheetPath);
-		if (t == null) {
-			t = Assets.loadTexture("../data/images/" + sheetPath);
-			Assets.spriteCache.put(sheetPath, t);
-		}
+		Animation anim;
+		try {
+			if (node instanceof Player) {
+				Player player = (Player) node;
+				anim = Assets.characters.get(player.getCharacter().getName())
+						.get(player.getCharacter().getCostume())
+						.get(player.getState());
+			} else {
+				anim = Assets.nodes.get(node.type).get(node.name)
+						.get(node.getState());
+			}
 
-		if (node.direction == Direction.LEFT) {
-			batch.draw(t, node.x, node.y + node.height, node.width,
-					-node.height);
-		} else {
-			batch.draw(t, node.x + node.width, node.y + node.height,
-					-node.width, -node.height);
+			float stateTime = convertToSeconds(node.getDuration());
+			TextureRegion tr = anim.getKeyFrame(stateTime);
+
+			if (node.direction == Direction.LEFT) {
+				batch.draw(tr, node.x, node.y + tr.getRegionHeight(),
+						tr.getRegionWidth(), -tr.getRegionHeight());
+			} else {
+				batch.draw(tr, node.x + tr.getRegionWidth(),
+						node.y + tr.getRegionHeight(), -tr.getRegionWidth(),
+						-tr.getRegionHeight());
+			}
+
+			if (HawkthorneGame.DEBUG) {
+				TextureRegion bboxTextureRegion = Assets.standard.get("bbox")
+						.getKeyFrame(0);
+				batch.draw(bboxTextureRegion, node.getBb().getX(), node.getBb()
+						.getY() + node.getBb().getHeight(), node.getBb()
+						.getWidth(), -node.getBb().getHeight());
+			}
+		} catch (NullPointerException e) {
+			if (HawkthorneGame.DEBUG) {
+				System.err.println(node.getId());
+				System.err.println(node.type);
+				System.err.println(node.name);
+				if (node instanceof Player) {
+					Player player = (Player) node;
+					System.err.println("> "
+							+ player.getCharacter().getCostume());
+				}
+				System.err.println(node.getState());
+				System.err.println();
+
+				TextureRegion defaultTextureRegion = Assets.standard
+						.get("node").getKeyFrame(0);
+				int height = Math.round(node.height);
+				height = height > 0 ? height : defaultTextureRegion
+						.getRegionHeight();
+				int width = Math.round(node.width);
+				width = width > 0 ? width : defaultTextureRegion
+						.getRegionWidth();
+
+				if (node.direction == Direction.LEFT) {
+					batch.draw(defaultTextureRegion, node.x, node.y + height,
+							width, -height);
+				} else {
+					batch.draw(defaultTextureRegion, node.x + width, node.y
+							+ height, -width, -height);
+				}
+
+			}
+		}
+		if (node instanceof Player) {
+			Player player = (Player) node;
+			font.drawMultiLine(batch, player.getCharacter().getName(), node.x,
+					node.y + 30);
 		}
 	}
+
+	/**
+	 * converts from millisecnds to seconds
+	 * 
+	 * @param ms
+	 * @return
+	 */
+	private static float convertToSeconds(long ms) {
+		return ms / 1000.0f;
+	}
+
 }
