@@ -173,7 +173,7 @@ public class HawkthorneGame extends Game {
 			Node n = nit.next();
 			if ("liquid".equals(n.type)) {
 				liquids.add(n);
-			} else if (n.type != null) {
+			} else {
 				Assets.draw(batch, n);
 			}
 		}

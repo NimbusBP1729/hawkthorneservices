@@ -215,20 +215,27 @@ public class Assets {
 						.get(player.getCharacter().getCostume())
 						.get(player.getState());
 			} else {
-				anim = Assets.nodes.get(node.type).get(node.name)
-						.get(node.getState());
+				try {
+					anim = Assets.nodes.get(node.type).get(node.name)
+							.get(node.getState());
+				} catch (NullPointerException e) {
+					anim = null;
+				}
 			}
 
-			float stateTime = convertToSeconds(node.getDuration());
-			TextureRegion tr = anim.getKeyFrame(stateTime);
+			// only draw nodes that have an associated image
+			if (anim != null) {
+				float stateTime = convertToSeconds(node.getDuration());
+				TextureRegion tr = anim.getKeyFrame(stateTime);
 
-			if (node.direction == Direction.LEFT) {
-				batch.draw(tr, node.x, node.y + tr.getRegionHeight(),
-						tr.getRegionWidth(), -tr.getRegionHeight());
-			} else {
-				batch.draw(tr, node.x + tr.getRegionWidth(),
-						node.y + tr.getRegionHeight(), -tr.getRegionWidth(),
-						-tr.getRegionHeight());
+				if (node.direction == Direction.LEFT) {
+					batch.draw(tr, node.x, node.y + tr.getRegionHeight(),
+							tr.getRegionWidth(), -tr.getRegionHeight());
+				} else {
+					batch.draw(tr, node.x + tr.getRegionWidth(),
+							node.y + tr.getRegionHeight(),
+							-tr.getRegionWidth(), -tr.getRegionHeight());
+				}
 			}
 
 			if (HawkthorneGame.DEBUG) {
