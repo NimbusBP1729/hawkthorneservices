@@ -5,7 +5,7 @@
 */.classpath
 android/libs/
 *.log
-html/.settings
+html/.settings/
 *.db
 core/.classpath
 assets/Thumbs.db
