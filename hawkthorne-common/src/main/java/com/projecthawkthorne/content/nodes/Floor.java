@@ -48,9 +48,9 @@ public class Floor extends Node {
 
 			float ceilingY = floorBottom;
 
-			float fd = nodeBottom - floorTop; // must be positive for
+			float fd = floorTop - nodeBottom; // must be positive for
 												// floorpushback
-			float cd = floorBottom - nodeTop; // must be positive for
+			float cd = nodeTop - floorBottom; // must be positive for
 												// ceilingpushback'
 			float wallBuffer = 1;
 			float floorBuffer = 10;

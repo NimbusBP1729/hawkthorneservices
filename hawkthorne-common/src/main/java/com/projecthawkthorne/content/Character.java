@@ -12,7 +12,6 @@ import com.projecthawkthorne.content.nodes.State;
  */
 public class Character {
 	boolean changed = false;
-	Direction direction = Direction.RIGHT;
 	private State state = State.IDLE;
 	private LuaAnimation animation = new LuaAnimation();
 	private String name;

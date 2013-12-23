@@ -34,7 +34,7 @@ public class Platform extends Node {
 						.isDroppingFrom(this))) {
 			return;
 		}
-		if (playerNode instanceof FloorCollidable && playerNode.velocityY > 0) {
+		if (playerNode instanceof FloorCollidable && playerNode.velocityY < 0) {
 			FloorCollidable player = (FloorCollidable) playerNode;
 			float[] playerCorners = new float[4];
 			playerNode.bb.bbox(playerCorners);
@@ -55,7 +55,8 @@ public class Platform extends Node {
 			if (player instanceof Player) {
 				Player plyr = (Player) player;
 				plyr.dropFromPlatform(null);
-				if ((floorTop - playerBottom) > -100 * plyr.velocityY) {
+				float fd = floorTop - playerBottom;
+				if (fd > 0 && fd < 10) {
 					player.floorPushback(this.bb, floorTop);
 				}
 

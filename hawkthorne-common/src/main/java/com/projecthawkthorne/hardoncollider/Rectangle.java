@@ -109,9 +109,9 @@ class Rectangle extends Bound {
 		}
 
 		corners[0] = this.x;
-		corners[1] = this.y;
+		corners[1] = this.y + this.height;
 		corners[2] = this.x + this.width;
-		corners[3] = this.y + this.height;
+		corners[3] = this.y;
 	}
 
 	@Override

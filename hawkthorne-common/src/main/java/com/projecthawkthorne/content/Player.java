@@ -89,10 +89,10 @@ public class Player extends Humanoid implements Timeable {
 	private Object blink;
 	private int iterations = 0;
 	public static final float jumpFactor = 0.0010f;
-	private float halfJumpStrength = -450 * jumpFactor;
-	private float highJumpStrength = -970 * jumpFactor;
-	private float normalJumpStrength = -670 * jumpFactor;
-	private float liquidJumpStrength = -270 * jumpFactor;
+	private float halfJumpStrength = 450 * jumpFactor;
+	private float highJumpStrength = 970 * jumpFactor;
+	private float normalJumpStrength = 670 * jumpFactor;
+	private float liquidJumpStrength = 270 * jumpFactor;
 	public boolean isTransporting = false;
 	public Enemy currentEnemy;
 	public long down_dt = 0;
@@ -110,7 +110,7 @@ public class Player extends Humanoid implements Timeable {
 	public Player(String id, Gamestate level) {
 		super(Player.getPlayerTiledObject(), level);
 		this.bboxOffsetX = 15;
-		this.bboxOffsetY = 4;
+		this.bboxOffsetY = 0;
 
 		// for serverside images
 		// this.objectTexture = new Texture(Gdx.files.internal(IMAGES_FOLDER +
@@ -128,10 +128,10 @@ public class Player extends Humanoid implements Timeable {
 
 	private static RectangleMapObject getPlayerTiledObject() {
 		RectangleMapObject obj = new RectangleMapObject();
-		obj.getRectangle().x = 0;
-		obj.getRectangle().y = 0;
 		obj.getRectangle().width = Math.round(48);
 		obj.getRectangle().height = Math.round(48);
+		obj.getRectangle().x = 0;
+		obj.getRectangle().y = obj.getRectangle().height;
 		// TODO: figure out what the other guy intended to use "type for"
 		obj.getProperties().put("type", "player");
 		obj.setName(Integer.toString(Player.playerCount++));
@@ -521,10 +521,10 @@ public class Player extends Humanoid implements Timeable {
 			// FIXME: positional code should not be in updateVelocity
 			Climbable vine = this.getClimbable();
 			if (DOWN_MOTION) {
-				this.velocityY = this.getClimbable().speed;
+				this.velocityY = -this.getClimbable().speed;
 				this.x = vine.x + vine.width / 2 - this.width / 2;
 			} else if (UP_MOTION) {
-				this.velocityY = -this.getClimbable().speed;
+				this.velocityY = this.getClimbable().speed;
 				this.x = vine.x + vine.width / 2 - this.width / 2;
 			} else {
 				this.velocityY = 0;
@@ -549,9 +549,9 @@ public class Player extends Humanoid implements Timeable {
 
 		// this.moveBoundingBox();
 		if (this.velocityX < 0) {
-			this.character.direction = Direction.LEFT;
+			this.direction = Direction.LEFT;
 		} else if (this.velocityX > 0) {
-			this.character.direction = Direction.RIGHT;
+			this.direction = Direction.RIGHT;
 		}
 
 		if (this.wielding || this.hurt) {
@@ -811,7 +811,7 @@ public class Player extends Humanoid implements Timeable {
 	@Override
 	public void floorPushback(Bound floor, float newY) {
 		// this.ceiling_pushback(node, new_y);
-		this.y = newY - this.height;
+		this.y = newY - this.bboxOffsetY;
 		this.velocityY = 0;
 		// this.moveBoundingBox();
 		this.setJumping(false);

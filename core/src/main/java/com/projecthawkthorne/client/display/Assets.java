@@ -33,7 +33,7 @@ import com.projecthawkthorne.content.nodes.State;
 
 public class Assets {
 	private static final String SRC_IMAGES = "../data/images/";
-	private static BitmapFont font = new BitmapFont(true);
+	private static BitmapFont font = new BitmapFont(false);
 
 	/** */
 	public static Map<String, Texture> spriteCache = new HashMap<String, Texture>();
@@ -229,12 +229,11 @@ public class Assets {
 				TextureRegion tr = anim.getKeyFrame(stateTime);
 
 				if (node.direction == Direction.LEFT) {
-					batch.draw(tr, node.x, node.y + tr.getRegionHeight(),
-							tr.getRegionWidth(), -tr.getRegionHeight());
+					batch.draw(tr, node.x, node.y, tr.getRegionWidth(),
+							tr.getRegionHeight());
 				} else {
-					batch.draw(tr, node.x + tr.getRegionWidth(),
-							node.y + tr.getRegionHeight(),
-							-tr.getRegionWidth(), -tr.getRegionHeight());
+					batch.draw(tr, node.x + tr.getRegionWidth(), node.y,
+							-tr.getRegionWidth(), tr.getRegionHeight());
 				}
 			}
 

@@ -15,9 +15,7 @@ public final class Game {
 	public static final float friction = (float) (0.146875 * Game.step);
 	public static final float accel = (float) (0.046875 * Game.step);
 	public static final float deccel = (float) (0.5 * Game.step);
-	public static final float gravity = 0;// -(float)
-											// (0.21875
-											// * Game.step);
+	public static final float gravity = -(float) (0.21875 * Game.step);
 	public static final long fall_grace = 75;
 	public static final float fall_dps = 0; // 2;
 	public static final float airaccel = (float) (0.09375 * Game.step);
