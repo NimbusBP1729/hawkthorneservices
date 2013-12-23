@@ -541,7 +541,7 @@ public class Player extends Humanoid implements Timeable {
 		}
 
 		// falling off the bottom of the map
-		if (this.y > level.getBoundary().height) {
+		if (this.y < 0) {
 			this.die(this.health);
 			return;
 		}
