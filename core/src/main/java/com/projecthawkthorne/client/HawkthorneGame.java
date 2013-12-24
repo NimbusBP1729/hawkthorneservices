@@ -27,6 +27,8 @@ import com.projecthawkthorne.content.Player;
 //import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.gamestate.Gamestate;
+import com.projecthawkthorne.gamestate.GenericGamestate;
+import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.gamestate.Levels;
 
 public class HawkthorneGame extends Game {
@@ -56,6 +58,45 @@ public class HawkthorneGame extends Game {
 
 	@Override
 	public void render() {
+		Gamestate gs = Player.getSingleton().getLevel();
+		Player player = Player.getSingleton();
+		if (gs instanceof Level) {
+			levelRender((Level) gs, player);
+		} else if (gs instanceof GenericGamestate) {
+			gamestateRender((GenericGamestate) gs, player);
+		} else {
+			throw new UnsupportedOperationException(
+					"must be a level or clientside gamestate");
+		}
+	}
+
+	private void gamestateRender(GenericGamestate gs, Player player) {
+		for (GameKeys gk : GameKeys.values()) {
+			boolean oldValue = gs.getIsKeyDown(gk);
+			boolean newValue = Gdx.input.isKeyPressed(KeyMapping
+					.gameKeyToInt(gk));
+			gs.setIsKeyDown(gk, newValue);
+			if (!oldValue && newValue) {
+				gs.keypressed(gk);
+			} else if (oldValue && !newValue) {
+				gs.keyreleased(gk);
+			}
+		}
+
+		gs.update();
+
+		spriteBatch.begin();
+		this.draw(gs, spriteBatch, cam);
+		spriteBatch.end();
+	}
+
+	private void draw(GenericGamestate gs, SpriteBatch spriteBatch,
+			OrthographicCamera cam) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void levelRender(Level level, Player player) {
 		float camX;
 		float camY;
 		try {
@@ -71,7 +112,6 @@ public class HawkthorneGame extends Game {
 			Gdx.gl.glClearColor(1, 1, 1, 1);
 		}
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-		Player player = Player.getSingleton();
 		try {
 			// TODO: reimplement client
 			camX = player.x + player.width / 2;
@@ -127,8 +167,6 @@ public class HawkthorneGame extends Game {
 		// TODO: reimplement this
 		// only tracking one player
 		// and only tracking that player's level
-		Gamestate level = Levels.getSingleton()
-				.get(player.getLevel().getName());
 		level.update();
 
 		spriteBatch.setProjectionMatrix(cam.combined);
@@ -139,14 +177,13 @@ public class HawkthorneGame extends Game {
 		tileMapRenderer.render();
 
 		spriteBatch.begin();
-		this.draw(spriteBatch, cam);
+		this.draw(level, spriteBatch, cam);
 		spriteBatch.end();
 	}
 
-	public void draw(SpriteBatch batch, OrthographicCamera cam) {
+	public void draw(Level level, SpriteBatch batch, OrthographicCamera cam) {
 		List<Node> liquids = new ArrayList<Node>();
-		Iterator<com.projecthawkthorne.content.nodes.Node> nit = Levels
-				.getSingleton().get(Player.getSingleton().getLevel().getName())
+		Iterator<com.projecthawkthorne.content.nodes.Node> nit = level
 				.getNodes().values().iterator();
 		while (nit.hasNext()) {
 			Node n = nit.next();
@@ -183,7 +220,11 @@ public class HawkthorneGame extends Game {
 	}
 
 	private void stateSwitch(String fromLevel, String toLevel) {
-
+		Gamestate level = Levels.getSingleton().get(toLevel);
+		if (level instanceof GenericGamestate) {
+			AudioCache.playMusic(((GenericGamestate) level).getSoundtrack());
+			return;
+		}
 		long startTime, endTime;
 
 		startTime = System.currentTimeMillis();

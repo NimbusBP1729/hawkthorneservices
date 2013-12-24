@@ -101,7 +101,7 @@ public class Player extends Humanoid implements Timeable {
 	/** the list of nodes this player needs fresh information about */
 	public Set<Node> updateList = new HashSet<Node>();
 	private static Player singleton;
-	private static String START_LEVEL = "town";
+	private static String START_LEVEL = "introduction";
 
 	// :reset() //plyr:enter(collider)
 	private Player(RectangleMapObject obj, Gamestate level) {
