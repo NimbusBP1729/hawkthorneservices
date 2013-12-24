@@ -130,17 +130,6 @@ public class HawkthorneGame extends Game {
 		Gamestate level = Levels.getSingleton()
 				.get(player.getLevel().getName());
 		level.update();
-		//
-		// // receive a new bundle
-		// DatagramPacket bundle = client.receive();
-		//
-		// String msg;
-		// while (bundle != null) {
-		// msg = new String(bundle.getData());
-		// // process bundle if necessary
-		// processBundle(bundle);
-		// bundle = client.receive();
-		// }
 
 		spriteBatch.setProjectionMatrix(cam.combined);
 		if (tileMapRenderer == null) {
@@ -155,7 +144,6 @@ public class HawkthorneGame extends Game {
 	}
 
 	public void draw(SpriteBatch batch, OrthographicCamera cam) {
-		long curTime = System.currentTimeMillis();
 		List<Node> liquids = new ArrayList<Node>();
 		Iterator<com.projecthawkthorne.content.nodes.Node> nit = Levels
 				.getSingleton().get(Player.getSingleton().getLevel().getName())
@@ -214,9 +202,6 @@ public class HawkthorneGame extends Game {
 		String musicFile = (String) map.getProperties().get("soundtrack");
 		AudioCache.playMusic(musicFile);
 
-		// float aspectRatio = (float)Gdx.graphics.getWidth() /
-		// (float)Gdx.graphics.getHeight();
-		// cam = new OrthographicCamera(100f * aspectRatio, 100f);
 		cam = new OrthographicCamera(Gdx.graphics.getWidth(),
 				Gdx.graphics.getHeight());
 		mapCam = new OrthographicCamera(Gdx.graphics.getWidth(),
@@ -235,7 +220,6 @@ public class HawkthorneGame extends Game {
 			System.err.println("no offset found: using default '0'");
 			offset = 0;
 		}
-		// offset -= map.getProperties().get("height", Integer.class);
 		System.out.println("resolved offset is:" + offset);
 
 	}
