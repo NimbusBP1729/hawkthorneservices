@@ -25,6 +25,8 @@ public class Levels {
 		// use this constructor to initialize all
 		// gamestates that aren't levels
 		levelMap = new HashMap<String, Gamestate>();
+		levelMap.put("introduction", new Introduction());
+		levelMap.put("overworld", new Overworld());
 	}
 
 	public static Levels getSingleton() {

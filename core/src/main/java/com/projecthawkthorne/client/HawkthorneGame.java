@@ -45,7 +45,8 @@ public class HawkthorneGame extends Game {
 		Assets.load();
 
 		spriteBatch = new SpriteBatch();
-		stateSwitch("overworld", Player.START_LEVEL);
+		Player player = Player.getSingleton();
+		stateSwitch("overworld", player.getLevel().getName());
 
 	}
 

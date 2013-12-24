@@ -7,6 +7,7 @@ package com.projecthawkthorne.content.nodes;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.UUID;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
@@ -65,7 +66,7 @@ public abstract class Node extends Collidable {
 	/** true if the node is dead */
 	protected boolean dead;
 	/** the unique id of the node */
-	protected final int id;
+	protected final String id;
 	/**
 	 * count of the amount of objects that have been created <br>
 	 * this is used to generate ids
@@ -136,7 +137,7 @@ public abstract class Node extends Collidable {
 	 *            the level this node will reside in
 	 */
 	public Node(RectangleMapObject obj, Gamestate level) {
-		this.id = objectCount++;
+		this.id = UUID.randomUUID().toString();
 		this.dead = false;
 		this.level = level;
 		this.obj = obj;
@@ -167,7 +168,7 @@ public abstract class Node extends Collidable {
 	 * 
 	 * @return the unique id of the node
 	 */
-	public int getId() {
+	public String getId() {
 		return this.id;
 	}
 

@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.nodes.Climbable;
@@ -48,7 +47,6 @@ public class Player extends Humanoid implements Timeable {
 	private Character character = new Character();
 	private EnumMap<GameKeys, Boolean> keyDown = new EnumMap<GameKeys, Boolean>(
 			GameKeys.class);
-	public final String id;
 	public static int startingMoney = 0;
 	private boolean invulnerable = false;
 	private List<Action> acions;
@@ -103,20 +101,13 @@ public class Player extends Humanoid implements Timeable {
 	/** the list of nodes this player needs fresh information about */
 	public Set<Node> updateList = new HashSet<Node>();
 	private static Player singleton;
-
-	public static final String START_LEVEL = "town";
+	private static String START_LEVEL = "town";
 
 	// :reset() //plyr:enter(collider)
-	public Player(String id, Gamestate level) {
-		super(Player.getPlayerTiledObject(), level);
+	private Player(RectangleMapObject obj, Gamestate level) {
+		super(obj, level);
 		this.bboxOffsetX = 15;
 		this.bboxOffsetY = 0;
-
-		// for serverside images
-		// this.objectTexture = new Texture(Gdx.files.internal(IMAGES_FOLDER +
-		// "characters/" + "abed/" + "base" + ".png"));
-
-		this.id = id;
 
 		this.setSpriteStates(PlayerState.DEFAULT);
 		for (GameKeys button : GameKeys.values()) {
@@ -998,17 +989,9 @@ public class Player extends Humanoid implements Timeable {
 		this.jumping = jumping;
 	}
 
-	public void setIsNew(boolean b) {
-		this.isNew = b;
-	}
-
-	public boolean isNew() {
-		return isNew;
-	}
-
 	public static Player getSingleton() {
 		if (singleton == null) {
-			singleton = new Player(UUID.randomUUID().toString(), Levels
+			singleton = new Player(Player.getPlayerTiledObject(), Levels
 					.getSingleton().get(START_LEVEL));
 		}
 		return singleton;

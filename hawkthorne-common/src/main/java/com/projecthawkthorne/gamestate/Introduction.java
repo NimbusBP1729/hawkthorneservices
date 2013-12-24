@@ -9,7 +9,6 @@ import com.projecthawkthorne.gamestate.elements.RadioButtonGroup;
 public class Introduction extends Gamestate {
 
 	private List<GamestateElement> objects = new ArrayList<GamestateElement>();
-	private Levels levels = Levels.getSingleton();
 
 	public Introduction() {
 		objects.add(new RadioButtonGroup("multiplayer", "singleplayer"));

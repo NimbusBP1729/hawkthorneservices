@@ -7,9 +7,9 @@ import java.util.Map;
 import com.projecthawkthorne.content.nodes.Node;
 
 public class LevelMap {
-	Map<Integer, Node> nodeMap = new HashMap<Integer, Node>();
+	Map<String, Node> nodeMap = new HashMap<String, Node>();
 
-	public void put(int id, Node node) {
+	public void put(String id, Node node) {
 		nodeMap.put(id, node);
 	}
 
@@ -17,7 +17,7 @@ public class LevelMap {
 		return nodeMap.values();
 	}
 
-	public Node remove(int id) {
+	public Node remove(String id) {
 		return nodeMap.remove(id);
 	}
 
