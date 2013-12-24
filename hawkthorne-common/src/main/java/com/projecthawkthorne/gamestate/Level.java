@@ -1,25 +1,16 @@
 package com.projecthawkthorne.gamestate;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.charset.Charset;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.projecthawkthorne.content.Boundary;
-import com.projecthawkthorne.content.Game;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Door;
@@ -30,7 +21,6 @@ import com.projecthawkthorne.content.nodes.Liquid;
 import com.projecthawkthorne.content.nodes.Material;
 import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.content.nodes.Platform;
-import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
 import com.projecthawkthorne.hardoncollider.Collider;
 
@@ -41,10 +31,8 @@ import com.projecthawkthorne.hardoncollider.Collider;
 public class Level extends Gamestate {
 
 	public static final String SRC_MAPS = "../data/maps/";
-	private static final boolean IGNORE_GUI = true;
 	private String title;
 	private LevelMap nodes = new LevelMap();
-	// private Collider collider;
 	private Gamestate spawnLevel;
 	private final String name;
 	private java.util.Map<String, Door> doors = new HashMap<String, Door>();
@@ -53,14 +41,7 @@ public class Level extends Gamestate {
 	private com.badlogic.gdx.maps.Map map;
 	private Collider collider;
 
-	// private SpriteBatch batch = new SpriteBatch();
-	// private BitmapFont font = new BitmapFont();
-	// private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer( true,
-	// true, true, true, true);
-
 	public Level(String name) {
-		// this.world.enableRestingBodyDetection(0.01f, (float)Math.PI/16,
-		// 0.01f);
 		this.name = name;
 		this.collider = new Collider();
 		this.loadNodes(name);
@@ -148,19 +129,6 @@ public class Level extends Gamestate {
 
 	}
 
-	private static String readFile(String path) throws IOException {
-		FileInputStream stream = new FileInputStream(new File(path));
-		try {
-			FileChannel fc = stream.getChannel();
-			MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0,
-					fc.size());
-			/* Instead of using default, pass in a decoder. */
-			return Charset.defaultCharset().decode(bb).toString();
-		} finally {
-			stream.close();
-		}
-	}
-
 	private MapLayer getNodeGroupByName(String name) {
 		return this.map.getLayers().get(name);
 	}
@@ -174,6 +142,7 @@ public class Level extends Gamestate {
 		return name;
 	}
 
+	@Override
 	public void update() {
 		// 1)update
 
@@ -195,47 +164,7 @@ public class Level extends Gamestate {
 			}
 		}
 
-		// batch.begin();
-		// //BoxObjectManager.GetWorld() gets the reference to Box2d World
-		// object
-		// if(this.world!=null && Main.camera!=null &&
-		// Main.camera.combined!=null){
-		// debugRenderer.render(this.world, Main.camera.combined);
-		// }
-		// batch.end();
-		// finds more collisions
-		// this.world.step(BOX_STEP, BOX_VELOCITY_ITERATIONS,
-		// BOX_POSITION_ITERATIONS);
-		// this.checkCollisions();
 		this.collider.update();
-
-		// 2)draw
-
-		// this.draw();
-
-		// 3)user I/O
-	}
-
-	public void draw() {
-		if (IGNORE_GUI) {
-			return;
-		} else {
-			Gdx.gl.glClearColor(0, 0, 0.6f, 1);
-			Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-
-			// batch.begin();
-			// font.draw(batch, Gdx.graphics.getFramesPerSecond() + "", 100,
-			// 100);
-			// batch.end();
-
-			Game.DEBUG = true;
-			// grphcs.clear();
-			Iterator<Bound> it = this.collider.getBoxes();
-			while (it.hasNext()) {
-				it.next().draw();
-			}
-		}
-		//
 	}
 
 	public void playerKeyPressed(Player player, String key) {

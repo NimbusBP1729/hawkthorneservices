@@ -33,7 +33,6 @@ public class HawkthorneGame extends Game {
 	// currently the town is the only file that conforms to new schema
 	// i.e. tileset image width and height are powers of 2
 	// and uses CSV encoding
-	public static boolean DEBUG = true;
 	private SpriteBatch spriteBatch;
 	private TiledMap map;
 	private TiledMapRenderer tileMapRenderer = null;
@@ -45,17 +44,13 @@ public class HawkthorneGame extends Game {
 	public void create() {
 		Assets.load();
 
-		Gdx.files.internal(Node.IMAGES_FOLDER + "defaultObject.png");
-
 		spriteBatch = new SpriteBatch();
-
 		stateSwitch("overworld", Player.START_LEVEL);
 
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		// spriteBatch.getProjectionMatrix().setToOrtho2D(0, 0, width, height);
 	}
 
 	@Override
@@ -63,11 +58,12 @@ public class HawkthorneGame extends Game {
 		float camX;
 		float camY;
 		try {
-			float r = Float.parseFloat((String) map.getProperties().get("red")) / 255.0f;
-			float g = Float.parseFloat((String) map.getProperties()
-					.get("green")) / 255.0f;
-			float b = Float
-					.parseFloat((String) map.getProperties().get("blue")) / 255.0f;
+			float r = Float.parseFloat(map.getProperties().get("red",
+					String.class)) / 255.0f;
+			float g = Float.parseFloat(map.getProperties().get("green",
+					String.class)) / 255.0f;
+			float b = Float.parseFloat(map.getProperties().get("blue",
+					String.class)) / 255.0f;
 			Gdx.gl.glClearColor(r, g, b, 1);
 		} catch (NullPointerException e) {
 			System.err.println("Error loading background: default to white");
@@ -140,11 +136,6 @@ public class HawkthorneGame extends Game {
 		// String msg;
 		// while (bundle != null) {
 		// msg = new String(bundle.getData());
-		// if (msg.contains("poly")) {
-		// int foo = 47;
-		// } else if (msg.contains("player")) {
-		// int foo = 53;
-		// }
 		// // process bundle if necessary
 		// processBundle(bundle);
 		// bundle = client.receive();
@@ -154,7 +145,6 @@ public class HawkthorneGame extends Game {
 		if (tileMapRenderer == null) {
 			tileMapRenderer = new OrthogonalTiledMapRenderer(map, spriteBatch);
 		}
-		// tileMapRenderer.render(mapCam);
 		tileMapRenderer.setView(mapCam);
 		tileMapRenderer.render();
 
@@ -222,10 +212,6 @@ public class HawkthorneGame extends Game {
 
 		String musicFile = (String) map.getProperties().get("soundtrack");
 		AudioCache.playMusic(musicFile);
-
-		startTime = System.currentTimeMillis();
-		endTime = System.currentTimeMillis();
-		System.out.println("Created cache in " + (endTime - startTime) + "ms");
 
 		// float aspectRatio = (float)Gdx.graphics.getWidth() /
 		// (float)Gdx.graphics.getHeight();

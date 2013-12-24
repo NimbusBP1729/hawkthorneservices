@@ -16,6 +16,8 @@
 
 package com.projecthawkthorne.client.display;
 
+import static com.projecthawkthorne.content.Game.DEBUG;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +27,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.content.Direction;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Node;
@@ -237,7 +238,7 @@ public class Assets {
 				}
 			}
 
-			if (HawkthorneGame.DEBUG) {
+			if (DEBUG) {
 				TextureRegion bboxTextureRegion = Assets.standard.get("bbox")
 						.getKeyFrame(0);
 				batch.draw(bboxTextureRegion, node.getBb().getX(), node.getBb()
@@ -245,7 +246,7 @@ public class Assets {
 						.getWidth(), -node.getBb().getHeight());
 			}
 		} catch (NullPointerException e) {
-			if (HawkthorneGame.DEBUG) {
+			if (DEBUG) {
 				System.err.println(node.getId());
 				System.err.println(node.type);
 				System.err.println(node.name);

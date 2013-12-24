@@ -121,10 +121,4 @@ class Rectangle extends Bound {
 		return corners[1];
 	}
 
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

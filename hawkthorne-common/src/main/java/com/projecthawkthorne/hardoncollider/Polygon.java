@@ -142,12 +142,6 @@ class Polygon extends Bound {
 	}
 
 	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void setWidth(float newWidth) {
 		float[] corners = new float[4];
 		this.bbox(corners);
