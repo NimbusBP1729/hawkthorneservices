@@ -30,6 +30,7 @@ import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.GenericGamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.gamestate.Levels;
+import com.projecthawkthorne.gamestate.elements.RadioButtonGroup;
 
 public class HawkthorneGame extends Game {
 	// currently the town is the only file that conforms to new schema
@@ -82,9 +83,12 @@ public class HawkthorneGame extends Game {
 				gs.keyreleased(gk);
 			}
 		}
+		Gdx.gl.glClearColor(0, 1, 0, 1);
 
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+		cam.update();
 		gs.update();
-
+		spriteBatch.setProjectionMatrix(cam.combined);
 		spriteBatch.begin();
 		this.draw(gs, spriteBatch, cam);
 		spriteBatch.end();
@@ -92,8 +96,15 @@ public class HawkthorneGame extends Game {
 
 	private void draw(GenericGamestate gs, SpriteBatch spriteBatch,
 			OrthographicCamera cam) {
-		// TODO Auto-generated method stub
+		for (RadioButtonGroup elem : gs.getObjects()) {
+			this.draw(elem, spriteBatch, cam);
+		}
 
+	}
+
+	private void draw(RadioButtonGroup elem, SpriteBatch batch,
+			OrthographicCamera cam) {
+		Assets.draw(batch, elem);
 	}
 
 	private void levelRender(Level level, Player player) {
@@ -222,6 +233,12 @@ public class HawkthorneGame extends Game {
 	private void stateSwitch(String fromLevel, String toLevel) {
 		Gamestate level = Levels.getSingleton().get(toLevel);
 		if (level instanceof GenericGamestate) {
+			cam = new OrthographicCamera(Gdx.graphics.getWidth(),
+					Gdx.graphics.getHeight());
+			cam.setToOrtho(true, Gdx.graphics.getWidth(),
+					Gdx.graphics.getHeight());
+			cam.zoom = 0.5f;
+
 			AudioCache.playMusic(((GenericGamestate) level).getSoundtrack());
 			return;
 		}

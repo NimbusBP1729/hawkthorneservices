@@ -31,9 +31,10 @@ import com.projecthawkthorne.content.Direction;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.content.nodes.State;
+import com.projecthawkthorne.gamestate.elements.RadioButtonGroup;
 
 public class Assets {
-	private static final String SRC_IMAGES = "../data/images/";
+	public static final String SRC_IMAGES = "../data/images/";
 	private static BitmapFont font = new BitmapFont(false);
 
 	/** */
@@ -200,6 +201,29 @@ public class Assets {
 
 	public static void playSound(Sound sound) {
 		sound.play(1);
+	}
+
+	public static void draw(SpriteBatch batch, RadioButtonGroup elem) {
+		Texture rbgTexture = loadTexture(Assets.SRC_IMAGES
+				+ "defaultTexture.png");
+
+		batch.draw(rbgTexture, elem.getX(), elem.getY(), elem.getWidth(),
+				elem.getHeight());
+		float x = elem.getX();
+		float y = elem.getY();
+
+		for (String ro : elem.getOptions()) {
+			if (ro.equals(elem.getOptions()[elem.getSelection()])) {
+				batch.setColor(0, 1, 0, 1);
+			} else if (ro.equals(elem.getOptions()[elem.getSelection()])) {
+				batch.setColor(1, 0, 0, 1);
+			} else {
+				batch.setColor(1, 1, 1, 1);
+			}
+			font.drawMultiLine(batch, ro, x, y);
+			y -= 10;
+		}
+
 	}
 
 	/**

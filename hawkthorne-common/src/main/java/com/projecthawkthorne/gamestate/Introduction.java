@@ -1,18 +1,15 @@
 package com.projecthawkthorne.gamestate;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.gamestate.elements.GamestateElement;
 import com.projecthawkthorne.gamestate.elements.RadioButtonGroup;
 
 public class Introduction extends GenericGamestate {
 
-	private List<GamestateElement> objects = new ArrayList<GamestateElement>();
-
 	public Introduction() {
-		objects.add(new RadioButtonGroup("multiplayer", "singleplayer"));
+		RadioButtonGroup rbg = new RadioButtonGroup(20, 30, 100, 100,
+				"multiplayer", "singleplayer");
+		objects.add(rbg);
 		// objects.add(new SelectionButton(levels.get("town")));
 	}
 
