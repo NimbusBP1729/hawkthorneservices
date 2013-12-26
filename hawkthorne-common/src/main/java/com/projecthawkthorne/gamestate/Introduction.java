@@ -7,7 +7,7 @@ import com.projecthawkthorne.gamestate.elements.RadioButtonGroup;
 public class Introduction extends GenericGamestate {
 
 	public Introduction() {
-		RadioButtonGroup rbg = new RadioButtonGroup(20, 30, 100, 100,
+		RadioButtonGroup rbg = new RadioButtonGroup(200, 130, 200, 200,
 				"multiplayer", "singleplayer");
 		objects.add(rbg);
 		// objects.add(new SelectionButton(levels.get("town")));

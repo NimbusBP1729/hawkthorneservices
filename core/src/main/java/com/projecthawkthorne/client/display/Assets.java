@@ -215,7 +215,7 @@ public class Assets {
 		for (String ro : elem.getOptions()) {
 			if (ro.equals(elem.getOptions()[elem.getSelection()])) {
 				batch.setColor(0, 1, 0, 1);
-			} else if (ro.equals(elem.getOptions()[elem.getSelection()])) {
+			} else if (ro.equals(elem.getOptions()[elem.getCursor()])) {
 				batch.setColor(1, 0, 0, 1);
 			} else {
 				batch.setColor(1, 1, 1, 1);
