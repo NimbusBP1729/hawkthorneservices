@@ -40,8 +40,6 @@ public abstract class Node extends Collidable {
 	public float width;
 	public float height;
 	protected State state = State.DEFAULT;
-	/** the type of the node */
-	public String type;
 	/**
 	 * the name of the node<br>
 	 * can be considered a subtype
@@ -136,7 +134,7 @@ public abstract class Node extends Collidable {
 	 * @param level
 	 *            the level this node will reside in
 	 */
-	public Node(RectangleMapObject obj, Gamestate level) {
+	public Node(RectangleMapObject obj, Level level) {
 		this.id = UUID.randomUUID().toString();
 		this.dead = false;
 		this.level = level;
@@ -145,8 +143,6 @@ public abstract class Node extends Collidable {
 		this.playersTouched = new HashSet<Player>();
 
 		this.name = obj.getName();
-		// TODO: display type
-		this.type = obj.getProperties().get("type", String.class);
 		this.x = obj.getRectangle().x;
 		this.y = obj.getRectangle().y;
 		this.width = obj.getRectangle().width;
@@ -267,7 +263,7 @@ public abstract class Node extends Collidable {
 				this.bbox_height = height;
 			}
 			if (this.bbox_width < 0 || this.bbox_height < 0) {
-				System.err.println("no bounds for:" + this.type + ":"
+				System.err.println("no bounds for:" + this.getClass() + ":"
 						+ this.name);
 			}
 			this.bb = Bound.create(this.x, this.y, this.bbox_width,

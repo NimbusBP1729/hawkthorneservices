@@ -6,7 +6,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.FloorCollidable;
 import com.projecthawkthorne.content.Footprint;
 import com.projecthawkthorne.content.PlayerState;
-import com.projecthawkthorne.gamestate.Gamestate;
+import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.hardoncollider.Collidable;
 
 public abstract class Humanoid extends Node implements FloorCollidable {
@@ -24,7 +24,7 @@ public abstract class Humanoid extends Node implements FloorCollidable {
 	private Climbable climbable = null;
 	private boolean isClimbing = false;
 
-	public Humanoid(RectangleMapObject obj, Gamestate level) {
+	public Humanoid(RectangleMapObject obj, Level level) {
 		super(obj, level);
 	}
 

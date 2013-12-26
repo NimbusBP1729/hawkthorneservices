@@ -24,6 +24,7 @@ import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.KeyMapping;
 import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.nodes.Liquid;
 //import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.gamestate.Gamestate;
@@ -198,7 +199,7 @@ public class HawkthorneGame extends Game {
 				.getNodes().values().iterator();
 		while (nit.hasNext()) {
 			Node n = nit.next();
-			if ("liquid".equals(n.type)) {
+			if (n instanceof Liquid) {
 				liquids.add(n);
 			} else {
 				Assets.draw(batch, n);

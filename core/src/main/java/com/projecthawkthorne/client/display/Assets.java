@@ -241,8 +241,9 @@ public class Assets {
 						.get(player.getState());
 			} else {
 				try {
-					anim = Assets.nodes.get(node.type).get(node.name)
-							.get(node.getState());
+					anim = Assets.nodes
+							.get(node.getClass().getSimpleName().toLowerCase())
+							.get(node.name).get(node.getState());
 				} catch (NullPointerException e) {
 					anim = null;
 				}
@@ -272,7 +273,7 @@ public class Assets {
 		} catch (NullPointerException e) {
 			if (DEBUG) {
 				System.err.println(node.getId());
-				System.err.println(node.type);
+				System.err.println(node.getClass().getSimpleName());
 				System.err.println(node.name);
 				if (node instanceof Player) {
 					Player player = (Player) node;
