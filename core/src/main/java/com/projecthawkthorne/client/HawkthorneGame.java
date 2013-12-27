@@ -40,7 +40,6 @@ public class HawkthorneGame extends Game {
 	private TiledMap map;
 	private TiledMapRenderer tileMapRenderer = null;
 	private OrthographicCamera cam;
-	private OrthographicCamera mapCam;
 	private int offset;
 
 	@Override
@@ -86,25 +85,22 @@ public class HawkthorneGame extends Game {
 		Gdx.gl.glClearColor(0, 1, 0, 1);
 
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+		cam.position.set(Gdx.graphics.getWidth() / 4,
+				Gdx.graphics.getHeight() / 4, 0);
+		// update should do nothing in unmoving gamestates
 		cam.update();
 		gs.update();
 		spriteBatch.setProjectionMatrix(cam.combined);
 		spriteBatch.begin();
-		this.draw(gs, spriteBatch, cam);
+		this.draw(gs, spriteBatch);
 		spriteBatch.end();
 	}
 
-	private void draw(GenericGamestate gs, SpriteBatch spriteBatch,
-			OrthographicCamera cam) {
+	private void draw(GenericGamestate gs, SpriteBatch spriteBatch) {
 		for (RadioButtonGroup elem : gs.getObjects()) {
-			this.draw(elem, spriteBatch, cam);
+			Assets.draw(spriteBatch, elem);
 		}
 
-	}
-
-	private void draw(RadioButtonGroup elem, SpriteBatch batch,
-			OrthographicCamera cam) {
-		Assets.draw(batch, elem);
 	}
 
 	private void levelRender(Level level, Player player) {
@@ -171,9 +167,7 @@ public class HawkthorneGame extends Game {
 		// cam.position.set(tileMapRenderer.getMapWidthUnits() / 2,
 		// tileMapRenderer.getMapHeightUnits() / 2, 0);
 		cam.position.set(camX, camY + mapHeight / 2, 0);
-		mapCam.position.set(camX, mapHeight / 2 - camY, 0);
 		cam.update(true);
-		mapCam.update(true);
 
 		// TODO: reimplement this
 		// only tracking one player
@@ -184,15 +178,15 @@ public class HawkthorneGame extends Game {
 		if (tileMapRenderer == null) {
 			tileMapRenderer = new OrthogonalTiledMapRenderer(map, spriteBatch);
 		}
-		tileMapRenderer.setView(mapCam);
+		tileMapRenderer.setView(cam);
 		tileMapRenderer.render();
 
 		spriteBatch.begin();
-		this.draw(level, spriteBatch, cam);
+		this.draw(level, spriteBatch);
 		spriteBatch.end();
 	}
 
-	public void draw(Level level, SpriteBatch batch, OrthographicCamera cam) {
+	public void draw(Level level, SpriteBatch batch) {
 		List<Node> liquids = new ArrayList<Node>();
 		Iterator<com.projecthawkthorne.content.nodes.Node> nit = level
 				.getNodes().values().iterator();
@@ -235,7 +229,7 @@ public class HawkthorneGame extends Game {
 		if (level instanceof GenericGamestate) {
 			cam = new OrthographicCamera(Gdx.graphics.getWidth(),
 					Gdx.graphics.getHeight());
-			cam.setToOrtho(true, Gdx.graphics.getWidth(),
+			cam.setToOrtho(false, Gdx.graphics.getWidth(),
 					Gdx.graphics.getHeight());
 			cam.zoom = 0.5f;
 
@@ -262,14 +256,9 @@ public class HawkthorneGame extends Game {
 
 		cam = new OrthographicCamera(Gdx.graphics.getWidth(),
 				Gdx.graphics.getHeight());
-		mapCam = new OrthographicCamera(Gdx.graphics.getWidth(),
-				Gdx.graphics.getHeight());
-		cam.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		mapCam.setToOrtho(false, Gdx.graphics.getWidth(),
-				Gdx.graphics.getHeight());
+		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		cam.zoom = 0.5f;
-		mapCam.zoom = 0.5f;
 
 		try {
 			offset = Integer.parseInt(map.getProperties().get("offset",
