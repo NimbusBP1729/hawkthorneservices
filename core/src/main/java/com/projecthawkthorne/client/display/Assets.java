@@ -70,15 +70,22 @@ public class Assets {
 	private static Texture defaultTexture;
 	private static Texture bboxTexture;
 
+	private static Map<String, Texture> imageCache = new HashMap<String, Texture>();
+
 	public static Texture loadTexture(String file) {
 		Texture t;
 		try {
-			t = new Texture(Gdx.files.internal(file));
+			t = imageCache.get(file);
+			if (t == null) {
+				t = new Texture(Gdx.files.internal(file));
+				imageCache.put(file, t);
+			}
 		} catch (Exception e) {
 			System.err.println("failed to load '" + file
 					+ "': using 'defaultTexture.png'");
 			t = new Texture(Gdx.files.internal("../data/images/"
 					+ "defaultTexture.png"));
+			imageCache.put(file, t);
 		}
 		return t;
 	}
