@@ -106,7 +106,7 @@ public class HawkthorneGame extends Game {
 
 	private void draw(GenericGamestate gs, SpriteBatch spriteBatch) {
 		for (RadioButtonGroup elem : gs.getObjects()) {
-			Assets.draw(spriteBatch, elem);
+			elem.draw(spriteBatch);
 		}
 
 	}
@@ -203,14 +203,14 @@ public class HawkthorneGame extends Game {
 			if ("liquid".equals(n.type)) {
 				liquids.add(n);
 			} else {
-				Assets.draw(batch, n);
+				n.draw(batch);
 			}
 		}
 
-		Assets.draw(batch, Player.getSingleton());
+		Player.getSingleton().draw(batch);
 
 		for (Node liquid : liquids) {
-			Assets.draw(batch, liquid);
+			liquid.draw(batch);
 		}
 	}
 
@@ -242,40 +242,41 @@ public class HawkthorneGame extends Game {
 			cam.zoom = 0.5f;
 
 			AudioCache.playMusic(((GenericGamestate) level).getSoundtrack());
-			return;
+		} else {
+			// "level" instanceof Level
+			long startTime, endTime;
+
+			startTime = System.currentTimeMillis();
+			String mapFileName = SRC_MAPS + toLevel + ".tmx";
+			AssetManager assetManager = new AssetManager();
+			assetManager.setLoader(TiledMap.class, new TmxMapLoader(
+					new InternalFileHandleResolver()));
+			assetManager.load(mapFileName, TiledMap.class);
+			assetManager.finishLoading();
+			map = assetManager.get(mapFileName);
+			endTime = System.currentTimeMillis();
+			System.out.println("Loaded map " + mapFileName + " in "
+					+ (endTime - startTime) + "ms");
+
+			String musicFile = (String) map.getProperties().get("soundtrack");
+			AudioCache.playMusic(musicFile);
+
+			cam = new OrthographicCamera(Gdx.graphics.getWidth(),
+					Gdx.graphics.getHeight());
+			cam.setToOrtho(false, Gdx.graphics.getWidth(),
+					Gdx.graphics.getHeight());
+
+			cam.zoom = 0.5f;
+
+			try {
+				offset = Integer.parseInt(map.getProperties().get("offset",
+						String.class));
+			} catch (Exception e) {
+				System.err.println("no offset found: using default '0'");
+				offset = 0;
+			}
+			System.out.println("resolved offset is:" + offset);
 		}
-		long startTime, endTime;
-
-		startTime = System.currentTimeMillis();
-		String mapFileName = SRC_MAPS + toLevel + ".tmx";
-		AssetManager assetManager = new AssetManager();
-		// TODO:bypass if it's not an ordinary level
-		assetManager.setLoader(TiledMap.class, new TmxMapLoader(
-				new InternalFileHandleResolver()));
-		assetManager.load(mapFileName, TiledMap.class);
-		assetManager.finishLoading();
-		map = assetManager.get(mapFileName);
-		endTime = System.currentTimeMillis();
-		System.out.println("Loaded map " + mapFileName + " in "
-				+ (endTime - startTime) + "ms");
-
-		String musicFile = (String) map.getProperties().get("soundtrack");
-		AudioCache.playMusic(musicFile);
-
-		cam = new OrthographicCamera(Gdx.graphics.getWidth(),
-				Gdx.graphics.getHeight());
-		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-		cam.zoom = 0.5f;
-
-		try {
-			offset = Integer.parseInt(map.getProperties().get("offset",
-					String.class));
-		} catch (Exception e) {
-			System.err.println("no offset found: using default '0'");
-			offset = 0;
-		}
-		System.out.println("resolved offset is:" + offset);
 
 	}
 

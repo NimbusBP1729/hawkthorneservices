@@ -1,5 +1,8 @@
 package com.projecthawkthorne.gamestate.elements;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.projecthawkthorne.client.display.Assets;
 
 public class RadioButtonGroup extends GamestateElement {
 
@@ -40,4 +43,27 @@ public class RadioButtonGroup extends GamestateElement {
 		this.cursor = cursor;
 	}
 
+	@Override
+	public void draw(SpriteBatch batch) {
+		Texture rbgTexture = Assets.loadTexture(Assets.SRC_IMAGES
+				+ "defaultTexture.png");
+
+		batch.draw(rbgTexture, this.getX(), this.getY(), this.getWidth(),
+				this.getHeight());
+		float x = this.getX();
+		float y = this.getY();
+
+		for (String ro : this.getOptions()) {
+			if (ro.equals(this.getOptions()[this.getSelection()])) {
+				batch.setColor(0, 1, 0, 1);
+			} else if (ro.equals(this.getOptions()[this.getCursor()])) {
+				batch.setColor(1, 0, 0, 1);
+			} else {
+				batch.setColor(1, 1, 1, 1);
+			}
+			Assets.font.drawMultiLine(batch, ro, x, y);
+			y += 10;
+		}
+
+	}
 }

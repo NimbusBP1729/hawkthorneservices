@@ -1,6 +1,8 @@
 package com.projecthawkthorne.gamestate.elements;
 
-public class GamestateElement {
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public abstract class GamestateElement {
 	protected float x;
 	protected float y;
 	protected float width;
@@ -37,5 +39,7 @@ public class GamestateElement {
 	public void setHeight(float height) {
 		this.height = height;
 	}
+
+	public abstract void draw(SpriteBatch batch);
 
 }

@@ -4,16 +4,22 @@
  */
 package com.projecthawkthorne.content.nodes;
 
+import static com.projecthawkthorne.content.Game.DEBUG;
+
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.projecthawkthorne.client.display.Animation;
+import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Direction;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
@@ -455,6 +461,98 @@ public abstract class Node extends Collidable {
 
 	public long getDuration() {
 		return System.currentTimeMillis() - creationTime;
+	}
+
+	/**
+	 * draws the this if the type,name, and state are available
+	 * 
+	 * @param batch
+	 */
+	public void draw(SpriteBatch batch) {
+		Animation anim;
+		try {
+			if (this instanceof Player) {
+				Player player = (Player) this;
+				anim = Assets.characters.get(player.getCharacter().getName())
+						.get(player.getCharacter().getCostume())
+						.get(player.getState());
+			} else {
+				try {
+					anim = Assets.nodes.get(this.type).get(this.name)
+							.get(this.getState());
+				} catch (NullPointerException e) {
+					anim = null;
+				}
+			}
+
+			// only draw nodes that have an associated image
+			if (anim != null) {
+				float stateTime = convertToSeconds(this.getDuration());
+				TextureRegion tr = anim.getKeyFrame(stateTime);
+
+				if (this.direction == Direction.LEFT) {
+					batch.draw(tr, this.x, this.y, tr.getRegionWidth(),
+							tr.getRegionHeight());
+				} else {
+					batch.draw(tr, this.x + tr.getRegionWidth(), this.y,
+							-tr.getRegionWidth(), tr.getRegionHeight());
+				}
+			}
+
+			if (DEBUG) {
+				TextureRegion bboxTextureRegion = Assets.standard.get("bbox")
+						.getKeyFrame(0);
+				batch.draw(bboxTextureRegion, this.getBb().getX(), this.getBb()
+						.getY() + this.getBb().getHeight(), this.getBb()
+						.getWidth(), -this.getBb().getHeight());
+			}
+		} catch (NullPointerException e) {
+			if (DEBUG) {
+				System.err.println(this.getId());
+				System.err.println(this.type);
+				System.err.println(this.name);
+				if (this instanceof Player) {
+					Player player = (Player) this;
+					System.err.println("> "
+							+ player.getCharacter().getCostume());
+				}
+				System.err.println(this.getState());
+				System.err.println();
+
+				TextureRegion defaultTextureRegion = Assets.standard
+						.get("this").getKeyFrame(0);
+				int height = Math.round(this.height);
+				height = height > 0 ? height : defaultTextureRegion
+						.getRegionHeight();
+				int width = Math.round(this.width);
+				width = width > 0 ? width : defaultTextureRegion
+						.getRegionWidth();
+
+				if (this.direction == Direction.LEFT) {
+					batch.draw(defaultTextureRegion, this.x, this.y + height,
+							width, -height);
+				} else {
+					batch.draw(defaultTextureRegion, this.x + width, this.y
+							+ height, -width, -height);
+				}
+
+			}
+		}
+		if (this instanceof Player) {
+			Player player = (Player) this;
+			Assets.font.drawMultiLine(batch, player.getCharacter().getName(),
+					this.x, this.y + 30);
+		}
+	}
+
+	/**
+	 * converts from millisecnds to seconds
+	 * 
+	 * @param ms
+	 * @return
+	 */
+	private static float convertToSeconds(long ms) {
+		return ms / 1000.0f;
 	}
 
 }

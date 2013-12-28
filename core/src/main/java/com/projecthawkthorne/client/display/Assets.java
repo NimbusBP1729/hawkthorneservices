@@ -16,8 +16,6 @@
 
 package com.projecthawkthorne.client.display;
 
-import static com.projecthawkthorne.content.Game.DEBUG;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,17 +23,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.projecthawkthorne.content.Direction;
-import com.projecthawkthorne.content.Player;
-import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.content.nodes.State;
-import com.projecthawkthorne.gamestate.elements.RadioButtonGroup;
 
 public class Assets {
 	public static final String SRC_IMAGES = "../data/images/";
-	private static BitmapFont font = new BitmapFont(false);
+	public static final BitmapFont font = new BitmapFont(false);
 
 	/** */
 	public static Map<String, Texture> spriteCache = new HashMap<String, Texture>();
@@ -208,121 +201,6 @@ public class Assets {
 
 	public static void playSound(Sound sound) {
 		sound.play(1);
-	}
-
-	public static void draw(SpriteBatch batch, RadioButtonGroup elem) {
-		Texture rbgTexture = loadTexture(Assets.SRC_IMAGES
-				+ "defaultTexture.png");
-
-		batch.draw(rbgTexture, elem.getX(), elem.getY(), elem.getWidth(),
-				elem.getHeight());
-		float x = elem.getX();
-		float y = elem.getY();
-
-		for (String ro : elem.getOptions()) {
-			if (ro.equals(elem.getOptions()[elem.getSelection()])) {
-				batch.setColor(0, 1, 0, 1);
-			} else if (ro.equals(elem.getOptions()[elem.getCursor()])) {
-				batch.setColor(1, 0, 0, 1);
-			} else {
-				batch.setColor(1, 1, 1, 1);
-			}
-			font.drawMultiLine(batch, ro, x, y);
-			y += 10;
-		}
-
-	}
-
-	/**
-	 * draws the node if the type,name, and state are available
-	 * 
-	 * @param batch
-	 */
-	public static void draw(SpriteBatch batch, Node node) {
-		Animation anim;
-		try {
-			if (node instanceof Player) {
-				Player player = (Player) node;
-				anim = Assets.characters.get(player.getCharacter().getName())
-						.get(player.getCharacter().getCostume())
-						.get(player.getState());
-			} else {
-				try {
-					anim = Assets.nodes.get(node.type).get(node.name)
-							.get(node.getState());
-				} catch (NullPointerException e) {
-					anim = null;
-				}
-			}
-
-			// only draw nodes that have an associated image
-			if (anim != null) {
-				float stateTime = convertToSeconds(node.getDuration());
-				TextureRegion tr = anim.getKeyFrame(stateTime);
-
-				if (node.direction == Direction.LEFT) {
-					batch.draw(tr, node.x, node.y, tr.getRegionWidth(),
-							tr.getRegionHeight());
-				} else {
-					batch.draw(tr, node.x + tr.getRegionWidth(), node.y,
-							-tr.getRegionWidth(), tr.getRegionHeight());
-				}
-			}
-
-			if (DEBUG) {
-				TextureRegion bboxTextureRegion = Assets.standard.get("bbox")
-						.getKeyFrame(0);
-				batch.draw(bboxTextureRegion, node.getBb().getX(), node.getBb()
-						.getY() + node.getBb().getHeight(), node.getBb()
-						.getWidth(), -node.getBb().getHeight());
-			}
-		} catch (NullPointerException e) {
-			if (DEBUG) {
-				System.err.println(node.getId());
-				System.err.println(node.type);
-				System.err.println(node.name);
-				if (node instanceof Player) {
-					Player player = (Player) node;
-					System.err.println("> "
-							+ player.getCharacter().getCostume());
-				}
-				System.err.println(node.getState());
-				System.err.println();
-
-				TextureRegion defaultTextureRegion = Assets.standard
-						.get("node").getKeyFrame(0);
-				int height = Math.round(node.height);
-				height = height > 0 ? height : defaultTextureRegion
-						.getRegionHeight();
-				int width = Math.round(node.width);
-				width = width > 0 ? width : defaultTextureRegion
-						.getRegionWidth();
-
-				if (node.direction == Direction.LEFT) {
-					batch.draw(defaultTextureRegion, node.x, node.y + height,
-							width, -height);
-				} else {
-					batch.draw(defaultTextureRegion, node.x + width, node.y
-							+ height, -width, -height);
-				}
-
-			}
-		}
-		if (node instanceof Player) {
-			Player player = (Player) node;
-			font.drawMultiLine(batch, player.getCharacter().getName(), node.x,
-					node.y + 30);
-		}
-	}
-
-	/**
-	 * converts from millisecnds to seconds
-	 * 
-	 * @param ms
-	 * @return
-	 */
-	private static float convertToSeconds(long ms) {
-		return ms / 1000.0f;
 	}
 
 }
