@@ -71,6 +71,14 @@ public class HawkthorneGame extends Game {
 	}
 
 	private void gamestateRender(GenericGamestate gs, Player player) {
+
+		if (Gdx.input.isKeyPressed(Keys.Q)) {
+			System.out.println(Gdx.input.getX() + "," + Gdx.input.getY());
+			System.out.println(Gdx.graphics.getWidth() + ","
+					+ Gdx.graphics.getHeight());
+			System.out.println();
+		}
+
 		for (GameKeys gk : GameKeys.values()) {
 			boolean oldValue = gs.getIsKeyDown(gk);
 			boolean newValue = Gdx.input.isKeyPressed(KeyMapping

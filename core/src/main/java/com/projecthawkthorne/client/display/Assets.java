@@ -228,7 +228,7 @@ public class Assets {
 				batch.setColor(1, 1, 1, 1);
 			}
 			font.drawMultiLine(batch, ro, x, y);
-			y -= 10;
+			y += 10;
 		}
 
 	}
