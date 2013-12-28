@@ -65,6 +65,5 @@
 
 	<modules>
 		<module>core</module>
-		<module>hawkthorne-common</module>
   </modules>
 </project>
