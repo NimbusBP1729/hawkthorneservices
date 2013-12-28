@@ -22,7 +22,7 @@ public class Door extends Node {
 		super(t, level);
 		level.getCollider().setPassive(this.bb);
 		try {
-			instant = (Boolean)(t.getProperties().get("instant"));
+			instant = (Boolean) (t.getProperties().get("instant"));
 		} catch (Exception e) {
 			instant = false;
 		}
@@ -38,7 +38,7 @@ public class Door extends Node {
 			return;
 		}
 		player.isTransporting = true;
-		Door door = level.getDoor(this.properties.get("to",String.class));
+		Door door = level.getDoor(this.properties.get("to", String.class));
 		if (this.instant) {
 			Levels.switchState(level, door, player, true);
 		} else if (player.getIsKeyDown(GameKeys.INTERACT)) {
@@ -50,7 +50,7 @@ public class Door extends Node {
 
 	@Override
 	protected void updateVelocity(long dt) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		// throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	@Override

@@ -202,5 +202,4 @@ public class Assets {
 	public static void playSound(Sound sound) {
 		sound.play(1);
 	}
-
 }

@@ -20,7 +20,6 @@ import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.content.nodes.State;
 import com.projecthawkthorne.content.nodes.Weapon;
 import com.projecthawkthorne.datastructures.Queue;
-import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.gamestate.Levels;
 import com.projecthawkthorne.hardoncollider.Bound;
@@ -104,7 +103,7 @@ public class Player extends Humanoid implements Timeable {
 	private static String START_LEVEL = "town";
 
 	// :reset() //plyr:enter(collider)
-	private Player(RectangleMapObject obj, Gamestate level) {
+	private Player(RectangleMapObject obj, Level level) {
 		super(obj, level);
 		this.bboxOffsetX = 15;
 		this.bboxOffsetY = 0;
@@ -991,8 +990,8 @@ public class Player extends Humanoid implements Timeable {
 
 	public static Player getSingleton() {
 		if (singleton == null) {
-			singleton = new Player(Player.getPlayerTiledObject(), Levels
-					.getSingleton().get(START_LEVEL));
+			singleton = new Player(Player.getPlayerTiledObject(),
+					(Level) Levels.getSingleton().get(START_LEVEL));
 		}
 		return singleton;
 	}

@@ -3,7 +3,7 @@ package com.projecthawkthorne.content.nodes;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.Game;
 import com.projecthawkthorne.content.Player;
-import com.projecthawkthorne.gamestate.Gamestate;
+import com.projecthawkthorne.gamestate.Level;
 
 public class Liquid extends Node {
 
@@ -16,7 +16,7 @@ public class Liquid extends Node {
 	/** true if this liquid causes instant death */
 	private boolean death;
 
-	public Liquid(RectangleMapObject obj, Gamestate level) {
+	public Liquid(RectangleMapObject obj, Level level) {
 		super(obj, level);
 		if (obj.getName() == null) {
 			this.name = "water";
