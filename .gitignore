@@ -9,3 +9,4 @@ html/.settings/
 *.db
 core/.classpath
 assets/Thumbs.db
+android/gen/
