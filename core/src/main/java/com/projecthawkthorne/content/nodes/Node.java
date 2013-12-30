@@ -472,6 +472,15 @@ public abstract class Node extends Collidable {
 				anim = Assets.characters.get(player.getCharacter().getName())
 						.get(player.getCharacter().getCostume())
 						.get(player.getState());
+				if (anim == null) {
+					System.err
+							.println("create player entry animation for (name,costume,STATE)=("
+									+ player.getCharacter().getName()
+									+ ","
+									+ player.getCharacter().getCostume()
+									+ ","
+									+ player.getState() + ") in Assets class");
+				}
 			} else {
 				try {
 					anim = Assets.nodes
