@@ -38,9 +38,10 @@ public class Door extends Node {
 			return;
 		}
 		player.isTransporting = true;
-		Door door = level.getDoor(this.properties.get("to", String.class));
 		if (this.instant || player.getIsKeyDown(GameKeys.INTERACT)) {
 			Gamestate destLevel = Levels.getSingleton().get(destLevelName);
+			Door door = destLevel.getDoor(this.properties.get("to",
+					String.class));
 			Levels.switchState(destLevel, door, player, true);
 		}
 		player.isTransporting = false;
