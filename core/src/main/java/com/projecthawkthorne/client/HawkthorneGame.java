@@ -1,7 +1,5 @@
 package com.projecthawkthorne.client;
 
-import static com.projecthawkthorne.gamestate.Level.SRC_MAPS;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,15 +7,12 @@ import java.util.List;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.projecthawkthorne.client.audio.AudioCache;
 import com.projecthawkthorne.client.display.Assets;
@@ -25,12 +20,10 @@ import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.KeyMapping;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Liquid;
-//import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.GenericGamestate;
 import com.projecthawkthorne.gamestate.Level;
-import com.projecthawkthorne.gamestate.Levels;
 import com.projecthawkthorne.gamestate.elements.RadioButtonGroup;
 
 public class HawkthorneGame extends Game {
@@ -38,23 +31,24 @@ public class HawkthorneGame extends Game {
 	// i.e. tileset image width and height are powers of 2
 	// and uses CSV encoding
 	private SpriteBatch spriteBatch;
-	private TiledMap map;
-	private TiledMapRenderer tileMapRenderer = null;
+	private BatchTiledMapRenderer tileMapRenderer = null;
 	private OrthographicCamera cam;
-	private int offset;
 
 	@Override
 	public void create() {
 		Assets.load();
-
 		spriteBatch = new SpriteBatch();
-		Player player = Player.getSingleton();
-		stateSwitch("overworld", player.getLevel().getName());
+		tileMapRenderer = new OrthogonalTiledMapRenderer(null, spriteBatch);
+		cam = new OrthographicCamera(Gdx.graphics.getWidth(),
+				Gdx.graphics.getHeight());
+		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		cam.zoom = 0.5f;
 
 	}
 
 	@Override
 	public void resize(int width, int height) {
+		System.out.println("resizing");
 	}
 
 	@Override
@@ -62,7 +56,8 @@ public class HawkthorneGame extends Game {
 		Gamestate gs = Player.getSingleton().getLevel();
 		Player player = Player.getSingleton();
 		if (gs instanceof Level) {
-			levelRender((Level) gs, player);
+			Level level = (Level) gs;
+			levelRender(level, player);
 		} else if (gs instanceof GenericGamestate) {
 			gamestateRender((GenericGamestate) gs, player);
 		} else {
@@ -94,8 +89,8 @@ public class HawkthorneGame extends Game {
 		Gdx.gl.glClearColor(0, 1, 0, 1);
 
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-		cam.position.set(Gdx.graphics.getWidth() / 4,
-				Gdx.graphics.getHeight() / 4, 0);
+		cam.position.set(cam.zoom * Gdx.graphics.getWidth() / 2, cam.zoom
+				* Gdx.graphics.getHeight() / 2, 0);
 		// update should do nothing in unmoving gamestates
 		cam.update();
 		gs.update();
@@ -113,8 +108,7 @@ public class HawkthorneGame extends Game {
 	}
 
 	private void levelRender(Level level, Player player) {
-		float camX;
-		float camY;
+		TiledMap map = level.getTiledMap();
 		try {
 			float r = Float.parseFloat(map.getProperties().get("red",
 					String.class)) / 255.0f;
@@ -128,36 +122,32 @@ public class HawkthorneGame extends Game {
 			Gdx.gl.glClearColor(1, 1, 1, 1);
 		}
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+		float x;
+		float y;
 		try {
-			// TODO: reimplement client
-			camX = player.x + player.width / 2;
-			// TODO: implement panning
-			int pan = 0;
-			camY = limit(limit(player.y, 0, offset) + pan, 0, offset);
+			TiledMapTileLayer tmtl = (TiledMapTileLayer) (map.getLayers()
+					.get(0));
+			float mapHeight = tmtl.getHeight() * tmtl.getTileHeight();
+			float mapWidth = tmtl.getWidth() * tmtl.getTileWidth();
+
+			x = player.x + player.width / 2;
+			y = player.y;
+			cam.position.set(
+					limit(x, cam.zoom * cam.viewportWidth / 2, mapWidth
+							- cam.zoom * cam.viewportWidth / 2),
+					limit(y, cam.zoom * cam.viewportHeight / 2, mapHeight), 0);
 		} catch (Exception e) {
 			System.err.println("camera position error: using default (0,0)");
 			e.printStackTrace();
-			camX = 0;
-			camY = 0;
+			x = 0;
+			y = 0;
 		}
-		TiledMapTileLayer tmtl = (TiledMapTileLayer) (map.getLayers().get(0));
-		int mapHeight = Math.round(tmtl.getHeight() * tmtl.getTileHeight());
-		int mapWidth = Math.round(tmtl.getWidth() * tmtl.getTileHeight());
-		camX = limit(camX, cam.zoom * cam.viewportWidth / 2, mapWidth
-				- cam.zoom * cam.viewportWidth / 2);
-		if (camY >= offset * cam.zoom * tmtl.getTileHeight() * 2) {
-			camY = offset * cam.zoom * tmtl.getTileHeight();
-		} else {
-			camY = camY - mapHeight * cam.zoom;
-		}
+		cam.update(true);
 		if (Gdx.input.isKeyPressed(Keys.Q)) {
-			System.out.println("camY      =" + camY);
+			System.out.println("camY      =" + y);
 			System.out.println("player.x  =" + player.x);
 			System.out.println("player.y  =" + player.y);
-			System.out.println("offset    =" + offset);
 			System.out.println("viewHeight=" + cam.viewportHeight);
-			System.out.println("mapHeight =" + mapHeight);
-			System.out.println("tileHeight=" + tmtl.getTileHeight());
 			System.out.println();
 		}
 
@@ -173,20 +163,16 @@ public class HawkthorneGame extends Game {
 			}
 		}
 
-		// cam.position.set(tileMapRenderer.getMapWidthUnits() / 2,
-		// tileMapRenderer.getMapHeightUnits() / 2, 0);
-		cam.position.set(camX, camY + mapHeight / 2, 0);
-		cam.update(true);
-
-		// TODO: reimplement this
-		// only tracking one player
-		// and only tracking that player's level
 		level.update();
 
 		spriteBatch.setProjectionMatrix(cam.combined);
-		if (tileMapRenderer == null) {
-			tileMapRenderer = new OrthogonalTiledMapRenderer(map, spriteBatch);
+		if (!(level.getTiledMap().equals(tileMapRenderer.getMap()))) {
+			tileMapRenderer.setMap(level.getTiledMap());
+			String musicFile = level.getTiledMap().getProperties()
+					.get("soundtrack", String.class);
+			AudioCache.playMusic(musicFile);
 		}
+
 		tileMapRenderer.setView(cam);
 		tileMapRenderer.render();
 
@@ -231,54 +217,6 @@ public class HawkthorneGame extends Game {
 		} else {
 			return x;
 		}
-	}
-
-	private void stateSwitch(String fromLevel, String toLevel) {
-		Gamestate level = Levels.getSingleton().get(toLevel);
-		if (level instanceof GenericGamestate) {
-			cam = new OrthographicCamera(Gdx.graphics.getWidth(),
-					Gdx.graphics.getHeight());
-			cam.setToOrtho(false, Gdx.graphics.getWidth(),
-					Gdx.graphics.getHeight());
-			cam.zoom = 0.5f;
-
-			AudioCache.playMusic(((GenericGamestate) level).getSoundtrack());
-		} else {
-			// "level" instanceof Level
-			long startTime, endTime;
-
-			startTime = System.currentTimeMillis();
-			String mapFileName = SRC_MAPS + toLevel + ".tmx";
-			AssetManager assetManager = new AssetManager();
-			assetManager.setLoader(TiledMap.class, new TmxMapLoader(
-					new InternalFileHandleResolver()));
-			assetManager.load(mapFileName, TiledMap.class);
-			assetManager.finishLoading();
-			map = assetManager.get(mapFileName);
-			endTime = System.currentTimeMillis();
-			System.out.println("Loaded map " + mapFileName + " in "
-					+ (endTime - startTime) + "ms");
-
-			String musicFile = (String) map.getProperties().get("soundtrack");
-			AudioCache.playMusic(musicFile);
-
-			cam = new OrthographicCamera(Gdx.graphics.getWidth(),
-					Gdx.graphics.getHeight());
-			cam.setToOrtho(false, Gdx.graphics.getWidth(),
-					Gdx.graphics.getHeight());
-
-			cam.zoom = 0.5f;
-
-			try {
-				offset = Integer.parseInt(map.getProperties().get("offset",
-						String.class));
-			} catch (Exception e) {
-				System.err.println("no offset found: using default '0'");
-				offset = 0;
-			}
-			System.out.println("resolved offset is:" + offset);
-		}
-
 	}
 
 	@Override

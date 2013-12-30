@@ -102,7 +102,6 @@ public class Player extends Humanoid implements Timeable {
 	private static Player singleton;
 	private static String START_LEVEL = "town";
 
-	// :reset() //plyr:enter(collider)
 	private Player(RectangleMapObject obj, Level level) {
 		super(obj, level);
 		this.bboxOffsetX = 15;
@@ -122,7 +121,6 @@ public class Player extends Humanoid implements Timeable {
 		obj.getRectangle().height = Math.round(48);
 		obj.getRectangle().x = 0;
 		obj.getRectangle().y = obj.getRectangle().height;
-		// TODO: figure out what the other guy intended to use "type for"
 		obj.getProperties().put("type", "player");
 		obj.setName(Integer.toString(Player.playerCount++));
 		obj.getProperties().put("bbox_width", Integer.toString(Math.round(18)));
@@ -833,7 +831,7 @@ public class Player extends Humanoid implements Timeable {
 				// TODO: reimplement gameover
 			} else {
 				// TODO: remove casts
-				Level spawnLevel = (Level) ((Level) level).getSpawnLevel();
+				Level spawnLevel = ((Level) level).getSpawnLevel();
 				Door main = spawnLevel.getDoor("main");
 				Levels.switchState(spawnLevel, main, this, true);
 			}

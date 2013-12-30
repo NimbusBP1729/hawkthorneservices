@@ -7,6 +7,7 @@ package com.projecthawkthorne.content.nodes;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.gamestate.Levels;
 
@@ -17,15 +18,14 @@ import com.projecthawkthorne.gamestate.Levels;
 public class Door extends Node {
 	/** true if this door causes automatic transport */
 	private boolean instant = false;
+	private String destLevelName;
 
 	public Door(RectangleMapObject t, Level level) {
 		super(t, level);
 		level.getCollider().setPassive(this.bb);
-		try {
-			instant = (Boolean) (t.getProperties().get("instant"));
-		} catch (Exception e) {
-			instant = false;
-		}
+		instant = Boolean.parseBoolean(t.getProperties().get("instant",
+				String.class));
+		destLevelName = t.getProperties().get("level", String.class);
 	}
 
 	@Override
@@ -39,10 +39,9 @@ public class Door extends Node {
 		}
 		player.isTransporting = true;
 		Door door = level.getDoor(this.properties.get("to", String.class));
-		if (this.instant) {
-			Levels.switchState(level, door, player, true);
-		} else if (player.getIsKeyDown(GameKeys.INTERACT)) {
-			Levels.switchState(level, door, player, true);
+		if (this.instant || player.getIsKeyDown(GameKeys.INTERACT)) {
+			Gamestate destLevel = Levels.getSingleton().get(destLevelName);
+			Levels.switchState(destLevel, door, player, true);
 		}
 		player.isTransporting = false;
 

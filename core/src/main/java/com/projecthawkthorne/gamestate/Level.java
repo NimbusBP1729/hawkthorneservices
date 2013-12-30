@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.projecthawkthorne.content.Boundary;
 import com.projecthawkthorne.content.GameKeys;
@@ -31,12 +32,12 @@ public class Level extends Gamestate {
 	public static final String SRC_MAPS = "../data/maps/";
 	private String title;
 	private LevelMap nodes = new LevelMap();
-	private Gamestate spawnLevel;
+	private Level spawnLevel;
 	private final String name;
 	private java.util.Map<String, Door> doors = new HashMap<String, Door>();
 	private Boundary boundary = new Boundary();
 	private long lastTime = 0;
-	private com.badlogic.gdx.maps.Map map;
+	private TiledMap tiledMap;
 	private Collider collider;
 	private static final String PACKAGE_NAME = "com.projecthawkthorne.content.nodes.";
 
@@ -51,8 +52,8 @@ public class Level extends Gamestate {
 	private void loadNodes(String levelName) {
 		TmxMapLoader loader = new TmxMapLoader(new InternalFileHandleResolver());
 
-		this.map = loader.load(SRC_MAPS + levelName.trim() + ".tmx");
-		MapProperties prop = map.getProperties();
+		this.tiledMap = loader.load(SRC_MAPS + levelName.trim() + ".tmx");
+		MapProperties prop = tiledMap.getProperties();
 		int mapWidth = prop.get("width", Integer.class);
 		int mapHeight = prop.get("height", Integer.class);
 		int tilePixelWidth = prop.get("tilewidth", Integer.class);
@@ -103,6 +104,7 @@ public class Level extends Gamestate {
 						.getConstructor(t.getClass(), this.getClass())
 						.newInstance(t, this);
 			} catch (Exception e) {
+				System.err.println("error loading type=" + typeName);
 				e.printStackTrace();
 			}
 			this.nodes.put(node.getId(), node);
@@ -114,7 +116,7 @@ public class Level extends Gamestate {
 	}
 
 	private MapLayer getNodeGroupByName(String name) {
-		return this.map.getLayers().get(name);
+		return this.tiledMap.getLayers().get(name);
 	}
 
 	@Override
@@ -183,8 +185,12 @@ public class Level extends Gamestate {
 	/**
 	 * @return the spawnLevel
 	 */
-	public Gamestate getSpawnLevel() {
+	public Level getSpawnLevel() {
 		return spawnLevel;
+	}
+
+	public TiledMap getTiledMap() {
+		return tiledMap;
 	}
 
 }
