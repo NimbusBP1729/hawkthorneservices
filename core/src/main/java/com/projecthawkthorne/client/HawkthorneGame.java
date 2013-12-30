@@ -25,6 +25,7 @@ import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.GenericGamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.gamestate.elements.RadioButtonGroup;
+import com.projecthawkthorne.timer.Timer;
 
 public class HawkthorneGame extends Game {
 	// currently the town is the only file that conforms to new schema
@@ -53,6 +54,7 @@ public class HawkthorneGame extends Game {
 
 	@Override
 	public void render() {
+		Timer.updateTimers();
 		Gamestate gs = Player.getSingleton().getLevel();
 		Player player = Player.getSingleton();
 		if (gs instanceof Level) {
