@@ -1003,13 +1003,13 @@
     <property name="sprite" value="images/water.png"/>
    </properties>
   </object>
-  <object type="climbable" x="864" y="288" width="24" height="168"/>
-  <object type="climbable" x="168" y="288" width="24" height="168"/>
-  <object type="climbable" x="768" y="1008" width="24" height="168"/>
-  <object type="climbable" x="936" y="1176" width="24" height="168"/>
-  <object type="climbable" x="816" y="1344" width="24" height="192"/>
-  <object type="climbable" x="96" y="1536" width="24" height="144"/>
-  <object type="climbable" x="624" y="1680" width="24" height="168"/>
+  <object type="ladder" x="864" y="288" width="24" height="168"/>
+  <object type="ladder" x="168" y="288" width="24" height="168"/>
+  <object type="ladder" x="768" y="1008" width="24" height="168"/>
+  <object type="ladder" x="936" y="1176" width="24" height="168"/>
+  <object type="ladder" x="816" y="1344" width="24" height="192"/>
+  <object type="ladder" x="96" y="1536" width="24" height="144"/>
+  <object type="ladder" x="624" y="1680" width="24" height="168"/>
   <object name="main" type="door" x="168" y="1872" width="48" height="72"/>
  </objectgroup>
  <objectgroup name="wall" width="46" height="100" opacity="0.9">
