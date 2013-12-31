@@ -3,7 +3,13 @@
 
 	<source path='core'/>
 	<source path='html'/>
-
+	<source path='client'/>
+	<source path='timer'/>
+	<source path='gamestate'/>
+	<source path='content'/>
+	<source path='datastructures'/>
+	<source path='hardoncollider'/>
+				
 	<public path="resources" />
 
 	<entry-point class='com.projecthawkthorne.html.HawkthorneGameHtml'/>
