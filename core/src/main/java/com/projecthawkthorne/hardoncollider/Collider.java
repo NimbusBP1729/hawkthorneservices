@@ -7,6 +7,7 @@ package com.projecthawkthorne.hardoncollider;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import com.projecthawkthorne.hardoncollider.Bound;
 
 /**
  * the collision detection class
@@ -52,24 +53,13 @@ public class Collider {
 	 * @return true if the two bounds have intersected
 	 */
 	public static boolean intersects(Bound a, Bound b) {
-		if(a == null || b == null){
-			throw new UnsupportedOperationException("bound intersection cannot compare nulls");
+		if (a == null || b == null) {
+			throw new UnsupportedOperationException(
+					"bound intersection cannot compare nulls");
 		} else if (a instanceof Rectangle && b instanceof Rectangle) {
 			Rectangle r1 = (Rectangle) a;
 			Rectangle r2 = (Rectangle) b;
 			return Collider.intersects(r1, r2);
-		} else if (a instanceof Rectangle && b instanceof Polygon) {
-			Rectangle r1 = (Rectangle) a;
-			Polygon p2 = (Polygon) b;
-			return Collider.intersects(r1, p2);
-		} else if (a instanceof Polygon && b instanceof Rectangle) {
-			Polygon p1 = (Polygon) a;
-			Rectangle r2 = (Rectangle) b;
-			return Collider.intersects(p1, r2);
-		} else if (a instanceof Polygon && b instanceof Polygon) {
-			Polygon p1 = (Polygon) a;
-			Polygon p2 = (Polygon) b;
-			return Collider.intersects(p1, p2);
 		} else {
 			throw new UnsupportedOperationException("invalid argument type:"
 					+ a.getClass() + "," + b.getClass());
@@ -87,47 +77,6 @@ public class Collider {
 	 */
 	private static boolean intersects(Rectangle a, Rectangle b) {
 		return Rectangle.intersects(a, b);
-	}
-
-	/**
-	 * returns true if the polygons have intersected
-	 * 
-	 * @param a
-	 *            a polygon
-	 * @param b
-	 *            another polygon
-	 * @return true if the polygons are likely to have intersected
-	 */
-	private static boolean intersects(Polygon a, Polygon b) {
-		return Polygon.intersects(a, b);
-	}
-
-	/**
-	 * detects if a rectangle and a polygon have collided
-	 * 
-	 * @param rect
-	 *            a rectangle
-	 * @param poly
-	 *            a polygon
-	 * @return true id the two objects are touching
-	 */
-	private static boolean intersects(Rectangle rect, Polygon poly) {
-		boolean touched = poly.p.intersects(rect.x, rect.y, rect.width,
-				rect.height);
-		return touched;
-	}
-
-	/**
-	 * returns true if the two objects collide
-	 * 
-	 * @param a
-	 *            a polygon
-	 * @param b
-	 *            a rectangle
-	 * @return true if the two objects collide
-	 */
-	private static boolean intersects(Polygon a, Rectangle b) {
-		return Collider.intersects(b, a);
 	}
 
 	/**

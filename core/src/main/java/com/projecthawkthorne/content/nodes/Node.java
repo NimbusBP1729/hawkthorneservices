@@ -208,43 +208,12 @@ public abstract class Node extends Collidable {
 		this.collider = lvl.getCollider();
 
 		if (obj instanceof PolylineMapObject) {
-			PolylineMapObject polylineObj = (PolylineMapObject) obj;
-			int[] x;
-			int[] y;
-			int size = polylineObj.getPolyline().getVertices().length;
-			x = new int[size / 2];
-			y = new int[size / 2];
-			for (int i = 0; i < size; i += 2) {
-				x[i] = Math.round(polylineObj.getPolyline().getVertices()[i]);
-				y[i] = Math
-						.round(polylineObj.getPolyline().getVertices()[i + 1]);
-			}
-			this.bb = Bound.create(x, y);
-			float[] corners = new float[4];
-			this.bb.bbox(corners);
-			// overwrites the x,y written by the node, because the node uses
-			// one of the polygon points for x,y... a bad decision
-			this.x += corners[0];
-			this.y += corners[1];
+			throw new UnsupportedOperationException(
+					"polygons aren't supported yet");
 		} else if (obj instanceof PolygonMapObject) {
 
-			PolygonMapObject polygonObj = (PolygonMapObject) obj;
-			int[] x;
-			int[] y;
-			int size = polygonObj.getPolygon().getVertices().length;
-			x = new int[size / 2];
-			y = new int[size / 2];
-			for (int i = 0; i < size; i += 2) {
-				x[i] = Math.round(polygonObj.getPolygon().getVertices()[i]);
-				y[i] = Math.round(polygonObj.getPolygon().getVertices()[i + 1]);
-			}
-			this.bb = Bound.create(x, y);
-			float[] corners = new float[4];
-			this.bb.bbox(corners);
-			// overwrites the x,y written by the node, because the node uses
-			// one of the polygon points for x,y... a bad decision
-			this.x += corners[0];
-			this.y += corners[1];
+			throw new UnsupportedOperationException(
+					"polygons aren't supported yet");
 		} else {
 			if (this.properties.get("bbox_width") != null) {
 				this.bbox_width = Float.parseFloat(this.properties.get(

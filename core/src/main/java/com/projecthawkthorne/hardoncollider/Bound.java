@@ -9,20 +9,6 @@ package com.projecthawkthorne.hardoncollider;
 public abstract class Bound {
 	private Collidable node;
 
-	// TODO if rectangular points are supplied return a rectangle
-	/**
-	 * create a new bound with an array of x-values and an array of y-values. If
-	 * the points indicate a rectangle it's better to use the other create()
-	 * method.
-	 * 
-	 * @param x
-	 * @param y
-	 * @return the bound
-	 */
-	public static Bound create(int[] x, int[] y) {
-		return new Polygon(x, y);
-	}
-
 	/**
 	 * create a rectangular bound
 	 * 
