@@ -29,7 +29,7 @@ import com.projecthawkthorne.hardoncollider.Collider;
  */
 public class Level extends Gamestate {
 
-	public static final String SRC_MAPS = "../data/maps/";
+	public static final String SRC_MAPS = "data/maps/";
 	private String title;
 	private LevelMap nodes = new LevelMap();
 	private Level spawnLevel;

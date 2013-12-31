@@ -83,7 +83,6 @@ public abstract class Node extends Collidable {
 	public static final float TILE_WIDTH = 24.0f;
 	/** the height of a single tile */
 	public static final float TILE_HEIGHT = 24.0f;
-	public static final String IMAGES_FOLDER = "../data/images";
 	/** the height of the bounding box */
 	protected float bbox_height = -1;
 	/** the width of the bounding box */

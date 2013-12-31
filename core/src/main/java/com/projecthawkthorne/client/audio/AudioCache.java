@@ -8,7 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 
 public class AudioCache {
-	private static final String SRC_AUDIO = "../data/audio/";
+	private static final String SRC_AUDIO = "data/audio/";
 	private static Map<String, Sound> sfxCache = new HashMap<String, Sound>();
 	private static Map<String, Sound> musicCache = new HashMap<String, Sound>();
 
