@@ -27,7 +27,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.projecthawkthorne.content.nodes.State;
 
 public class Assets {
-	public static final String SRC_IMAGES = "../data/images/";
+	public static final String SRC_IMAGES = "data/images/";
 	public static final BitmapFont font = new BitmapFont(false);
 
 	/** */
@@ -76,7 +76,7 @@ public class Assets {
 		} catch (Exception e) {
 			System.err.println("failed to load '" + file
 					+ "': using 'defaultTexture.png'");
-			t = new Texture(Gdx.files.internal("../data/images/"
+			t = new Texture(Gdx.files.internal(SRC_IMAGES
 					+ "defaultTexture.png"));
 			imageCache.put(file, t);
 		}
