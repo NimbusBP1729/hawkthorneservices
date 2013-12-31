@@ -188,6 +188,9 @@ public class Assets {
 		base.put(State.GAZE, new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
 				new TextureRegion(abedBaseTexture, 7 * 48, 0 * 48, 48, 48)));
+		base.put(State.DEAD, new Animation(0.2f,
+				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
+				new TextureRegion(abedBaseTexture, 8 * 48, 12 * 48, 48, 48)));
 		abed.put("base", base);
 		characters.put("abed", abed);
 

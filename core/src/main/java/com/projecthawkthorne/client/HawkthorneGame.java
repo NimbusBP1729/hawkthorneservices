@@ -149,8 +149,12 @@ public class HawkthorneGame extends Game {
 			System.out.println("camY      =" + y);
 			System.out.println("player.x  =" + player.x);
 			System.out.println("player.y  =" + player.y);
+			System.out.println("player.state  =" + player.getState());
 			System.out.println("viewHeight=" + cam.viewportHeight);
 			System.out.println();
+		}
+		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+			player.die();
 		}
 
 		for (GameKeys gk : GameKeys.values()) {

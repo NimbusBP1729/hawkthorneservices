@@ -542,21 +542,15 @@ public class Player extends Humanoid implements Timeable {
 			this.direction = Direction.RIGHT;
 		}
 
-		if (this.wielding || this.hurt) {
-
-			this.character.getAnimation().update(dt);
+		if (this.wielding || this.hurt || this.isDead()) {
 
 		} else if (this.isJumping()) {
 
 			this.character.setState(this.jump_state);
-			this.character.getAnimation().update(dt);
-
 		} else if (this.isJumpState(this.character.getState())
 				&& !this.isJumping()) {
 
 			this.character.setState(this.walk_state);
-			this.character.getAnimation().update(dt);
-
 		} else if (!this.isJumpState(this.character.getState())
 				&& this.velocityX != 0) {
 
@@ -565,8 +559,6 @@ public class Player extends Humanoid implements Timeable {
 			} else {
 				this.character.setState(this.walk_state);
 			}
-
-			this.character.getAnimation().update(dt);
 
 		} else if (!this.isJumpState(this.character.getState())
 				&& this.velocityX == 0) {
@@ -581,11 +573,10 @@ public class Player extends Humanoid implements Timeable {
 				this.character.setState(this.idle_state);
 			}
 
-			this.character.getAnimation().update(dt);
-
-		} else {
-			this.character.getAnimation().update(dt);
 		}
+
+		this.character.getAnimation().update(dt);
+
 		this.healthText.y = this.healthText.y + this.healthVel.y * dt;
 		if (this.x < -this.width / 4) {
 			this.x = -this.width / 4;
