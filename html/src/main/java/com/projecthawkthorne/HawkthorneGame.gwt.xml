@@ -1,4 +1,4 @@
-<module rename-to='hawkthorne-services'>
+<module rename-to='hawkthorneservices'>
 	<inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
 
 	<source path='core'/>

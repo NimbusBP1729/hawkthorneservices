@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.projecthawkthorne</groupId>
-		<artifactId>hawkthorne-services</artifactId>
+		<artifactId>hawkthorneservices</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>hawkthorne-services-core</artifactId>
+	<artifactId>hawkthorneservices-core</artifactId>
 	<packaging>jar</packaging>
 	<name>HawkthorneGame Core</name>
 
