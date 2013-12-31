@@ -15,8 +15,7 @@ public class Timer {
 	public static boolean add(long delay, String name, Timeable caller) {
 		NameAndCaller nac = new NameAndCaller(name, caller);
 		if (clocks.containsKey(nac)) {
-			System.err.println("clock '" + name + "' was already inserted in "
-					+ caller.getClass().getSimpleName());
+			System.err.println("clock '" + name + "' was already inserted");
 			return false;
 		}
 		long cur = System.currentTimeMillis();

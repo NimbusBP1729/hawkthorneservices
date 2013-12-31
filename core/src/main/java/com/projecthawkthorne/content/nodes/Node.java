@@ -9,7 +9,6 @@ import static com.projecthawkthorne.content.Game.DEBUG;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.UUID;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -110,6 +109,7 @@ public abstract class Node extends Collidable {
 	 * each client will have their own if this is final
 	 */
 	private final long creationTime = System.currentTimeMillis();
+	private String type;
 
 	// private Texture bboxTexture;// = new
 	// Texture(Gdx.files.internal(IMAGES_FOLDER + "boundingBox.png"));
@@ -141,7 +141,7 @@ public abstract class Node extends Collidable {
 	 *            the level this node will reside in
 	 */
 	public Node(RectangleMapObject obj, Level level) {
-		this.id = UUID.randomUUID().toString();
+		this.id = String.valueOf(Node.objectCount++);
 		this.dead = false;
 		this.level = level;
 		this.obj = obj;
@@ -155,6 +155,7 @@ public abstract class Node extends Collidable {
 		this.height = obj.getRectangle().height;
 
 		this.properties = obj.getProperties();
+		this.type = properties.get("type", String.class);
 		if (properties.get("width") != null) {
 			this.width = properties.get("width", Float.class);
 		}
@@ -269,7 +270,7 @@ public abstract class Node extends Collidable {
 				this.bbox_height = height;
 			}
 			if (this.bbox_width < 0 || this.bbox_height < 0) {
-				System.err.println("no bounds for:" + this.getClass() + ":"
+				System.err.println("no bounds for:" + this.type + ","
 						+ this.name);
 			}
 			this.bb = Bound.create(this.x, this.y, this.bbox_width,
@@ -483,9 +484,8 @@ public abstract class Node extends Collidable {
 				}
 			} else {
 				try {
-					anim = Assets.nodes
-							.get(this.getClass().getSimpleName().toLowerCase())
-							.get(this.name).get(this.getState());
+					anim = Assets.nodes.get(this.type).get(this.name)
+							.get(this.getState());
 				} catch (NullPointerException e) {
 					anim = null;
 				}
@@ -515,8 +515,7 @@ public abstract class Node extends Collidable {
 		} catch (NullPointerException e) {
 			if (DEBUG) {
 				System.err.println(this.getId());
-				System.err.println(this.getClass().getSimpleName()
-						.toLowerCase());
+				System.err.println(this.type);
 				System.err.println(this.name);
 				if (this instanceof Player) {
 					Player player = (Player) this;

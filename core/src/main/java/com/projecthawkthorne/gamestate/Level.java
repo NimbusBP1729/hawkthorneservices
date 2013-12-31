@@ -4,8 +4,6 @@ import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
@@ -18,6 +16,8 @@ import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.Floor;
+import com.projecthawkthorne.content.nodes.Ladder;
+import com.projecthawkthorne.content.nodes.Liquid;
 import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.content.nodes.Platform;
 import com.projecthawkthorne.hardoncollider.Collidable;
@@ -98,11 +98,16 @@ public class Level extends Gamestate {
 			Node node = null;
 			String typeName = t.getProperties().get("type", String.class);
 			try {
-				node = (Node) Class
-						.forName(
-								PACKAGE_NAME + StringUtils.capitalize(typeName))
-						.getConstructor(t.getClass(), this.getClass())
-						.newInstance(t, this);
+				if ("liquid".equals(typeName)) {
+					node = new Liquid((RectangleMapObject) t, this);
+				} else if ("door".equals(typeName)) {
+					node = new Door((RectangleMapObject) t, this);
+				} else if ("ladder".equals(typeName)) {
+					node = new Ladder((RectangleMapObject) t, this);
+				} else {
+					System.err.println("type=" + typeName
+							+ " is not recognized");
+				}
 			} catch (Exception e) {
 				System.err.println("error loading type=" + typeName);
 				e.printStackTrace();
