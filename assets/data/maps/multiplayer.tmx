@@ -8,7 +8,7 @@
   <property name="respawn" value="multiplayer"/>
  </properties>
  <tileset firstgid="1" name="village-forest" tilewidth="24" tileheight="24">
-  <image source="../images/tilesets/village-forest.png" width="512" height="256"/>
+  <image source="images/tilesets/village-forest.png" width="512" height="256"/>
  </tileset>
  <layer name="clouds2" width="46" height="100">
   <data encoding="csv">

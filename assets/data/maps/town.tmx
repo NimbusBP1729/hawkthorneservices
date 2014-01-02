@@ -10,7 +10,7 @@
   <property name="title" value="Town"/>
  </properties>
  <tileset firstgid="1" name="town" tilewidth="24" tileheight="24">
-  <image source="../images/tilesets/town.png" width="512" height="128"/>
+  <image source="images/tilesets/town.png" width="512" height="128"/>
  </tileset>
  <layer name="mountains" width="60" height="14">
   <properties>

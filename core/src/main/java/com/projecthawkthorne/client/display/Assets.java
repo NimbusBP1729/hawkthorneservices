@@ -27,7 +27,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.projecthawkthorne.content.nodes.State;
 
 public class Assets {
-	public static final String SRC_IMAGES = "data/images/";
+	public static final String SRC_IMAGES = "data/maps/images/";
 	public static final BitmapFont font = new BitmapFont(false);
 
 	/** */
