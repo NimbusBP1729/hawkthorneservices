@@ -61,6 +61,12 @@
 				<module>ios</module>
 			</modules>
 		</profile>
+		<profile>
+			<id>server</id>
+			<modules>
+				<module>hawkthorneservices-server</module>
+			</modules>
+		</profile>
 	</profiles>
 
 	<modules>
