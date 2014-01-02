@@ -8,6 +8,7 @@ import static com.projecthawkthorne.content.Game.DEBUG;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -179,7 +180,7 @@ public abstract class Node extends Collidable {
 	 */
 	public void die() {
 		this.dead = true;
-		this.level.getNodes().remove(this.id);
+		this.level.getNodeMap().remove(this.id);
 		Set<Player> players = this.level.getPlayers();
 		Iterator<Player> pit = players.iterator();
 		while (pit.hasNext()) {
@@ -434,7 +435,7 @@ public abstract class Node extends Collidable {
 	 * @param batch
 	 */
 	public void draw(SpriteBatch batch) {
-		Animation anim;
+		Animation anim = null;
 		try {
 			if (this instanceof Player) {
 				Player player = (Player) this;
@@ -451,11 +452,15 @@ public abstract class Node extends Collidable {
 									+ player.getState() + ") in Assets class");
 				}
 			} else {
-				try {
-					anim = Assets.nodes.get(this.type).get(this.name)
-							.get(this.getState());
-				} catch (NullPointerException e) {
-					anim = null;
+				// anim = null if the type doesn't appear in the nodes map
+				Map<String, Map<String, Animation>> nodeType = Assets.nodes
+						.get(this.type);
+				if (nodeType != null) {
+					Map<String, Animation> nodeTypeName = nodeType
+							.get(this.name);
+					if (nodeTypeName != null) {
+						anim = nodeTypeName.get(this.getState());
+					}
 				}
 			}
 

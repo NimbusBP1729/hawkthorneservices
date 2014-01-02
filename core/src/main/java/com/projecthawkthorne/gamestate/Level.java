@@ -1,8 +1,8 @@
 package com.projecthawkthorne.gamestate;
 
-import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.maps.MapLayer;
@@ -31,7 +31,7 @@ public class Level extends Gamestate {
 
 	public static final String SRC_MAPS = "data/maps/";
 	private String title;
-	private LevelMap nodes = new LevelMap();
+	private Map<String, Node> nodes = new HashMap<String, Node>();
 	private Level spawnLevel;
 	private final String name;
 	private java.util.Map<String, Door> doors = new HashMap<String, Door>();
@@ -125,7 +125,7 @@ public class Level extends Gamestate {
 	}
 
 	@Override
-	public LevelMap getNodes() {
+	public Map<String, Node> getNodeMap() {
 		return nodes;
 	}
 
@@ -146,13 +146,8 @@ public class Level extends Gamestate {
 		player.update(dt);
 		Iterator<Node> nit = this.nodes.values().iterator();
 		while (nit.hasNext()) {
-			try {
-				Node node = nit.next();
-				node.update(dt);
-			} catch (ConcurrentModificationException cme) {
-				// don't update a node if it's been changed
-				cme.printStackTrace();
-			}
+			Node node = nit.next();
+			node.update(dt);
 		}
 
 		this.collider.update();

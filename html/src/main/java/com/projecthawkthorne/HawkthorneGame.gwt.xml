@@ -15,4 +15,5 @@
 	<entry-point class='com.projecthawkthorne.html.HawkthorneGameHtml'/>
 	<set-configuration-property name="gdx.assetpath" value="assets" />
 	<set-configuration-property name="gdx.assetoutputpath" value="html/target/webapp" />
+	<set-property name="user.agent" value="safari,gecko1_8"/>
 </module>

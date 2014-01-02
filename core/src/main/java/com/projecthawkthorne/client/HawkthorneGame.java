@@ -1,7 +1,7 @@
 package com.projecthawkthorne.client;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collection;
 import java.util.List;
 
 import com.badlogic.gdx.Game;
@@ -98,8 +98,13 @@ public class HawkthorneGame extends Game {
 		gs.update();
 		spriteBatch.setProjectionMatrix(cam.combined);
 		spriteBatch.begin();
-		this.draw(gs, spriteBatch);
+		try {
+			this.draw(gs, spriteBatch);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		spriteBatch.end();
+
 	}
 
 	private void draw(GenericGamestate gs, SpriteBatch spriteBatch) {
@@ -183,20 +188,28 @@ public class HawkthorneGame extends Game {
 		tileMapRenderer.render();
 
 		spriteBatch.begin();
-		this.draw(level, spriteBatch);
+		try {
+			this.draw(level, spriteBatch);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		spriteBatch.end();
 	}
 
 	public void draw(Level level, SpriteBatch batch) {
 		List<Node> liquids = new ArrayList<Node>();
-		Iterator<com.projecthawkthorne.content.nodes.Node> nit = level
-				.getNodes().values().iterator();
-		while (nit.hasNext()) {
-			Node n = nit.next();
-			if (n instanceof Liquid) {
-				liquids.add(n);
-			} else {
-				n.draw(batch);
+		Collection<Node> nodes = level.getNodeMap().values();
+		for (Node n : nodes) {
+			try {
+				if (n instanceof Liquid) {
+					liquids.add(n);
+				} else {
+					n.draw(batch);
+				}
+
+			} catch (Exception e) {
+				Gdx.app.error("error drawing " + n.getClass(), e.getMessage(),
+						e);
 			}
 		}
 

@@ -1,10 +1,12 @@
 package com.projecthawkthorne.gamestate;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Door;
+import com.projecthawkthorne.content.nodes.Node;
 
 public abstract class Gamestate {
 
@@ -36,7 +38,7 @@ public abstract class Gamestate {
 				+ this.getClass().getName() + ") has no doors");
 	}
 
-	public LevelMap getNodes() {
+	public Map<String, Node> getNodeMap() {
 		throw new UnsupportedOperationException("this class:("
 				+ this.getClass().getName() + ") has no nodes");
 	}
