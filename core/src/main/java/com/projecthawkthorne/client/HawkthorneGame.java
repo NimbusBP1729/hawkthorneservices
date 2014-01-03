@@ -3,6 +3,8 @@ package com.projecthawkthorne.client;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -16,24 +18,28 @@ import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.projecthawkthorne.client.audio.AudioCache;
 import com.projecthawkthorne.client.display.Assets;
-import com.projecthawkthorne.content.GameKeys;
-import com.projecthawkthorne.content.KeyMapping;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Liquid;
 import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.gamestate.Gamestate;
-import com.projecthawkthorne.gamestate.GenericGamestate;
 import com.projecthawkthorne.gamestate.Level;
-import com.projecthawkthorne.gamestate.elements.RadioButtonGroup;
+import com.projecthawkthorne.gamestate.Levels;
 import com.projecthawkthorne.timer.Timer;
 
 public class HawkthorneGame extends Game {
-	// currently the town is the only file that conforms to new schema
-	// i.e. tileset image width and height are powers of 2
-	// and uses CSV encoding
 	private SpriteBatch spriteBatch;
 	private BatchTiledMapRenderer tileMapRenderer = null;
 	private OrthographicCamera cam;
+	public static Mode MODE;
+	public String trackedLevel = "town";
+	public Player trackedPlayer = null;
+	private float trackingX = 0;
+	private float trackingY = 0;
+	private long lastTime = 0;
+
+	public HawkthorneGame(Mode mode) {
+		HawkthorneGame.MODE = mode;
+	}
 
 	@Override
 	public void create() {
@@ -49,71 +55,51 @@ public class HawkthorneGame extends Game {
 
 	@Override
 	public void resize(int width, int height) {
-		System.out.println("resizing");
 	}
 
 	@Override
 	public void render() {
+		long currentTime = System.currentTimeMillis();
+		long dt = (currentTime - this.lastTime);
+		this.lastTime = currentTime;
+		long maxDt = 100;
+		dt = maxDt < dt ? maxDt : dt;
+
 		Timer.updateTimers();
-		Gamestate gs = Player.getSingleton().getLevel();
-		Player player = Player.getSingleton();
-		if (gs instanceof Level) {
-			Level level = (Level) gs;
-			levelRender(level, player);
-		} else if (gs instanceof GenericGamestate) {
-			gamestateRender((GenericGamestate) gs, player);
-		} else {
-			throw new UnsupportedOperationException(
-					"must be a level or clientside gamestate");
-		}
-	}
-
-	private void gamestateRender(GenericGamestate gs, Player player) {
-
-		if (Gdx.input.isKeyPressed(Keys.Q)) {
-			System.out.println(Gdx.input.getX() + "," + Gdx.input.getY());
-			System.out.println(Gdx.graphics.getWidth() + ","
-					+ Gdx.graphics.getHeight());
-			System.out.println();
-		}
-
-		for (GameKeys gk : GameKeys.values()) {
-			boolean oldValue = gs.getIsKeyDown(gk);
-			boolean newValue = Gdx.input.isKeyPressed(KeyMapping
-					.gameKeyToInt(gk));
-			gs.setIsKeyDown(gk, newValue);
-			if (!oldValue && newValue) {
-				gs.keypressed(gk);
-			} else if (oldValue && !newValue) {
-				gs.keyreleased(gk);
+		if (HawkthorneGame.MODE == Mode.CLIENT) {
+			Player player = Player.getSingleton();
+			Gamestate gs = player.getLevel();
+			player.processKeyActions();
+			player.update(dt);
+			gs.update(dt);
+			if (gs instanceof Level) {
+				levelRender((Level) gs, player);
+			} else {
+				throw new UnsupportedOperationException("must be a level");
 			}
+		} else if (HawkthorneGame.MODE == Mode.SERVER) {
+			Map<String, Level> levels = Levels.getSingleton().getLevels();
+			for (Level level : levels.values()) {
+				Set<Player> players = level.getPlayers();
+				for (Player player : players) {
+					player.processKeyActions();
+					player.update(dt);
+				}
+				level.update(dt);
+			}
+			levelRender(Levels.getSingleton().get(trackedLevel), trackedPlayer);
+		} else {
+			throw new UnsupportedOperationException("unknown mode");
 		}
-		Gdx.gl.glClearColor(0, 1, 0, 1);
-
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-		cam.position.set(cam.zoom * Gdx.graphics.getWidth() / 2, cam.zoom
-				* Gdx.graphics.getHeight() / 2, 0);
-		// update should do nothing in unmoving gamestates
-		cam.update();
-		gs.update();
-		spriteBatch.setProjectionMatrix(cam.combined);
-		spriteBatch.begin();
-		try {
-			this.draw(gs, spriteBatch);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		spriteBatch.end();
-
 	}
 
-	private void draw(GenericGamestate gs, SpriteBatch spriteBatch) {
-		for (RadioButtonGroup elem : gs.getObjects()) {
-			elem.draw(spriteBatch);
-		}
-
-	}
-
+	/**
+	 * renders a level with respect to a player or some trackedPosition if a
+	 * player is not available
+	 * 
+	 * @param level
+	 * @param player
+	 */
 	private void levelRender(Level level, Player player) {
 		TiledMap map = level.getTiledMap();
 		try {
@@ -125,7 +111,8 @@ public class HawkthorneGame extends Game {
 					String.class)) / 255.0f;
 			Gdx.gl.glClearColor(r, g, b, 1);
 		} catch (NullPointerException e) {
-			System.err.println("Error loading background: default to white");
+			Gdx.app.error(e.getClass().getName(),
+					"Error loading background: default to white");
 			Gdx.gl.glClearColor(1, 1, 1, 1);
 		}
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -137,20 +124,40 @@ public class HawkthorneGame extends Game {
 			float mapHeight = tmtl.getHeight() * tmtl.getTileHeight();
 			float mapWidth = tmtl.getWidth() * tmtl.getTileWidth();
 
-			x = player.x + player.width / 2;
-			y = player.y;
+			if (player != null) {
+				x = player.x + player.width / 2;
+				y = player.y;
+				trackingX = x;
+				trackingY = y;
+			} else {
+				x = trackingX;
+				y = trackingY;
+				if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+					trackingX -= 5;
+				}
+				if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+					trackingX += 5;
+				}
+				if (Gdx.input.isKeyPressed(Keys.UP)) {
+					trackingY += 5;
+				}
+				if (Gdx.input.isKeyPressed(Keys.DOWN)) {
+					trackingY -= 5;
+				}
+			}
 			cam.position.set(
 					limit(x, cam.zoom * cam.viewportWidth / 2, mapWidth
 							- cam.zoom * cam.viewportWidth / 2),
 					limit(y, cam.zoom * cam.viewportHeight / 2, mapHeight), 0);
 		} catch (Exception e) {
-			System.err.println("camera position error: using default (0,0)");
+			Gdx.app.error(e.getClass().getName(),
+					"camera position error: using default (0,0)");
 			e.printStackTrace();
 			x = 0;
 			y = 0;
 		}
 		cam.update(true);
-		if (Gdx.input.isKeyPressed(Keys.Q)) {
+		if (Gdx.input.isKeyPressed(Keys.Q) && player != null) {
 			System.out.println("camY      =" + y);
 			System.out.println("player.x  =" + player.x);
 			System.out.println("player.y  =" + player.y);
@@ -158,23 +165,10 @@ public class HawkthorneGame extends Game {
 			System.out.println("viewHeight=" + cam.viewportHeight);
 			System.out.println();
 		}
-		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+		if (Gdx.input.isKeyPressed(Keys.ESCAPE)
+				&& HawkthorneGame.MODE == Mode.CLIENT) {
 			player.die();
 		}
-
-		for (GameKeys gk : GameKeys.values()) {
-			boolean oldValue = player.getIsKeyDown(gk);
-			boolean newValue = Gdx.input.isKeyPressed(KeyMapping
-					.gameKeyToInt(gk));
-			player.setIsKeyDown(gk, newValue);
-			if (!oldValue && newValue) {
-				player.keypressed(gk);
-			} else if (oldValue && !newValue) {
-				player.keyreleased(gk);
-			}
-		}
-
-		level.update();
 
 		spriteBatch.setProjectionMatrix(cam.combined);
 		if (!(level.getTiledMap().equals(tileMapRenderer.getMap()))) {
@@ -213,8 +207,9 @@ public class HawkthorneGame extends Game {
 			}
 		}
 
-		Player.getSingleton().draw(batch);
-
+		for (Player player : level.getPlayers()) {
+			player.draw(batch);
+		}
 		for (Node liquid : liquids) {
 			liquid.draw(batch);
 		}

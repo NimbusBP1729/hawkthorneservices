@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.projecthawkthorne.client.HawkthorneGame;
+import com.projecthawkthorne.client.Mode;
 
 public class HawkthorneGameActivity extends AndroidApplication {
 
@@ -13,6 +14,6 @@ public class HawkthorneGameActivity extends AndroidApplication {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.useGL20 = true;
-		initialize(new HawkthorneGame(), config);
+		initialize(new HawkthorneGame(Mode.CLIENT), config);
 	}
 }

@@ -36,10 +36,8 @@ public class Level extends Gamestate {
 	private final String name;
 	private java.util.Map<String, Door> doors = new HashMap<String, Door>();
 	private Boundary boundary = new Boundary();
-	private long lastTime = 0;
 	private TiledMap tiledMap;
 	private Collider collider;
-	private static final String PACKAGE_NAME = "com.projecthawkthorne.content.nodes.";
 
 	public Level(String name) {
 		this.name = name;
@@ -134,16 +132,7 @@ public class Level extends Gamestate {
 	}
 
 	@Override
-	public void update() {
-		// 1)update
-
-		long currentTime = System.currentTimeMillis();
-		long dt = (currentTime - this.lastTime);
-		this.lastTime = currentTime;
-		long maxDt = 100;
-		dt = maxDt < dt ? maxDt : dt;
-		Player player = Player.getSingleton();
-		player.update(dt);
+	public void update(long dt) {
 		Iterator<Node> nit = this.nodes.values().iterator();
 		while (nit.hasNext()) {
 			Node node = nit.next();

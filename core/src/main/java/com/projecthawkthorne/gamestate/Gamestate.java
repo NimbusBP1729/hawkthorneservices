@@ -27,7 +27,7 @@ public abstract class Gamestate {
 		return players.remove(p);
 	}
 
-	public abstract void update();
+	public abstract void update(long dt);
 
 	public final Set<Player> getPlayers() {
 		return players;

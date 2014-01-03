@@ -10,7 +10,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.projecthawkthorne.client.HawkthorneGame;
+import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.nodes.Climbable;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.Enemy;
@@ -113,6 +116,7 @@ public class Player extends Humanoid implements Timeable {
 		}
 
 		this.inventory = new Inventory(this);
+		level.getPlayers().add(this);
 	}
 
 	private static RectangleMapObject getPlayerTiledObject() {
@@ -978,11 +982,28 @@ public class Player extends Humanoid implements Timeable {
 	}
 
 	public static Player getSingleton() {
+		if (HawkthorneGame.MODE == Mode.SERVER) {
+			throw new UnsupportedOperationException();
+		}
 		if (singleton == null) {
 			singleton = new Player(Player.getPlayerTiledObject(),
 					(Level) Levels.getSingleton().get(START_LEVEL));
 		}
 		return singleton;
+	}
+
+	public void processKeyActions() {
+		for (GameKeys gk : GameKeys.values()) {
+			boolean oldValue = this.getIsKeyDown(gk);
+			boolean newValue = Gdx.input.isKeyPressed(KeyMapping
+					.gameKeyToInt(gk));
+			this.setIsKeyDown(gk, newValue);
+			if (!oldValue && newValue) {
+				this.keypressed(gk);
+			} else if (oldValue && !newValue) {
+				this.keyreleased(gk);
+			}
+		}
 	}
 
 }

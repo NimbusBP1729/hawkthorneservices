@@ -4,7 +4,6 @@
  */
 package com.projecthawkthorne.gamestate;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,15 +17,13 @@ import com.projecthawkthorne.hardoncollider.Bound;
  */
 public class Levels {
 	private static final long serialVersionUID = 1L;
-	private Map<String, Gamestate> levelMap;
+	private Map<String, Level> levelMap;
 	private static Levels singleton;
 
 	private Levels() {
 		// use this constructor to initialize all
 		// gamestates that aren't levels
-		levelMap = new HashMap<String, Gamestate>();
-		levelMap.put("introduction", new Introduction());
-		levelMap.put("overworld", new Overworld());
+		levelMap = new HashMap<String, Level>();
 	}
 
 	public static Levels getSingleton() {
@@ -36,8 +33,8 @@ public class Levels {
 		return singleton;
 	}
 
-	private void put(String levelName, Gamestate level) {
-		this.levelMap.put(levelName, level);
+	public Map<String, Level> getLevels() {
+		return this.levelMap;
 	}
 
 	/**
@@ -120,21 +117,17 @@ public class Levels {
 	 *            the level name
 	 * @return the level
 	 */
-	public Gamestate get(String levelName) {
+	public Level get(String levelName) {
 		levelName = levelName.trim();
 		if (levelName == null || levelName.isEmpty()) {
 			return null;
 		}
-		Gamestate level = this.levelMap.get(levelName);
+		Level level = this.levelMap.get(levelName);
 		if (level == null) {
 			level = new Level(levelName);
-			this.put(levelName, level);
+			this.levelMap.put(levelName, level);
 		}
 		return level;
-	}
-
-	public Collection<Gamestate> values() {
-		return levelMap.values();
 	}
 
 }
