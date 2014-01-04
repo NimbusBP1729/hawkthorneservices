@@ -85,11 +85,9 @@ public class Player extends Humanoid implements Timeable {
 	private HealthText healthText = new HealthText();
 	private HealthVelocity healthVel = new HealthVelocity();
 	private boolean hurt;
-	private Object action;
 	private boolean wielding = false;
 	private boolean prevAttackPressed;
 	private Object blink;
-	private int iterations = 0;
 	public static final float jumpFactor = 0.0010f;
 	private float halfJumpStrength = 450 * jumpFactor;
 	private float highJumpStrength = 970 * jumpFactor;
@@ -399,15 +397,6 @@ public class Player extends Humanoid implements Timeable {
 		if (level == null) {
 			return;
 		}
-		// this.x = this.bb.getPosition().x;
-		// this.y = this.bb.getPosition().y;
-
-		// this.inventory.update(dt);
-		// this.attack_box.update();
-
-		// if (this.jumping) {
-		// System.out.println("---" + this.y + "---" + dt);
-		// }
 		boolean DOWN_MOTION = this.keyDown.get(GameKeys.DOWN) && !isDead();
 		boolean UP_MOTION = this.keyDown.get(GameKeys.UP) && !isDead();
 		boolean LEFT_MOTION = this.keyDown.get(GameKeys.LEFT) && !isDead();
@@ -417,7 +406,6 @@ public class Player extends Humanoid implements Timeable {
 			this.stopBlink();
 		}
 
-		// TODO: remove
 		if (this.health <= 0) {
 			if (this.currently_held != null
 					&& this.currently_held instanceof Weapon) {
@@ -425,11 +413,6 @@ public class Player extends Humanoid implements Timeable {
 				weapon.unuse();
 			}
 		}
-
-		// if (this.character.warpin) {
-		// this.character:warpUpdate(dt);
-		// return;
-		// }
 
 		if (DOWN_MOTION && UP_MOTION) {
 			DOWN_MOTION = false;
@@ -543,9 +526,7 @@ public class Player extends Humanoid implements Timeable {
 			this.die(this.health);
 			return;
 		}
-		action = null;
 
-		// this.moveBoundingBox();
 		if (this.velocityX < 0) {
 			this.direction = Direction.LEFT;
 		} else if (this.velocityX > 0) {
@@ -603,7 +584,7 @@ public class Player extends Humanoid implements Timeable {
 		// this.inventory = new Inventory(this);
 		this.stopBlink();
 		this.character.reset();
-		System.err.println("character revived");
+		Gdx.app.log("player activity", "character revived");
 	}
 
 	// -
@@ -689,11 +670,6 @@ public class Player extends Humanoid implements Timeable {
 
 	// //- Platformer interface
 	public void ceiling_pushback(Node node, float new_y) {
-		// this.y = new_y;
-		// this.velocityY = 0;
-		// this.moveBoundingBox();
-		this.setJumping(false);
-		this.setRebounding(false);
 		throw new UnsupportedOperationException(
 				"need to implement ceiling pushbacks");
 	}
@@ -843,7 +819,7 @@ public class Player extends Humanoid implements Timeable {
 			this.invulnerable = false;
 			this.flash = false;
 		} else {
-			System.err.println("unknown timer: " + name.toString());
+			Gdx.app.error("Unknown timer in Player:", name.toString());
 		}
 	}
 

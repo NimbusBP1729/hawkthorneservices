@@ -44,12 +44,12 @@ public class AudioCache {
 		Sound s;
 		if (soundFile == null) {
 			soundFile = "level";
-			System.err
-					.println("soundtrack was null: using default level soundtrack");
+			Gdx.app.error("sound load error",
+					"soundtrack was null. using default level soundtrack.");
 		} else if (soundFile.equals("null")) {
 			soundFile = "level";
-			System.err
-					.println("soundtrack was 'null': using default level soundtrack");
+			Gdx.app.error("sound load error",
+					"soundtrack was 'null'. using default level soundtrack.");
 		}
 
 		if (musicCache.containsKey(soundFile)) {

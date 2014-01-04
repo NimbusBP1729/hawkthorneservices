@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
@@ -104,12 +105,10 @@ public class Level extends Gamestate {
 				} else if ("ladder".equals(typeName)) {
 					node = new Ladder((RectangleMapObject) t, this);
 				} else {
-					System.err.println("type=" + typeName
-							+ " is not recognized");
+					Gdx.app.error("typeName is not recognized:", typeName);
 				}
 			} catch (Exception e) {
-				System.err.println("error loading type=" + typeName);
-				e.printStackTrace();
+				Gdx.app.error("error loading a type", typeName);
 			}
 			this.nodes.put(node.getId(), node);
 			if (node instanceof Door) {

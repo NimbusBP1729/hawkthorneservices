@@ -57,6 +57,7 @@ public class MessageBundleTest extends TestCase {
 	public void testConvertStringToBundle() {
 		String msg = "06017070-525b-40bc-88bf-ac6f7857d48c|REGISTERPLAYER|myusername,levelName,param3";
 		packet.setData(msg.getBytes());
+		packet.setPort(27419);
 		MessageBundle mb = SocketUtils.packetToBundle(packet);
 		assertEquals(mb.getCommand(), Command.REGISTERPLAYER);
 		UUID id = mb.getEntityId();
@@ -66,12 +67,14 @@ public class MessageBundleTest extends TestCase {
 		assertEquals("myusername", mb.getParams()[0]);
 		assertEquals("levelName", mb.getParams()[1]);
 		assertEquals("param3", mb.getParams()[2]);
+		assertEquals(27419, mb.getSocketAddress().getPort());
 	}
 
 	@Test
 	public void testConvertSwitchStringToBundle() {
 		String msg = "06017070-525b-40bc-88bf-ac6f7857d48c|SWITCHLEVEL|levelName,doorName";
 		packet.setData(msg.getBytes());
+		packet.setPort(27419);
 		MessageBundle mb = SocketUtils.packetToBundle(packet);
 		assertEquals(mb.getCommand(), Command.SWITCHLEVEL);
 		UUID id = mb.getEntityId();
@@ -80,5 +83,6 @@ public class MessageBundleTest extends TestCase {
 		assertEquals(2, mb.getParams().length);
 		assertEquals("levelName", mb.getParams()[0]);
 		assertEquals("doorName", mb.getParams()[1]);
+		assertEquals(27419, mb.getSocketAddress().getPort());
 	}
 }

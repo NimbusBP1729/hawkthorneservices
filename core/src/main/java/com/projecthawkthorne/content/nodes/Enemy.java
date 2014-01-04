@@ -260,12 +260,8 @@ public abstract class Enemy extends Humanoid implements Timeable {
 	public static Enemy create(RectangleMapObject t, Level level) {
 		if (t.getName().equals("acorn")) {
 			return new Acorn(t, level);
-		} else if (t.getName().equals("hippy")) {
-			System.err.println("TODO: rename hippy to hippie");
-			return new Hippy(t, level);
 		} else if (t.getName().equals("hippie")) {
-			System.err.println("TODO: rename hippy to hippie");
-			return new Hippy(t, level);
+			return new Hippie(t, level);
 		} else if (t.getName().equals("frog")) {
 			return new Frog(t, level);
 		} else if (t.getName().equals("fish")) {

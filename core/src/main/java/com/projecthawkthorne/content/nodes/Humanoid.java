@@ -3,6 +3,7 @@ package com.projecthawkthorne.content.nodes;
 import java.util.Iterator;
 import java.util.UUID;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.FloorCollidable;
 import com.projecthawkthorne.content.Footprint;
@@ -188,8 +189,7 @@ public abstract class Humanoid extends Node implements FloorCollidable {
 			this.jump_state = State.JUMP;
 			this.idle_state = State.IDLE;
 		} else {
-			System.err
-					.println("Error! invalid spriteState " + presetName + ".");
+			Gdx.app.error("error invalid spriteState", presetName.toString());
 		}
 	}
 

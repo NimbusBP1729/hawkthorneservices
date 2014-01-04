@@ -3,9 +3,9 @@ package com.projecthawkthorne.content.nodes;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.gamestate.Level;
 
-public class Hippy extends Enemy {
+public class Hippie extends Enemy {
 
-	public Hippy(RectangleMapObject obj, Level level) {
+	public Hippie(RectangleMapObject obj, Level level) {
 		super(obj, level);
 		this.width = 48;
 		this.height = 48;

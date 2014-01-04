@@ -73,8 +73,8 @@ public class Assets {
 				imageCache.put(file, t);
 			}
 		} catch (Exception e) {
-			System.err.println("failed to load '" + file
-					+ "': using 'defaultTexture.png'");
+			Gdx.app.error("image cache error", "failed to load '" + file
+					+ "': using 'defaultTexture.png'", e);
 			t = new Texture(Gdx.files.internal(SRC_IMAGES
 					+ "defaultTexture.png"));
 			imageCache.put(file, t);

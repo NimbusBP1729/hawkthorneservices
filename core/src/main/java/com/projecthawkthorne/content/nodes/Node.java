@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
@@ -251,7 +252,7 @@ public abstract class Node extends Collidable {
 				this.bbox_height = height;
 			}
 			if (this.bbox_width < 0 || this.bbox_height < 0) {
-				System.err.println("no bounds for:" + this.type + ","
+				Gdx.app.error("Node error", "no bounds for:" + this.type + ","
 						+ this.name);
 			}
 			this.bb = Bound.create(this.x, this.y, this.bbox_width,
@@ -455,12 +456,10 @@ public abstract class Node extends Collidable {
 						.get(player.getCharacter().getCostume())
 						.get(player.getState());
 				if (anim == null) {
-					System.err
-							.println("create player entry animation for (name,costume,STATE)=("
-									+ player.getCharacter().getName()
-									+ ","
-									+ player.getCharacter().getCostume()
-									+ ","
+					Gdx.app.error("drawing error",
+							"create player entry animation for (name,costume,STATE)=("
+									+ player.getCharacter().getName() + ","
+									+ player.getCharacter().getCostume() + ","
 									+ player.getState() + ") in Assets class");
 				}
 			} else {
@@ -499,16 +498,14 @@ public abstract class Node extends Collidable {
 			}
 		} catch (NullPointerException e) {
 			if (DEBUG) {
-				System.err.println(this.getId());
-				System.err.println(this.type);
-				System.err.println(this.name);
+				Gdx.app.error("node draw error", "(id,type,name,state)==("
+						+ this.getId() + "," + this.type + "," + this.name
+						+ "," + this.getState() + ")");
 				if (this instanceof Player) {
 					Player player = (Player) this;
-					System.err.println("> "
-							+ player.getCharacter().getCostume());
+					Gdx.app.error("costume error", player.getCharacter()
+							.getCostume());
 				}
-				System.err.println(this.getState());
-				System.err.println();
 
 				TextureRegion defaultTextureRegion = Assets.standard
 						.get("this").getKeyFrame(0);

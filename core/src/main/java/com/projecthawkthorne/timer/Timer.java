@@ -4,6 +4,7 @@
  */
 package com.projecthawkthorne.timer;
 
+
 /**
  * 
  * @author Patrick
@@ -15,7 +16,6 @@ public class Timer {
 	public static boolean add(long delay, String name, Timeable caller) {
 		NameAndCaller nac = new NameAndCaller(name, caller);
 		if (clocks.containsKey(nac)) {
-			System.err.println("clock '" + name + "' was already inserted");
 			return false;
 		}
 		long cur = System.currentTimeMillis();
@@ -71,7 +71,6 @@ public class Timer {
 		}
 		long curTime = System.currentTimeMillis();
 		boolean result = clocks.get(nac) < curTime;
-		// System.err.println(result);
 		return result;
 	}
 

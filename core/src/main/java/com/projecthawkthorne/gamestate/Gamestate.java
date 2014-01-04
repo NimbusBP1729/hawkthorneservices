@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import com.badlogic.gdx.Gdx;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.Node;
@@ -17,8 +18,10 @@ public abstract class Gamestate {
 
 	final void addPlayer(Player player) {
 		if (players.contains(player)) {
-			System.err.println("player has already been added to "
-					+ this.getName());
+			Gdx.app.error(
+					"player adding error",
+					"level '" + this.getName() + "' already contains "
+							+ player.getId() + ":" + player.getUsername());
 		} else {
 			players.add(player);
 		}
