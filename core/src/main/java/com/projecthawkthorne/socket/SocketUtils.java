@@ -1,6 +1,7 @@
 package com.projecthawkthorne.socket;
 
 import java.net.DatagramPacket;
+import java.net.InetSocketAddress;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
@@ -32,6 +33,7 @@ public class SocketUtils {
 		mb.setCommand(command);
 		mb.setEntityId(id);
 		mb.setParams(paramChunks);
+		mb.setSocketAddress((InetSocketAddress) packet.getSocketAddress());
 		return mb;
 
 	}

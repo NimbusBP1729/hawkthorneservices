@@ -1,11 +1,13 @@
 package com.projecthawkthorne.socket;
 
+import java.net.InetSocketAddress;
 import java.util.UUID;
 
 public class MessageBundle {
 	private UUID entityId;
 	private Command command;
 	private String[] params;
+	private InetSocketAddress socketAddress;
 
 	public UUID getEntityId() {
 		return entityId;
@@ -29,6 +31,14 @@ public class MessageBundle {
 
 	public void setCommand(Command command) {
 		this.command = command;
+	}
+
+	public void setSocketAddress(InetSocketAddress socketAddress) {
+		this.socketAddress = socketAddress;
+	}
+
+	public InetSocketAddress getSocketAddress() {
+		return socketAddress;
 	}
 
 }

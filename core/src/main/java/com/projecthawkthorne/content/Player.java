@@ -52,7 +52,6 @@ import com.projecthawkthorne.timer.Timer;
 public class Player extends Humanoid implements Timeable {
 
 	private static Map<UUID, Player> playerMap = new HashMap<UUID, Player>();
-
 	private Character character = new Character();
 	private EnumMap<GameKeys, Boolean> keyDown = new EnumMap<GameKeys, Boolean>(
 			GameKeys.class);
@@ -1017,6 +1016,10 @@ public class Player extends Humanoid implements Timeable {
 			playerMap.put(id, player);
 		}
 		return player;
+	}
+
+	public static Map<UUID, Player> getPlayerMap() {
+		return playerMap;
 	}
 
 	public void processKeyActions() {

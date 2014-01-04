@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.UUID;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -79,8 +81,10 @@ public class HawkthorneGame extends Game {
 		if (HawkthorneGame.MODE == Mode.CLIENT) {
 			// TODO:choose how hard to look for packets
 			Client client = Client.getSingleton();
-			MessageBundle msg = client.receive();
-			client.handleMessage(msg);
+			MessageBundle msg;
+			while ((msg = client.receive()) != null) {
+				client.handleMessage(msg);
+			}
 			Player player = Player.getSingleton();
 			Gamestate gs = player.getLevel();
 			player.processKeyActions();
@@ -102,10 +106,12 @@ public class HawkthorneGame extends Game {
 				client.send(mb);
 			}
 		} else if (HawkthorneGame.MODE == Mode.SERVER) {
-			// TODO:choose how hard to look for packets
 			Server server = Server.getSingleton();
-			MessageBundle msg = server.receive();
-			server.handleMessage(msg);
+
+			for (MessageBundle msg = server.receive(); msg != null; msg = server
+					.receive()) {
+				server.handleMessage(msg);
+			}
 			Map<String, Level> levels = Levels.getSingleton().getLevels();
 			levelRender(Levels.getSingleton().get(trackedLevel), trackedPlayer);
 
@@ -115,6 +121,20 @@ public class HawkthorneGame extends Game {
 					player.update(dt);
 				}
 				level.update(dt);
+			}
+			if (currentTime - this.lastPositionBroadcast > 50) {
+				for (Entry<UUID, Player> entry : Player.getPlayerMap()
+						.entrySet()) {
+					MessageBundle mb = new MessageBundle();
+					mb.setEntityId(entry.getKey());
+					mb.setCommand(Command.POSITION_UPDATE);
+					Player player = entry.getValue();
+					String x = Integer.toString(Math.round(player.x));
+					String y = Integer.toString(Math.round(player.y));
+					mb.setParams(x, y);
+					this.lastPositionBroadcast = currentTime;
+					Server.getSingleton().sendToAllExcept(mb, entry.getKey());
+				}
 			}
 
 		} else {
@@ -201,14 +221,6 @@ public class HawkthorneGame extends Game {
 			y = 0;
 		}
 		cam.update(true);
-		if (Gdx.input.isKeyPressed(Keys.Q) && player != null) {
-			System.out.println("camY      =" + y);
-			System.out.println("player.x  =" + player.x);
-			System.out.println("player.y  =" + player.y);
-			System.out.println("player.state  =" + player.getState());
-			System.out.println("viewHeight=" + cam.viewportHeight);
-			System.out.println();
-		}
 		if (Gdx.input.isKeyPressed(Keys.ESCAPE)
 				&& HawkthorneGame.MODE == Mode.CLIENT) {
 			player.die();

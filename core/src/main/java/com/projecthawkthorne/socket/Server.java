@@ -7,8 +7,8 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,9 +33,16 @@ public class Server {
 	private DatagramPacket sendPacket = new DatagramPacket(sendData,
 			sendData.length);
 	Logger log = Logger.getLogger(this.getClass().getName());
-	private Set<InetSocketAddress> addressSet = new HashSet<InetSocketAddress>();
+	private Map<UUID, InetSocketAddress> addressMap = new HashMap<UUID, InetSocketAddress>();
 
-	private Server(int port) {
+	private Server() {
+		int port;
+		try {
+			port = Integer.valueOf(System.getenv("HAWK_PORT"));
+		} catch (Exception e) {
+			port = 12345;
+		}
+		log.log(Level.INFO, "using port:" + port);
 		try {
 			serverSocket = new DatagramSocket(port);
 			serverSocket.setSoTimeout(17);// ~1/60 seconds
@@ -58,7 +65,7 @@ public class Server {
 		}
 
 		if (singleton == null) {
-			singleton = new Server(12345);
+			singleton = new Server();
 		}
 		return singleton;
 	}
@@ -75,7 +82,6 @@ public class Server {
 			serverSocket.receive(receivePacket);
 			InetSocketAddress socketAddress = (InetSocketAddress) receivePacket
 					.getSocketAddress();
-			addressSet.add(socketAddress);
 
 			log.log(Level.INFO,
 					"FROM CLIENT: " + new String(receivePacket.getData())
@@ -131,6 +137,19 @@ public class Server {
 		return sendRaw(SocketUtils.bundleToString(mb), ip, port);
 	}
 
+	public int sendToAllExcept(MessageBundle msg, UUID excludedId) {
+		int count = 0;
+		for (UUID id : addressMap.keySet()) {
+			if (!(id.equals(excludedId))) {
+				InetAddress address = addressMap.get(id).getAddress();
+				int port = addressMap.get(id).getPort();
+				this.send(msg, address, port);
+				count++;
+			}
+		}
+		return count;
+	}
+
 	/**
 	 * send message to connected clients
 	 * 
@@ -138,13 +157,7 @@ public class Server {
 	 * @return amount of clients sent to
 	 */
 	public int sendToAll(MessageBundle mb) {
-		int count = 0;
-		for (InetSocketAddress addr : addressSet) {
-			if (this.send(mb, addr.getAddress(), addr.getPort())) {
-				count++;
-			}
-		}
-		return count;
+		return this.sendToAllExcept(mb, null);
 	}
 
 	public void handleMessage(MessageBundle msg) {
@@ -155,6 +168,8 @@ public class Server {
 		if (msg.getCommand() == Command.REGISTERPLAYER) {
 			UUID id = msg.getEntityId();
 			Player.getConnectedPlayer(id);
+			this.sendToAllExcept(msg, id);
+			addressMap.put(id, msg.getSocketAddress());
 		} else if (msg.getCommand() == Command.SWITCHLEVEL) {
 			UUID id = msg.getEntityId();
 			Gamestate newLevel = Levels.getSingleton().get(msg.getParams()[0]);

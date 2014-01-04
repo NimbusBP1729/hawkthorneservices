@@ -37,8 +37,18 @@ public class Client {
 		try {
 			this.clientSocket = new DatagramSocket();
 			this.clientSocket.setSoTimeout(17);// ~1/60 seconds
-			this.serverPort = 12345;
-			this.serverIp = InetAddress.getLocalHost();
+
+			try {
+				this.serverPort = Integer.valueOf(System.getenv("HAWK_PORT"));
+			} catch (Exception e) {
+				this.serverPort = 12345;
+			}
+			try {
+				this.serverIp = InetAddress.getByName(System
+						.getenv("HAWK_ADDRESS"));
+			} catch (Exception e) {
+				this.serverIp = InetAddress.getLocalHost();
+			}
 
 			log.log(Level.INFO, "Using address,port:" + this.serverIp + ","
 					+ this.serverPort);
