@@ -114,9 +114,10 @@ public class Server {
 		sendPacket.setData(sendData);
 		sendPacket.setAddress(ip);
 		sendPacket.setPort(port);
-		log.log(Level.INFO, "TO CLIENT: " + message);
-		log.log(Level.INFO, "   socket: " + ip + "," + port + "\n");
-		log.log(Level.INFO, "     time: " + System.currentTimeMillis() + "\n");
+		log.log(Level.INFO,
+				"TO CLIENT: " + message + "\n" + "   socket: " + ip + ","
+						+ port + "\n" + "     time: "
+						+ System.currentTimeMillis() + "\n");
 		try {
 			serverSocket.send(sendPacket);
 		} catch (IOException ex) {

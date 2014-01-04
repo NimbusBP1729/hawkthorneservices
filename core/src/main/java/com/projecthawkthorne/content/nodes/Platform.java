@@ -7,7 +7,6 @@ package com.projecthawkthorne.content.nodes;
 import java.util.Iterator;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.projecthawkthorne.content.FloorCollidable;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Level;
@@ -28,39 +27,28 @@ public class Platform extends Node {
 	}
 
 	@Override
-	protected void collide(Node playerNode) {
-		if (playerNode.bb == null
-				|| (playerNode instanceof Humanoid && ((Humanoid) playerNode)
-						.isDroppingFrom(this))) {
+	protected void collide(Node playerNodeqe) {
+		if (!(playerNodeqe instanceof Humanoid)) {
 			return;
 		}
-		if (playerNode instanceof FloorCollidable && playerNode.velocityY < 0) {
-			FloorCollidable player = (FloorCollidable) playerNode;
+		Player player = (Player) playerNodeqe;
+		if (player.isDroppingFrom(this)) {
+			return;
+		}
+		if (player.velocityY < 0) {
 			float[] playerCorners = new float[4];
-			playerNode.bb.bbox(playerCorners);
-			float playerTop = playerCorners[1];
+			player.bb.bbox(playerCorners);
 			float playerBottom = playerCorners[3];
 
-			float[] yVals = new float[12];
-			float diff = playerCorners[2] - playerCorners[0];
-			for (int i = 0; i < yVals.length; i++) {
-				yVals[i] = this.bb.getSmallestY(playerCorners[0] + i * diff
-						/ 12);
-			}
-			float floorTop = min(yVals);
-			// temporary lazy floor bottom
 			float[] floorCorners = new float[4];
 			this.bb.bbox(floorCorners);
+			float floorTop = floorCorners[1];
 
-			if (player instanceof Player) {
-				Player plyr = (Player) player;
-				plyr.dropFromPlatform(null);
-				float fd = floorTop - playerBottom;
-				if (fd > 0 && fd < 10) {
-					player.floorPushback(this.bb, floorTop);
-				}
-
-			} else {
+			player.dropFromPlatform(null);
+			float fd = floorTop - playerBottom;
+			if (fd > 24) {
+				return;
+			} else if (fd * player.velocityY > -20) {
 				player.floorPushback(this.bb, floorTop);
 			}
 		}

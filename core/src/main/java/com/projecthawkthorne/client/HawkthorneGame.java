@@ -25,6 +25,7 @@ import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.gamestate.Levels;
 import com.projecthawkthorne.socket.Client;
+import com.projecthawkthorne.socket.Command;
 import com.projecthawkthorne.socket.MessageBundle;
 import com.projecthawkthorne.socket.Server;
 import com.projecthawkthorne.timer.Timer;
@@ -34,12 +35,13 @@ public class HawkthorneGame extends Game {
 	private BatchTiledMapRenderer tileMapRenderer = null;
 	private OrthographicCamera cam;
 	public static Mode MODE;
-	public String trackedLevel = "town";
+	private static final String START_LEVEL = "multiplayer";
+	public String trackedLevel = START_LEVEL;
 	public Player trackedPlayer = null;
 	private float trackingX = 0;
 	private float trackingY = 0;
 	private long lastTime = 0;
-	private static final String START_LEVEL = "town";
+	private long lastPositionBroadcast = System.currentTimeMillis();
 
 	public HawkthorneGame(Mode mode) {
 		HawkthorneGame.MODE = mode;
@@ -101,6 +103,16 @@ public class HawkthorneGame extends Game {
 				Set<Player> players = level.getPlayers();
 				for (Player player : players) {
 					player.update(dt);
+					if (currentTime - this.lastPositionBroadcast > 500) {
+						MessageBundle mb = new MessageBundle();
+						mb.setEntityId(player.getId());
+						mb.setCommand(Command.POSITION_UPDATE);
+						String x = Integer.toString(Math.round(player.x));
+						String y = Integer.toString(Math.round(player.y));
+						mb.setParams(x, y);
+						this.lastPositionBroadcast = currentTime;
+						Server.getSingleton().sendToAll(mb);
+					}
 				}
 				level.update(dt);
 			}

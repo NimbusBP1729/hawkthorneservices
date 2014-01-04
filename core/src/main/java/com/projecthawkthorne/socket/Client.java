@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
+import com.projecthawkthorne.content.Player;
 
 public class Client {
 
@@ -128,8 +129,17 @@ public class Client {
 	public void handleMessage(MessageBundle msg) {
 		if (msg == null) {
 			return;
+		} else if (msg.getCommand() == Command.POSITION_UPDATE) {
+			Player p = Player.getConnectedPlayer(msg.getEntityId());
+			float factor = 0.5f;
+			p.x = lerp(Float.parseFloat(msg.getParams()[0]), p.x, factor);
+			p.y = lerp(Float.parseFloat(msg.getParams()[1]), p.y, factor);
+		} else {
+			throw new UnsupportedOperationException();
 		}
+	}
 
-		throw new UnsupportedOperationException();
+	private float lerp(float a, float b, float f) {
+		return a + f * (b - a);
 	}
 }
