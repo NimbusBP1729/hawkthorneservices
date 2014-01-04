@@ -173,6 +173,13 @@ public class Server {
 			Player player = Player.getConnectedPlayer(id);
 			player.setIsKeyDown(gk, false);
 			player.keyreleased(gk);
+		} else if (msg.getCommand() == Command.POSITION_UPDATE) {
+			Player p = Player.getConnectedPlayer(msg.getEntityId());
+			float factor = 0.0f;
+			p.x = SocketUtils.lerp(Float.parseFloat(msg.getParams()[0]), p.x,
+					factor);
+			p.y = SocketUtils.lerp(Float.parseFloat(msg.getParams()[1]), p.y,
+					factor);
 		} else {
 			throw new UnsupportedOperationException();
 		}

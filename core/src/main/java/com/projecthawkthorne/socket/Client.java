@@ -132,14 +132,12 @@ public class Client {
 		} else if (msg.getCommand() == Command.POSITION_UPDATE) {
 			Player p = Player.getConnectedPlayer(msg.getEntityId());
 			float factor = 0.5f;
-			p.x = lerp(Float.parseFloat(msg.getParams()[0]), p.x, factor);
-			p.y = lerp(Float.parseFloat(msg.getParams()[1]), p.y, factor);
+			p.x = SocketUtils.lerp(Float.parseFloat(msg.getParams()[0]), p.x,
+					factor);
+			p.y = SocketUtils.lerp(Float.parseFloat(msg.getParams()[1]), p.y,
+					factor);
 		} else {
 			throw new UnsupportedOperationException();
 		}
-	}
-
-	private float lerp(float a, float b, float f) {
-		return a + f * (b - a);
 	}
 }

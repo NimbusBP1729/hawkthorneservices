@@ -91,6 +91,16 @@ public class HawkthorneGame extends Game {
 			} else {
 				throw new UnsupportedOperationException("must be a level");
 			}
+			if (currentTime - this.lastPositionBroadcast > 50) {
+				MessageBundle mb = new MessageBundle();
+				mb.setEntityId(player.getId());
+				mb.setCommand(Command.POSITION_UPDATE);
+				String x = Integer.toString(Math.round(player.x));
+				String y = Integer.toString(Math.round(player.y));
+				mb.setParams(x, y);
+				this.lastPositionBroadcast = currentTime;
+				client.send(mb);
+			}
 		} else if (HawkthorneGame.MODE == Mode.SERVER) {
 			// TODO:choose how hard to look for packets
 			Server server = Server.getSingleton();
@@ -103,16 +113,6 @@ public class HawkthorneGame extends Game {
 				Set<Player> players = level.getPlayers();
 				for (Player player : players) {
 					player.update(dt);
-					if (currentTime - this.lastPositionBroadcast > 500) {
-						MessageBundle mb = new MessageBundle();
-						mb.setEntityId(player.getId());
-						mb.setCommand(Command.POSITION_UPDATE);
-						String x = Integer.toString(Math.round(player.x));
-						String y = Integer.toString(Math.round(player.y));
-						mb.setParams(x, y);
-						this.lastPositionBroadcast = currentTime;
-						Server.getSingleton().sendToAll(mb);
-					}
 				}
 				level.update(dt);
 			}
