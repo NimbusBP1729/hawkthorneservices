@@ -9,6 +9,7 @@
 	<source path='content'/>
 	<source path='datastructures'/>
 	<source path='hardoncollider'/>
+	<source path='socket'/>
 				
 	<public path="resources" />
 
