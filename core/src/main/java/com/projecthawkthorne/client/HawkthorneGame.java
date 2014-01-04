@@ -152,6 +152,15 @@ public class HawkthorneGame extends Game {
 					.get(0));
 			float mapHeight = tmtl.getHeight() * tmtl.getTileHeight();
 			float mapWidth = tmtl.getWidth() * tmtl.getTileWidth();
+			if (Gdx.input.isKeyPressed(Keys.ALT_LEFT)
+					|| Gdx.input.isKeyPressed(Keys.ALT_RIGHT)) {
+				for (Player somePlayer : level.getPlayers()) {
+					trackedPlayer = somePlayer;
+				}
+			}
+			if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+				trackedPlayer = null;
+			}
 
 			if (player != null) {
 				x = player.x + player.width / 2;
