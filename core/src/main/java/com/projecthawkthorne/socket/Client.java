@@ -139,7 +139,7 @@ public class Client {
 	public void handleMessage(MessageBundle msg) {
 		if (msg == null) {
 			return;
-		} else if (msg.getCommand() == Command.POSITION_UPDATE) {
+		} else if (msg.getCommand() == Command.POSITIONUPDATE) {
 			Player p = Player.getConnectedPlayer(msg.getEntityId());
 			float factor = 0.5f;
 			p.x = SocketUtils.lerp(Float.parseFloat(msg.getParams()[0]), p.x,

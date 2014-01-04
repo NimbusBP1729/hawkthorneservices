@@ -98,7 +98,7 @@ public class HawkthorneGame extends Game {
 			if (currentTime - this.lastPositionBroadcast > 50) {
 				MessageBundle mb = new MessageBundle();
 				mb.setEntityId(player.getId());
-				mb.setCommand(Command.POSITION_UPDATE);
+				mb.setCommand(Command.POSITIONUPDATE);
 				String x = Integer.toString(Math.round(player.x));
 				String y = Integer.toString(Math.round(player.y));
 				mb.setParams(x, y);
@@ -127,7 +127,7 @@ public class HawkthorneGame extends Game {
 						.entrySet()) {
 					MessageBundle mb = new MessageBundle();
 					mb.setEntityId(entry.getKey());
-					mb.setCommand(Command.POSITION_UPDATE);
+					mb.setCommand(Command.POSITIONUPDATE);
 					Player player = entry.getValue();
 					String x = Integer.toString(Math.round(player.x));
 					String y = Integer.toString(Math.round(player.y));
