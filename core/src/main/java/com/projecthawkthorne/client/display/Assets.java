@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -200,9 +199,5 @@ public class Assets {
 		standard.put("bbox", new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
 				new TextureRegion(bboxTexture, 288, 0, 48, 48)));
-	}
-
-	public static void playSound(Sound sound) {
-		sound.play(1);
 	}
 }

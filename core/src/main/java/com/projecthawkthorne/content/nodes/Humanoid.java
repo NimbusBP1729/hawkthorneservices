@@ -1,6 +1,7 @@
 package com.projecthawkthorne.content.nodes;
 
 import java.util.Iterator;
+import java.util.UUID;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.FloorCollidable;
@@ -26,6 +27,10 @@ public abstract class Humanoid extends Node implements FloorCollidable {
 
 	public Humanoid(RectangleMapObject obj, Level level) {
 		super(obj, level);
+	}
+
+	public Humanoid(RectangleMapObject obj, Level level, UUID id) {
+		super(obj, level, id);
 	}
 
 	/**

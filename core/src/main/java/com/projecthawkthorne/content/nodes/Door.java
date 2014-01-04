@@ -41,7 +41,7 @@ public class Door extends Node {
 			Level destLevel = Levels.getSingleton().get(destLevelName);
 			Door door = destLevel.getDoor(this.properties.get("to",
 					String.class));
-			Levels.switchState(destLevel, door, player, true);
+			Levels.switchState(destLevel, door, player);
 		}
 		player.isTransporting = false;
 

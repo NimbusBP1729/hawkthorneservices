@@ -5,10 +5,12 @@
 package com.projecthawkthorne.content;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -27,6 +29,9 @@ import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.gamestate.Levels;
 import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
+import com.projecthawkthorne.socket.Client;
+import com.projecthawkthorne.socket.Command;
+import com.projecthawkthorne.socket.MessageBundle;
 import com.projecthawkthorne.timer.Timeable;
 import com.projecthawkthorne.timer.Timer;
 
@@ -46,15 +51,13 @@ import com.projecthawkthorne.timer.Timer;
  */
 public class Player extends Humanoid implements Timeable {
 
+	private static Map<UUID, Player> playerMap = new HashMap<UUID, Player>();
+
 	private Character character = new Character();
 	private EnumMap<GameKeys, Boolean> keyDown = new EnumMap<GameKeys, Boolean>(
 			GameKeys.class);
 	public static int startingMoney = 0;
 	private boolean invulnerable = false;
-	private List<Action> acions;
-	private int frame;
-	// plyr.healthText = {x = 0, y = 0}
-	// plyr.healthVel = {x = 0, y = 0}
 	private static final int max_health = 6;
 	private static int playerCount = 0;
 	private int health = Player.max_health;
@@ -98,15 +101,13 @@ public class Player extends Humanoid implements Timeable {
 	public long down_dt = 0;
 	private Cheat cheat = new Cheat();
 	public int jumpDamage = 1;
-	private String username;
-	private boolean isNew = true;
+	private String username = "unknown";
 	/** the list of nodes this player needs fresh information about */
 	public Set<Node> updateList = new HashSet<Node>();
 	private static Player singleton;
-	private static String START_LEVEL = "town";
 
-	private Player(RectangleMapObject obj, Level level) {
-		super(obj, level);
+	private Player(RectangleMapObject obj, Level level, UUID id) {
+		super(obj, level, id);
 		this.bboxOffsetX = 15;
 		this.bboxOffsetY = 0;
 
@@ -116,7 +117,10 @@ public class Player extends Humanoid implements Timeable {
 		}
 
 		this.inventory = new Inventory(this);
-		level.getPlayers().add(this);
+	}
+
+	private Player(RectangleMapObject obj, UUID id) {
+		this(obj, null, id);
 	}
 
 	private static RectangleMapObject getPlayerTiledObject() {
@@ -393,6 +397,9 @@ public class Player extends Humanoid implements Timeable {
 	@Override
 	protected void updateVelocity(long dt) {
 		Level level = (Level) this.level;
+		if (level == null) {
+			return;
+		}
 		// this.x = this.bb.getPosition().x;
 		// this.y = this.bb.getPosition().y;
 
@@ -828,7 +835,7 @@ public class Player extends Humanoid implements Timeable {
 				// TODO: remove casts
 				Level spawnLevel = ((Level) level).getSpawnLevel();
 				Door main = spawnLevel.getDoor("main");
-				Levels.switchState(spawnLevel, main, this, true);
+				Levels.switchState(spawnLevel, main, this);
 			}
 
 		} else if (name.equals("PLAYER_NOT_HURT")) {
@@ -943,6 +950,10 @@ public class Player extends Humanoid implements Timeable {
 		this.username = username;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
 	/**
 	 * @param rebounding
 	 *            the rebounding to set
@@ -987,9 +998,25 @@ public class Player extends Humanoid implements Timeable {
 		}
 		if (singleton == null) {
 			singleton = new Player(Player.getPlayerTiledObject(),
-					(Level) Levels.getSingleton().get(START_LEVEL));
+					UUID.randomUUID());
+			MessageBundle message = new MessageBundle();
+			message.setEntityId(singleton.getId());
+			message.setCommand(Command.REGISTERPLAYER);
+			message.setParams(singleton.getUsername());
+			Client.getSingleton().send(message);
+			playerMap.put(singleton.id, singleton);
 		}
 		return singleton;
+	}
+
+	public static Player getConnectedPlayer(UUID id) {
+		Player player = playerMap.get(id);
+		if (player == null) {
+			RectangleMapObject obj = Player.getPlayerTiledObject();
+			player = new Player(obj, null, id);
+			playerMap.put(id, player);
+		}
+		return player;
 	}
 
 	public void processKeyActions() {
@@ -1000,8 +1027,20 @@ public class Player extends Humanoid implements Timeable {
 			this.setIsKeyDown(gk, newValue);
 			if (!oldValue && newValue) {
 				this.keypressed(gk);
+
+				MessageBundle mb = new MessageBundle();
+				mb.setEntityId(Player.getSingleton().getId());
+				mb.setCommand(Command.KEYPRESSED);
+				mb.setParams(gk.toString());
+				Client.getSingleton().send(mb);
 			} else if (oldValue && !newValue) {
 				this.keyreleased(gk);
+
+				MessageBundle mb = new MessageBundle();
+				mb.setEntityId(Player.getSingleton().getId());
+				mb.setCommand(Command.KEYRELEASED);
+				mb.setParams(gk.toString());
+				Client.getSingleton().send(mb);
 			}
 		}
 	}

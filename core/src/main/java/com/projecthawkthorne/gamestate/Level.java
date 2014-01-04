@@ -3,6 +3,7 @@ package com.projecthawkthorne.gamestate;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.UUID;
 
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.maps.MapLayer;
@@ -31,7 +32,7 @@ public class Level extends Gamestate {
 
 	public static final String SRC_MAPS = "data/maps/";
 	private String title;
-	private Map<String, Node> nodes = new HashMap<String, Node>();
+	private Map<UUID, Node> nodes = new HashMap<UUID, Node>();
 	private Level spawnLevel;
 	private final String name;
 	private java.util.Map<String, Door> doors = new HashMap<String, Door>();
@@ -123,7 +124,7 @@ public class Level extends Gamestate {
 	}
 
 	@Override
-	public Map<String, Node> getNodeMap() {
+	public Map<UUID, Node> getNodeMap() {
 		return nodes;
 	}
 

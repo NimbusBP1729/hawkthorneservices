@@ -13,6 +13,7 @@
 		<android.maven.version>3.8.1</android.maven.version>
 		<gwt.version>2.5.0</gwt.version>
 		<gwt.maven.version>2.5.0</gwt.maven.version>
+		<junit.version>4.11</junit.version>
  	</properties>
 
 	<repositories>
@@ -65,6 +66,12 @@
 			<id>server</id>
 			<modules>
 				<module>hawkthorneservices-server</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>client</id>
+			<modules>
+				<module>hawkthorneservices-client</module>
 			</modules>
 		</profile>
 	</profiles>

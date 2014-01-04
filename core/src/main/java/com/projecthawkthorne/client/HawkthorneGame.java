@@ -24,6 +24,9 @@ import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.gamestate.Levels;
+import com.projecthawkthorne.socket.Client;
+import com.projecthawkthorne.socket.MessageBundle;
+import com.projecthawkthorne.socket.Server;
 import com.projecthawkthorne.timer.Timer;
 
 public class HawkthorneGame extends Game {
@@ -36,6 +39,7 @@ public class HawkthorneGame extends Game {
 	private float trackingX = 0;
 	private float trackingY = 0;
 	private long lastTime = 0;
+	private static final String START_LEVEL = "town";
 
 	public HawkthorneGame(Mode mode) {
 		HawkthorneGame.MODE = mode;
@@ -50,7 +54,11 @@ public class HawkthorneGame extends Game {
 				Gdx.graphics.getHeight());
 		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.zoom = 0.5f;
-
+		if (HawkthorneGame.MODE == Mode.CLIENT) {
+			Player player = Player.getSingleton();
+			Level level = Levels.getSingleton().get(START_LEVEL);
+			Levels.switchState(level, level.getDoor("main"), player);
+		}
 	}
 
 	@Override
@@ -67,6 +75,10 @@ public class HawkthorneGame extends Game {
 
 		Timer.updateTimers();
 		if (HawkthorneGame.MODE == Mode.CLIENT) {
+			// TODO:choose how hard to look for packets
+			Client client = Client.getSingleton();
+			MessageBundle msg = client.receive();
+			client.handleMessage(msg);
 			Player player = Player.getSingleton();
 			Gamestate gs = player.getLevel();
 			player.processKeyActions();
@@ -78,16 +90,21 @@ public class HawkthorneGame extends Game {
 				throw new UnsupportedOperationException("must be a level");
 			}
 		} else if (HawkthorneGame.MODE == Mode.SERVER) {
+			// TODO:choose how hard to look for packets
+			Server server = Server.getSingleton();
+			MessageBundle msg = server.receive();
+			server.handleMessage(msg);
 			Map<String, Level> levels = Levels.getSingleton().getLevels();
+			levelRender(Levels.getSingleton().get(trackedLevel), trackedPlayer);
+
 			for (Level level : levels.values()) {
 				Set<Player> players = level.getPlayers();
 				for (Player player : players) {
-					player.processKeyActions();
 					player.update(dt);
 				}
 				level.update(dt);
 			}
-			levelRender(Levels.getSingleton().get(trackedLevel), trackedPlayer);
+
 		} else {
 			throw new UnsupportedOperationException("unknown mode");
 		}
@@ -132,17 +149,23 @@ public class HawkthorneGame extends Game {
 			} else {
 				x = trackingX;
 				y = trackingY;
+
+				int boost = 0;
+				if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)
+						|| Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT)) {
+					boost = 6;
+				}
 				if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-					trackingX -= 5;
+					trackingX -= (5 + boost);
 				}
 				if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-					trackingX += 5;
+					trackingX += (5 + boost);
 				}
 				if (Gdx.input.isKeyPressed(Keys.UP)) {
-					trackingY += 5;
+					trackingY += (5 + boost);
 				}
 				if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-					trackingY -= 5;
+					trackingY -= (5 + boost);
 				}
 			}
 			cam.position.set(
@@ -175,7 +198,11 @@ public class HawkthorneGame extends Game {
 			tileMapRenderer.setMap(level.getTiledMap());
 			String musicFile = level.getTiledMap().getProperties()
 					.get("soundtrack", String.class);
-			AudioCache.playMusic(musicFile);
+			if (HawkthorneGame.MODE == Mode.SERVER) {
+				AudioCache.playMusic(musicFile, 0.01f);
+			} else {
+				AudioCache.playMusic(musicFile);
+			}
 		}
 
 		tileMapRenderer.setView(cam);

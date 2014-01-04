@@ -7,9 +7,14 @@ package com.projecthawkthorne.gamestate;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.projecthawkthorne.client.HawkthorneGame;
+import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.hardoncollider.Bound;
+import com.projecthawkthorne.socket.Client;
+import com.projecthawkthorne.socket.Command;
+import com.projecthawkthorne.socket.MessageBundle;
 
 /**
  * 
@@ -46,13 +51,12 @@ public class Levels {
 	 *            the door in the destination level
 	 * @param player
 	 *            the player being transported
-	 * @param doReply
-	 *            send a response back to the client(s) about this switch
 	 */
-	public static void switchState(Gamestate newLevel, Door door,
-			Player player, boolean doReply) {
+	public static void switchState(Gamestate newLevel, Door door, Player player) {
 		Gamestate oldLevel = player.getLevel();
-		oldLevel.removePlayer(player);
+		if (oldLevel != null) {
+			oldLevel.removePlayer(player);
+		}
 		player.setLevel(newLevel);
 		player.stopJumping();
 		player.getJumpQueue().flush();
@@ -90,6 +94,14 @@ public class Levels {
 			((Level) newLevel).getCollider().addBox(bb);
 			// this.moveBoundingBox();
 			// this.attack_box = PlayerAttack.new(collider,self);;
+		}
+
+		if (HawkthorneGame.MODE == Mode.CLIENT) {
+			MessageBundle mb = new MessageBundle();
+			mb.setEntityId(Player.getSingleton().getId());
+			mb.setCommand(Command.SWITCHLEVEL);
+			mb.setParams(newLevel.getName(), door.name);
+			Client.getSingleton().send(mb);
 		}
 
 	}

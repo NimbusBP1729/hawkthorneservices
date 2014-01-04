@@ -30,6 +30,10 @@ public class AudioCache {
 	}
 
 	public static void playMusic(String soundFile) {
+		playMusic(soundFile, 0.15f);
+	}
+
+	public static void playMusic(String soundFile, float volume) {
 		// stop old music
 		Iterator<Sound> it = musicCache.values().iterator();
 		while (it.hasNext()) {
@@ -55,7 +59,7 @@ public class AudioCache {
 					+ soundFile + ".ogg"));
 			musicCache.put(soundFile, s);
 		}
-		s.loop(0.15f);
+		s.loop(volume);
 	}
 
 	/**

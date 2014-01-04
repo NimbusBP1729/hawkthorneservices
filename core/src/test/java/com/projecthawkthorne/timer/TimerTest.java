@@ -2,6 +2,8 @@ package com.projecthawkthorne.timer;
 
 import junit.framework.TestCase;
 
+import org.junit.Test;
+
 public class TimerTest extends TestCase {
 	/**
 	 * a timeable class that just adds values to a map
@@ -24,18 +26,20 @@ public class TimerTest extends TestCase {
 
 	}
 
+	@Test
 	public void testTimerDoesntExpireEarly() throws InterruptedException {
 		Timer.add(2000, "early", timeable);
 		Thread.sleep(1000);
 		Timer.updateTimers();
-		assert (!timeable.getMap().contains("early"));
+		assertFalse(timeable.getMap().contains("early"));
 	}
 
+	@Test
 	public void testTimerExpires() throws InterruptedException {
 		Timer.add(2000, "on time", timeable);
 		Thread.sleep(2500);
 		Timer.updateTimers();
-		assert (timeable.getMap().contains("on time"));
+		assertTrue(timeable.getMap().contains("on time"));
 	}
 
 	/**
@@ -43,13 +47,10 @@ public class TimerTest extends TestCase {
 	 * 
 	 * @throws InterruptedException
 	 */
+	@Test(expected = IndexOutOfBoundsException.class)
 	public void testLastInsertion() throws InterruptedException {
 		Timer.add(2000, "double", timeable);
-		try {
-			Timer.add(1000, "double", timeable);
-			assert (false);
-		} catch (AssertionError e) {
-		}
+		Timer.add(1000, "double", timeable);
 	}
 
 }

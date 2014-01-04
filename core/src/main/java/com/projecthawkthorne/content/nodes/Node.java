@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -70,7 +71,7 @@ public abstract class Node extends Collidable {
 	/** true if the node is dead */
 	protected boolean dead;
 	/** the unique id of the node */
-	protected final String id;
+	protected final UUID id;
 	/**
 	 * count of the amount of objects that have been created <br>
 	 * this is used to generate ids
@@ -141,7 +142,18 @@ public abstract class Node extends Collidable {
 	 *            the level this node will reside in
 	 */
 	public Node(RectangleMapObject obj, Level level) {
-		this.id = String.valueOf(Node.objectCount++);
+		this(obj, level, UUID.randomUUID());
+	}
+
+	/**
+	 * 
+	 * @param obj
+	 *            tiled object that represent this node
+	 * @param level
+	 *            the level this node will reside in
+	 */
+	public Node(RectangleMapObject obj, Level level, UUID id) {
+		this.id = id;
 		this.dead = false;
 		this.level = level;
 		this.obj = obj;
@@ -171,7 +183,7 @@ public abstract class Node extends Collidable {
 	 * 
 	 * @return the unique id of the node
 	 */
-	public String getId() {
+	public UUID getId() {
 		return this.id;
 	}
 
@@ -519,8 +531,8 @@ public abstract class Node extends Collidable {
 		}
 		if (this instanceof Player) {
 			Player player = (Player) this;
-			Assets.font.drawMultiLine(batch, player.getCharacter().getName(),
-					this.x, this.y + 30);
+			Assets.font.drawMultiLine(batch, player.getUsername(), this.x,
+					this.y + 30);
 		}
 	}
 
