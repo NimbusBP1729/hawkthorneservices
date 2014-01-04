@@ -1000,11 +1000,13 @@ public class Player extends Humanoid implements Timeable {
 
 	public void processKeyActions() {
 		for (GameKeys gk : GameKeys.values()) {
-			boolean oldValue = this.getIsKeyDown(gk);
-			boolean newValue = Gdx.input.isKeyPressed(KeyMapping
+			boolean wasDown = this.getIsKeyDown(gk);
+			boolean isPcKeyDown = Gdx.input.isKeyPressed(KeyMapping
 					.gameKeyToInt(gk));
-			this.setIsKeyDown(gk, newValue);
-			if (!oldValue && newValue) {
+			boolean isAndroidKeyDown = getIsAndroidKeyDown(gk);
+			boolean isDown = isPcKeyDown || isAndroidKeyDown;
+			this.setIsKeyDown(gk, isDown);
+			if (!wasDown && isDown) {
 				this.keypressed(gk);
 
 				MessageBundle mb = new MessageBundle();
@@ -1012,7 +1014,7 @@ public class Player extends Humanoid implements Timeable {
 				mb.setCommand(Command.KEYPRESSED);
 				mb.setParams(gk.toString());
 				Client.getSingleton().send(mb);
-			} else if (oldValue && !newValue) {
+			} else if (wasDown && !isDown) {
 				this.keyreleased(gk);
 
 				MessageBundle mb = new MessageBundle();
@@ -1024,4 +1026,59 @@ public class Player extends Humanoid implements Timeable {
 		}
 	}
 
+	private boolean getIsAndroidKeyDown(GameKeys gk) {
+		boolean result;
+		boolean isFirstInRegion = false;
+		boolean isSecondInRegion = false;
+		boolean isFirstTouched = Gdx.input.isTouched();
+		boolean isSecondTouched = Gdx.input.isTouched(1);
+		int firstTouchX = Gdx.input.getX();
+		int firstTouchY = Gdx.input.getY();
+		int secondTouchX = Gdx.input.getX(1);
+		int secondTouchY = Gdx.input.getY(1);
+		int height = Gdx.graphics.getHeight();
+		int width = Gdx.graphics.getWidth();
+
+		switch (gk) {
+		case ATTACK:
+			break;
+		case DOWN:
+			isFirstInRegion = firstTouchY > 2 * height / 3;
+			isSecondInRegion = secondTouchY > 2 * height / 3;
+			break;
+		case INTERACT:
+			break;
+		case JUMP:
+			isFirstInRegion = firstTouchX > width / 3
+					&& firstTouchY > height / 3 && firstTouchX < 2 * width / 3
+					&& firstTouchY < 2 * height / 3;
+			isSecondInRegion = secondTouchX > width / 3
+					&& secondTouchY > height / 3
+					&& secondTouchX < 2 * width / 3
+					&& secondTouchY < 2 * height / 3;
+			break;
+		case LEFT:
+			isFirstInRegion = firstTouchX < width / 3;
+			isSecondInRegion = secondTouchX < width / 3;
+			break;
+		case RIGHT:
+			isFirstInRegion = firstTouchX > 2 * width / 3;
+			isSecondInRegion = secondTouchX > 2 * width / 3;
+			break;
+		case SELECT:
+			break;
+		case START:
+			break;
+		case UP:
+			isFirstInRegion = firstTouchY < height / 3;
+			isSecondInRegion = secondTouchY < height / 3;
+			break;
+		default:
+			break;
+
+		}
+		result = (isFirstTouched && isFirstInRegion)
+				|| (isSecondTouched && isSecondInRegion);
+		return result;
+	}
 }
