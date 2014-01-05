@@ -195,6 +195,7 @@ public class Server {
 					factor);
 			p.y = SocketUtils.lerp(Float.parseFloat(msg.getParams()[1]), p.y,
 					factor);
+			p.moveBoundingBox();
 		} else {
 			throw new UnsupportedOperationException();
 		}
