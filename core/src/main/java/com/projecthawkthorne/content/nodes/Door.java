@@ -8,7 +8,6 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Level;
-import com.projecthawkthorne.gamestate.Levels;
 
 /**
  * 
@@ -38,10 +37,10 @@ public class Door extends Node {
 		}
 		player.isTransporting = true;
 		if (this.instant || player.getIsKeyDown(GameKeys.INTERACT)) {
-			Level destLevel = Levels.getSingleton().get(destLevelName);
+			Level destLevel = Level.get(destLevelName);
 			Door door = destLevel.getDoor(this.properties.get("to",
 					String.class));
-			Levels.switchState(destLevel, door, player);
+			Level.switchState(destLevel, door, player);
 		}
 		player.isTransporting = false;
 
