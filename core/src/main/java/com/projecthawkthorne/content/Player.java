@@ -26,7 +26,6 @@ import com.projecthawkthorne.content.nodes.State;
 import com.projecthawkthorne.content.nodes.Weapon;
 import com.projecthawkthorne.datastructures.Queue;
 import com.projecthawkthorne.gamestate.Level;
-import com.projecthawkthorne.gamestate.Levels;
 import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
 import com.projecthawkthorne.socket.Client;
@@ -811,7 +810,7 @@ public class Player extends Humanoid implements Timeable {
 				// TODO: remove casts
 				Level spawnLevel = ((Level) level).getSpawnLevel();
 				Door main = spawnLevel.getDoor("main");
-				Levels.switchState(spawnLevel, main, this);
+				Level.switchState(spawnLevel, main, this);
 			}
 
 		} else if (name.equals("PLAYER_NOT_HURT")) {

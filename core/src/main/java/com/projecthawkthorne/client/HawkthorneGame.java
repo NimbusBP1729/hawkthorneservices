@@ -26,7 +26,6 @@ import com.projecthawkthorne.content.nodes.Liquid;
 import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
-import com.projecthawkthorne.gamestate.Levels;
 import com.projecthawkthorne.socket.Client;
 import com.projecthawkthorne.socket.Command;
 import com.projecthawkthorne.socket.MessageBundle;
@@ -61,8 +60,8 @@ public class HawkthorneGame extends Game {
 		cam.zoom = 0.5f;
 		if (HawkthorneGame.MODE == Mode.CLIENT) {
 			Player player = Player.getSingleton();
-			Level level = Levels.getSingleton().get(START_LEVEL);
-			Levels.switchState(level, level.getDoor("main"), player);
+			Level level = Level.get(START_LEVEL);
+			Level.switchState(level, level.getDoor("main"), player);
 		}
 	}
 
@@ -116,8 +115,8 @@ public class HawkthorneGame extends Game {
 					.receive()) {
 				server.handleMessage(msg);
 			}
-			Map<String, Level> levels = Levels.getSingleton().getLevels();
-			levelRender(Levels.getSingleton().get(trackedLevel), trackedPlayer);
+			Map<String, Level> levels = Level.getLevelMap();
+			levelRender(Level.get(trackedLevel), trackedPlayer);
 
 			for (Level level : levels.values()) {
 				Set<Player> players = level.getPlayers();

@@ -10,7 +10,6 @@ import java.net.SocketTimeoutException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.projecthawkthorne.client.HawkthorneGame;
@@ -19,7 +18,7 @@ import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.gamestate.Gamestate;
-import com.projecthawkthorne.gamestate.Levels;
+import com.projecthawkthorne.gamestate.Level;
 
 public class Server {
 
@@ -42,14 +41,13 @@ public class Server {
 		} catch (Exception e) {
 			port = 12345;
 		}
-		log.setLevel(Level.WARNING);
-		log.log(Level.INFO, "using port:" + port);
+		log.log(java.util.logging.Level.INFO, "using port:" + port);
 		try {
 			serverSocket = new DatagramSocket(port);
 			serverSocket.setSoTimeout(17);// ~1/60 seconds
 
 		} catch (SocketException ex) {
-			log.log(Level.SEVERE, ex.getMessage(), ex);
+			log.log(java.util.logging.Level.SEVERE, ex.getMessage(), ex);
 		}
 
 	}
@@ -84,17 +82,15 @@ public class Server {
 			InetSocketAddress socketAddress = (InetSocketAddress) receivePacket
 					.getSocketAddress();
 
-			log.log(Level.INFO,
-					"FROM CLIENT: " + new String(receivePacket.getData())
-							+ "\n" + "     socket: "
-							+ socketAddress.getAddress() + ","
-							+ socketAddress.getPort() + "\n" + "       time: "
-							+ System.currentTimeMillis());
+			log.log(java.util.logging.Level.INFO,
+					"FROM CLIENT: " + new String(receivePacket.getData())+ "\n"
+				  + "     socket: " + socketAddress.getAddress() + ","+ socketAddress.getPort() + "\n"
+				  + "       time: "	+ System.currentTimeMillis());
 
 			return receivePacket;
 		} catch (SocketTimeoutException ex) {
 		} catch (IOException ex) {
-			log.log(Level.SEVERE, ex.getMessage(), ex);
+			log.log(java.util.logging.Level.SEVERE, ex.getMessage(), ex);
 		}
 		return null;
 	}
@@ -121,14 +117,14 @@ public class Server {
 		sendPacket.setData(sendData);
 		sendPacket.setAddress(ip);
 		sendPacket.setPort(port);
-		log.log(Level.INFO,
+		log.log(java.util.logging.Level.INFO,
 				"TO CLIENT: " + message + "\n" + "   socket: " + ip + ","
 						+ port + "\n" + "     time: "
 						+ System.currentTimeMillis() + "\n");
 		try {
 			serverSocket.send(sendPacket);
 		} catch (IOException ex) {
-			log.log(Level.SEVERE, ex.getMessage(), ex);
+			log.log(java.util.logging.Level.SEVERE, ex.getMessage(), ex);
 			return false;
 		}
 		return true;
@@ -173,10 +169,10 @@ public class Server {
 			addressMap.put(id, msg.getSocketAddress());
 		} else if (msg.getCommand() == Command.SWITCHLEVEL) {
 			UUID id = msg.getEntityId();
-			Gamestate newLevel = Levels.getSingleton().get(msg.getParams()[0]);
+			Gamestate newLevel = Level.get(msg.getParams()[0]);
 			Player player = Player.getConnectedPlayer(id);
 			Door door = newLevel.getDoor(msg.getParams()[1]);
-			Levels.switchState(newLevel, door, player);
+			Level.switchState(newLevel, door, player);
 		} else if (msg.getCommand() == Command.KEYPRESSED) {
 			UUID id = msg.getEntityId();
 			GameKeys gk = GameKeys.valueOf(msg.getParams()[0].trim());
