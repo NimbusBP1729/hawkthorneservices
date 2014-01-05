@@ -98,13 +98,14 @@ public class Player extends Humanoid implements Timeable {
 	public long down_dt = 0;
 	private Cheat cheat = new Cheat();
 	public int jumpDamage = 1;
-	private String username = "unknown";
+	private String username;
 	/** the list of nodes this player needs fresh information about */
 	public Set<Node> updateList = new HashSet<Node>();
 	private static Player singleton;
 
 	private Player(RectangleMapObject obj, Level level, UUID id) {
 		super(obj, level, id);
+		this.username = "<" + id.toString().substring(0, 4) + "...>";
 		this.bboxOffsetX = 15;
 		this.bboxOffsetY = 0;
 
