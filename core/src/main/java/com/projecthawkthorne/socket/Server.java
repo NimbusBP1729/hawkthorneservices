@@ -188,13 +188,17 @@ public class Server {
 			Player player = Player.getConnectedPlayer(id);
 			player.setIsKeyDown(gk, false);
 			player.keyreleased(gk);
-		} else if (msg.getCommand() == Command.POSITIONUPDATE) {
+		} else if (msg.getCommand() == Command.POSITIONVELOCITYUPDATE) {
 			Player p = Player.getConnectedPlayer(msg.getEntityId());
 			float factor = 0.0f;
 			p.x = SocketUtils.lerp(Float.parseFloat(msg.getParams()[0]), p.x,
 					factor);
 			p.y = SocketUtils.lerp(Float.parseFloat(msg.getParams()[1]), p.y,
 					factor);
+			p.velocityX = SocketUtils.lerp(
+					Float.parseFloat(msg.getParams()[2]), p.velocityX, factor);
+			p.velocityY = SocketUtils.lerp(
+					Float.parseFloat(msg.getParams()[3]), p.velocityY, factor);
 			p.moveBoundingBox();
 		} else {
 			throw new UnsupportedOperationException();

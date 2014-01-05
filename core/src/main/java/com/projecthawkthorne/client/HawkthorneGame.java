@@ -20,6 +20,7 @@ import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.projecthawkthorne.client.audio.AudioCache;
 import com.projecthawkthorne.client.display.Assets;
+import com.projecthawkthorne.content.MathUtils;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Liquid;
 import com.projecthawkthorne.content.nodes.Node;
@@ -99,10 +100,12 @@ public class HawkthorneGame extends Game {
 			if (currentTime - this.lastPositionBroadcast > 50) {
 				MessageBundle mb = new MessageBundle();
 				mb.setEntityId(player.getId());
-				mb.setCommand(Command.POSITIONUPDATE);
-				String x = Integer.toString(Math.round(player.x));
-				String y = Integer.toString(Math.round(player.y));
-				mb.setParams(x, y);
+				mb.setCommand(Command.POSITIONVELOCITYUPDATE);
+				String x = Float.toString(MathUtils.roundTwoDecimals(player.x));
+				String y = Float.toString(MathUtils.roundTwoDecimals(player.y));
+				String vX = Float.toString(MathUtils.roundTwoDecimals(player.velocityX));
+				String vY = Float.toString(MathUtils.roundTwoDecimals(player.velocityY));
+				mb.setParams(x, y, vX, vY);
 				this.lastPositionBroadcast = currentTime;
 				client.send(mb);
 			}
@@ -128,11 +131,14 @@ public class HawkthorneGame extends Game {
 						.entrySet()) {
 					MessageBundle mb = new MessageBundle();
 					mb.setEntityId(entry.getKey());
-					mb.setCommand(Command.POSITIONUPDATE);
+					mb.setCommand(Command.POSITIONVELOCITYUPDATE);
 					Player player = entry.getValue();
-					String x = Integer.toString(Math.round(player.x));
-					String y = Integer.toString(Math.round(player.y));
-					mb.setParams(x, y);
+					mb.setCommand(Command.POSITIONVELOCITYUPDATE);
+					String x = Float.toString(MathUtils.roundTwoDecimals(player.x));
+					String y = Float.toString(MathUtils.roundTwoDecimals(player.y));
+					String vX = Float.toString(MathUtils.roundTwoDecimals(player.velocityX));
+					String vY = Float.toString(MathUtils.roundTwoDecimals(player.velocityY));
+					mb.setParams(x, y, vX, vY);
 					this.lastPositionBroadcast = currentTime;
 					Server.getSingleton().sendToAllExcept(mb, entry.getKey());
 				}
