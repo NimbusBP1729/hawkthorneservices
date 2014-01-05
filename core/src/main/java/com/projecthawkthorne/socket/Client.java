@@ -143,7 +143,7 @@ public class Client {
 			return;
 		} else if (msg.getCommand() == Command.POSITIONVELOCITYUPDATE) {
 			Player p = Player.getConnectedPlayer(msg.getEntityId());
-			float factor = 0.5f;
+			float factor = 0f;
 			p.x = SocketUtils.lerp(Float.parseFloat(msg.getParams()[0]), p.x,
 					factor);
 			p.y = SocketUtils.lerp(Float.parseFloat(msg.getParams()[1]), p.y,

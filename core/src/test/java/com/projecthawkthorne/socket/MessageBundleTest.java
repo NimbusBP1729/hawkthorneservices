@@ -7,15 +7,11 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import com.projecthawkthorne.client.HawkthorneGame;
-import com.projecthawkthorne.client.Mode;
-
 public class MessageBundleTest extends TestCase {
 	DatagramPacket packet = new DatagramPacket(new byte[1024], 1024);
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		HawkthorneGame.MODE = Mode.SERVER;
 	}
 
 	protected void tearDown() throws Exception {
@@ -84,5 +80,10 @@ public class MessageBundleTest extends TestCase {
 		assertEquals("levelName", mb.getParams()[0]);
 		assertEquals("doorName", mb.getParams()[1]);
 		assertEquals(27419, mb.getSocketAddress().getPort());
+	}
+	
+	@Test
+	public void testUpdatePlayerPositionAndSpeed(){
+		return;
 	}
 }

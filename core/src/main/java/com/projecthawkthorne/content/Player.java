@@ -35,16 +35,6 @@ import com.projecthawkthorne.socket.MessageBundle;
 import com.projecthawkthorne.timer.Timeable;
 import com.projecthawkthorne.timer.Timer;
 
-//-
-// Called whenever the player takes damage, if the damage inflicted causes the
-// player"s health to fall to or below 0 ){ it will transition to the dead
-// state.
-// This public void handles displaying the health display, playing the appropriate
-// sound clip, and handles invulnearbility properly.
-// @param damage The amount of damage to deal to the player
-//
-//brings the player back to life after death
-//should only be called by Level
 /**
  * 
  * @author Patrick
@@ -72,13 +62,9 @@ public class Player extends Humanoid implements Timeable {
 	private boolean flash = false;
 	private int fall_damage = 0;
 	private long since_solid_ground = 0;
-	// private mask = null
 	private Node currently_held; // Object currently being held by the player
 	private Node holdable; // Object that would be picked up if player used grab
 							// key
-	// private EnumMap<Button,Boolean> key_down;
-	// private character
-	// private Collider collider;
 	private boolean interactive_collide;
 	private PlayerAttack attack_box;
 	private Footprint footprint;
