@@ -42,6 +42,7 @@ public class Server {
 		} catch (Exception e) {
 			port = 12345;
 		}
+		log.setLevel(Level.WARNING);
 		log.log(Level.INFO, "using port:" + port);
 		try {
 			serverSocket = new DatagramSocket(port);

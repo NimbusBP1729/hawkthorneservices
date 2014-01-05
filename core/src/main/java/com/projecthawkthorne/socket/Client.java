@@ -49,6 +49,8 @@ public class Client {
 			} catch (Exception e) {
 				this.serverIp = InetAddress.getLocalHost();
 			}
+			log.setLevel(Level.WARNING);
+
 
 			log.log(Level.INFO, "Using address,port:" + this.serverIp + ","
 					+ this.serverPort);
