@@ -529,7 +529,7 @@ public abstract class Node extends Collidable {
 		if (this instanceof Player) {
 			Player player = (Player) this;
 			Assets.font.drawMultiLine(batch, player.getUsername(), this.x,
-					this.y + 30);
+					this.y + 60);
 		}
 	}
 

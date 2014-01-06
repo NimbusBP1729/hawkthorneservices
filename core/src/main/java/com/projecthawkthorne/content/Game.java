@@ -23,6 +23,6 @@ public final class Game {
 	public static final float max_x = .3f;
 	public static final float maxVelocityY = .6f;
 
-	public static boolean DEBUG = true;
+	public static boolean DEBUG = false;
 
 }
