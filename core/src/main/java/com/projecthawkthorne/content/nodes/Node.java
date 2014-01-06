@@ -452,9 +452,9 @@ public abstract class Node extends Collidable {
 		try {
 			if (this instanceof Player) {
 				Player player = (Player) this;
-				anim = Assets.characters.get(player.getCharacter().getName())
-						.get(player.getCharacter().getCostume())
-						.get(player.getState());
+				anim = Assets.characters.lookUp(player.getCharacter().getName(),
+												player.getCharacter().getCostume(),
+												player.getState());
 				if (anim == null) {
 					Gdx.app.error("drawing error",
 							"create player entry animation for (name,costume,STATE)=("

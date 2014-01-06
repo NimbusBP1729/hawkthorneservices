@@ -23,7 +23,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.projecthawkthorne.content.nodes.State;
 
 public class Assets {
 	public static final String SRC_IMAGES = "data/maps/images/";
@@ -32,7 +31,7 @@ public class Assets {
 	/** */
 	public static Map<String, Texture> spriteCache = new HashMap<String, Texture>();
 
-	/** top level map for all non-player modes */
+	/** top level map for all non-player nodes */
 	public static Map<String, Map<String, Map<String, Animation>>> nodes;
 
 	private static Texture enemyTexture;
@@ -52,10 +51,7 @@ public class Assets {
 	private static HashMap<String, Animation> health;
 
 	/** top level map for all characters */
-	public static Map<String, Map<String, Map<State, Animation>>> characters;
-	private static Texture abedBaseTexture;
-	private static Map<String, Map<State, Animation>> abed;
-	private static Map<State, Animation> base;
+	public static CharacterMap characters = new CharacterMap();
 
 	/** map for default sprites */
 	public static HashMap<String, Animation> standard;
@@ -164,34 +160,6 @@ public class Assets {
 		nodes.put("enemy", enemy);
 		nodes.put("material", material);
 		nodes.put("token", token);
-
-		abedBaseTexture = loadTexture(SRC_IMAGES + "characters/abed/base.png");
-
-		characters = new HashMap<String, Map<String, Map<State, Animation>>>();
-		abed = new HashMap<String, Map<State, Animation>>();
-		base = new HashMap<State, Animation>();
-		base.put(State.IDLE, new Animation(0.2f,
-				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
-				new TextureRegion(abedBaseTexture, 0, 0, 48, 48)));
-		base.put(State.WALK, new Animation(0.2f,
-				com.badlogic.gdx.graphics.g2d.Animation.LOOP,
-				new TextureRegion(abedBaseTexture, 48, 0, 48, 48),
-				new TextureRegion(abedBaseTexture, 96, 0, 48, 48),
-				new TextureRegion(abedBaseTexture, 144, 0, 48, 48)));
-		base.put(State.JUMP, new Animation(0.2f,
-				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
-				new TextureRegion(abedBaseTexture, 288, 0, 48, 48)));
-		base.put(State.CROUCH, new Animation(0.2f,
-				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
-				new TextureRegion(abedBaseTexture, 8 * 48, 2 * 48, 48, 48)));
-		base.put(State.GAZE, new Animation(0.2f,
-				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
-				new TextureRegion(abedBaseTexture, 7 * 48, 0 * 48, 48, 48)));
-		base.put(State.DEAD, new Animation(0.2f,
-				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
-				new TextureRegion(abedBaseTexture, 8 * 48, 12 * 48, 48, 48)));
-		abed.put("base", base);
-		characters.put("abed", abed);
 
 		standard.put("node", new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
