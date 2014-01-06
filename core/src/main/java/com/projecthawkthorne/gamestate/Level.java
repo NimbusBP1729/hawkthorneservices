@@ -229,11 +229,6 @@ public class Level extends Gamestate {
 			player.y = door.y + door.height - player.height;
 		}
 		newLevel.addPlayer(player);
-		if (player.getCharacter().hasChanged()) {
-			// TODO: hasChanged(true) should be done by the client
-			// send a message to other clients here
-			player.getCharacter().setChanged(false);
-		}
 
 		Bound bb = player.getBb();
 		if (oldLevel instanceof Level) {

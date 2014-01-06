@@ -11,7 +11,6 @@ import com.projecthawkthorne.content.nodes.State;
  * @author Patrick
  */
 public class Character {
-	boolean changed = false;
 	private State state = State.IDLE;
 	private LuaAnimation animation = new LuaAnimation();
 	private String name;
@@ -20,14 +19,6 @@ public class Character {
 	public Character() {
 		name = "abed";
 		costume = "base";
-	}
-
-	public boolean hasChanged() {
-		return changed;
-	}
-
-	public void setChanged(boolean newValue) {
-		changed = newValue;
 	}
 
 	void setState(State state) {
