@@ -46,6 +46,11 @@ public class HawkthorneGame extends Game {
 	private long lastPositionBroadcast = System.currentTimeMillis();
 	private static final boolean IS_Y_DOWN = false;
 
+	public HawkthorneGame() {
+		//Single player is not supported yet
+		HawkthorneGame.MODE = Mode.CLIENT;
+	}
+
 	public HawkthorneGame(Mode mode) {
 		HawkthorneGame.MODE = mode;
 	}
