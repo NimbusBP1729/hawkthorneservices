@@ -247,7 +247,7 @@ public class Level extends Gamestate {
 			// this.attack_box = PlayerAttack.new(collider,self);;
 		}
 
-		if (HawkthorneGame.MODE == Mode.CLIENT) {
+		if (HawkthorneGame.MODE == Mode.CLIENT && player.getId() == Player.getSingleton().getId()) {
 			MessageBundle mb = new MessageBundle();
 			mb.setEntityId(Player.getSingleton().getId());
 			mb.setCommand(Command.SWITCHLEVEL);

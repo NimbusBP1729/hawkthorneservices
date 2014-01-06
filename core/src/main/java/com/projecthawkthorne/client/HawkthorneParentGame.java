@@ -26,7 +26,7 @@ public class HawkthorneParentGame extends Game {
 	private BatchTiledMapRenderer tileMapRenderer = null;
 	private OrthographicCamera cam;
 	public static Mode MODE;
-	protected static final String START_LEVEL = "town";
+	public static final String START_LEVEL = "town";
 	public String trackedLevel = START_LEVEL;
 	protected Player trackedPlayer;
 	protected float trackingX = 0;

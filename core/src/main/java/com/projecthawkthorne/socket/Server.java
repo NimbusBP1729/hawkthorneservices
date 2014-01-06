@@ -13,6 +13,7 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 import com.projecthawkthorne.client.HawkthorneGame;
+import com.projecthawkthorne.client.HawkthorneParentGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
@@ -166,7 +167,12 @@ public class Server {
 		if (msg.getCommand() == Command.REGISTERPLAYER) {
 			UUID id = msg.getEntityId();
 			addressMap.put(id, msg.getSocketAddress());
-			Player.getConnectedPlayer(id);
+			Player newPlayer = Player.getConnectedPlayer(id);
+			newPlayer.setUsername(msg.getParams()[0]);
+			
+			Level newLevel = Level.get(msg.getParams()[1]);
+			Door door = newLevel.getDoor(msg.getParams()[2]);
+			Level.switchState(newLevel, door, newPlayer);
 
 			//tell everyone about the new kid
 			this.sendToAllExcept(msg, id);
@@ -176,6 +182,7 @@ public class Server {
 				InetSocketAddress sockAddr = msg.getSocketAddress();
 				MessageBundle mb = new MessageBundle();
 				mb.setCommand(Command.REGISTERPLAYER);
+				mb.setParams(p.getUsername(),HawkthorneParentGame.START_LEVEL,"main");
 				mb.setEntityId(p.getId());
 				this.send(mb, sockAddr.getAddress(), sockAddr.getPort());
 			}
@@ -185,6 +192,8 @@ public class Server {
 			Player player = Player.getConnectedPlayer(id);
 			Door door = newLevel.getDoor(msg.getParams()[1]);
 			Level.switchState(newLevel, door, player);
+			//tell everyone else you moved
+			this.sendToAllExcept(msg, id);
 		} else if (msg.getCommand() == Command.KEYPRESSED) {
 			UUID id = msg.getEntityId();
 			GameKeys gk = GameKeys.valueOf(msg.getParams()[0].trim());

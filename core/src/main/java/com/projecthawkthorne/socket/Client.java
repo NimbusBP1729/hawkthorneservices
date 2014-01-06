@@ -7,11 +7,14 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.nodes.Door;
+import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
 
 public class Client {
@@ -154,8 +157,16 @@ public class Client {
 			p.moveBoundingBox();
 		} else if (msg.getCommand() == Command.REGISTERPLAYER) {
 			Player p = Player.getConnectedPlayer(msg.getEntityId());
-			Level town = Level.get("town");
-			Level.switchState(town,town.getDoor("main"), p);
+			p.setUsername(msg.getParams()[0]);
+			Level newLevel = Level.get(msg.getParams()[1]);
+			Door door = newLevel.getDoor(msg.getParams()[2]);
+			Level.switchState(newLevel, door, p);
+		} else if (msg.getCommand() == Command.SWITCHLEVEL) {
+			UUID id = msg.getEntityId();
+			Gamestate newLevel = Level.get(msg.getParams()[0]);
+			Player player = Player.getConnectedPlayer(id);
+			Door door = newLevel.getDoor(msg.getParams()[1]);
+			Level.switchState(newLevel, door, player);
 		} else {
 			throw new UnsupportedOperationException(msg.getCommand().toString());
 		}

@@ -15,6 +15,7 @@ import java.util.UUID;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.client.HawkthorneGame;
+import com.projecthawkthorne.client.HawkthorneParentGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.nodes.Climbable;
 import com.projecthawkthorne.content.nodes.Door;
@@ -963,7 +964,7 @@ public class Player extends Humanoid implements Timeable {
 			MessageBundle message = new MessageBundle();
 			message.setEntityId(singleton.getId());
 			message.setCommand(Command.REGISTERPLAYER);
-			message.setParams(singleton.getUsername());
+			message.setParams(singleton.getUsername(),HawkthorneParentGame.START_LEVEL,"main");
 			Client.getSingleton().send(message);
 			playerMap.put(singleton.id, singleton);
 		}
