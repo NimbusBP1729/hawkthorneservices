@@ -32,7 +32,7 @@ public class Server {
 	private DatagramPacket sendPacket = new DatagramPacket(sendData,
 			sendData.length);
 	Logger log = Logger.getLogger(this.getClass().getName());
-	private Map<UUID, InetSocketAddress> addressMap = new HashMap<UUID, InetSocketAddress>();
+	public static Map<UUID, InetSocketAddress> addressMap = new HashMap<UUID, InetSocketAddress>();
 
 	private Server() {
 		int port;
@@ -165,9 +165,20 @@ public class Server {
 
 		if (msg.getCommand() == Command.REGISTERPLAYER) {
 			UUID id = msg.getEntityId();
-			Player.getConnectedPlayer(id);
-			this.sendToAllExcept(msg, id);
 			addressMap.put(id, msg.getSocketAddress());
+			Player.getConnectedPlayer(id);
+
+			//tell everyone about the new kid
+			this.sendToAllExcept(msg, id);
+			
+			//tell the new kid about everyone
+			for(Player p: Player.getPlayerMap().values()){
+				InetSocketAddress sockAddr = msg.getSocketAddress();
+				MessageBundle mb = new MessageBundle();
+				mb.setCommand(Command.REGISTERPLAYER);
+				mb.setEntityId(p.getId());
+				this.send(mb, sockAddr.getAddress(), sockAddr.getPort());
+			}
 		} else if (msg.getCommand() == Command.SWITCHLEVEL) {
 			UUID id = msg.getEntityId();
 			Gamestate newLevel = Level.get(msg.getParams()[0]);
@@ -198,6 +209,7 @@ public class Server {
 			p.velocityY = SocketUtils.lerp(
 					Float.parseFloat(msg.getParams()[3]), p.velocityY, factor);
 			p.moveBoundingBox();
+			this.sendToAllExcept(msg, p.getId());
 		} else {
 			throw new UnsupportedOperationException();
 		}

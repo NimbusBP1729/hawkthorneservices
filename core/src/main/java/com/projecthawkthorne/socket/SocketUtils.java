@@ -25,11 +25,16 @@ public class SocketUtils {
 			return null;
 		}
 		MessageBundle mb = new MessageBundle();
-		String[] chunks = StringUtils.split(new String(packet.getData()),
+		String[] chunks = StringUtils.split(new String(packet.getData()).trim(),
 				MEMBER_SEPARATOR);
 		UUID id = UUID.fromString(chunks[0]);
 		Command command = Command.valueOf(chunks[1]);
-		String[] paramChunks = StringUtils.split(chunks[2], PARAM_SEPARATOR);
+		String[] paramChunks;
+		if(chunks.length>2){
+			paramChunks = StringUtils.split(chunks[2], PARAM_SEPARATOR);
+		}else{
+			paramChunks = new String[0];			
+		}
 		mb.setCommand(command);
 		mb.setEntityId(id);
 		mb.setParams(paramChunks);

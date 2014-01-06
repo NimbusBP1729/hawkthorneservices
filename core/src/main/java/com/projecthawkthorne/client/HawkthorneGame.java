@@ -1,5 +1,7 @@
 package com.projecthawkthorne.client;
 
+import java.util.Set;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.projecthawkthorne.content.MathUtils;
@@ -47,12 +49,15 @@ public class HawkthorneGame extends HawkthorneParentGame {
 			client.handleMessage(msg);
 		}
 		Player player = Player.getSingleton();
-		Gamestate gs = player.getLevel();
+		Gamestate level = player.getLevel();
 		player.processKeyActions();
-		player.update(dt);
-		gs.update(dt);
-		if (gs instanceof Level) {
-			levelRender((Level) gs, player);
+		Set<Player> players = level.getPlayers();
+		for (Player p : players) {
+			p.update(dt);
+		}
+		level.update(dt);
+		if (level instanceof Level) {
+			levelRender((Level) level, player);
 		} else {
 			throw new UnsupportedOperationException("non-level gamestates aren't supported yet");
 		}

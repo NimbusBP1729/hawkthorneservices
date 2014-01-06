@@ -7,12 +7,12 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.gamestate.Level;
 
 public class Client {
 
@@ -49,17 +49,17 @@ public class Client {
 			} catch (Exception e) {
 				this.serverIp = InetAddress.getLocalHost();
 			}
-			log.setLevel(Level.WARNING);
+			log.setLevel(java.util.logging.Level.WARNING);
 
-			log.log(Level.INFO, "Using address,port:" + this.serverIp + ","
+			log.log(java.util.logging.Level.INFO, "Using address,port:" + this.serverIp + ","
 					+ this.serverPort);
 			sendPacket = new DatagramPacket(sendData, sendData.length,
 					this.serverIp, this.serverPort);
 
 		} catch (SocketException ex) {
-			log.log(Level.SEVERE, ex.getMessage(), ex);
+			log.log(java.util.logging.Level.SEVERE, ex.getMessage(), ex);
 		} catch (UnknownHostException ex) {
-			log.log(Level.SEVERE, ex.getMessage(), ex);
+			log.log(java.util.logging.Level.SEVERE, ex.getMessage(), ex);
 		}
 	}
 
@@ -88,20 +88,20 @@ public class Client {
 		try {
 			SocketUtils.clearPacket(receivePacket);
 			clientSocket.receive(receivePacket);
-			log.log(Level.INFO,
+			log.log(java.util.logging.Level.INFO,
 					"FROM SERVER: '"
 							+ new String(receivePacket.getData()).trim()
 							+ "'\n");
-			log.log(Level.INFO, "    address: '" + receivePacket.getAddress()
+			log.log(java.util.logging.Level.INFO, "    address: '" + receivePacket.getAddress()
 					+ "'\n");
-			log.log(Level.INFO, "       port: '" + receivePacket.getPort()
+			log.log(java.util.logging.Level.INFO, "       port: '" + receivePacket.getPort()
 					+ "'\n");
-			log.log(Level.INFO, "       time: '" + System.currentTimeMillis()
+			log.log(java.util.logging.Level.INFO, "       time: '" + System.currentTimeMillis()
 					+ "'\n");
 			return receivePacket;
 		} catch (SocketTimeoutException e) {
 		} catch (Exception e) {
-			log.log(Level.SEVERE, e.getMessage(), e);
+			log.log(java.util.logging.Level.SEVERE, e.getMessage(), e);
 		}
 		return null;
 	}
@@ -124,11 +124,11 @@ public class Client {
 			sendData = message.getBytes();
 			sendPacket.setData(sendData);
 			clientSocket.send(sendPacket);
-			log.log(Level.INFO, "TO SERVER: " + message);
-			log.log(Level.INFO, "     time: " + System.currentTimeMillis());
+			log.log(java.util.logging.Level.INFO, "TO SERVER: " + message);
+			log.log(java.util.logging.Level.INFO, "     time: " + System.currentTimeMillis());
 			return true;
 		} catch (Exception e) {
-			log.log(Level.SEVERE, e.getMessage(), e);
+			log.log(java.util.logging.Level.SEVERE, e.getMessage(), e);
 			return false;
 		}
 	}
@@ -142,7 +142,7 @@ public class Client {
 			return;
 		} else if (msg.getCommand() == Command.POSITIONVELOCITYUPDATE) {
 			Player p = Player.getConnectedPlayer(msg.getEntityId());
-			float factor = 0f;
+			float factor = 0.5f;
 			p.x = SocketUtils.lerp(Float.parseFloat(msg.getParams()[0]), p.x,
 					factor);
 			p.y = SocketUtils.lerp(Float.parseFloat(msg.getParams()[1]), p.y,
@@ -152,6 +152,10 @@ public class Client {
 			p.velocityY = SocketUtils.lerp(
 					Float.parseFloat(msg.getParams()[3]), p.velocityY, factor);
 			p.moveBoundingBox();
+		} else if (msg.getCommand() == Command.REGISTERPLAYER) {
+			Player p = Player.getConnectedPlayer(msg.getEntityId());
+			Level town = Level.get("town");
+			Level.switchState(town,town.getDoor("main"), p);
 		} else {
 			throw new UnsupportedOperationException(msg.getCommand().toString());
 		}
