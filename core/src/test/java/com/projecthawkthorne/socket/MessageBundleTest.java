@@ -81,9 +81,5 @@ public class MessageBundleTest extends TestCase {
 		assertEquals("doorName", mb.getParams()[1]);
 		assertEquals(27419, mb.getSocketAddress().getPort());
 	}
-	
-	@Test
-	public void testUpdatePlayerPositionAndSpeed(){
-		return;
-	}
+
 }
