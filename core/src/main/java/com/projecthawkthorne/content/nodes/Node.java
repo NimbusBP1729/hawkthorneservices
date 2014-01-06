@@ -499,13 +499,10 @@ public abstract class Node extends Collidable {
 		} catch (NullPointerException e) {
 			if (DEBUG) {
 				Gdx.app.error("node draw error", "(id,type,name,state)==("
-						+ this.getId() + "," + this.type + "," + this.name
-						+ "," + this.getState() + ")");
-				if (this instanceof Player) {
-					Player player = (Player) this;
-					Gdx.app.error("costume error", player.getCharacter()
-							.getCostume());
-				}
+						+ this.getId() + "," 
+						+ this.type + "," 
+						+ this.name + ","
+						+ this.getState() + ")");
 
 				TextureRegion defaultTextureRegion = Assets.standard
 						.get("this").getKeyFrame(0);
