@@ -10,7 +10,7 @@
 
 	<artifactId>hawkthorneservices-server</artifactId>
 	<packaging>jar</packaging>
-	<name>HawkthorneGame desktop</name>
+	<name>HawkthorneGame Server</name>
 
 	<properties>
 		<mainClass>com.projecthawkthorne.java.ServerGameDesktop</mainClass>
