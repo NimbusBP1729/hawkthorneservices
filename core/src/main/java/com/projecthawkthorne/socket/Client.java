@@ -153,7 +153,7 @@ public class Client {
 					Float.parseFloat(msg.getParams()[3]), p.velocityY, factor);
 			p.moveBoundingBox();
 		} else {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException(msg.getCommand().toString());
 		}
 	}
 }
