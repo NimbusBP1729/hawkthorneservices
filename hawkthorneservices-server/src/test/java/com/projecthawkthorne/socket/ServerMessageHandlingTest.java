@@ -174,17 +174,40 @@ public class ServerMessageHandlingTest {
 
 	@Test
 	public void testLevelSwitching() throws InterruptedException {
-
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.useGL20 = true;
-		LevelSwitchTest listener = new LevelSwitchTest(Mode.SERVER);
-		new LwjglApplication(listener, config);
+		LwjglApplication app = new LwjglApplication(new HawkGdxTest(Mode.SERVER){
+			private Player player;
 
+			@Override
+			public Player getOutput() {
+				return player;
+			}
+
+			@Override
+			public void runTest() {
+				// create known connected player
+				UUID id = UUID.randomUUID();
+				Player plyr = Player.getConnectedPlayer(id);
+
+				// create a received message
+				MessageBundle msg = new MessageBundle();
+				msg.setCommand(Command.SWITCHLEVEL);
+				msg.setEntityId(id);
+				msg.setParams("town", "main");
+
+				// process message
+				server.handleMessage(msg);
+				player = plyr;
+			}
+		}, config);
+
+		HawkGdxTest listener = (HawkGdxTest) app.getApplicationListener();
 		while (!listener.isComplete()) {
 			Thread.sleep(100);
 		}
 
-		Player player = listener.getPlayer();
+		Player player = (Player) listener.getOutput();
 
 		// confirm validity of message processing
 		assertEquals("town", player.getLevel().getName());
@@ -193,34 +216,4 @@ public class ServerMessageHandlingTest {
 
 	}
 
-	public static class LevelSwitchTest extends HawkGdxTest {
-
-		private Player player;
-
-		public LevelSwitchTest(Mode mode) {
-			super(mode);
-		}
-
-		public Player getPlayer() {
-			return player;
-		}
-
-		@Override
-		public void runTest() {
-			// create known connected player
-			UUID id = UUID.randomUUID();
-			Player plyr = Player.getConnectedPlayer(id);
-
-			// create a received message
-			MessageBundle msg = new MessageBundle();
-			msg.setCommand(Command.SWITCHLEVEL);
-			msg.setEntityId(id);
-			msg.setParams("town", "main");
-
-			// process message
-			server.handleMessage(msg);
-			player = plyr;
-		}
-
-	}
 }

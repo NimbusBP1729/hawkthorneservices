@@ -12,6 +12,8 @@ public abstract class HawkGdxTest implements ApplicationListener{
 	
 	private boolean isComplete = false;
 
+	public abstract Object getOutput();	
+
 	@Override
 	public void create() {
 		isComplete = false;
