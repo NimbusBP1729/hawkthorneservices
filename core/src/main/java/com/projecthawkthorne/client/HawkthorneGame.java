@@ -37,7 +37,7 @@ public class HawkthorneGame extends Game {
 	private BatchTiledMapRenderer tileMapRenderer = null;
 	private OrthographicCamera cam;
 	public static Mode MODE;
-	private static final String START_LEVEL = "multiplayer";
+	private static final String START_LEVEL = "town";
 	public String trackedLevel = START_LEVEL;
 	public Player trackedPlayer = null;
 	private float trackingX = 0;
@@ -117,7 +117,11 @@ public class HawkthorneGame extends Game {
 				server.handleMessage(msg);
 			}
 			Map<String, Level> levels = Level.getLevelMap();
-			levelRender(Level.get(trackedLevel), trackedPlayer);
+			if (trackedPlayer == null) {
+				levelRender(Level.get(trackedLevel), null);
+			} else {
+				levelRender((Level) trackedPlayer.getLevel(), trackedPlayer);
+			}
 
 			for (Level level : levels.values()) {
 				Set<Player> players = level.getPlayers();
@@ -186,6 +190,9 @@ public class HawkthorneGame extends Game {
 				}
 			}
 			if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+				if(trackedPlayer!=null){
+					trackedLevel = trackedPlayer.getLevel().getName();
+				}
 				trackedPlayer = null;
 			}
 
