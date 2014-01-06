@@ -41,8 +41,15 @@ public class CharacterMap {
 					new TextureRegion(loadTexture(SRC_IMAGES + "characters/"+name+"/"+costume+".png"), 7 * 48, 0 * 48, 48, 48));
 			break;
 		case GAZEIDLE:
+			anim = new Animation(0.2f,
+					com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
+					new TextureRegion(loadTexture(SRC_IMAGES + "characters/"+name+"/"+costume+".png"), 0 * 48, 3 * 48, 48, 48));
 			break;
 		case GAZEWALK:
+			anim = new Animation(0.16f,
+					com.badlogic.gdx.graphics.g2d.Animation.LOOP,
+					new TextureRegion(loadTexture(SRC_IMAGES + "characters/"+name+"/"+costume+".png"), 1 * 48, 3 * 48, 48, 48),
+					new TextureRegion(loadTexture(SRC_IMAGES + "characters/"+name+"/"+costume+".png"), 2 * 48, 3 * 48, 48, 48));
 			break;
 		case HOLD:
 			break;
