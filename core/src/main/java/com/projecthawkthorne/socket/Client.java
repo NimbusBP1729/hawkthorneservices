@@ -51,7 +51,6 @@ public class Client {
 			}
 			log.setLevel(Level.WARNING);
 
-
 			log.log(Level.INFO, "Using address,port:" + this.serverIp + ","
 					+ this.serverPort);
 			sendPacket = new DatagramPacket(sendData, sendData.length,

@@ -60,7 +60,7 @@ public class Level extends Gamestate {
 
 		this.spawnLevel = this;
 	}
-	
+		
 	public static Level get(String name) {
 		Level level = Level.getLevelMap().get(name);
 		if(level == null){

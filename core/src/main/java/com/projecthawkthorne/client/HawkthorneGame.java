@@ -44,6 +44,7 @@ public class HawkthorneGame extends Game {
 	private float trackingY = 0;
 	private long lastTime = 0;
 	private long lastPositionBroadcast = System.currentTimeMillis();
+	private static final boolean IS_Y_DOWN = false;
 
 	public HawkthorneGame(Mode mode) {
 		HawkthorneGame.MODE = mode;
@@ -56,7 +57,7 @@ public class HawkthorneGame extends Game {
 		tileMapRenderer = new OrthogonalTiledMapRenderer(null, spriteBatch);
 		cam = new OrthographicCamera(Gdx.graphics.getWidth(),
 				Gdx.graphics.getHeight());
-		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		cam.setToOrtho(IS_Y_DOWN, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.zoom = 0.5f;
 		if (HawkthorneGame.MODE == Mode.CLIENT) {
 			Player player = Player.getSingleton();
@@ -67,7 +68,7 @@ public class HawkthorneGame extends Game {
 
 	@Override
 	public void resize(int width, int height) {
-		cam.setToOrtho(false, width, height);
+		cam.setToOrtho(IS_Y_DOWN, width, height);
 	}
 
 	@Override
