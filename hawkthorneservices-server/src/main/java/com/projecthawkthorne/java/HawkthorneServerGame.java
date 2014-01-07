@@ -19,6 +19,9 @@ import com.projecthawkthorne.socket.Server;
 
 public class HawkthorneServerGame extends HawkthorneParentGame {
 	
+	boolean switchCharacterKeyDown = false;
+	private int trackedPlayerIndex = 0;
+	
 	public HawkthorneServerGame(){
 		HawkthorneGame.MODE = Mode.SERVER;
 	}
@@ -75,13 +78,15 @@ public class HawkthorneServerGame extends HawkthorneParentGame {
 	@Override
 	protected void levelRender(Level level, Player player) {
 		super.levelRender(level, player);
-		if (Gdx.input.isKeyPressed(Keys.ALT_LEFT)
-				|| Gdx.input.isKeyPressed(Keys.ALT_RIGHT)) {
-			for (Player somePlayer : level.getPlayers()) {
-				trackedPlayer = somePlayer;
-				break;
-			}
+		
+		if (!switchCharacterKeyDown 
+				&& Gdx.input.isKeyPressed(Keys.S)
+				&& level.getPlayers().size()>0) {
+			Player[] players = level.getPlayers().toArray(new Player[0]);
+			trackedPlayerIndex = (trackedPlayerIndex+1)%players.length;
+			trackedPlayer = players[trackedPlayerIndex];
 		}
+		switchCharacterKeyDown = Gdx.input.isKeyPressed(Keys.S);
 		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
 			if(trackedPlayer!=null){
 				trackedLevel = trackedPlayer.getLevel().getName();
