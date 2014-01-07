@@ -50,17 +50,19 @@ public class HawkthorneGame extends HawkthorneParentGame {
 		}
 		Player player = Player.getSingleton();
 		Gamestate level = player.getLevel();
+		if (level instanceof Level) {
+			levelRender((Level) level, player);
+		} else {
+			throw new UnsupportedOperationException("non-level gamestates aren't supported yet");
+		}
+		
 		player.processKeyActions();
 		Set<Player> players = level.getPlayers();
 		for (Player p : players) {
 			p.update(dt);
 		}
 		level.update(dt);
-		if (level instanceof Level) {
-			levelRender((Level) level, player);
-		} else {
-			throw new UnsupportedOperationException("non-level gamestates aren't supported yet");
-		}
+
 		if (currentTime - this.lastPositionBroadcast > 50) {
 			MessageBundle mb = new MessageBundle();
 			mb.setEntityId(player.getId());
@@ -71,7 +73,7 @@ public class HawkthorneGame extends HawkthorneParentGame {
 					.roundTwoDecimals(player.velocityX));
 			String vY = Float.toString(MathUtils
 					.roundTwoDecimals(player.velocityY));
-			mb.setParams(x, y, vX, vY);
+			mb.setParams(x, y, vX, vY, player.getState().toString(),player.getDirectionsAsString());
 			this.lastPositionBroadcast = currentTime;
 			client.send(mb);
 		}

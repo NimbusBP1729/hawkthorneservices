@@ -1,6 +1,10 @@
 package com.projecthawkthorne.socket;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.util.UUID;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,6 +12,7 @@ import org.junit.Test;
 
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
+import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.State;
 
@@ -40,7 +45,7 @@ public class ClientMessageHandlingTest {
 		MessageBundle msg =new MessageBundle();
 		msg.setCommand(Command.POSITIONVELOCITYUPDATE);
 		msg.setEntityId(p.getId());
-		msg.setParams("60000","4.7","-6.9","-8", "WALK");
+		msg.setParams("60000","4.7","-6.9","-8", "WALK","0011");
 
 		//process message
 		client.handleMessage(msg);
@@ -56,4 +61,91 @@ public class ClientMessageHandlingTest {
 		assertEquals("WALK", p.getState().toString());
 	}
 
+
+	@Test
+	public void testKeyPressedWhenUnpressed() {
+		// create known connected player
+		UUID id = UUID.randomUUID();
+		Player player = Player.getConnectedPlayer(id);
+		player.setIsKeyDown(GameKeys.ATTACK, false);
+
+		// create a received message
+		MessageBundle msg = new MessageBundle();
+		msg.setCommand(Command.KEYPRESSED);
+		msg.setEntityId(id);
+		msg.setParams("ATTACK");
+
+		// process message
+		client.handleMessage(msg);
+
+		// confirm validity of message processing
+		assertTrue(player.getIsKeyDown(GameKeys.ATTACK));
+
+	}
+
+	@Test
+	public void testKeyPressedWhenPressed() {
+		// create known connected player
+		UUID id = UUID.randomUUID();
+		Player player = Player.getConnectedPlayer(id);
+		player.setIsKeyDown(GameKeys.ATTACK, true);
+
+		// create a received message
+		MessageBundle msg = new MessageBundle();
+		msg.setCommand(Command.KEYPRESSED);
+		msg.setEntityId(id);
+		msg.setParams("ATTACK");
+
+		// process message
+		client.handleMessage(msg);
+
+		// confirm validity of message processing
+		assertTrue(player.getIsKeyDown(GameKeys.ATTACK));
+
+	}
+
+	@Test
+	public void testKeyReleasedWhenPressed() {
+		// create known connected player
+		UUID id = UUID.randomUUID();
+		Player player = Player.getConnectedPlayer(id);
+		player.setIsKeyDown(GameKeys.JUMP, true);
+
+		// create a received message
+		MessageBundle msg = new MessageBundle();
+		msg.setCommand(Command.KEYRELEASED);
+		msg.setEntityId(id);
+		msg.setParams("JUMP");
+
+		// process message
+		client.handleMessage(msg);
+
+		// confirm validity of message processing
+		assertFalse(player.getIsKeyDown(GameKeys.JUMP));
+
+	}
+
+	@Test
+	public void testKeyReleasedWhenUnpressed() {
+		// create known connected player
+		UUID id = UUID.randomUUID();
+		Player player = Player.getConnectedPlayer(id);
+		player.setIsKeyDown(GameKeys.JUMP, false);
+
+		// create a received message
+		MessageBundle msg = new MessageBundle();
+		msg.setCommand(Command.KEYRELEASED);
+		msg.setEntityId(id);
+		msg.setParams("JUMP");
+
+		// process message
+		client.handleMessage(msg);
+
+		// confirm validity of message processing
+		assertFalse(player.getIsKeyDown(GameKeys.JUMP));
+
+	}
+	
+	
+	
 }

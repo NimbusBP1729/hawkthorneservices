@@ -7,6 +7,11 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
+import com.projecthawkthorne.client.HawkthorneGame;
+import com.projecthawkthorne.client.Mode;
+import com.projecthawkthorne.content.GameKeys;
+import com.projecthawkthorne.content.Player;
+
 public class MessageBundleTest extends TestCase {
 	DatagramPacket packet = new DatagramPacket(new byte[1024], 1024);
 
@@ -81,5 +86,35 @@ public class MessageBundleTest extends TestCase {
 		assertEquals("doorName", mb.getParams()[1]);
 		assertEquals(27419, mb.getSocketAddress().getPort());
 	}
+	
+	@Test
+	public void testDirectionFromString(){
+		HawkthorneGame.MODE = Mode.CLIENT;
+		Player p = Player.getSingleton();
+		p.setIsKeyDown(GameKeys.DOWN, true);
+		p.setIsKeyDown(GameKeys.UP, true);
+		p.setIsKeyDown(GameKeys.LEFT, false);
+		p.setIsKeyDown(GameKeys.RIGHT, false);
+		
+		p.setDirectionsFromString("1010");
+		assertTrue(p.getIsKeyDown(GameKeys.DOWN));
+		assertFalse(p.getIsKeyDown(GameKeys.UP));
+		assertTrue(p.getIsKeyDown(GameKeys.LEFT));
+		assertFalse(p.getIsKeyDown(GameKeys.RIGHT));
+	}
+	
+	@Test
+	public void testStringFromDirection(){
+		
 
+		Player p = Player.getSingleton();
+		p.setIsKeyDown(GameKeys.DOWN, true);
+		p.setIsKeyDown(GameKeys.UP, true);
+		p.setIsKeyDown(GameKeys.LEFT, false);
+		p.setIsKeyDown(GameKeys.RIGHT, false);
+		assertEquals("1100",p.getDirectionsAsString());
+		
+	}
+
+	
 }

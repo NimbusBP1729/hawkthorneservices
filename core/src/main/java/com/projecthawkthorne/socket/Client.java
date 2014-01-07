@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
+import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.State;
@@ -156,6 +157,7 @@ public class Client {
 			p.velocityY = SocketUtils.lerp(
 					Float.parseFloat(msg.getParams()[3]), p.velocityY, factor);
 			p.setState(State.valueOf(msg.getParams()[4]));
+			p.setDirectionsFromString(msg.getParams()[5]);
 			p.moveBoundingBox();
 		} else if (msg.getCommand() == Command.REGISTERPLAYER) {
 			Player p = Player.getConnectedPlayer(msg.getEntityId());
@@ -169,7 +171,19 @@ public class Client {
 			Player player = Player.getConnectedPlayer(id);
 			Door door = newLevel.getDoor(msg.getParams()[1]);
 			Level.switchState(newLevel, door, player);
-		} else {
+		} else if (msg.getCommand() == Command.KEYPRESSED) {
+			UUID id = msg.getEntityId();
+			GameKeys gk = GameKeys.valueOf(msg.getParams()[0].trim());
+			Player player = Player.getConnectedPlayer(id);
+			player.setIsKeyDown(gk, true);
+			player.keypressed(gk);
+		} else if (msg.getCommand() == Command.KEYRELEASED) {
+			UUID id = msg.getEntityId();
+			GameKeys gk = GameKeys.valueOf(msg.getParams()[0].trim());
+			Player player = Player.getConnectedPlayer(id);
+			player.setIsKeyDown(gk, false);
+			player.keyreleased(gk);
+		}  else {
 			throw new UnsupportedOperationException(msg.getCommand().toString());
 		}
 	}

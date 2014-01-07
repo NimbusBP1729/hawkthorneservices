@@ -61,12 +61,11 @@ public class HawkthorneServerGame extends HawkthorneParentGame {
 				mb.setEntityId(entry.getKey());
 				mb.setCommand(Command.POSITIONVELOCITYUPDATE);
 				Player player = entry.getValue();
-				mb.setCommand(Command.POSITIONVELOCITYUPDATE);
 				String x = Float.toString(MathUtils.roundTwoDecimals(player.x));
 				String y = Float.toString(MathUtils.roundTwoDecimals(player.y));
 				String vX = Float.toString(MathUtils.roundTwoDecimals(player.velocityX));
 				String vY = Float.toString(MathUtils.roundTwoDecimals(player.velocityY));
-				mb.setParams(x, y, vX, vY);
+				mb.setParams(x, y, vX, vY, player.getState().toString(),player.getDirectionsAsString());
 				this.lastPositionBroadcast = currentTime;
 				Server.getSingleton().sendToAllExcept(mb, entry.getKey());
 			}

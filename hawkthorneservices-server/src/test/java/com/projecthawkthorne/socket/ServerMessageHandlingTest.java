@@ -63,7 +63,7 @@ public class ServerMessageHandlingTest {
 		MessageBundle msg = new MessageBundle();
 		msg.setCommand(Command.POSITIONVELOCITYUPDATE);
 		msg.setEntityId(p.getId());
-		msg.setParams("60000", "4.7", "-6.9", "-8", "JUMP");
+		msg.setParams("60000", "4.7", "-6.9", "-8", "JUMP","1000");
 
 		// process message
 		server.handleMessage(msg);

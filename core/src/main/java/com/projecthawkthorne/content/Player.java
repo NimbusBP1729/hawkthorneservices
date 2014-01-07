@@ -1073,4 +1073,27 @@ public class Player extends Humanoid implements Timeable {
 				|| (isSecondTouched && isSecondInRegion);
 		return result;
 	}
+
+	public String getDirectionsAsString() {
+		String str = "";
+		str += this.keyDown.get(GameKeys.DOWN) ? "1" : "0";
+		str += this.keyDown.get(GameKeys.UP) ? "1" : "0";
+		str += this.keyDown.get(GameKeys.LEFT) ? "1" : "0";
+		str += this.keyDown.get(GameKeys.RIGHT) ? "1" : "0";
+		return str;
+	}
+	
+	/**
+	 * converts of string of four characters to 
+	 * into GameKey states
+	 * Note: this may be redundant if keypresses
+	 * are also received by the clients
+	 * @param str
+	 */
+	public void setDirectionsFromString(String str){
+		this.keyDown.put(GameKeys.DOWN, str.charAt(0)!='0');
+		this.keyDown.put(GameKeys.UP, str.charAt(1)!='0');
+		this.keyDown.put(GameKeys.LEFT, str.charAt(2)!='0');
+		this.keyDown.put(GameKeys.RIGHT, str.charAt(3)!='0');
+	}
 }

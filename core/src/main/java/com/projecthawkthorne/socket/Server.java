@@ -201,12 +201,14 @@ public class Server {
 			Player player = Player.getConnectedPlayer(id);
 			player.setIsKeyDown(gk, true);
 			player.keypressed(gk);
+			this.sendToAllExcept(msg, id);
 		} else if (msg.getCommand() == Command.KEYRELEASED) {
 			UUID id = msg.getEntityId();
 			GameKeys gk = GameKeys.valueOf(msg.getParams()[0].trim());
 			Player player = Player.getConnectedPlayer(id);
 			player.setIsKeyDown(gk, false);
 			player.keyreleased(gk);
+			this.sendToAllExcept(msg, id);
 		} else if (msg.getCommand() == Command.POSITIONVELOCITYUPDATE) {
 			Player p = Player.getConnectedPlayer(msg.getEntityId());
 			float factor = 0.0f;
@@ -219,6 +221,7 @@ public class Server {
 			p.velocityY = SocketUtils.lerp(
 					Float.parseFloat(msg.getParams()[3]), p.velocityY, factor);
 			p.setState(State.valueOf(msg.getParams()[4]));
+			p.setDirectionsFromString(msg.getParams()[5]);
 			p.moveBoundingBox();
 			this.sendToAllExcept(msg, p.getId());
 		} else {

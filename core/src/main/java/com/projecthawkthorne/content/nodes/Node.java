@@ -509,7 +509,7 @@ public abstract class Node extends Collidable {
 						+ this.getState() + ")");
 
 				TextureRegion defaultTextureRegion = Assets.standard
-						.get("this").getKeyFrame(0);
+						.get("node").getKeyFrame(0);
 				int height = Math.round(this.height);
 				height = height > 0 ? height : defaultTextureRegion
 						.getRegionHeight();
