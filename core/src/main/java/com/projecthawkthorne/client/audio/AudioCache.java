@@ -59,7 +59,12 @@ public class AudioCache {
 					+ soundFile + ".ogg"));
 			musicCache.put(soundFile, s);
 		}
-		s.loop(volume);
+		
+		if(s==null){
+			Gdx.app.error("audio cache error", "sound was not cached");
+		}else{
+			s.loop(volume);
+		}
 	}
 
 	/**

@@ -14,6 +14,7 @@
 		<gwt.version>2.5.0</gwt.version>
 		<gwt.maven.version>2.5.0</gwt.maven.version>
 		<junit.version>4.11</junit.version>
+		<mockito.version>1.8.4</mockito.version>
  	</properties>
 
 	<repositories>
