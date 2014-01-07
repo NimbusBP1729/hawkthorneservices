@@ -45,11 +45,14 @@ public class ClientMessageHandlingTest {
 		//process message
 		client.handleMessage(msg);
 		
+		//TODO: determine the weighting
+		// currently it is 0.5 so the numbers are averages
+		
 		//verify correctness of message handling
-		assertEquals(Float.parseFloat("60000"), p.x,delta);
-		assertEquals(Float.parseFloat("4.7"), p.y,delta);
-		assertEquals(Float.parseFloat("-6.9"), p.velocityX,delta);
-		assertEquals(Float.parseFloat("-8"), p.velocityY,delta);
+		assertEquals(Float.parseFloat("30050"), p.x,delta);
+		assertEquals(Float.parseFloat("102.35"), p.y,delta);
+		assertEquals(Float.parseFloat("146.55"), p.velocityX,delta);
+		assertEquals(Float.parseFloat("196"), p.velocityY,delta);
 		assertEquals("WALK", p.getState().toString());
 	}
 
