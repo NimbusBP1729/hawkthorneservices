@@ -18,6 +18,7 @@ import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Door;
+import com.projecthawkthorne.content.nodes.State;
 import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
 
@@ -217,6 +218,7 @@ public class Server {
 					Float.parseFloat(msg.getParams()[2]), p.velocityX, factor);
 			p.velocityY = SocketUtils.lerp(
 					Float.parseFloat(msg.getParams()[3]), p.velocityY, factor);
+			p.setState(State.valueOf(msg.getParams()[4]));
 			p.moveBoundingBox();
 			this.sendToAllExcept(msg, p.getId());
 		} else {

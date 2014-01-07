@@ -756,6 +756,11 @@ public class Player extends Humanoid implements Timeable {
 	}
 
 	@Override
+	public void setState(State state) {
+		this.character.setState(state);;
+	}
+
+	@Override
 	public void collide(Node node) {
 		// node handles collisions
 	}

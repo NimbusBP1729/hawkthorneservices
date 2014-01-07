@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.nodes.State;
 
 public class ClientMessageHandlingTest {
 
@@ -33,12 +34,13 @@ public class ClientMessageHandlingTest {
 		p.y = 200;
 		p.velocityX = 300;
 		p.velocityY = 400;
+		p.setState(State.CROUCH);
 
 		//create a received message
 		MessageBundle msg =new MessageBundle();
 		msg.setCommand(Command.POSITIONVELOCITYUPDATE);
 		msg.setEntityId(p.getId());
-		msg.setParams("60000","4.7","-6.9","-8");
+		msg.setParams("60000","4.7","-6.9","-8", "WALK");
 
 		//process message
 		client.handleMessage(msg);
@@ -47,7 +49,8 @@ public class ClientMessageHandlingTest {
 		assertEquals(Float.parseFloat("60000"), p.x,delta);
 		assertEquals(Float.parseFloat("4.7"), p.y,delta);
 		assertEquals(Float.parseFloat("-6.9"), p.velocityX,delta);
-		assertEquals(Float.parseFloat("-8"), p.velocityY,delta);		
+		assertEquals(Float.parseFloat("-8"), p.velocityY,delta);
+		assertEquals("WALK", p.getState().toString());
 	}
 
 }

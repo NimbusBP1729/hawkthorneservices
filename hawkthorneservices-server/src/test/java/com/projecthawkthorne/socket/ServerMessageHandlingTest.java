@@ -18,6 +18,7 @@ import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.nodes.State;
 import com.projecthawkthorne.gamestate.Level;
 
 public class ServerMessageHandlingTest {
@@ -51,12 +52,13 @@ public class ServerMessageHandlingTest {
 		p.y = 200;
 		p.velocityX = 300;
 		p.velocityY = 400;
+		p.setState(State.DEAD);
 
 		// create a received message
 		MessageBundle msg = new MessageBundle();
 		msg.setCommand(Command.POSITIONVELOCITYUPDATE);
 		msg.setEntityId(p.getId());
-		msg.setParams("60000", "4.7", "-6.9", "-8");
+		msg.setParams("60000", "4.7", "-6.9", "-8", "JUMP");
 
 		// process message
 		server.handleMessage(msg);
@@ -66,6 +68,7 @@ public class ServerMessageHandlingTest {
 		assertEquals(Float.parseFloat("4.7"), p.y, delta);
 		assertEquals(Float.parseFloat("-6.9"), p.velocityX, delta);
 		assertEquals(Float.parseFloat("-8"), p.velocityY, delta);
+		assertEquals("JUMP", p.getState().toString());
 	}
 
 	@Test
@@ -76,6 +79,7 @@ public class ServerMessageHandlingTest {
 		// create a received message
 		MessageBundle msg = new MessageBundle();
 		msg.setCommand(Command.REGISTERPLAYER);
+		msg.setParams("VictorHugo", "town", "tavern");
 		msg.setEntityId(newId);
 
 		// process message
@@ -85,6 +89,10 @@ public class ServerMessageHandlingTest {
 
 		assertEquals("ed5c9050-7629-11e3-981f-0800200c9a66", player.getId()
 				.toString());
+		assertEquals("VictorHugo", player.getUsername());
+		assertEquals("town", player.getLevel().getName());
+		assertTrue(Level.get("town").getPlayers().contains(player));
+		
 
 	}
 
@@ -213,6 +221,9 @@ public class ServerMessageHandlingTest {
 		assertEquals("town", player.getLevel().getName());
 		assertTrue(Level.getLevelMap().get("town").getPlayers()
 				.contains(player));
+
+		app.getApplicationListener().dispose();
+		app.exit();
 
 	}
 

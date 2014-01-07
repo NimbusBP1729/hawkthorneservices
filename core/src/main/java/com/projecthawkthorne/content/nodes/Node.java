@@ -367,6 +367,10 @@ public abstract class Node extends Collidable {
 		return this.state;
 	}
 
+	public void setState(State state) {
+		this.state = state;
+	}
+
 	/**
 	 * moves the bounding box to match the node's current position
 	 */
