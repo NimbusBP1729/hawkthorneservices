@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -44,7 +45,13 @@ public class Server {
 			port = 12345;
 		}
 		log.setLevel(java.util.logging.Level.WARNING);
-		log.log(java.util.logging.Level.INFO, "using port:" + port);
+		System.out.println("creating server at port:" + port);
+		try {
+			System.out.println("creating server at address:" + InetAddress.getLocalHost());
+		} catch (UnknownHostException e) {
+			System.out.println("using address: error resolving address");
+		}
+		
 		try {
 			serverSocket = new DatagramSocket(port);
 			serverSocket.setSoTimeout(17);// ~1/60 seconds

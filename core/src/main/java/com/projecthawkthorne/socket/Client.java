@@ -56,8 +56,7 @@ public class Client {
 			}
 			log.setLevel(java.util.logging.Level.WARNING);
 
-			log.log(java.util.logging.Level.INFO, "Using address,port:" + this.serverIp + ","
-					+ this.serverPort);
+			System.out.println("Connecting to server at address:port==" + this.serverIp.getHostAddress() + ":"+ this.serverPort);
 			sendPacket = new DatagramPacket(sendData, sendData.length,
 					this.serverIp, this.serverPort);
 

@@ -964,8 +964,9 @@ public class Player extends Humanoid implements Timeable {
 			throw new UnsupportedOperationException();
 		}
 		if (singleton == null) {
-			singleton = new Player(Player.getPlayerTiledObject(),
-					UUID.randomUUID());
+			singleton = new Player(Player.getPlayerTiledObject()
+					,UUID.randomUUID());
+			System.out.println("creating player: " + singleton.id);
 			MessageBundle message = new MessageBundle();
 			message.setEntityId(singleton.getId());
 			message.setCommand(Command.REGISTERPLAYER);
@@ -979,6 +980,7 @@ public class Player extends Humanoid implements Timeable {
 	public static Player getConnectedPlayer(UUID id) {
 		Player player = playerMap.get(id);
 		if (player == null) {
+			System.out.println("registered player: " + id);
 			RectangleMapObject obj = Player.getPlayerTiledObject();
 			player = new Player(obj, null, id);
 			playerMap.put(id, player);

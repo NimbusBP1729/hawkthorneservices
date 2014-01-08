@@ -1,5 +1,6 @@
 package com.projecthawkthorne.socket;
 
+import static com.projecthawkthorne.java.ServerGameDesktop.initGdx;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -13,11 +14,9 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl.LwjglHeadlessApplication;
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.GameKeys;
@@ -29,10 +28,11 @@ public class ServerMessageHandlingTest {
 
 	private static Server server;
 	private float delta = 0.01f;
-	private LwjglApplication app;
+	private LwjglHeadlessApplication app;
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
+		initGdx();
 		HawkthorneGame.MODE = Mode.SERVER;
 		server = Server.getSingleton();
 	}
@@ -63,7 +63,7 @@ public class ServerMessageHandlingTest {
 		MessageBundle msg = new MessageBundle();
 		msg.setCommand(Command.POSITIONVELOCITYUPDATE);
 		msg.setEntityId(p.getId());
-		msg.setParams("60000", "4.7", "-6.9", "-8", "JUMP","1000");
+		msg.setParams("60000", "4.7", "-6.9", "-8", "JUMP", "1000");
 
 		// process message
 		server.handleMessage(msg);
@@ -78,52 +78,52 @@ public class ServerMessageHandlingTest {
 
 	@Test
 	public void testPlayerRegistration() throws InterruptedException {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.useGL20 = true;
-		app = new LwjglApplication(
-				new HawkGdxTest(Mode.SERVER) {
-					private Player player;
-					
-					@Override
-					public Object getOutput() {
-						return player;
-					}
+		app = new LwjglHeadlessApplication(new HawkGdxTest(Mode.SERVER) {
+			private Player player;
 
-					@Override
-					public void runTest() {
-						// create unknown player
-						UUID newId = UUID
-								.fromString("ed5c9050-7629-11e3-981f-0800200c9a66");
+			@Override
+			public Object getOutput() {
+				return player;
+			}
 
-						// create a received message
-						MessageBundle msg = new MessageBundle();
-						msg.setCommand(Command.REGISTERPLAYER);
-						msg.setParams("VictorHugo", "town", "tavern");
-						msg.setEntityId(newId);
-						InetAddress addr = null;
-						try {
-							addr = InetAddress.getByName("java.sun.com");
-						} catch (UnknownHostException e) {
-							e.printStackTrace();
-						}
-						int port = 7405;
-						InetSocketAddress socketAddress = new InetSocketAddress(addr, port);
-						msg.setSocketAddress(socketAddress);
+			@Override
+			public void runTest() {
+				// create unknown player
+				UUID newId = UUID
+						.fromString("ed5c9050-7629-11e3-981f-0800200c9a66");
 
-						// process message
-						server.handleMessage(msg);
-						player = Player.getConnectedPlayer(newId);
-					}
-				});
+				// create a received message
+				MessageBundle msg = new MessageBundle();
+				msg.setCommand(Command.REGISTERPLAYER);
+				msg.setParams("VictorHugo", "town", "tavern");
+				msg.setEntityId(newId);
+				InetAddress addr = null;
+				try {
+					addr = InetAddress.getByName("java.sun.com");
+				} catch (UnknownHostException e) {
+					e.printStackTrace();
+				}
+				int port = 7405;
+				InetSocketAddress socketAddress = new InetSocketAddress(addr,
+						port);
+				msg.setSocketAddress(socketAddress);
+
+				// process message
+				server.handleMessage(msg);
+				player = Player.getConnectedPlayer(newId);
+			}
+		});
 		waitForApplicationToComplete();
-		
-		Player player = (Player) ((HawkGdxTest) app.getApplicationListener()).getOutput();
+
+		Player player = (Player) ((HawkGdxTest) app.getApplicationListener())
+				.getOutput();
 
 		assertEquals("ed5c9050-7629-11e3-981f-0800200c9a66", player.getId()
 				.toString());
 		assertEquals("VictorHugo", player.getUsername());
 		assertEquals("town", player.getLevel().getName());
 		assertTrue(Level.get("town").getPlayers().contains(player));
+		assertTrue(Player.getPlayerMap().containsKey(player.getId()));
 
 	}
 
@@ -212,11 +212,8 @@ public class ServerMessageHandlingTest {
 	}
 
 	@Test
-	@Ignore
 	public void testLevelSwitching() throws InterruptedException {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.useGL20 = true;
-		app = new LwjglApplication(new HawkGdxTest(Mode.SERVER){
+		app = new LwjglHeadlessApplication(new HawkGdxTest(Mode.SERVER) {
 			private Player player;
 
 			@Override
@@ -240,19 +237,20 @@ public class ServerMessageHandlingTest {
 				server.handleMessage(msg);
 				player = plyr;
 			}
-		}, config);
+		});
 
 		waitForApplicationToComplete();
 
-		Player player = (Player) ((HawkGdxTest) app.getApplicationListener()).getOutput();
+		Player player = (Player) ((HawkGdxTest) app.getApplicationListener())
+				.getOutput();
 
 		// confirm validity of message processing
 		assertEquals("town", player.getLevel().getName());
 		assertTrue(Level.getLevelMap().get("town").getPlayers()
 				.contains(player));
-		
+
 	}
-	
+
 	private void waitForApplicationToComplete() throws InterruptedException {
 		HawkGdxTest listener = (HawkGdxTest) app.getApplicationListener();
 		while (!listener.isComplete()) {
@@ -261,20 +259,19 @@ public class ServerMessageHandlingTest {
 	}
 }
 
-//stub for creating app instances
+// stub for creating app instances
 //
-//LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-//config.useGL20 = true;
-//LwjglApplication app = new LwjglApplication(new HawkGdxTest(Mode.SERVER){
-//	@Override
-//	public Object getOutput() {
-//		return something;
-//	}
+// LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+// config.useGL20 = true;
+// LwjglApplication app = new LwjglApplication(new HawkGdxTest(Mode.SERVER){
+// @Override
+// public Object getOutput() {
+// return something;
+// }
 //
-//	@Override
-//	public void runTest() {
-//	}
-//});
-//waitForApplicationToComplete(app);
-
+// @Override
+// public void runTest() {
+// }
+// });
+// waitForApplicationToComplete(app);
 
