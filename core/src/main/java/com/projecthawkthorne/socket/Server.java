@@ -231,6 +231,13 @@ public class Server {
 			p.setDirectionsFromString(msg.getParams()[5]);
 			p.moveBoundingBox();
 			this.sendToAllExcept(msg, p.getId());
+		} else if (msg.getCommand() == Command.PING) {
+			MessageBundle response = new MessageBundle();
+			response.setCommand(Command.PONG);
+			response.setEntityId(msg.getEntityId());
+			response.setParams(msg.getParams());
+			InetSocketAddress sockAddr = msg.getSocketAddress();
+			this.send(response, sockAddr.getAddress(), sockAddr.getPort());
 		} else {
 			throw new UnsupportedOperationException();
 		}

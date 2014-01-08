@@ -30,11 +30,13 @@ public class SocketUtils {
 		}
 		String[] chunks = StringUtils.split(new String(packet.getData()),MEMBER_SEPARATOR);
 		UUID id = UUID.fromString(chunks[0]);
-		Command command = Command.valueOf(chunks[1]);
 		String[] paramChunks;
+		Command command;
 		if(chunks.length>2){
-			paramChunks = StringUtils.split(chunks[2], PARAM_SEPARATOR);
+			command = Command.valueOf(chunks[1]);
+			paramChunks = StringUtils.split(chunks[2].trim(), PARAM_SEPARATOR);
 		}else{
+			command = Command.valueOf(chunks[1].trim());
 			paramChunks = EMPTY;			
 		}
 		mb.setCommand(command);
