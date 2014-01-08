@@ -1,9 +1,0 @@
-to run the server:
-mvn clean install -Pserver
-
-to run the client
-mvn clean install -Pclient
-
-if you want to use a port or address other than the defaults set the following environment variables:
-HAWK_PORT(default=12345)
-HAWK_ADDRESS(default=localhost)
