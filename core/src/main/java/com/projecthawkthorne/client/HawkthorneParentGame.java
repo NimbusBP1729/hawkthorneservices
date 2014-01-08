@@ -34,6 +34,12 @@ public class HawkthorneParentGame extends Game {
 	protected long lastTime = 0;
 	protected long lastPositionBroadcast = System.currentTimeMillis();
 	protected static final boolean IS_Y_DOWN = false;
+	
+
+	private long lastIterationInfo = 0;
+	private long processingDurationSum = 0;
+	private int processingCountSum = 0;
+	private int processingIterations = 0;
 
 	@Override
 	public void create() {
@@ -45,6 +51,25 @@ public class HawkthorneParentGame extends Game {
 		cam.setToOrtho(IS_Y_DOWN, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.zoom = 0.5f;
 	}
+	
+	protected void updateStatus(int msgCount, long processingDuration) {
+		processingDurationSum += processingDuration;
+		processingCountSum += msgCount;
+		processingIterations++;
+	}
+
+	protected final void printStatusPeriodically() {
+		long now = System.currentTimeMillis();
+		if(now-lastIterationInfo > 30000){
+			System.out.println("avg. processing duration=="+1.0f*processingDurationSum/processingIterations);
+			System.out.println("avg. msg processed      =="+1.0f*processingCountSum/processingIterations);
+			System.out.println("iterations              =="+processingIterations);
+			System.out.println("================================================");
+
+			lastIterationInfo = now;
+		}
+	}
+
 
 	@Override
 	public void resize(int width, int height) {

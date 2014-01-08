@@ -45,9 +45,18 @@ public class HawkthorneGame extends HawkthorneParentGame {
 		
 		Client client = Client.getSingleton();
 		MessageBundle msg;
+		int msgCount = 0;
+		long processingDuration = System.currentTimeMillis();
 		while ((msg = client.receive()) != null) {
 			client.handleMessage(msg);
+			msgCount++;
 		}
+		processingDuration = System.currentTimeMillis()-processingDuration;
+		
+		//must be called together
+		updateStatus(msgCount,processingDuration);		
+		printStatusPeriodically();
+			
 		Player player = Player.getSingleton();
 		Gamestate level = player.getLevel();
 		if (level instanceof Level) {
@@ -78,7 +87,7 @@ public class HawkthorneGame extends HawkthorneParentGame {
 			client.send(mb);
 		}
 	}
-	
+
 	@Override
 	protected void levelRender(Level level, Player player) {
 		super.levelRender(level, player);

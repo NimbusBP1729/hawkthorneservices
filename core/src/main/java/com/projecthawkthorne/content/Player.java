@@ -571,7 +571,6 @@ public class Player extends Humanoid implements Timeable {
 		// this.inventory = new Inventory(this);
 		this.stopBlink();
 		this.character.reset();
-		Gdx.app.log("player activity", "character revived");
 	}
 
 	// -

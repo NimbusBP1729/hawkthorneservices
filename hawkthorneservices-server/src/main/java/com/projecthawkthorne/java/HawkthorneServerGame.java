@@ -38,11 +38,19 @@ public class HawkthorneServerGame extends HawkthorneParentGame {
 		
 		Server server = Server.getSingleton();
 
+		int msgCount = 0;
+		long processingDuration = System.currentTimeMillis();
 		for (MessageBundle msg = server.receive();
 				msg != null;
 				msg = server.receive()) {
 			server.handleMessage(msg);
+			msgCount++;
 		}
+		processingDuration = System.currentTimeMillis() - processingDuration;
+		
+		updateStatus(msgCount,processingDuration);		
+		printStatusPeriodically();
+		
 		Map<String, Level> levels = Level.getLevelMap();
 		if (trackedPlayer == null) {
 			levelRender(Level.get(trackedLevel), null);
