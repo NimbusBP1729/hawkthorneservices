@@ -6,10 +6,10 @@ The following project is a Java implementation of a sidescrolling game using [li
 Much of the inspiration for the development of this game came from the [Lua-developed single player Hawkthorne game](https://github.com/hawkthorne/hawkthorne-journey). However, this game aims to have a different scope of simple jumping puzzles and racing 2 or more players to a specific goal.
 
 to run the server:
-`mvn install -DskipTests -Pserver`
+`mvn install -Pserver`
 
 to run the client:
-`mvn install -DskipTests -Pclient`
+`mvn install -Pclient`
 
 to package the application for android:
 `mvn package -Pandroid`
