@@ -7,6 +7,10 @@ import java.util.UUID;
 import org.apache.commons.lang3.StringUtils;
 
 public class SocketUtils {
+	
+	private static final String[] EMPTY = new String[0];
+
+	private static MessageBundle mb = new MessageBundle();
 
 	private static String PARAM_SEPARATOR = ",";
 	private static String MEMBER_SEPARATOR = "|";
@@ -24,16 +28,14 @@ public class SocketUtils {
 		if (packet == null) {
 			return null;
 		}
-		MessageBundle mb = new MessageBundle();
-		String[] chunks = StringUtils.split(new String(packet.getData()).trim(),
-				MEMBER_SEPARATOR);
+		String[] chunks = StringUtils.split(new String(packet.getData()),MEMBER_SEPARATOR);
 		UUID id = UUID.fromString(chunks[0]);
 		Command command = Command.valueOf(chunks[1]);
 		String[] paramChunks;
 		if(chunks.length>2){
 			paramChunks = StringUtils.split(chunks[2], PARAM_SEPARATOR);
 		}else{
-			paramChunks = new String[0];			
+			paramChunks = EMPTY;			
 		}
 		mb.setCommand(command);
 		mb.setEntityId(id);
@@ -42,7 +44,6 @@ public class SocketUtils {
 		return mb;
 
 	}
-
 	public static void clearPacket(DatagramPacket packet) {
 		byte[] data = packet.getData();
 		for (int i = 0; i < data.length; i++) {

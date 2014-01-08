@@ -73,7 +73,6 @@ public class HawkthorneGame extends HawkthorneParentGame {
 		level.update(dt);
 
 		if (currentTime - this.lastPositionBroadcast > 50) {
-			MessageBundle mb = new MessageBundle();
 			mb.setEntityId(player.getId());
 			mb.setCommand(Command.POSITIONVELOCITYUPDATE);
 			String x = Float.toString(MathUtils.roundTwoDecimals(player.x));
