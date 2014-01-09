@@ -153,7 +153,7 @@ public class ClientMessageHandlingTest {
 	 */
 	@Test
 	@Ignore
-	public void testStringFromDirection(){
+	public void testLatency(){
 		MessageBundle ping = new MessageBundle();
 		ping.setEntityId(UUID.fromString("9e05d450-78b6-11e3-981f-0800200c9a66"));
 		ping.setCommand(Command.PING);
