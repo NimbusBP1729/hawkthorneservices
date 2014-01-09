@@ -3,7 +3,6 @@ package com.projecthawkthorne.gamestate;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.UUID;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
@@ -18,6 +17,7 @@ import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.Boundary;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.UUID;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.Floor;
 import com.projecthawkthorne.content.nodes.Ladder;

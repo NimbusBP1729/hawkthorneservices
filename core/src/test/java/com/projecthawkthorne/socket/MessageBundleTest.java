@@ -1,7 +1,6 @@
 package com.projecthawkthorne.socket;
 
 import java.net.DatagramPacket;
-import java.util.UUID;
 
 import junit.framework.TestCase;
 
@@ -11,6 +10,7 @@ import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.UUID;
 
 public class MessageBundleTest extends TestCase {
 	DatagramPacket packet = new DatagramPacket(new byte[1024], 1024);

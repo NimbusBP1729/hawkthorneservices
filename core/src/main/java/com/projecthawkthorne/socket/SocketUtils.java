@@ -2,9 +2,10 @@ package com.projecthawkthorne.socket;
 
 import java.net.DatagramPacket;
 import java.net.InetSocketAddress;
-import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
+
+import com.projecthawkthorne.content.UUID;
 
 public class SocketUtils {
 

@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,6 +24,7 @@ import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Direction;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.UUID;
 import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.hardoncollider.Bound;

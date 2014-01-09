@@ -10,7 +10,6 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 import java.util.logging.Logger;
 
 import com.projecthawkthorne.client.HawkthorneGame;
@@ -18,6 +17,7 @@ import com.projecthawkthorne.client.HawkthorneParentGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.UUID;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.State;
 import com.projecthawkthorne.gamestate.Gamestate;

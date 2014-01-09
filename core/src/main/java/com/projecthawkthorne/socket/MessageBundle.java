@@ -1,7 +1,8 @@
 package com.projecthawkthorne.socket;
 
 import java.net.InetSocketAddress;
-import java.util.UUID;
+
+import com.projecthawkthorne.content.UUID;
 
 public class MessageBundle {
 	private UUID entityId;

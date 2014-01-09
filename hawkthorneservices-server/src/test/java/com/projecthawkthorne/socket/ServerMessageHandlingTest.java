@@ -8,7 +8,6 @@ import static org.junit.Assert.assertTrue;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
-import java.util.UUID;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -20,6 +19,7 @@ import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.UUID;
 import com.projecthawkthorne.content.nodes.State;
 import com.projecthawkthorne.gamestate.Level;
 

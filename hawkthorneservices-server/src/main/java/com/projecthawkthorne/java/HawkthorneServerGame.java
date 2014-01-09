@@ -3,7 +3,6 @@ package com.projecthawkthorne.java;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.UUID;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -12,6 +11,7 @@ import com.projecthawkthorne.client.HawkthorneParentGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.MathUtils;
 import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.content.UUID;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.socket.Command;
 import com.projecthawkthorne.socket.MessageBundle;
