@@ -89,14 +89,6 @@ public class Server {
 		try {
 			SocketUtils.clearPacket(receivePacket);
 			serverSocket.receive(receivePacket);
-			InetSocketAddress socketAddress = (InetSocketAddress) receivePacket
-					.getSocketAddress();
-
-			log.log(java.util.logging.Level.INFO,
-					"FROM CLIENT: " + new String(receivePacket.getData())+ "\n"
-				  + "     socket: " + socketAddress.getAddress() + ","+ socketAddress.getPort() + "\n"
-				  + "       time: "	+ System.currentTimeMillis());
-
 			return receivePacket;
 		} catch (SocketTimeoutException ex) {
 		} catch (IOException ex) {

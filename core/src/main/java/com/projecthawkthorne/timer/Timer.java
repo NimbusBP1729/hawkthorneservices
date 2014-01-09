@@ -4,6 +4,8 @@
  */
 package com.projecthawkthorne.timer;
 
+import java.util.HashMap;
+
 
 /**
  * 
@@ -11,7 +13,7 @@ package com.projecthawkthorne.timer;
  */
 public class Timer {
 
-	private static ClockMap clocks = new ClockMap();
+	private static HashMap<NameAndCaller, Long> clocks = new HashMap<NameAndCaller, Long>();
 
 	public static boolean add(long delay, String name, Timeable caller) {
 		NameAndCaller nac = new NameAndCaller(name, caller);
@@ -79,10 +81,7 @@ public class Timer {
 	 * handles them accordingly
 	 */
 	public static void updateTimers() {
-		NameAndCaller[] clockKeys = clocks.keySet();
-		NameAndCaller nac;
-		for (int i = 0; i < clockKeys.length; i++) {
-			nac = clockKeys[i];
+		for (NameAndCaller nac :clocks.keySet()) {
 			if (hasExpired(nac.name, nac.caller)) {
 				Timeable t = nac.caller;
 				t.handleTimer(nac.name);
@@ -91,7 +90,4 @@ public class Timer {
 		}
 	}
 
-	public static boolean isEmpty() {
-		return clocks.isEmpty();
-	}
 }

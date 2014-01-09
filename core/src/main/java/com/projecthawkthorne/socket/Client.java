@@ -92,16 +92,6 @@ public class Client {
 		try {
 			SocketUtils.clearPacket(receivePacket);
 			clientSocket.receive(receivePacket);
-			log.log(java.util.logging.Level.INFO,
-					"FROM SERVER: '"
-							+ new String(receivePacket.getData()).trim()
-							+ "'\n");
-			log.log(java.util.logging.Level.INFO, "    address: '" + receivePacket.getAddress()
-					+ "'\n");
-			log.log(java.util.logging.Level.INFO, "       port: '" + receivePacket.getPort()
-					+ "'\n");
-			log.log(java.util.logging.Level.INFO, "       time: '" + System.currentTimeMillis()
-					+ "'\n");
 			return receivePacket;
 		} catch (SocketTimeoutException e) {
 		} catch (Exception e) {

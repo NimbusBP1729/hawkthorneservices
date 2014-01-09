@@ -19,8 +19,10 @@ import com.projecthawkthorne.socket.Server;
 
 public class HawkthorneServerGame extends HawkthorneParentGame {
 	
+	private static final Player[] EMPTY_PLAYER_ARRAY = new Player[0];
 	boolean switchCharacterKeyDown = false;
 	private int trackedPlayerIndex = 0;
+	private MessageBundle mb = new MessageBundle();
 	
 	public HawkthorneServerGame(){
 		HawkthorneGame.MODE = Mode.SERVER;
@@ -68,7 +70,6 @@ public class HawkthorneServerGame extends HawkthorneParentGame {
 		if (currentTime - this.lastPositionBroadcast > 50) {
 			for (Entry<UUID, Player> entry : Player.getPlayerMap()
 					.entrySet()) {
-				MessageBundle mb = new MessageBundle();
 				mb.setEntityId(entry.getKey());
 				mb.setCommand(Command.POSITIONVELOCITYUPDATE);
 				Player player = entry.getValue();
@@ -90,7 +91,7 @@ public class HawkthorneServerGame extends HawkthorneParentGame {
 		if (!switchCharacterKeyDown 
 				&& Gdx.input.isKeyPressed(Keys.S)
 				&& level.getPlayers().size()>0) {
-			Player[] players = level.getPlayers().toArray(new Player[0]);
+			Player[] players = level.getPlayers().toArray(EMPTY_PLAYER_ARRAY);
 			trackedPlayerIndex = (trackedPlayerIndex+1)%players.length;
 			trackedPlayer = players[trackedPlayerIndex];
 		}
