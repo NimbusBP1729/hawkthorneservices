@@ -60,6 +60,7 @@ public class ClientMessageHandlingTest {
 		assertEquals(Float.parseFloat("146.55"), p.velocityX,delta);
 		assertEquals(Float.parseFloat("196"), p.velocityY,delta);
 		assertEquals("WALK", p.getState().toString());
+		assertEquals("0011", p.getDirectionsAsString());
 	}
 
 
@@ -164,7 +165,7 @@ public class ClientMessageHandlingTest {
 		do{
 			pong = client.receive();			
 		}while(pong==null);
-
+		
 		long end = System.currentTimeMillis();
 		assertEquals("9e05d450-78b6-11e3-981f-0800200c9a66",pong.getEntityId().toString());
 		assertEquals("PONG",pong.getCommand().toString());
