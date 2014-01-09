@@ -12,8 +12,6 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.projecthawkthorne.client.HawkthorneGame;
-import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.Boundary;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
@@ -27,9 +25,6 @@ import com.projecthawkthorne.content.nodes.Platform;
 import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
 import com.projecthawkthorne.hardoncollider.Collider;
-import com.projecthawkthorne.socket.Client;
-import com.projecthawkthorne.socket.Command;
-import com.projecthawkthorne.socket.MessageBundle;
 
 /**
  * 
@@ -245,14 +240,6 @@ public class Level extends Gamestate {
 			((Level) newLevel).getCollider().addBox(bb);
 			// this.moveBoundingBox();
 			// this.attack_box = PlayerAttack.new(collider,self);;
-		}
-
-		if (HawkthorneGame.MODE == Mode.CLIENT && player.getId() == Player.getSingleton().getId()) {
-			MessageBundle mb = new MessageBundle();
-			mb.setEntityId(Player.getSingleton().getId());
-			mb.setCommand(Command.SWITCHLEVEL);
-			mb.setParams(newLevel.getName(), door.name);
-			Client.getSingleton().send(mb);
 		}
 
 	}

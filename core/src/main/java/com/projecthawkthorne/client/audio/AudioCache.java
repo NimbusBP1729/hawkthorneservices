@@ -44,8 +44,6 @@ public class AudioCache {
 		Sound s;
 		if (soundFile == null) {
 			soundFile = "level";
-			Gdx.app.error("sound load error",
-					"soundtrack was null. using default level soundtrack.");
 		} else if (soundFile.equals("null")) {
 			soundFile = "level";
 			Gdx.app.error("sound load error",

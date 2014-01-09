@@ -4,13 +4,9 @@ import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.projecthawkthorne.content.MathUtils;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
-import com.projecthawkthorne.socket.Client;
-import com.projecthawkthorne.socket.Command;
-import com.projecthawkthorne.socket.MessageBundle;
 
 /**
  * Note: should really be named HawkthorneClientGame, but I didn't want to cause
@@ -42,20 +38,6 @@ public class HawkthorneGame extends HawkthorneParentGame {
 		this.lastTime = currentTime;
 		long maxDt = 100;
 		dt = maxDt < dt ? maxDt : dt;
-		
-		Client client = Client.getSingleton();
-		MessageBundle msg;
-		int msgCount = 0;
-		long processingDuration = System.currentTimeMillis();
-		while ((msg = client.receive()) != null) {
-			client.handleMessage(msg);
-			msgCount++;
-		}
-		processingDuration = System.currentTimeMillis()-processingDuration;
-		
-		//must be called together
-		updateStatus(msgCount,processingDuration);		
-		printStatusPeriodically();
 			
 		Player player = Player.getSingleton();
 		Gamestate level = player.getLevel();
@@ -71,21 +53,6 @@ public class HawkthorneGame extends HawkthorneParentGame {
 			p.update(dt);
 		}
 		level.update(dt);
-
-		if (currentTime - this.lastPositionBroadcast > 50) {
-			MessageBundle mb = new MessageBundle();
-			mb.setEntityId(player.getId());
-			mb.setCommand(Command.POSITIONVELOCITYUPDATE);
-			String x = Float.toString(MathUtils.roundTwoDecimals(player.x));
-			String y = Float.toString(MathUtils.roundTwoDecimals(player.y));
-			String vX = Float.toString(MathUtils
-					.roundTwoDecimals(player.velocityX));
-			String vY = Float.toString(MathUtils
-					.roundTwoDecimals(player.velocityY));
-			mb.setParams(x, y, vX, vY, player.getState().toString(),player.getDirectionsAsString());
-			this.lastPositionBroadcast = currentTime;
-			client.send(mb);
-		}
 	}
 
 	@Override
