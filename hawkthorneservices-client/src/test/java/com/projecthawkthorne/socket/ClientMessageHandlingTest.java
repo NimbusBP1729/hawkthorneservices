@@ -171,5 +171,32 @@ public class ClientMessageHandlingTest {
 		assertEquals("hello world",pong.getParams()[0]);
 		System.out.println("latency = "+(end-start)+"ms");
 	}
+	/**
+	 * actually a stress test
+	 */
+	@Test
+	@Ignore
+	public void testStress(){
+		for (int i = 0; i < 10000; i++) {
+			MessageBundle ping = new MessageBundle();
+			ping.setEntityId(UUID
+					.fromString("9e05d450-78b6-11e3-981f-0800200c9a66"));
+			ping.setCommand(Command.PING);
+			ping.setParams("hello world");
+			client.send(ping);
+			long start = System.currentTimeMillis();
+			MessageBundle pong;
+			do {
+				pong = client.receive();
+			} while (pong == null);
+
+			long end = System.currentTimeMillis();
+			assertEquals("9e05d450-78b6-11e3-981f-0800200c9a66", pong
+					.getEntityId().toString());
+			assertEquals("PONG", pong.getCommand().toString());
+			assertEquals("hello world", pong.getParams()[0]);
+			System.out.println("latency = " + (end - start) + "ms");
+		}
+	}
 	
 }

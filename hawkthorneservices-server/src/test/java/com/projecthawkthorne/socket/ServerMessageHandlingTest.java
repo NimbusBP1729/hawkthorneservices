@@ -1,6 +1,6 @@
 package com.projecthawkthorne.socket;
 
-import static com.projecthawkthorne.java.ServerGameDesktop.initGdx;
+import static com.projecthawkthorne.java.ServerGameDesktop.initTestGdx;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -16,7 +16,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglHeadlessApplication;
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.GameKeys;
@@ -28,11 +27,10 @@ public class ServerMessageHandlingTest {
 
 	private static Server server;
 	private float delta = 0.01f;
-	private LwjglHeadlessApplication app;
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		initGdx();
+		initTestGdx();
 		HawkthorneGame.MODE = Mode.SERVER;
 		server = Server.getSingleton();
 	}
@@ -78,45 +76,28 @@ public class ServerMessageHandlingTest {
 
 	@Test
 	public void testPlayerRegistration() throws InterruptedException {
-		app = new LwjglHeadlessApplication(new HawkGdxTest(Mode.SERVER) {
-			private Player player;
+		// create unknown player
+		UUID newId = UUID.fromString("ed5c9050-7629-11e3-981f-0800200c9a66");
 
-			@Override
-			public Object getOutput() {
-				return player;
-			}
+		// create a received message
+		MessageBundle msg = new MessageBundle();
+		msg.setCommand(Command.REGISTERPLAYER);
+		msg.setParams("VictorHugo", "town", "tavern");
+		msg.setEntityId(newId);
+		InetAddress addr = null;
+		try {
+			addr = InetAddress.getByName("java.sun.com");
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		int port = 7405;
+		InetSocketAddress socketAddress = new InetSocketAddress(addr, port);
+		msg.setSocketAddress(socketAddress);
 
-			@Override
-			public void runTest() {
-				// create unknown player
-				UUID newId = UUID
-						.fromString("ed5c9050-7629-11e3-981f-0800200c9a66");
-
-				// create a received message
-				MessageBundle msg = new MessageBundle();
-				msg.setCommand(Command.REGISTERPLAYER);
-				msg.setParams("VictorHugo", "town", "tavern");
-				msg.setEntityId(newId);
-				InetAddress addr = null;
-				try {
-					addr = InetAddress.getByName("java.sun.com");
-				} catch (UnknownHostException e) {
-					e.printStackTrace();
-				}
-				int port = 7405;
-				InetSocketAddress socketAddress = new InetSocketAddress(addr,
-						port);
-				msg.setSocketAddress(socketAddress);
-
-				// process message
-				server.handleMessage(msg);
-				player = Player.getConnectedPlayer(newId);
-			}
-		});
-		waitForApplicationToComplete();
-
-		Player player = (Player) ((HawkGdxTest) app.getApplicationListener())
-				.getOutput();
+		// process message
+		server.handleMessage(msg);
+		
+		Player player = Player.getConnectedPlayer(newId);
 
 		assertEquals("ed5c9050-7629-11e3-981f-0800200c9a66", player.getId()
 				.toString());
@@ -213,65 +194,24 @@ public class ServerMessageHandlingTest {
 
 	@Test
 	public void testLevelSwitching() throws InterruptedException {
-		app = new LwjglHeadlessApplication(new HawkGdxTest(Mode.SERVER) {
-			private Player player;
+		// create known connected player
+		UUID id = UUID.randomUUID();
+		Player player = Player.getConnectedPlayer(id);
 
-			@Override
-			public Player getOutput() {
-				return player;
-			}
+		// create a received message
+		MessageBundle msg = new MessageBundle();
+		msg.setCommand(Command.SWITCHLEVEL);
+		msg.setEntityId(id);
+		msg.setParams("town", "main");
 
-			@Override
-			public void runTest() {
-				// create known connected player
-				UUID id = UUID.randomUUID();
-				Player plyr = Player.getConnectedPlayer(id);
-
-				// create a received message
-				MessageBundle msg = new MessageBundle();
-				msg.setCommand(Command.SWITCHLEVEL);
-				msg.setEntityId(id);
-				msg.setParams("town", "main");
-
-				// process message
-				server.handleMessage(msg);
-				player = plyr;
-			}
-		});
-
-		waitForApplicationToComplete();
-
-		Player player = (Player) ((HawkGdxTest) app.getApplicationListener())
-				.getOutput();
+		// process message
+		server.handleMessage(msg);
 
 		// confirm validity of message processing
 		assertEquals("town", player.getLevel().getName());
 		assertTrue(Level.getLevelMap().get("town").getPlayers()
 				.contains(player));
-
 	}
 
-	private void waitForApplicationToComplete() throws InterruptedException {
-		HawkGdxTest listener = (HawkGdxTest) app.getApplicationListener();
-		while (!listener.isComplete()) {
-			Thread.sleep(100);
-		}
-	}
 }
-
-// stub for creating app instances
-//
-// LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-// config.useGL20 = true;
-// LwjglApplication app = new LwjglApplication(new HawkGdxTest(Mode.SERVER){
-// @Override
-// public Object getOutput() {
-// return something;
-// }
-//
-// @Override
-// public void runTest() {
-// }
-// });
-// waitForApplicationToComplete(app);
 

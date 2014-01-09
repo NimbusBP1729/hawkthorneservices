@@ -172,13 +172,13 @@ public class Client {
 			Level.switchState(newLevel, door, player);
 		} else if (msg.getCommand() == Command.KEYPRESSED) {
 			UUID id = msg.getEntityId();
-			GameKeys gk = GameKeys.valueOf(msg.getParams()[0].trim());
+			GameKeys gk = GameKeys.valueOf(msg.getParams()[0]);
 			Player player = Player.getConnectedPlayer(id);
 			player.setIsKeyDown(gk, true);
 			player.keypressed(gk);
 		} else if (msg.getCommand() == Command.KEYRELEASED) {
 			UUID id = msg.getEntityId();
-			GameKeys gk = GameKeys.valueOf(msg.getParams()[0].trim());
+			GameKeys gk = GameKeys.valueOf(msg.getParams()[0]);
 			Player player = Player.getConnectedPlayer(id);
 			player.setIsKeyDown(gk, false);
 			player.keyreleased(gk);

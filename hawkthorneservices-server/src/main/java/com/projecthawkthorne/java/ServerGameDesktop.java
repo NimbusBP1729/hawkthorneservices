@@ -8,6 +8,7 @@ import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl.LwjglFiles;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.GL20;
@@ -24,7 +25,7 @@ public class ServerGameDesktop {
 	}
 	
 
-	public static final void initGdx() {
+	public static final void initTestGdx() {
 		GdxNativesLoader.load();
 		Gdx.graphics = mock(Graphics.class);
 		Gdx.audio = mock(Audio.class);
@@ -33,5 +34,6 @@ public class ServerGameDesktop {
 		Gdx.gl11 = mock(GL11.class);
 		Gdx.gl20 = mock(GL20.class);
 		Gdx.input = mock(Input.class);
+		Gdx.files = new LwjglFiles();
 	}
 }

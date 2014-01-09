@@ -204,14 +204,14 @@ public class Server {
 			this.sendToAllExcept(msg, id);
 		} else if (msg.getCommand() == Command.KEYPRESSED) {
 			UUID id = msg.getEntityId();
-			GameKeys gk = GameKeys.valueOf(msg.getParams()[0].trim());
+			GameKeys gk = GameKeys.valueOf(msg.getParams()[0]);
 			Player player = Player.getConnectedPlayer(id);
 			player.setIsKeyDown(gk, true);
 			player.keypressed(gk);
 			this.sendToAllExcept(msg, id);
 		} else if (msg.getCommand() == Command.KEYRELEASED) {
 			UUID id = msg.getEntityId();
-			GameKeys gk = GameKeys.valueOf(msg.getParams()[0].trim());
+			GameKeys gk = GameKeys.valueOf(msg.getParams()[0]);
 			Player player = Player.getConnectedPlayer(id);
 			player.setIsKeyDown(gk, false);
 			player.keyreleased(gk);
