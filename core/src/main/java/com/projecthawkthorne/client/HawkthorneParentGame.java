@@ -19,7 +19,6 @@ import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Liquid;
 import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.gamestate.Level;
-import com.projecthawkthorne.socket.MessageBundle;
 import com.projecthawkthorne.timer.Timer;
 
 public class HawkthorneParentGame extends Game {
@@ -35,16 +34,12 @@ public class HawkthorneParentGame extends Game {
 	protected long lastTime = 0;
 	protected long lastPositionBroadcast = System.currentTimeMillis();
 	protected static final boolean IS_Y_DOWN = false;
-	protected MessageBundle mb = new MessageBundle();
-	
 	
 
 	private long lastIterationInfo = 0;
 	private long processingDurationSum = 0;
 	private int processingCountSum = 0;
 	private int processingIterations = 0;
-	private List<Node> liquids = new ArrayList<Node>();
-
 
 	@Override
 	public void create() {
@@ -160,7 +155,7 @@ public class HawkthorneParentGame extends Game {
 	}
 
 	public void draw(Level level, SpriteBatch batch) {
-		liquids.clear();
+		List<Node> liquids = new ArrayList<Node>();
 		Collection<Node> nodes = level.getNodeMap().values();
 		for (Node n : nodes) {
 			try {
