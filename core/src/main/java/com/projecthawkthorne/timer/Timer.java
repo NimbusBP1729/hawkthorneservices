@@ -12,9 +12,10 @@ import java.util.HashMap;
  * @author Patrick
  */
 public class Timer {
-
+	private static final NameAndCaller[] EMPTY_NAMEANDCALLER_ARRAY = new NameAndCaller[0];
 	private static HashMap<NameAndCaller, Long> clocks = new HashMap<NameAndCaller, Long>();
-
+	private static NameAndCaller nac = new NameAndCaller(null, null);
+	
 	public static boolean add(long delay, String name, Timeable caller) {
 		NameAndCaller nac = new NameAndCaller(name, caller);
 		if (clocks.containsKey(nac)) {
@@ -25,6 +26,8 @@ public class Timer {
 		return true;
 	}
 
+
+
 	/**
 	 * cancels a timer
 	 * 
@@ -34,7 +37,8 @@ public class Timer {
 	 *            the object using the timer
 	 */
 	public static void cancel(String name, Timeable caller) {
-		NameAndCaller nac = new NameAndCaller(name, caller);
+		nac.setName(name);
+		nac.setCaller(caller);
 		Long success = clocks.remove(nac);
 		if (success == null) {
 			System.err.println("A timer with the name: '" + name
@@ -66,7 +70,8 @@ public class Timer {
 	 * @return true if the timer has expired
 	 */
 	public static boolean hasExpired(String name, Timeable caller) {
-		NameAndCaller nac = new NameAndCaller(name, caller);
+		nac.setName(name);
+		nac.setCaller(caller);
 		if (!clocks.containsKey(nac)) {
 			System.err.println("No timer with the name: '" + name + "' exists");
 			return false;
@@ -81,11 +86,11 @@ public class Timer {
 	 * handles them accordingly
 	 */
 	public static void updateTimers() {
-		for (NameAndCaller nac :clocks.keySet()) {
-			if (hasExpired(nac.name, nac.caller)) {
-				Timeable t = nac.caller;
-				t.handleTimer(nac.name);
-				cancel(nac.name, nac.caller);
+		for (NameAndCaller nac : clocks.keySet().toArray(EMPTY_NAMEANDCALLER_ARRAY)) {
+			if (hasExpired(nac.getName(), nac.getCaller())) {
+				Timeable t = nac.getCaller();
+				t.handleTimer(nac.getName());
+				cancel(nac.getName(), nac.getCaller());
 			}
 		}
 	}
