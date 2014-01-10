@@ -2,20 +2,20 @@ package com.projecthawkthorne.timer;
 
 class NameAndCaller {
 
-	final String name;
-	final Timeable caller;
+	private String name;
+	private Timeable caller;
 
 	public NameAndCaller(String name, Timeable caller) {
-		this.name = name;
-		this.caller = caller;
+		this.setName(name);
+		this.setCaller(caller);
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((caller == null) ? 0 : caller.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((getCaller() == null) ? 0 : getCaller().hashCode());
+		result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
 		return result;
 	}
 
@@ -28,14 +28,30 @@ class NameAndCaller {
 		if (getClass() != obj.getClass())
 			return false;
 		NameAndCaller other = (NameAndCaller) obj;
-		if (caller == null) {
-			if (other.caller != null)
+		if (getCaller() == null) {
+			if (other.getCaller() != null)
 				return false;
-		} else if (!caller.equals(other.caller))
+		} else if (!getCaller().equals(other.getCaller()))
 			return false;
-		if (name != other.name)
+		if (getName() != other.getName())
 			return false;
 		return true;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Timeable getCaller() {
+		return caller;
+	}
+
+	public void setCaller(Timeable caller) {
+		this.caller = caller;
 	}
 
 }
