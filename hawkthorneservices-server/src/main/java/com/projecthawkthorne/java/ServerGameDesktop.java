@@ -6,9 +6,9 @@ import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl.LwjglFiles;
+import com.badlogic.gdx.backends.lwjgl.LwjglHeadlessApplication;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.GL20;
@@ -20,8 +20,8 @@ public class ServerGameDesktop {
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.useGL20 = true;
-		//initGdx();
-		new LwjglApplication(new HawkthorneServerGame(),config);
+		initTestGdx();
+		new LwjglHeadlessApplication(new HawkthorneServerGame());
 	}
 	
 
