@@ -8,7 +8,6 @@ import static com.projecthawkthorne.content.Game.DEBUG;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -465,31 +464,25 @@ public abstract class Node extends Collidable {
 									+ player.getCharacter().getName() + ","
 									+ player.getCharacter().getCostume() + ","
 									+ player.getState() + ") in Assets class");
+				}else{
+					float stateTime = convertToSeconds(this.getDuration());
+					TextureRegion tr = anim.getKeyFrame(stateTime);
+
+					if (this.direction == Direction.LEFT) {
+						batch.draw(tr, this.x, this.y, tr.getRegionWidth(),
+								tr.getRegionHeight());
+					} else {
+						batch.draw(tr, this.x + tr.getRegionWidth(), this.y,
+								-tr.getRegionWidth(), tr.getRegionHeight());
+					}
 				}
 			} else {
 				// anim = null if the type doesn't appear in the nodes map
-				Map<String, Map<String, Animation>> nodeType = Assets.nodes
-						.get(this.type);
-				if (nodeType != null) {
-					Map<String, Animation> nodeTypeName = nodeType
-							.get(this.name);
-					if (nodeTypeName != null) {
-						anim = nodeTypeName.get(this.getState());
-					}
-				}
-			}
-
-			// only draw nodes that have an associated image
-			if (anim != null) {
-				float stateTime = convertToSeconds(this.getDuration());
-				TextureRegion tr = anim.getKeyFrame(stateTime);
-
-				if (this.direction == Direction.LEFT) {
-					batch.draw(tr, this.x, this.y, tr.getRegionWidth(),
-							tr.getRegionHeight());
-				} else {
-					batch.draw(tr, this.x + tr.getRegionWidth(), this.y,
-							-tr.getRegionWidth(), tr.getRegionHeight());
+				anim = Assets.nodeSpriteMap.lookUp(type, name, state);
+				if (anim != null) {
+					float stateTime = convertToSeconds(this.getDuration());
+					TextureRegion tr = anim.getKeyFrame(stateTime);
+					batch.draw(tr, this.x, this.y, this.width, this.height);
 				}
 			}
 
