@@ -61,7 +61,7 @@ public class Player extends Humanoid implements Timeable {
 	private boolean liquidDrag = false;
 	private boolean flash = false;
 	private int fall_damage = 0;
-	private long since_solid_ground = 0;
+	private long sinceSolidGround = 0;
 	private Node currently_held; // Object currently being held by the player
 	private Node holdable; // Object that would be picked up if player used grab
 							// key
@@ -192,7 +192,7 @@ public class Player extends Humanoid implements Timeable {
 	// @return bool
 	public boolean solid_ground() {
 
-		if (this.since_solid_ground < Game.fall_grace || this.isClimbing()) {
+		if (this.sinceSolidGround < Game.fall_grace || this.isClimbing()) {
 			return true;
 		} else {
 			return false;
@@ -501,7 +501,7 @@ public class Player extends Humanoid implements Timeable {
 			this.velocityY = this.velocityY + Game.gravity * dt;
 		}
 
-		this.since_solid_ground = this.since_solid_ground + dt;
+		this.sinceSolidGround = this.sinceSolidGround + dt;
 		if (this.velocityY > Game.maxVelocityY) {
 			this.velocityY = Game.maxVelocityY;
 			this.fall_damage = Math.round((this.fall_damage + Game.fall_dps
@@ -654,18 +654,12 @@ public class Player extends Humanoid implements Timeable {
 		}
 	}
 
-	// //- Platformer interface
-	public void ceiling_pushback(Node node, float new_y) {
-		throw new UnsupportedOperationException(
-				"need to implement ceiling pushbacks");
-	}
-
 	/**
 	 * Function to call when colliding with the ground
 	 */
-	public void restore_solid_ground() {
+	public void restoreSolidGround() {
 
-		this.since_solid_ground = 0;
+		this.sinceSolidGround = 0;
 	}
 
 	/**
@@ -774,7 +768,7 @@ public class Player extends Humanoid implements Timeable {
 		this.setRebounding(false);
 
 		this.impactDamage();
-		this.restore_solid_ground();
+		this.restoreSolidGround();
 	}
 
 	@Override

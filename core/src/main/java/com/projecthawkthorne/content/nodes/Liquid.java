@@ -58,7 +58,7 @@ public class Liquid extends Node {
 				h.velocityX = Game.xFactor * -20;
 			}
 			if (h.velocityY > 0) {
-				h.restore_solid_ground();
+				h.restoreSolidGround();
 				h.setJumping(false);
 				h.velocityY = 1 * Player.jumpFactor;
 			}
