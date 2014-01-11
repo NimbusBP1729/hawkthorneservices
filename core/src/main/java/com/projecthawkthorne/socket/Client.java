@@ -172,6 +172,17 @@ public class Client {
 			Player player = Player.getConnectedPlayer(id);
 			player.setIsKeyDown(gk, false);
 			player.keyreleased(gk);
+		} else if (msg.getCommand() == Command.PONG) {
+			UUID id = msg.getEntityId();
+			long end = System.currentTimeMillis();
+			try{
+				long start = Long.valueOf(msg.getParams()[0]);
+				System.out.println("latency = " + (end-start)+"ms");
+				System.out.println("=======================");
+			}catch(Exception e){
+				System.err.println("error reporting latency");
+				e.printStackTrace();
+			}
 		}  else {
 			throw new UnsupportedOperationException(msg.getCommand().toString());
 		}

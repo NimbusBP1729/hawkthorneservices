@@ -35,6 +35,7 @@ public class Server {
 	private DatagramPacket sendPacket = new DatagramPacket(sendData,
 			sendData.length);
 	Logger log = Logger.getLogger(this.getClass().getName());
+	private MessageBundle response = new MessageBundle();;
 	public static Map<UUID, InetSocketAddress> addressMap = new HashMap<UUID, InetSocketAddress>();
 
 	private Server() {
@@ -180,11 +181,10 @@ public class Server {
 			//tell the new kid about everyone
 			for(Player p: Player.getPlayerMap().values()){
 				InetSocketAddress sockAddr = msg.getSocketAddress();
-				MessageBundle mb = new MessageBundle();
-				mb.setCommand(Command.REGISTERPLAYER);
-				mb.setParams(p.getUsername(),HawkthorneParentGame.START_LEVEL,"main");
-				mb.setEntityId(p.getId());
-				this.send(mb, sockAddr.getAddress(), sockAddr.getPort());
+				response.setCommand(Command.REGISTERPLAYER);
+				response.setParams(p.getUsername(),HawkthorneParentGame.START_LEVEL,"main");
+				response.setEntityId(p.getId());
+				this.send(response, sockAddr.getAddress(), sockAddr.getPort());
 			}
 		} else if (msg.getCommand() == Command.SWITCHLEVEL) {
 			UUID id = msg.getEntityId();
@@ -224,7 +224,6 @@ public class Server {
 			p.moveBoundingBox();
 			this.sendToAllExcept(msg, p.getId());
 		} else if (msg.getCommand() == Command.PING) {
-			MessageBundle response = new MessageBundle();
 			response.setCommand(Command.PONG);
 			response.setEntityId(msg.getEntityId());
 			response.setParams(msg.getParams());

@@ -19,6 +19,9 @@ import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Liquid;
 import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.gamestate.Level;
+import com.projecthawkthorne.socket.Client;
+import com.projecthawkthorne.socket.Command;
+import com.projecthawkthorne.socket.MessageBundle;
 import com.projecthawkthorne.timer.Timer;
 
 public class HawkthorneParentGame extends Game {
@@ -40,6 +43,7 @@ public class HawkthorneParentGame extends Game {
 	private long processingDurationSum = 0;
 	private int processingCountSum = 0;
 	private int processingIterations = 0;
+	private MessageBundle pingMsg = new MessageBundle();
 
 	@Override
 	public void create() {
@@ -64,6 +68,12 @@ public class HawkthorneParentGame extends Game {
 			System.out.println("avg. processing duration=="+1.0f*processingDurationSum/processingIterations);
 			System.out.println("avg. msg processed      =="+1.0f*processingCountSum/processingIterations);
 			System.out.println("iterations              =="+processingIterations);
+			if(MODE==Mode.CLIENT){
+				pingMsg.setCommand(Command.PING);
+				pingMsg.setEntityId(Player.getSingleton().getId());
+				pingMsg.setParams(String.valueOf(System.currentTimeMillis()));
+				Client.getSingleton().send(pingMsg);
+			}
 			System.out.println("================================================");
 
 			lastIterationInfo = now;
