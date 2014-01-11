@@ -50,8 +50,8 @@ public class Assets {
 	private static HashMap<String, Animation> coin;
 	private static HashMap<String, Animation> health;
 
-	/** top level map for all characters */
-	public static CharacterMap characters = new CharacterMap();
+	/** top level map for all characterSpriteMap */
+	public static CharacterSpriteMap characterSpriteMap = new CharacterSpriteMap();
 
 	/** map for default sprites */
 	public static HashMap<String, Animation> standard;

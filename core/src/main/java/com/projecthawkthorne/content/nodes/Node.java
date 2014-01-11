@@ -456,7 +456,7 @@ public abstract class Node extends Collidable {
 		try {
 			if (this instanceof Player) {
 				Player player = (Player) this;
-				anim = Assets.characters.lookUp(player.getCharacter().getName(),
+				anim = Assets.characterSpriteMap.lookUp(player.getCharacter().getName(),
 												player.getCharacter().getCostume(),
 												player.getState());
 				if (anim == null) {

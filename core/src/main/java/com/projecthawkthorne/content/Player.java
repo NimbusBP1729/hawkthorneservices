@@ -1079,7 +1079,7 @@ public class Player extends Humanoid implements Timeable {
 	}
 	
 	/**
-	 * converts of string of four characters to 
+	 * converts of string of four characterSpriteMap to 
 	 * into GameKey states
 	 * Note: this may be redundant if keypresses
 	 * are also received by the clients
