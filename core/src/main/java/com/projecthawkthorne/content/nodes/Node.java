@@ -453,39 +453,13 @@ public abstract class Node extends Collidable {
 	public void draw(SpriteBatch batch) {
 		Animation anim = null;
 		try {
-			if (this instanceof Player) {
-				Player player = (Player) this;
-				anim = Assets.characterSpriteMap.lookUp(player.getCharacter().getName(),
-												player.getCharacter().getCostume(),
-												player.getState());
-				if (anim == null) {
-					Gdx.app.error("drawing error",
-							"create player entry animation for (name,costume,STATE)=("
-									+ player.getCharacter().getName() + ","
-									+ player.getCharacter().getCostume() + ","
-									+ player.getState() + ") in Assets class");
-				}else{
-					float stateTime = convertToSeconds(this.getDuration());
-					TextureRegion tr = anim.getKeyFrame(stateTime);
-
-					if (this.direction == Direction.LEFT) {
-						batch.draw(tr, this.x, this.y, tr.getRegionWidth(),
-								tr.getRegionHeight());
-					} else {
-						batch.draw(tr, this.x + tr.getRegionWidth(), this.y,
-								-tr.getRegionWidth(), tr.getRegionHeight());
-					}
-				}
-			} else {
-				// anim = null if the type doesn't appear in the nodes map
-				anim = Assets.nodeSpriteMap.lookUp(type, name, state);
-				if (anim != null) {
-					float stateTime = convertToSeconds(this.getDuration());
-					TextureRegion tr = anim.getKeyFrame(stateTime);
-					batch.draw(tr, this.x, this.y, this.width, this.height);
-				}
+			// anim = null if the type doesn't appear in the nodes map
+			anim = Assets.nodeSpriteMap.lookUp(type, name, state);
+			if (anim != null) {
+				float stateTime = convertToSeconds(this.getDuration());
+				TextureRegion tr = anim.getKeyFrame(stateTime);
+				batch.draw(tr, this.x, this.y, this.width, this.height);
 			}
-
 			if (DEBUG) {
 				TextureRegion bboxTextureRegion = Assets.standard.get("bbox")
 						.getKeyFrame(0);
@@ -520,11 +494,6 @@ public abstract class Node extends Collidable {
 
 			}
 		}
-		if (this instanceof Player) {
-			Player player = (Player) this;
-			Assets.font.drawMultiLine(batch, player.getUsername(), this.x,
-					this.y + 60);
-		}
 	}
 
 	/**
@@ -533,7 +502,7 @@ public abstract class Node extends Collidable {
 	 * @param ms
 	 * @return
 	 */
-	private static float convertToSeconds(long ms) {
+	protected static float convertToSeconds(long ms) {
 		return ms / 1000.0f;
 	}
 

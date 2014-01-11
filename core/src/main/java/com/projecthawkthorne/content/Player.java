@@ -13,10 +13,14 @@ import java.util.Set;
 import java.util.UUID;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.HawkthorneParentGame;
 import com.projecthawkthorne.client.Mode;
+import com.projecthawkthorne.client.display.Animation;
+import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.nodes.Climbable;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.Enemy;
@@ -1090,5 +1094,31 @@ public class Player extends Humanoid implements Timeable {
 		this.keyDown.put(GameKeys.UP, str.charAt(1)!='0');
 		this.keyDown.put(GameKeys.LEFT, str.charAt(2)!='0');
 		this.keyDown.put(GameKeys.RIGHT, str.charAt(3)!='0');
+	}
+
+	@Override
+	public void draw(SpriteBatch batch) {
+		Animation anim = Assets.characterSpriteMap.lookUp(this.getCharacter().getName(),
+				this.getCharacter().getCostume(), this.getState());
+		if (anim == null) {
+			Gdx.app.error(
+					"drawing error",
+					"create player entry animation for (name,costume,STATE)=("
+							+ this.getCharacter().getName() + ","
+							+ this.getCharacter().getCostume() + ","
+							+ this.getState() + ") in Assets class");
+		} else {
+			float stateTime = convertToSeconds(this.getDuration());
+			TextureRegion tr = anim.getKeyFrame(stateTime);
+
+			if (this.direction == Direction.LEFT) {
+				batch.draw(tr, this.x, this.y, tr.getRegionWidth(),
+						tr.getRegionHeight());
+			} else {
+				batch.draw(tr, this.x + tr.getRegionWidth(), this.y,
+						-tr.getRegionWidth(), tr.getRegionHeight());
+			}
+		}
+		Assets.font.drawMultiLine(batch, this.getUsername(), this.x,this.y + 60);
 	}
 }
