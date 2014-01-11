@@ -177,7 +177,9 @@ public class Client {
 			long end = System.currentTimeMillis();
 			try{
 				long start = Long.valueOf(msg.getParams()[0]);
-				System.out.println("latency = " + (end-start)+"ms");
+				long middle = Long.valueOf(msg.getParams()[1]);
+				System.out.println("latency        = " + (end-start)+"ms");
+				System.out.println("server receipt = " + (middle-start)+"ms");
 				System.out.println("=======================");
 			}catch(Exception e){
 				System.err.println("error reporting latency");

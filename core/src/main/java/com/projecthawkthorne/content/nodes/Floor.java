@@ -7,6 +7,7 @@ package com.projecthawkthorne.content.nodes;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.FloorCollidable;
 import com.projecthawkthorne.gamestate.Level;
+import com.projecthawkthorne.hardoncollider.Bound;
 
 /**
  * 
@@ -27,10 +28,8 @@ public class Floor extends Node {
 
 		if (node instanceof FloorCollidable) {
 			FloorCollidable floorPushable = (FloorCollidable) node;
-			float[] floorCorners = new float[4];
+			float[] floorCorners = Bound.FLOAT_ARRAY;
 			this.bb.bbox(floorCorners);
-			float[] nodeCorners = new float[4];
-			node.bb.bbox(nodeCorners);
 			// float y1 = this.bb.getSmallestY(nodeCorners[0]);
 			// float y2 = this.bb.getSmallestY(nodeCorners[2]);
 			// float floorY = Math.min(y1, y2);
@@ -41,6 +40,8 @@ public class Floor extends Node {
 			float floorRight = floorCorners[2];
 			float floorBottom = floorCorners[3];
 
+			float[] nodeCorners = Bound.FLOAT_ARRAY;
+			node.bb.bbox(nodeCorners);
 			float nodeLeft = nodeCorners[0];
 			float nodeTop = nodeCorners[1];
 			float nodeRight = nodeCorners[2];

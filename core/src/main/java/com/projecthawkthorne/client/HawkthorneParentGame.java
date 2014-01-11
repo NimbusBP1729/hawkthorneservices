@@ -44,6 +44,8 @@ public class HawkthorneParentGame extends Game {
 	private int processingCountSum = 0;
 	private int processingIterations = 0;
 	private MessageBundle pingMsg = new MessageBundle();
+	private List<Node> liquids = new ArrayList<Node>();
+	
 
 	@Override
 	public void create() {
@@ -165,7 +167,7 @@ public class HawkthorneParentGame extends Game {
 	}
 
 	public void draw(Level level, SpriteBatch batch) {
-		List<Node> liquids = new ArrayList<Node>();
+		liquids.clear();
 		Collection<Node> nodes = level.getNodeMap().values();
 		for (Node n : nodes) {
 			try {

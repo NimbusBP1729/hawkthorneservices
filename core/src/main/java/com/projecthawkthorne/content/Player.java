@@ -91,6 +91,7 @@ public class Player extends Humanoid implements Timeable {
 	private String username;
 	/** the list of nodes this player needs fresh information about */
 	public Set<Node> updateList = new HashSet<Node>();
+	private MessageBundle mb = new MessageBundle();
 	private static Player singleton;
 
 	private Player(RectangleMapObject obj, Level level, UUID id) {
@@ -999,16 +1000,12 @@ public class Player extends Humanoid implements Timeable {
 			this.setIsKeyDown(gk, isDown);
 			if (!wasDown && isDown) {
 				this.keypressed(gk);
-
-				MessageBundle mb = new MessageBundle();
 				mb.setEntityId(Player.getSingleton().getId());
 				mb.setCommand(Command.KEYPRESSED);
 				mb.setParams(gk.toString());
 				Client.getSingleton().send(mb);
 			} else if (wasDown && !isDown) {
 				this.keyreleased(gk);
-
-				MessageBundle mb = new MessageBundle();
 				mb.setEntityId(Player.getSingleton().getId());
 				mb.setCommand(Command.KEYRELEASED);
 				mb.setParams(gk.toString());

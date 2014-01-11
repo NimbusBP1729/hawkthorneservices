@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Level;
+import com.projecthawkthorne.hardoncollider.Bound;
 
 /**
  * differs from floors because you can drop from it and it sends no
@@ -36,11 +37,11 @@ public class Platform extends Node {
 			return;
 		}
 		if (player.velocityY < 0) {
-			float[] playerCorners = new float[4];
+			float[] playerCorners = Bound.FLOAT_ARRAY;
 			player.bb.bbox(playerCorners);
 			float playerBottom = playerCorners[3];
 
-			float[] floorCorners = new float[4];
+			float[] floorCorners = Bound.FLOAT_ARRAY;
 			this.bb.bbox(floorCorners);
 			float floorTop = floorCorners[1];
 
