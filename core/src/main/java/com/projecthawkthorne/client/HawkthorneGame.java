@@ -26,6 +26,11 @@ public class HawkthorneGame extends HawkthorneParentGame {
 		trackedPlayer = Player.getSingleton();
 	}
 
+	public HawkthorneGame(String[] args) {
+		this();
+		Player.getSingleton().setUsername(args[0]);
+	}
+
 	@Override
 	public void create() {
 		super.create();
