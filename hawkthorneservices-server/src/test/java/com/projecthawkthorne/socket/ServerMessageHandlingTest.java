@@ -75,7 +75,7 @@ public class ServerMessageHandlingTest {
 	}
 
 	@Test
-	public void testPlayerRegistration() throws InterruptedException {
+	public void testPlayerRegistration() throws InterruptedException, UnknownHostException {
 		// create unknown player
 		UUID newId = UUID.fromString("ed5c9050-7629-11e3-981f-0800200c9a66");
 
@@ -84,12 +84,7 @@ public class ServerMessageHandlingTest {
 		msg.setCommand(Command.REGISTERPLAYER);
 		msg.setParams("VictorHugo", "town", "tavern");
 		msg.setEntityId(newId);
-		InetAddress addr = null;
-		try {
-			addr = InetAddress.getByName("java.sun.com");
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
+		InetAddress addr = InetAddress.getByName("java.sun.com");
 		int port = 7405;
 		InetSocketAddress socketAddress = new InetSocketAddress(addr, port);
 		msg.setSocketAddress(socketAddress);
