@@ -62,8 +62,8 @@ public class MessageBundleTest extends TestCase {
 		MessageBundle mb = SocketUtils.packetToBundle(packet);
 		assertEquals(mb.getCommand(), Command.REGISTERPLAYER);
 		UUID id = mb.getEntityId();
-		assertEquals(UUID.fromString("06017070-525b-40bc-88bf-ac6f7857d48c"),
-				id);
+		assertEquals(UUID.fromString("06017070-525b-40bc-88bf-ac6f7857d48c")
+				,id);
 		assertEquals(3, mb.getParams().length);
 		assertEquals("myusername", mb.getParams()[0]);
 		assertEquals("levelName", mb.getParams()[1]);
@@ -79,8 +79,8 @@ public class MessageBundleTest extends TestCase {
 		MessageBundle mb = SocketUtils.packetToBundle(packet);
 		assertEquals(mb.getCommand(), Command.SWITCHLEVEL);
 		UUID id = mb.getEntityId();
-		assertEquals(UUID.fromString("06017070-525b-40bc-88bf-ac6f7857d48c"),
-				id);
+		assertEquals(UUID.fromString("06017070-525b-40bc-88bf-ac6f7857d48c")
+				,id);
 		assertEquals(2, mb.getParams().length);
 		assertEquals("levelName", mb.getParams()[0]);
 		assertEquals("doorName", mb.getParams()[1]);

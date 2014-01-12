@@ -226,8 +226,7 @@ public class Server {
 		} else if (msg.getCommand() == Command.PING) {
 			response.setCommand(Command.PONG);
 			response.setEntityId(msg.getEntityId());
-			String serverReceipt = String.valueOf(System.currentTimeMillis());
-			response.setParams(msg.getParams()[0],serverReceipt);
+			response.setParams(msg.getParams());
 			InetSocketAddress sockAddr = msg.getSocketAddress();
 			this.send(response, sockAddr.getAddress(), sockAddr.getPort());
 		} else {
