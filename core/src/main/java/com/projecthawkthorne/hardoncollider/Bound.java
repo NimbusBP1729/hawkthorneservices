@@ -7,6 +7,7 @@ package com.projecthawkthorne.hardoncollider;
  * 
  */
 public abstract class Bound {
+	public static float[] FLOAT_ARRAY = new float[4];
 	private Collidable node;
 
 	/**

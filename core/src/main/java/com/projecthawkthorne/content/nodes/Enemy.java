@@ -73,11 +73,11 @@ public abstract class Enemy extends Humanoid implements Timeable {
 			return;
 		}
 
-		float[] p_bbox = new float[4];
+		float[] p_bbox = Bound.FLOAT_ARRAY;
 		player.bb.bbox(p_bbox);
 		float playerBottom = p_bbox[3];
 
-		float[] e_bbox = new float[4];
+		float[] e_bbox = Bound.FLOAT_ARRAY;
 		this.bb.bbox(e_bbox);
 		float enemyTop = e_bbox[1];
 		float y2 = e_bbox[3];
@@ -108,7 +108,7 @@ public abstract class Enemy extends Humanoid implements Timeable {
 
 		this.attack();
 
-		player.die(damage);
+		player.hurt(damage);
 		// player.bb.move(mtv_x, mtv_y)
 		player.velocityY = -450 * Player.jumpFactor;
 		int enemyDir = player.x < this.x ? -1 : 1;

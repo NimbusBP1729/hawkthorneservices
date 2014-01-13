@@ -12,9 +12,13 @@ import java.util.Map;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
+import com.projecthawkthorne.client.display.Animation;
+import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.nodes.Climbable;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.Enemy;
@@ -56,7 +60,7 @@ public class Player extends Humanoid implements Timeable {
 	private boolean liquidDrag = false;
 	private boolean flash = false;
 	private int fall_damage = 0;
-	private long since_solid_ground = 0;
+	private long sinceSolidGround = 0;
 	private Node currently_held; // Object currently being held by the player
 	private Node holdable; // Object that would be picked up if player used grab
 							// key
@@ -187,7 +191,7 @@ public class Player extends Humanoid implements Timeable {
 	// @return bool
 	public boolean solid_ground() {
 
-		if (this.since_solid_ground < Game.fall_grace || this.isClimbing()) {
+		if (this.sinceSolidGround < Game.fall_grace || this.isClimbing()) {
 			return true;
 		} else {
 			return false;
@@ -316,10 +320,10 @@ public class Player extends Humanoid implements Timeable {
 
 	@Override
 	public void die() {
-		this.die(this.health);
+		this.hurt(this.health);
 	}
 
-	public void die(int damage) {
+	public void hurt(int damage) {
 
 		if (this.isInvulnerable() || this.getCheat().isGod() || this.dead) {
 			return;
@@ -496,7 +500,7 @@ public class Player extends Humanoid implements Timeable {
 			this.velocityY = this.velocityY + Game.gravity * dt;
 		}
 
-		this.since_solid_ground = this.since_solid_ground + dt;
+		this.sinceSolidGround = this.sinceSolidGround + dt;
 		if (this.velocityY > Game.maxVelocityY) {
 			this.velocityY = Game.maxVelocityY;
 			this.fall_damage = Math.round((this.fall_damage + Game.fall_dps
@@ -505,7 +509,7 @@ public class Player extends Humanoid implements Timeable {
 
 		// falling off the bottom of the map
 		if (this.y < 0) {
-			this.die(this.health);
+			this.hurt(this.health);
 			return;
 		}
 
@@ -574,7 +578,7 @@ public class Player extends Humanoid implements Timeable {
 	public void impactDamage() {
 
 		if (this.fall_damage > 0) {
-			this.die(this.fall_damage);
+			this.hurt(this.fall_damage);
 		}
 		this.fall_damage = 0;
 	}
@@ -649,18 +653,12 @@ public class Player extends Humanoid implements Timeable {
 		}
 	}
 
-	// //- Platformer interface
-	public void ceiling_pushback(Node node, float new_y) {
-		throw new UnsupportedOperationException(
-				"need to implement ceiling pushbacks");
-	}
-
 	/**
 	 * Function to call when colliding with the ground
 	 */
-	public void restore_solid_ground() {
+	public void restoreSolidGround() {
 
-		this.since_solid_ground = 0;
+		this.sinceSolidGround = 0;
 	}
 
 	/**
@@ -757,19 +755,6 @@ public class Player extends Humanoid implements Timeable {
 	@Override
 	public void collide(Node node) {
 		// node handles collisions
-	}
-
-	@Override
-	public void floorPushback(Bound floor, float newY) {
-		// this.ceiling_pushback(node, new_y);
-		this.y = newY - this.bboxOffsetY;
-		this.velocityY = 0;
-		// this.moveBoundingBox();
-		this.setJumping(false);
-		this.setRebounding(false);
-
-		this.impactDamage();
-		this.restore_solid_ground();
 	}
 
 	@Override
@@ -888,6 +873,20 @@ public class Player extends Humanoid implements Timeable {
 	public void setJumpQueue(Queue<String> jumpQueue) {
 		this.jumpQueue = jumpQueue;
 	}
+	
+	@Override
+	public void floorPushback(Bound floor, float newY) {
+		// this.ceiling_pushback(node, new_y);
+		this.y = newY - this.bboxOffsetY;
+		this.velocityY = 0;
+		// this.moveBoundingBox();
+		this.setJumping(false);
+		this.setRebounding(false);
+
+		this.impactDamage();
+		this.restoreSolidGround();
+		this.moveBoundingBox();
+	}
 
 	@Override
 	public void wallPushback(Bound bb, float newX, boolean wallOnRight) {
@@ -902,7 +901,7 @@ public class Player extends Humanoid implements Timeable {
 
 	@Override
 	public void ceilingPushback(Bound bb, float newY) {
-		this.y = newY + this.bboxOffsetY;
+		this.y = newY - this.bboxOffsetY - this.height;
 		this.velocityY = 0;
 		this.moveBoundingBox();
 	}
@@ -1063,7 +1062,7 @@ public class Player extends Humanoid implements Timeable {
 	}
 	
 	/**
-	 * converts of string of four characters to 
+	 * converts of string of four characterSpriteMap to 
 	 * into GameKey states
 	 * Note: this may be redundant if keypresses
 	 * are also received by the clients
@@ -1074,5 +1073,31 @@ public class Player extends Humanoid implements Timeable {
 		this.keyDown.put(GameKeys.UP, str.charAt(1)!='0');
 		this.keyDown.put(GameKeys.LEFT, str.charAt(2)!='0');
 		this.keyDown.put(GameKeys.RIGHT, str.charAt(3)!='0');
+	}
+
+	@Override
+	public void draw(SpriteBatch batch) {
+		Animation anim = Assets.characterSpriteMap.lookUp(this.getCharacter().getName(),
+				this.getCharacter().getCostume(), this.getState());
+		if (anim == null) {
+			Gdx.app.error(
+					"drawing error",
+					"create player entry animation for (name,costume,STATE)=("
+							+ this.getCharacter().getName() + ","
+							+ this.getCharacter().getCostume() + ","
+							+ this.getState() + ") in Assets class");
+		} else {
+			float stateTime = convertToSeconds(this.getDuration());
+			TextureRegion tr = anim.getKeyFrame(stateTime);
+
+			if (this.direction == Direction.LEFT) {
+				batch.draw(tr, this.x, this.y, tr.getRegionWidth(),
+						tr.getRegionHeight());
+			} else {
+				batch.draw(tr, this.x + tr.getRegionWidth(), this.y,
+						-tr.getRegionWidth(), tr.getRegionHeight());
+			}
+		}
+		Assets.font.drawMultiLine(batch, this.getUsername(), this.x,this.y + 60);
 	}
 }

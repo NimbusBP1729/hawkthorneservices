@@ -32,14 +32,10 @@ public class HawkthorneParentGame extends Game {
 	protected float trackingX = 0;
 	protected float trackingY = 0;
 	protected long lastTime = 0;
-	protected long lastPositionBroadcast = System.currentTimeMillis();
 	protected static final boolean IS_Y_DOWN = false;
 	
-
-	private long lastIterationInfo = 0;
-	private long processingDurationSum = 0;
-	private int processingCountSum = 0;
-	private int processingIterations = 0;
+	private List<Node> liquids = new ArrayList<Node>();
+	
 
 	@Override
 	public void create() {
@@ -52,25 +48,6 @@ public class HawkthorneParentGame extends Game {
 		cam.zoom = 0.5f;
 	}
 	
-	protected void updateStatus(int msgCount, long processingDuration) {
-		processingDurationSum += processingDuration;
-		processingCountSum += msgCount;
-		processingIterations++;
-	}
-
-	protected final void printStatusPeriodically() {
-		long now = System.currentTimeMillis();
-		if(now-lastIterationInfo > 30000){
-			System.out.println("avg. processing duration=="+1.0f*processingDurationSum/processingIterations);
-			System.out.println("avg. msg processed      =="+1.0f*processingCountSum/processingIterations);
-			System.out.println("iterations              =="+processingIterations);
-			System.out.println("================================================");
-
-			lastIterationInfo = now;
-		}
-	}
-
-
 	@Override
 	public void resize(int width, int height) {
 		cam.setToOrtho(IS_Y_DOWN, width, height);
@@ -155,7 +132,7 @@ public class HawkthorneParentGame extends Game {
 	}
 
 	public void draw(Level level, SpriteBatch batch) {
-		List<Node> liquids = new ArrayList<Node>();
+		liquids.clear();
 		Collection<Node> nodes = level.getNodeMap().values();
 		for (Node n : nodes) {
 			try {

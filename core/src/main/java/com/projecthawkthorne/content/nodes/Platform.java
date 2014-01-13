@@ -7,9 +7,11 @@ package com.projecthawkthorne.content.nodes;
 import java.util.Iterator;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.projecthawkthorne.content.FloorCollidable;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Level;
+import com.projecthawkthorne.hardoncollider.Bound;
 
 /**
  * differs from floors because you can drop from it and it sends no
@@ -27,29 +29,53 @@ public class Platform extends Node {
 	}
 
 	@Override
-	protected void collide(Node playerNodeqe) {
-		if (!(playerNodeqe instanceof Humanoid)) {
+	protected void collide(Node node) {
+		if (!(node instanceof Humanoid)) {
 			return;
 		}
-		Player player = (Player) playerNodeqe;
+		Player player = (Player) node;
 		if (player.isDroppingFrom(this)) {
 			return;
 		}
+		int foo = 0;
+
 		if (player.velocityY < 0) {
-			float[] playerCorners = new float[4];
-			player.bb.bbox(playerCorners);
-			float playerBottom = playerCorners[3];
-
-			float[] floorCorners = new float[4];
+			FloorCollidable floorPushable = (FloorCollidable) node;
+			float[] floorCorners = Bound.FLOAT_ARRAY;
 			this.bb.bbox(floorCorners);
-			float floorTop = floorCorners[1];
+			// float y1 = this.bb.getSmallestY(nodeCorners[0]);
+			// float y2 = this.bb.getSmallestY(nodeCorners[2]);
+			// float floorY = Math.min(y1, y2);
 
-			player.dropFromPlatform(null);
-			float fd = floorTop - playerBottom;
-			if (fd > 24) {
-				return;
-			} else if (fd * player.velocityY > -20) {
-				player.floorPushback(this.bb, floorTop);
+			// TODO: use getSmallestY and getLargestY instead
+			float floorLeft = floorCorners[0];
+			float floorTop = floorCorners[1];
+			float floorRight = floorCorners[2];
+			float floorBottom = floorCorners[3];
+
+			float[] nodeCorners = Bound.FLOAT_ARRAY;
+			node.bb.bbox(nodeCorners);
+			float nodeLeft = nodeCorners[0];
+			float nodeTop = nodeCorners[1];
+			float nodeRight = nodeCorners[2];
+			float nodeBottom = nodeCorners[3];
+
+			float wallBuffer = 0;
+			boolean onTop = nodeBottom < floorTop && nodeTop > floorTop;
+			boolean onBottom = nodeBottom < floorBottom && nodeTop > floorBottom;
+			boolean onRight = nodeLeft < floorRight && nodeRight > floorRight;
+			boolean onLeft = nodeLeft < floorLeft && nodeRight > floorLeft;
+			if(!"e80623a1-c582-4e10-a937-607555079122".equals(this.getId().toString())){
+				foo = 0;
+			}			
+			if(onTop && !onBottom){
+				floorPushable.floorPushback(this.bb, floorTop);
+			}else if(onRight){
+				//do nothing
+			}else if(onLeft){
+				//do nothing
+			}else if(onBottom){
+				//do nothing
 			}
 		}
 	}
@@ -82,8 +108,11 @@ public class Platform extends Node {
 
 	@Override
 	protected void collideEnd(Node node) {
-		// TODO Auto-generated method stub
-
+		if(node instanceof Player){
+			Player player = (Player) node;
+			if(player.isDroppingFrom(this))
+				player.dropFromPlatform(null);
+		}
 	}
 
 	@Override

@@ -7,6 +7,7 @@ package com.projecthawkthorne.content.nodes;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.FloorCollidable;
 import com.projecthawkthorne.gamestate.Level;
+import com.projecthawkthorne.hardoncollider.Bound;
 
 /**
  * 
@@ -27,10 +28,8 @@ public class Floor extends Node {
 
 		if (node instanceof FloorCollidable) {
 			FloorCollidable floorPushable = (FloorCollidable) node;
-			float[] floorCorners = new float[4];
+			float[] floorCorners = Bound.FLOAT_ARRAY;
 			this.bb.bbox(floorCorners);
-			float[] nodeCorners = new float[4];
-			node.bb.bbox(nodeCorners);
 			// float y1 = this.bb.getSmallestY(nodeCorners[0]);
 			// float y2 = this.bb.getSmallestY(nodeCorners[2]);
 			// float floorY = Math.min(y1, y2);
@@ -41,48 +40,31 @@ public class Floor extends Node {
 			float floorRight = floorCorners[2];
 			float floorBottom = floorCorners[3];
 
+			float[] nodeCorners = Bound.FLOAT_ARRAY;
+			node.bb.bbox(nodeCorners);
 			float nodeLeft = nodeCorners[0];
 			float nodeTop = nodeCorners[1];
 			float nodeRight = nodeCorners[2];
 			float nodeBottom = nodeCorners[3];
 
-			float ceilingY = floorBottom;
-
-			float fd = floorTop - nodeBottom; // must be positive for
-												// floorpushback
-			float cd = nodeTop - floorBottom; // must be positive for
-												// ceilingpushback'
 			float wallBuffer = 1;
-			float floorBuffer = 10;
-			boolean isBetweenWall = (floorBuffer < floorBottom - nodeTop && nodeBottom
-					- floorTop > floorBuffer);
-
-			// wall on right side of node
-			if (0 < (nodeRight - floorLeft) && (nodeRight - floorLeft) < 20
-					&& isBetweenWall) {
-				floorPushable.wallPushback(this.bb, floorLeft - wallBuffer,
-						true);
-				return;
-			}
-
-			// wall on left side of node
-			else if (0 > (nodeLeft - floorRight)
-					&& (nodeLeft - floorRight) > -20 && isBetweenWall) {
-				floorPushable.wallPushback(this.bb, floorRight + wallBuffer,
-						false);
-				return;
-			}
-
-			if (fd > 0 && cd > 0) {
-				if (fd < cd) {
-					floorPushable.floorPushback(this.bb, floorTop);
-				} else {
-					floorPushable.ceilingPushback(this.bb, ceilingY);
-				}
-			} else if (fd > 0) {
+			boolean onTop = nodeBottom < floorTop && nodeTop > floorTop;
+			boolean onBottom = nodeBottom < floorBottom && nodeTop > floorBottom;
+			boolean onRight = nodeLeft < floorRight && nodeRight > floorRight;
+			boolean onLeft = nodeLeft < floorLeft && nodeRight > floorLeft;
+			
+			if(onTop){
 				floorPushable.floorPushback(this.bb, floorTop);
-			} else if (cd > 0) {
-				floorPushable.ceilingPushback(this.bb, ceilingY);
+			}else if(onRight){
+				floorPushable.wallPushback(this.bb
+						, floorRight + wallBuffer,
+						false);
+			}else if(onLeft){
+				floorPushable.wallPushback(this.bb
+						, floorLeft - wallBuffer,
+						true);
+			}else if(onBottom){
+				floorPushable.ceilingPushback(this.bb, floorBottom);
 			}
 
 		}

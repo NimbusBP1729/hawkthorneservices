@@ -6,7 +6,7 @@ import static com.projecthawkthorne.client.display.Assets.loadTexture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.projecthawkthorne.content.nodes.State;
 
-public class CharacterMap {
+public class CharacterSpriteMap {
 
 	public Animation lookUp(String name, String costume, State state) {
 		Animation anim = null;

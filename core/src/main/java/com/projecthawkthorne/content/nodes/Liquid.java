@@ -44,7 +44,7 @@ public class Liquid extends Node {
 		if (this.death) {
 			h.die();
 		} else if (this.injure) {
-			h.die(1);
+			h.hurt(1);
 		} else if (this.drown && h.y >= this.y) {
 			h.die();
 		}
@@ -58,7 +58,7 @@ public class Liquid extends Node {
 				h.velocityX = Game.xFactor * -20;
 			}
 			if (h.velocityY > 0) {
-				h.restore_solid_ground();
+				h.restoreSolidGround();
 				h.setJumping(false);
 				h.velocityY = 1 * Player.jumpFactor;
 			}
