@@ -37,7 +37,6 @@ public class Platform extends Node {
 		if (player.isDroppingFrom(this)) {
 			return;
 		}
-		int foo = 0;
 
 		if (player.velocityY < 0) {
 			FloorCollidable floorPushable = (FloorCollidable) node;
@@ -65,9 +64,6 @@ public class Platform extends Node {
 			boolean onBottom = nodeBottom < floorBottom && nodeTop > floorBottom;
 			boolean onRight = nodeLeft < floorRight && nodeRight > floorRight;
 			boolean onLeft = nodeLeft < floorLeft && nodeRight > floorLeft;
-			if(!"e80623a1-c582-4e10-a937-607555079122".equals(this.getId().toString())){
-				foo = 0;
-			}			
 			if(onTop && !onBottom){
 				floorPushable.floorPushback(this.bb, floorTop);
 			}else if(onRight){
