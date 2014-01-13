@@ -108,7 +108,7 @@ public abstract class Enemy extends Humanoid implements Timeable {
 
 		this.attack();
 
-		player.die(damage);
+		player.hurt(damage);
 		// player.bb.move(mtv_x, mtv_y)
 		player.velocityY = -450 * Player.jumpFactor;
 		int enemyDir = player.x < this.x ? -1 : 1;

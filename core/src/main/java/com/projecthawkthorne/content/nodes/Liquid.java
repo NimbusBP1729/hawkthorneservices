@@ -44,7 +44,7 @@ public class Liquid extends Node {
 		if (this.death) {
 			h.die();
 		} else if (this.injure) {
-			h.die(1);
+			h.hurt(1);
 		} else if (this.drown && h.y >= this.y) {
 			h.die();
 		}

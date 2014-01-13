@@ -326,10 +326,10 @@ public class Player extends Humanoid implements Timeable {
 
 	@Override
 	public void die() {
-		this.die(this.health);
+		this.hurt(this.health);
 	}
 
-	public void die(int damage) {
+	public void hurt(int damage) {
 
 		if (this.isInvulnerable() || this.getCheat().isGod() || this.dead) {
 			return;
@@ -515,7 +515,7 @@ public class Player extends Humanoid implements Timeable {
 
 		// falling off the bottom of the map
 		if (this.y < 0) {
-			this.die(this.health);
+			this.hurt(this.health);
 			return;
 		}
 
@@ -584,7 +584,7 @@ public class Player extends Humanoid implements Timeable {
 	public void impactDamage() {
 
 		if (this.fall_damage > 0) {
-			this.die(this.fall_damage);
+			this.hurt(this.fall_damage);
 		}
 		this.fall_damage = 0;
 	}
