@@ -891,6 +891,7 @@ public class Player extends Humanoid implements Timeable {
 
 		this.impactDamage();
 		this.restoreSolidGround();
+		this.moveBoundingBox();
 	}
 
 	@Override
@@ -906,7 +907,7 @@ public class Player extends Humanoid implements Timeable {
 
 	@Override
 	public void ceilingPushback(Bound bb, float newY) {
-		this.y = newY + this.bboxOffsetY;
+		this.y = newY - this.bboxOffsetY - this.height;
 		this.velocityY = 0;
 		this.moveBoundingBox();
 	}

@@ -47,43 +47,24 @@ public class Floor extends Node {
 			float nodeRight = nodeCorners[2];
 			float nodeBottom = nodeCorners[3];
 
-			float ceilingY = floorBottom;
-
-			float fd = floorTop - nodeBottom; // must be positive for
-												// floorpushback
-			float cd = nodeTop - floorBottom; // must be positive for
-												// ceilingpushback'
 			float wallBuffer = 1;
-			float floorBuffer = 10;
-			boolean isBetweenWall = (floorBuffer < floorBottom - nodeTop && nodeBottom
-					- floorTop > floorBuffer);
-
-			// wall on right side of node
-			if (0 < (nodeRight - floorLeft) && (nodeRight - floorLeft) < 20
-					&& isBetweenWall) {
-				floorPushable.wallPushback(this.bb, floorLeft - wallBuffer,
-						true);
-				return;
-			}
-
-			// wall on left side of node
-			else if (0 > (nodeLeft - floorRight)
-					&& (nodeLeft - floorRight) > -20 && isBetweenWall) {
-				floorPushable.wallPushback(this.bb, floorRight + wallBuffer,
-						false);
-				return;
-			}
-
-			if (fd > 0 && cd > 0) {
-				if (fd < cd) {
-					floorPushable.floorPushback(this.bb, floorTop);
-				} else {
-					floorPushable.ceilingPushback(this.bb, ceilingY);
-				}
-			} else if (fd > 0) {
+			boolean onTop = nodeBottom < floorTop && nodeTop > floorTop;
+			boolean onBottom = nodeBottom < floorBottom && nodeTop > floorBottom;
+			boolean onRight = nodeLeft < floorRight && nodeRight > floorRight;
+			boolean onLeft = nodeLeft < floorLeft && nodeRight > floorLeft;
+			
+			if(onTop){
 				floorPushable.floorPushback(this.bb, floorTop);
-			} else if (cd > 0) {
-				floorPushable.ceilingPushback(this.bb, ceilingY);
+			}else if(onRight){
+				floorPushable.wallPushback(this.bb
+						, floorRight + wallBuffer,
+						false);
+			}else if(onLeft){
+				floorPushable.wallPushback(this.bb
+						, floorLeft - wallBuffer,
+						true);
+			}else if(onBottom){
+				floorPushable.ceilingPushback(this.bb, floorBottom);
 			}
 
 		}
