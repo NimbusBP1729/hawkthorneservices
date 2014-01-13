@@ -764,19 +764,6 @@ public class Player extends Humanoid implements Timeable {
 	}
 
 	@Override
-	public void floorPushback(Bound floor, float newY) {
-		// this.ceiling_pushback(node, new_y);
-		this.y = newY - this.bboxOffsetY;
-		this.velocityY = 0;
-		// this.moveBoundingBox();
-		this.setJumping(false);
-		this.setRebounding(false);
-
-		this.impactDamage();
-		this.restoreSolidGround();
-	}
-
-	@Override
 	public void handleTimer(String name) {
 		if (name.equals("ATTACK1")) {
 			// plyr.attack_box
@@ -891,6 +878,19 @@ public class Player extends Humanoid implements Timeable {
 	 */
 	public void setJumpQueue(Queue<String> jumpQueue) {
 		this.jumpQueue = jumpQueue;
+	}
+	
+	@Override
+	public void floorPushback(Bound floor, float newY) {
+		// this.ceiling_pushback(node, new_y);
+		this.y = newY - this.bboxOffsetY;
+		this.velocityY = 0;
+		// this.moveBoundingBox();
+		this.setJumping(false);
+		this.setRebounding(false);
+
+		this.impactDamage();
+		this.restoreSolidGround();
 	}
 
 	@Override
