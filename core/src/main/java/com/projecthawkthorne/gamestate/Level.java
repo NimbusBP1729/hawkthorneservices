@@ -226,7 +226,7 @@ public class Level extends Gamestate {
 		player.velocityY = player.velocityX = 0;
 		if (door != null) {
 			player.x = door.x + door.width / 2 - player.width / 2;
-			player.y = door.y + door.height - player.height;
+			player.y = door.y;
 		}
 		newLevel.addPlayer(player);
 
