@@ -28,7 +28,8 @@ public class HawkthorneGame extends HawkthorneParentGame {
 
 	public HawkthorneGame(String[] args) {
 		this();
-		Player.getSingleton().setUsername(args[0]);
+		if(args.length > 0)
+			Player.getSingleton().setUsername(args[0]);
 	}
 
 	@Override
