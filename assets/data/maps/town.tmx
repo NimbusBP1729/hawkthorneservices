@@ -41,7 +41,7 @@
    eJztlDEOgzAMRT9jo8ws7WBmLsHRcpQehaNwlNqKoiITiXhIEU2+9EQyWPofvgG6urosIuYFhCfwlvuDz1f6qS0PLBPHJsTsfF8vNVRZnDUQYlY5/3teUvib9Zn3UPaxWI77TPjmneIj7XT4lQ+r2OdGOHyr9WzOqxnJu++44Ay5k4/a/wSHYzepYC43o7H4zflwFfJ61cvEmXSfc1h2Ouej9H0NjTE2xtwYHzGGKDM=
   </data>
  </layer>
- <layer name="foreground" width="60" height="14" opacity="0.56">
+ <layer name="foreground" width="60" height="14">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo4AywA3EnBDcMMBOoTuQGmF+1h9oB9ARGA20A8gE5OZFdyqZQy39pAJQXuTGI28CxKZo2AyhF8UcUtzNiUU/PndQAkD5zwCIDYHYhYBaTyxismh8QmbgcwcIyFNgBqlAj4A8sn9h7kP3LyEzqOEOSoErELsBsTMZemWR9DOQaQayO4C4gRIzRsEoGMoAAL3aDbM=
   </data>
