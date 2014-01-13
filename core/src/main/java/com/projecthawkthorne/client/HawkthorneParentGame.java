@@ -13,7 +13,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.projecthawkthorne.client.audio.AudioCache;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.nodes.Liquid;
@@ -151,7 +150,7 @@ public class HawkthorneParentGame extends Game {
 			tileMapRenderer.setMap(level.getTiledMap());
 			String musicFile = level.getTiledMap().getProperties()
 					.get("soundtrack", String.class);
-			AudioCache.playMusic(musicFile);
+			Assets.playMusic(musicFile);
 		}
 
 		tileMapRenderer.setView(cam);

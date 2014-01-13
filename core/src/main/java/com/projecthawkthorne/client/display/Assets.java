@@ -19,13 +19,15 @@ package com.projecthawkthorne.client.display;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Assets {
 	public static final String SRC_IMAGES = "data/maps/images/";
+	private static final String SRC_AUDIO = "data/audio/";
 	public static final BitmapFont font = new BitmapFont(false);
 
 	/** */
@@ -39,23 +41,18 @@ public class Assets {
 	public static HashMap<String, Animation> standard;
 	private static Texture defaultTexture;
 	private static Texture bboxTexture;
-
-	private static Map<String, Texture> imageCache = new HashMap<String, Texture>();
+	public static AssetManager manager = new AssetManager();
+	private static Map<String,Texture> textureCache = new HashMap<String,Texture>();
+	private static Map<String, Music> musicCache = new HashMap<String,Music>();
+	private static Map<String, Music> sfxCache = new HashMap<String,Music>();
 
 	public static Texture loadTexture(String file) {
-		Texture t;
-		try {
-			t = imageCache.get(file);
-			if (t == null) {
-				t = new Texture(Gdx.files.internal(file));
-				imageCache.put(file, t);
-			}
-		} catch (Exception e) {
-			Gdx.app.error("image cache error", "failed to load '" + file
-					+ "': using 'defaultTexture.png'", e);
-			t = new Texture(Gdx.files.internal(SRC_IMAGES
-					+ "defaultTexture.png"));
-			imageCache.put(file, t);
+		Texture t = textureCache.get(file);
+		if(t==null){
+			manager.load(file, Texture.class);
+			manager.finishLoading();
+			t = manager.get(file, Texture.class);
+			textureCache.put(file,t);
 		}
 		return t;
 	}
@@ -72,5 +69,64 @@ public class Assets {
 		standard.put("bbox", new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
 				new TextureRegion(bboxTexture, 288, 0, 48, 48)));
+	}
+	
+	
+	public static void playSfx(String soundFile) {
+		String fullName = SRC_AUDIO + "sfx/" + soundFile;
+		Music music = sfxCache.get(fullName);
+		if(music==null){
+			manager.load(fullName, Music.class);
+			manager.finishLoading();
+			music = manager.get(fullName, Music.class);
+			sfxCache.put(fullName,music);
+		}
+		music.setVolume(0.13f);
+		music.setLooping(false);
+		music.play();
+	}
+
+	public static void stopMusic(String soundFile) {
+		Music music = manager.get(SRC_AUDIO+"music/"+soundFile+".ogg", Music.class);
+		music.stop();
+	}
+
+	public static void playMusic(String soundFile) {
+		playMusic(soundFile, 0.15f);
+	}
+
+	public static void playMusic(String soundFile, float volume) {
+		if(soundFile==null){
+			playMusic("level",volume);
+			return;
+		}		
+		for(Music m : musicCache.values()){
+			m.stop();
+		}
+		String fullName = SRC_AUDIO+"music/"+soundFile+".ogg";
+		Music music = musicCache.get(fullName);
+		if(music==null){
+			manager.load(fullName, Music.class);
+			manager.finishLoading();
+			music = manager.get(fullName, Music.class);
+			musicCache.put(fullName, music);
+		}
+		music.setVolume(volume);
+		music.setLooping(true);
+		music.play();
+	}
+
+	/**
+	 * removes music from the cache
+	 * 
+	 * @param soundFile
+	 * @return true if the soundFile was previously cached
+	 */
+	public static boolean removeMusic(String soundFile) {
+		Music music = manager.get(SRC_AUDIO+"music/"+soundFile, Music.class);
+		if(music==null)
+			return false;
+		music.dispose();
+		return true;
 	}
 }
