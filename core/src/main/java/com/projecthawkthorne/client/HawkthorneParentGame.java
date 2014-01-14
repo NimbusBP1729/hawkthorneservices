@@ -31,6 +31,7 @@ public class HawkthorneParentGame extends Game {
 		cam.setToOrtho(IS_Y_DOWN, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.zoom = 0.5f;
 		tmr = new OrthogonalTiledMapRenderer(null,spriteBatch);
+		Level.setContext(this);
 		this.setScreen(Level.get(START_LEVEL));
 	}
 	

@@ -22,6 +22,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
+import com.projecthawkthorne.client.HawkthorneParentGame;
 import com.projecthawkthorne.client.audio.AudioCache;
 import com.projecthawkthorne.content.Boundary;
 import com.projecthawkthorne.content.GameKeys;
@@ -56,6 +57,7 @@ public class Level extends Gamestate {
 	private float trackingX = 0;
 	private float trackingY = 0;
 	private static Map<String, Level> levelMap = new HashMap<String,Level>();
+	private static HawkthorneParentGame context;
 
 
 	public static Map<String, Level> getLevelMap() {
@@ -244,6 +246,8 @@ public class Level extends Gamestate {
 			// this.moveBoundingBox();
 			// this.attack_box = PlayerAttack.new(collider,self);;
 		}
+		
+		context.setScreen(newLevel);
 
 	}
 
@@ -374,5 +378,9 @@ public class Level extends Gamestate {
 						, mapHeight)
 				, 0);
 		cam.update(true);
+	}
+
+	public static void setContext(HawkthorneParentGame hawkthorneParentGame) {
+		context = hawkthorneParentGame;
 	}
 }
