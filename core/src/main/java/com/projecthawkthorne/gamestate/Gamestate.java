@@ -5,12 +5,16 @@ import java.util.Map;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.UUID;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.Node;
 
-public abstract class Gamestate {
+public abstract class Gamestate implements Screen{
 
 	private Set<Player> players = new HashSet<Player>();
 
@@ -31,8 +35,6 @@ public abstract class Gamestate {
 		return players.remove(p);
 	}
 
-	public abstract void update(long dt);
-
 	public final Set<Player> getPlayers() {
 		return players;
 	}
@@ -46,5 +48,7 @@ public abstract class Gamestate {
 		throw new UnsupportedOperationException("this class:("
 				+ this.getClass().getName() + ") has no nodes");
 	}
+
+	public abstract void draw(OrthographicCamera cam, SpriteBatch batch, OrthogonalTiledMapRenderer tmr);
 
 }

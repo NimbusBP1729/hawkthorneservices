@@ -1,17 +1,28 @@
 package com.projecthawkthorne.gamestate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
+import com.projecthawkthorne.client.audio.AudioCache;
 import com.projecthawkthorne.content.Boundary;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
@@ -41,6 +52,9 @@ public class Level extends Gamestate {
 	private Boundary boundary = new Boundary();
 	private TiledMap tiledMap;
 	private Collider collider;
+	private List<Node> liquids = new ArrayList<Node>();
+	private float trackingX = 0;
+	private float trackingY = 0;
 	private static Map<String, Level> levelMap = new HashMap<String,Level>();
 
 
@@ -147,17 +161,6 @@ public class Level extends Gamestate {
 		return name;
 	}
 
-	@Override
-	public void update(long dt) {
-		Iterator<Node> nit = this.nodes.values().iterator();
-		while (nit.hasNext()) {
-			Node node = nit.next();
-			node.update(dt);
-		}
-
-		this.collider.update();
-	}
-
 	public void playerKeyPressed(Player player, String key) {
 		Iterator<Collidable> it = player.getCollisionList().iterator();
 		while (it.hasNext()) {
@@ -242,5 +245,134 @@ public class Level extends Gamestate {
 			// this.attack_box = PlayerAttack.new(collider,self);;
 		}
 
+	}
+
+	@Override
+	public void render(float delta) {
+		long dt = (long) (delta/1000);
+		Player player = Player.getSingleton();
+		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+			player.die();
+		}
+		player.processKeyActions();
+		Set<Player> players = this.getPlayers();
+		for (Player p : players) {
+			p.update(dt);
+		}
+		for(Node node : this.nodes.values()){
+			node.update(dt);
+		}
+		this.collider.update();
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void show() {
+		this.resume();
+	}
+
+	@Override
+	public void hide() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void resume() {
+		String musicFile = this.getTiledMap().getProperties()
+	                        .get("soundtrack", String.class);
+	    AudioCache.playMusic(musicFile);
+	}
+
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(OrthographicCamera cam, SpriteBatch batch, OrthogonalTiledMapRenderer tileMapRenderer) {
+		trackPlayerWithCam(Player.getSingleton(), cam);
+		TiledMap map = this.getTiledMap();
+		tileMapRenderer.setView(cam);
+		tileMapRenderer.setMap(map);
+		try {
+			float r = Float.parseFloat(map.getProperties().get("red",
+					String.class)) / 255.0f;
+			float g = Float.parseFloat(map.getProperties().get("green",
+					String.class)) / 255.0f;
+			float b = Float.parseFloat(map.getProperties().get("blue",
+					String.class)) / 255.0f;
+			Gdx.gl.glClearColor(r, g, b, 1);
+		} catch (NullPointerException e) {
+			Gdx.app.error(e.getClass().getName(),
+					"Error loading background: default to white");
+			Gdx.gl.glClearColor(1, 1, 1, 1);
+		}
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
+		batch.end();
+		tileMapRenderer.render();
+		batch.begin();
+
+		liquids.clear();
+		for (Node n : this.getNodeMap().values()) {
+			try {
+				if (n instanceof Liquid) {
+					liquids.add(n);
+				} else {
+					n.draw(batch);
+				}
+			} catch (Exception e) {
+				Gdx.app.error("error drawing " + n.getClass(), e.getMessage(),
+						e);
+			}
+		}
+		for (Player player : this.getPlayers()) {
+			player.draw(batch);
+		}
+		for (Node liquid : liquids) {
+			liquid.draw(batch);
+		}
+	}
+
+	private void trackPlayerWithCam(Player player, OrthographicCamera cam) {
+		TiledMapTileLayer tmtl = (TiledMapTileLayer) this.getTiledMap().getLayers().get(0);
+		float mapHeight = tmtl.getHeight() * tmtl.getTileHeight();
+		float mapWidth = tmtl.getWidth() * tmtl.getTileWidth();
+
+		float x;
+		float y;
+		if (player != null) {
+			x = player.x + player.width / 2;
+			y = player.y;
+			trackingX = x;
+			trackingY = y;
+		} else {
+			x = trackingX;
+			y = trackingY;
+		}
+		cam.position.set(
+				MathUtils.clamp(
+						x
+						, cam.zoom * cam.viewportWidth / 2
+						, mapWidth - cam.zoom * cam.viewportWidth / 2)
+				, MathUtils.clamp(
+						y
+						, cam.zoom * cam.viewportHeight / 2
+						, mapHeight)
+				, 0);
+		cam.update(true);
 	}
 }
