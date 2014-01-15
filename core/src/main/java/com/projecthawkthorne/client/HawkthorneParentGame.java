@@ -38,7 +38,7 @@ public class HawkthorneParentGame extends Game {
 		this.lastTime = currentTime;
 		long maxDt = 100;
 		dt = maxDt < dt ? maxDt : dt;
-		this.getScreen().render(dt*1000f);
+		this.getScreen().render(dt/1000f);
 		spriteBatch.begin();
 		((Gamestate) this.getScreen()).draw(spriteBatch);
 		spriteBatch.end();

@@ -11,6 +11,7 @@ import com.projecthawkthorne.content.KeyMapping;
 public abstract class GenericGamestate extends Gamestate {
 	
 	private Map<GameKeys, Boolean> keyMap = new HashMap<GameKeys, Boolean>();
+	private float lifeTime = 0;
 
 	public final void setIsKeyDown(GameKeys button, boolean b) {
 		this.keyMap.put(button, Boolean.valueOf(b));
@@ -22,6 +23,7 @@ public abstract class GenericGamestate extends Gamestate {
 	}
 	
 	public final void render(float dt){
+		lifeTime += dt;
 		for (GameKeys gk : GameKeys.values()) {
 			boolean wasDown = this.getIsKeyDown(gk);
 			boolean isPcKeyDown = Gdx.input.isKeyPressed(KeyMapping
@@ -29,10 +31,12 @@ public abstract class GenericGamestate extends Gamestate {
 			boolean isAndroidKeyDown = Gamestate.getIsAndroidKeyDown(gk);
 			boolean isDown = isPcKeyDown || isAndroidKeyDown;
 			this.setIsKeyDown(gk, isDown);
-			if (!wasDown && isDown) {
-				this.keypressed(gk);
-			} else if (wasDown && !isDown) {
-				this.keyreleased(gk);
+			if(lifeTime > 1f){
+				if (!wasDown && isDown) {
+					this.keypressed(gk);
+				} else if (wasDown && !isDown) {
+					this.keyreleased(gk);
+				}
 			}
 		}
 	}
@@ -47,9 +51,11 @@ public abstract class GenericGamestate extends Gamestate {
 	
 	@Override
 	public void hide() {
-		for (GameKeys gk : GameKeys.values()) {
-			keyMap.put(gk, false);
-		}
+	}
+	
+	@Override
+	public void show() {
+		lifeTime = 0;
 	}
 
 	public static Screen get(String state) {

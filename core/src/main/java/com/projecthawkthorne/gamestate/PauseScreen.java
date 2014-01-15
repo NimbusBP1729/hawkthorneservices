@@ -26,6 +26,7 @@ public class PauseScreen extends GenericGamestate {
 
 	@Override
 	public void show() {
+		super.show();
 		Assets.playMusic(musicFile);
 	}
 

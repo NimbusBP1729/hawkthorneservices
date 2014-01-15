@@ -201,10 +201,6 @@ public class Level extends Gamestate {
 		return spawnLevel;
 	}
 
-	public TiledMap getTiledMap() {
-		return tiledMap;
-	}
-
 	
 	/**
 	 * if door is null, the player ends up in his current location
@@ -255,7 +251,7 @@ public class Level extends Gamestate {
 
 	@Override
 	public void render(float delta) {
-		long dt = (long) (delta/1000);
+		long dt = (long) (delta*1000);
 		Player player = Player.getSingleton();
 		if (Gdx.input.isKeyPressed(Keys.DEL)) {
 			player.die();
@@ -283,19 +279,23 @@ public class Level extends Gamestate {
 
 	@Override
 	public void hide() {
-		String musicFile = this.getTiledMap().getProperties()
+		String musicFile = this.tiledMap.getProperties()
                 .get("soundtrack", String.class);
 		Assets.stopMusic(musicFile);
 	}
 
 	@Override
 	public void pause() {
+		String musicFile = this.tiledMap.getProperties()
+                .get("soundtrack", String.class);
+		Assets.stopMusic(musicFile);
 		context.setScreen(GenericGamestate.get("pause"));
 	}
 
 	@Override
 	public void resume() {
-		String musicFile = this.getTiledMap().getProperties()
+		this.tiledMap = Assets.getTiledMap(name);
+		String musicFile = this.tiledMap.getProperties()
 	                        .get("soundtrack", String.class);
 	    Assets.playMusic(musicFile);
 	}
@@ -310,7 +310,7 @@ public class Level extends Gamestate {
 	public void draw(SpriteBatch batch) {
 		batch.setProjectionMatrix(cam.combined);
 		trackPlayerWithCam(Player.getSingleton(), cam);
-		TiledMap map = this.getTiledMap();
+		TiledMap map = this.tiledMap;
 		tileMapRenderer.setView(cam);
 		tileMapRenderer.setMap(map);
 		try {
@@ -357,7 +357,7 @@ public class Level extends Gamestate {
 	}
 
 	private void trackPlayerWithCam(Player player, OrthographicCamera cam) {
-		TiledMapTileLayer tmtl = (TiledMapTileLayer) this.getTiledMap().getLayers().get(0);
+		TiledMapTileLayer tmtl = (TiledMapTileLayer) this.tiledMap.getLayers().get(0);
 		float mapHeight = tmtl.getHeight() * tmtl.getTileHeight();
 		float mapWidth = tmtl.getWidth() * tmtl.getTileWidth();
 

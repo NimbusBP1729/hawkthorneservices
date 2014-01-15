@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -1048,6 +1049,8 @@ public class Player extends Humanoid implements Timeable {
 						-tr.getRegionWidth(), tr.getRegionHeight());
 			}
 		}
-		Assets.getFont().drawMultiLine(batch, this.getUsername(), this.x,this.y + 60);
+		BitmapFont font = Assets.getFont();
+		font.setScale(1, 1);
+		font.drawMultiLine(batch, this.getUsername(), this.x,this.y + 60);
 	}
 }
