@@ -44,6 +44,13 @@ public abstract class GenericGamestate extends Gamestate {
 	public String getSoundtrack() {
 		return "opening";
 	}
+	
+	@Override
+	public void hide() {
+		for (GameKeys gk : GameKeys.values()) {
+			keyMap.put(gk, false);
+		}
+	}
 
 	public static Screen get(String state) {
 		if("pause".equals(state)){

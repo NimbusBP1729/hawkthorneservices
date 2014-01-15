@@ -1,7 +1,9 @@
 package com.projecthawkthorne.client;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Player;
@@ -20,7 +22,9 @@ public class HawkthorneParentGame extends Game {
 	
 	@Override
 	public void create() {
-		Assets.load();
+		Assets.load(new AssetManager());
+		Gdx.input.setCatchBackKey(true);
+		Gdx.input.setInputProcessor(new HawkInputProcessor());
 		spriteBatch = new SpriteBatch();
 		Gamestate.setContext(this);
 		this.setScreen(Level.get(START_LEVEL));

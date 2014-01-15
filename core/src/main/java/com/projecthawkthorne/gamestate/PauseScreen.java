@@ -13,10 +13,9 @@ import com.projecthawkthorne.content.KeyMapping;
 
 public class PauseScreen extends GenericGamestate {
 
-	private BitmapFont font = new BitmapFont(true);
-	private TextureRegion background = new TextureRegion(Assets.loadTexture(Assets.SRC_IMAGES+"menu/pause.png"));
+	private TextureRegion background = new TextureRegion(Assets.loadTexture("menu/pause.png"));
 	private int option = 0;
-	private TextureRegion arrow = new TextureRegion(Assets.loadTexture(Assets.SRC_IMAGES+"menu/arrow.png"));
+	private TextureRegion arrow = new TextureRegion(Assets.loadTexture("menu/arrow.png"));
 	private String musicFile = "daybreak";
 	private OrthographicCamera cam = new OrthographicCamera(528, 336);
 
@@ -32,6 +31,7 @@ public class PauseScreen extends GenericGamestate {
 
 	@Override
 	public void hide() {
+		super.hide();
 		Assets.stopMusic(musicFile);
 	}
 
@@ -66,6 +66,10 @@ public class PauseScreen extends GenericGamestate {
 			this.option = ((this.option - 1) % 5 + 5) % 5;
             Assets.playSfx("click");
 			break;
+		case START:
+			Gdx.app.getApplicationListener().dispose();
+			Gdx.app.exit();
+			break;
 		default:
 			break;
 	    
@@ -95,7 +99,9 @@ public class PauseScreen extends GenericGamestate {
 	      cam.viewportHeight / 2 - this.background.getRegionHeight() / 2);
 
 	    batch.setColor( 0, 0, 0, 1 );
-	    font.draw(batch, "Controls", 198, 101);
+	    BitmapFont font = Assets.getFont();
+		font.setScale(0.8f, -0.8f);
+		font.draw(batch, "Controls", 198, 101);
 	    font.draw(batch, "Options", 198, 131);
 	    font.draw(batch, "Quit to Map", 198, 161);
 	    font.draw(batch, "Quit to Menu", 198, 191);

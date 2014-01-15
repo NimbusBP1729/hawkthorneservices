@@ -29,6 +29,7 @@ import com.projecthawkthorne.content.nodes.State;
 import com.projecthawkthorne.content.nodes.Weapon;
 import com.projecthawkthorne.datastructures.Queue;
 import com.projecthawkthorne.gamestate.Gamestate;
+import com.projecthawkthorne.gamestate.GenericGamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
@@ -242,6 +243,10 @@ public class Player extends Humanoid implements Timeable {
 	public boolean keypressed(GameKeys button) {
 		if (this.dead) {
 			return false;
+		}
+		
+		if(button==GameKeys.START){
+			Gamestate.getContext().setScreen(GenericGamestate.get("pause"));
 		}
 
 		// if (this.inventory.isVisible()) {
@@ -1043,6 +1048,6 @@ public class Player extends Humanoid implements Timeable {
 						-tr.getRegionWidth(), tr.getRegionHeight());
 			}
 		}
-		Assets.font.drawMultiLine(batch, this.getUsername(), this.x,this.y + 60);
+		Assets.getFont().drawMultiLine(batch, this.getUsername(), this.x,this.y + 60);
 	}
 }

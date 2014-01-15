@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.projecthawkthorne.client.HawkthorneParentGame;
@@ -97,7 +98,7 @@ public abstract class Gamestate implements Screen{
 		case SELECT:
 			break;
 		case START:
-			break;
+			return Gdx.input.isKeyPressed(Keys.BACK);
 		case UP:
 			isFirstInRegion = firstTouchY < height / 3;
 			isSecondInRegion = secondTouchY < height / 3;
@@ -109,6 +110,10 @@ public abstract class Gamestate implements Screen{
 		result = (isFirstTouched && isFirstInRegion)
 				|| (isSecondTouched && isSecondInRegion);
 		return result;
+	}
+
+	public static HawkthorneParentGame getContext() {
+		return context;
 	}
 
 

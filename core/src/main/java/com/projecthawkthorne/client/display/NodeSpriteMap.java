@@ -10,7 +10,7 @@ public class NodeSpriteMap {
 		Texture texture;
 		Animation anim = null;
 		if("liquid".equals(type)){
-			texture = Assets.loadTexture(Assets.SRC_IMAGES+"water.png");
+			texture = Assets.loadTexture("water.png");
 			anim = new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
 				new TextureRegion(texture, 48, 0, 24, 24));

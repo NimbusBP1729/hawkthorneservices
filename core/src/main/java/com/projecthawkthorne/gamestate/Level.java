@@ -9,7 +9,6 @@ import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,7 +18,6 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
@@ -45,7 +43,6 @@ import com.projecthawkthorne.hardoncollider.Collider;
  */
 public class Level extends Gamestate {
 
-	public static final String SRC_MAPS = "data/maps/";
 	private static final boolean IS_Y_DOWN = false;
 	private String title;
 	private Map<UUID, Node> nodes = new HashMap<UUID, Node>();
@@ -88,9 +85,8 @@ public class Level extends Gamestate {
 	}
 
 	private void loadNodes(String levelName) {
-		TmxMapLoader loader = new TmxMapLoader(new InternalFileHandleResolver());
-
-		this.tiledMap = loader.load(SRC_MAPS + levelName.trim() + ".tmx");
+		
+		this.tiledMap = Assets.getTiledMap(levelName.trim());
 		MapProperties prop = tiledMap.getProperties();
 		int mapWidth = prop.get("width", Integer.class);
 		int mapHeight = prop.get("height", Integer.class);
@@ -261,10 +257,8 @@ public class Level extends Gamestate {
 	public void render(float delta) {
 		long dt = (long) (delta/1000);
 		Player player = Player.getSingleton();
-		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+		if (Gdx.input.isKeyPressed(Keys.DEL)) {
 			player.die();
-		}else if (Gdx.input.isKeyPressed(Keys.P)) {
-			context.setScreen(GenericGamestate.get("pause"));
 		}
 		player.processKeyActions();
 		Set<Player> players = this.getPlayers();
@@ -289,13 +283,14 @@ public class Level extends Gamestate {
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-		
+		String musicFile = this.getTiledMap().getProperties()
+                .get("soundtrack", String.class);
+		Assets.stopMusic(musicFile);
 	}
 
 	@Override
 	public void pause() {
-		//context.setScreen(GenericGamestate.get("pause"));
+		context.setScreen(GenericGamestate.get("pause"));
 	}
 
 	@Override

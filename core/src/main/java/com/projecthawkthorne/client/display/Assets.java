@@ -20,16 +20,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class Assets {
-	public static final String SRC_IMAGES = "data/maps/images/";
+	private static final String SRC_IMAGES = "data/maps/images/";
 	private static final String SRC_AUDIO = "data/audio/";
-	public static final BitmapFont font = new BitmapFont(false);
-
+	private static final String SRC_MAPS = "data/maps/";
+	
 	/** */
 	public static Map<String, Texture> spriteCache = new HashMap<String, Texture>();
 
@@ -41,27 +44,21 @@ public class Assets {
 	public static HashMap<String, Animation> standard;
 	private static Texture defaultTexture;
 	private static Texture bboxTexture;
-	public static AssetManager manager = new AssetManager();
-	private static Map<String,Texture> textureCache = new HashMap<String,Texture>();
-	private static Map<String, Music> musicCache = new HashMap<String,Music>();
-	private static Map<String, Music> sfxCache = new HashMap<String,Music>();
-
+	private static AssetManager manager;
+	
 	public static Texture loadTexture(String file) {
-		Texture t = textureCache.get(file);
-		if(t==null){
-			manager.load(file, Texture.class);
-			manager.finishLoading();
-			t = manager.get(file, Texture.class);
-			textureCache.put(file,t);
-		}
-		return t;
+		String fullName = SRC_IMAGES + file;
+		manager.load(fullName, Texture.class);
+		manager.finishLoading();
+		return manager.get(fullName, Texture.class);
 	}
 
-	public static void load() {
-		//
+	public static void load(AssetManager assetManager) {
+		manager = assetManager;
+		manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		standard = new HashMap<String, Animation>();
-		defaultTexture = loadTexture(SRC_IMAGES + "defaultTexture.png");
-		bboxTexture = loadTexture(SRC_IMAGES + "bboxTexture.png");
+		defaultTexture = loadTexture("defaultTexture.png");
+		bboxTexture = loadTexture("bboxTexture.png");
 
 		standard.put("node", new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
@@ -73,22 +70,20 @@ public class Assets {
 	
 	
 	public static void playSfx(String soundFile) {
-		String fullName = SRC_AUDIO + "sfx/" + soundFile;
-		Music music = sfxCache.get(fullName);
-		if(music==null){
-			manager.load(fullName, Music.class);
-			manager.finishLoading();
-			music = manager.get(fullName, Music.class);
-			sfxCache.put(fullName,music);
-		}
+		String fullName = SRC_AUDIO + "sfx/" + soundFile + ".ogg";
+		manager.load(fullName, Music.class);
+		manager.finishLoading();
+		Music music = manager.get(fullName, Music.class);
 		music.setVolume(0.13f);
 		music.setLooping(false);
 		music.play();
 	}
 
 	public static void stopMusic(String soundFile) {
-		Music music = manager.get(SRC_AUDIO+"music/"+soundFile+".ogg", Music.class);
-		music.stop();
+		if(soundFile!=null){
+			Music music = manager.get(SRC_AUDIO+"music/"+soundFile+".ogg", Music.class);
+			music.stop();
+		}
 	}
 
 	public static void playMusic(String soundFile) {
@@ -99,18 +94,12 @@ public class Assets {
 		if(soundFile==null){
 			playMusic("level",volume);
 			return;
-		}		
-		for(Music m : musicCache.values()){
-			m.stop();
 		}
 		String fullName = SRC_AUDIO+"music/"+soundFile+".ogg";
-		Music music = musicCache.get(fullName);
-		if(music==null){
-			manager.load(fullName, Music.class);
-			manager.finishLoading();
-			music = manager.get(fullName, Music.class);
-			musicCache.put(fullName, music);
-		}
+		Music music;
+		manager.load(fullName, Music.class);
+		manager.finishLoading();
+		music = manager.get(fullName, Music.class);
 		music.setVolume(volume);
 		music.setLooping(true);
 		music.play();
@@ -129,4 +118,20 @@ public class Assets {
 		music.dispose();
 		return true;
 	}
+	
+	public static BitmapFont getFont(){
+		String fullName = "fonts/font.fnt";
+		manager.load(fullName, BitmapFont.class);
+		manager.finishLoading();
+		BitmapFont font = manager.get(fullName, BitmapFont.class);
+		return font;
+	}
+	
+	public static TiledMap getTiledMap(String mapName){
+		String fullName = SRC_MAPS + mapName + ".tmx";
+		manager.load(fullName, TiledMap.class);
+		manager.finishLoading();
+		return manager.get(fullName, TiledMap.class);
+	}
+	
 }
