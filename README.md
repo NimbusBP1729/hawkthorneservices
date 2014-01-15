@@ -25,11 +25,11 @@ install maven
 
 add the following to your ~/.bashrc
 
-`echo 'export M2_HOME=/usr/local/apache-maven-3.1.1`
+`export M2_HOME=/usr/local/apache-maven-3.1.1`
 
 `export M2=$M2_HOME/bin`
 
-`export PATH=$M2:$PATH' >> ~/.bashrc`
+`export PATH=$M2:$PATH`
 
 install tools.jar(as well as the rest of java) if it's not in your 'jdk'
 
