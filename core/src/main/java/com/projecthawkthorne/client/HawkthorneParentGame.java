@@ -29,7 +29,6 @@ public class HawkthorneParentGame extends Game {
 	@Override
 	public final void render() {
 		Timer.updateTimers();
-		
 		long currentTime = System.currentTimeMillis();
 		long dt = (currentTime - this.lastTime);
 		this.lastTime = currentTime;

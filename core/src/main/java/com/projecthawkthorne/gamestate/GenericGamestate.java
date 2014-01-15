@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.KeyMapping;
@@ -23,9 +22,6 @@ public abstract class GenericGamestate extends Gamestate {
 	}
 	
 	public final void render(float dt){
-		if(Gdx.input.isKeyPressed(Keys.ESCAPE)){
-			context.setScreen(context.getLastScreen());
-		}	
 		for (GameKeys gk : GameKeys.values()) {
 			boolean wasDown = this.getIsKeyDown(gk);
 			boolean isPcKeyDown = Gdx.input.isKeyPressed(KeyMapping
