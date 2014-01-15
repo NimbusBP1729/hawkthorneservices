@@ -43,7 +43,7 @@ public class Assets {
 	/** map for default sprites */
 	public static HashMap<String, Animation> standard;
 	private static Texture defaultTexture;
-	private static Texture bboxTexture;
+	public static Texture bboxTexture;
 	private static AssetManager manager;
 	
 	public static Texture loadTexture(String file) {

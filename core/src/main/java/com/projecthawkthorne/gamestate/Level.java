@@ -68,8 +68,8 @@ public class Level extends Gamestate {
 		this.name = name;
 		this.collider = new Collider();
 		this.loadNodes(name);
-		tileMapRenderer = new OrthogonalTiledMapRenderer(this.tiledMap);
 		this.spawnLevel = this;
+		this.tileMapRenderer = new OrthogonalTiledMapRenderer(null);
 		cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.setToOrtho(IS_Y_DOWN);
 		cam.zoom = 0.5f;
@@ -289,12 +289,12 @@ public class Level extends Gamestate {
 		String musicFile = this.tiledMap.getProperties()
                 .get("soundtrack", String.class);
 		Assets.stopMusic(musicFile);
-		context.setScreen(GenericGamestate.get("pause"));
 	}
 
 	@Override
 	public void resume() {
 		this.tiledMap = Assets.getTiledMap(name);
+		this.tileMapRenderer.setMap(this.tiledMap);
 		String musicFile = this.tiledMap.getProperties()
 	                        .get("soundtrack", String.class);
 	    Assets.playMusic(musicFile);
@@ -311,7 +311,11 @@ public class Level extends Gamestate {
 		batch.setProjectionMatrix(cam.combined);
 		trackPlayerWithCam(Player.getSingleton(), cam);
 		TiledMap map = this.tiledMap;
-		tileMapRenderer.setView(cam);
+		TiledMapTileLayer tmtl = (TiledMapTileLayer) this.tiledMap.getLayers().get(0);
+		float mapHeight = tmtl.getHeight() * tmtl.getTileHeight();
+		float mapWidth = tmtl.getWidth() * tmtl.getTileWidth();
+
+		tileMapRenderer.setView(cam.combined, 0, 0, mapWidth, mapHeight);
 		tileMapRenderer.setMap(map);
 		try {
 			float r = Float.parseFloat(map.getProperties().get("red",
@@ -352,7 +356,7 @@ public class Level extends Gamestate {
 			liquid.draw(batch);
 		}
 		if(Game.DEBUG){
-			this.collider.draw();
+			this.collider.draw(batch);
 		}
 	}
 

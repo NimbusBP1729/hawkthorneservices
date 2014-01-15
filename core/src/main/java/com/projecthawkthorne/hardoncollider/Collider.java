@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.projecthawkthorne.client.display.Assets;
+
 /**
  * the collision detection class
  * 
@@ -130,9 +135,12 @@ public class Collider {
 	 * @param s
 	 */
 	public void setPassive(Bound s) {
-		if (!shapeMap.contains(s) || ghosts.contains(s)) {
+		if (!shapeMap.contains(s)){
+			throw new UnsupportedOperationException();
+		}else if(ghosts.contains(s)) {
 			return;
 		}
+		
 		if (passives.contains(s)) {
 			return;
 		}
@@ -148,7 +156,9 @@ public class Collider {
 	 *            the bounding box
 	 */
 	public void setActive(Bound s) {
-		if (!shapeMap.contains(s) || ghosts.contains(s)) {
+		if (!shapeMap.contains(s)){
+			throw new UnsupportedOperationException();
+		}else if(ghosts.contains(s)) {
 			return;
 		}
 		if (actives.contains(s)) {
@@ -237,7 +247,29 @@ public class Collider {
 		return shapeMap.iterator();
 	}
 
-	public void draw() {
-		throw new UnsupportedOperationException("implement shape drawing");
+	/**
+	 * This method should exist as an overridden
+	 * method in a collider for libgdx
+	 * @param batch
+	 */
+	public void draw(SpriteBatch batch) {
+		for(Bound bound: shapeMap){
+			if(ghosts.contains(bound)){
+				batch.setColor(0, 0, 1, 0.25f);
+			}else if(passives.contains(bound)){
+				batch.setColor(0, 1, 0, 0.25f);
+			}else if(actives.contains(bound)){
+				batch.setColor(1, 0, 0, 0.25f);
+			}else{
+				batch.setColor(0, 0, 0, 0.25f);
+			}
+			float x = bound.getX();
+			float y = bound.getY();
+			float width = bound.getWidth();
+			float height = bound.getHeight();
+			Texture texture = Assets.bboxTexture;
+			batch.draw(texture, x, y, width, height);
+		}
+		batch.setColor(Color.WHITE);
 	}
 }
