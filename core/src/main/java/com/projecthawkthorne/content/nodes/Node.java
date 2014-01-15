@@ -4,8 +4,6 @@
  */
 package com.projecthawkthorne.content.nodes;
 
-import static com.projecthawkthorne.content.Game.DEBUG;
-
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -460,39 +458,12 @@ public abstract class Node extends Collidable {
 				TextureRegion tr = anim.getKeyFrame(stateTime);
 				batch.draw(tr, this.x, this.y, this.width, this.height);
 			}
-			if (DEBUG) {
-				TextureRegion bboxTextureRegion = Assets.standard.get("bbox")
-						.getKeyFrame(0);
-				batch.draw(bboxTextureRegion, this.getBb().getX(), this.getBb()
-						.getY() + this.getBb().getHeight(), this.getBb()
-						.getWidth(), -this.getBb().getHeight());
-			}
 		} catch (NullPointerException e) {
-			if (DEBUG) {
 				Gdx.app.error("node draw error", "(id,type,name,state)==("
 						+ this.getId() + "," 
 						+ this.type + "," 
 						+ this.name + ","
 						+ this.getState() + ")");
-
-				TextureRegion defaultTextureRegion = Assets.standard
-						.get("node").getKeyFrame(0);
-				int height = Math.round(this.height);
-				height = height > 0 ? height : defaultTextureRegion
-						.getRegionHeight();
-				int width = Math.round(this.width);
-				width = width > 0 ? width : defaultTextureRegion
-						.getRegionWidth();
-
-				if (this.direction == Direction.LEFT) {
-					batch.draw(defaultTextureRegion, this.x, this.y + height,
-							width, -height);
-				} else {
-					batch.draw(defaultTextureRegion, this.x + width, this.y
-							+ height, -width, -height);
-				}
-
-			}
 		}
 	}
 

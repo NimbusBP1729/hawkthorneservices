@@ -28,6 +28,7 @@ import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.content.nodes.State;
 import com.projecthawkthorne.content.nodes.Weapon;
 import com.projecthawkthorne.datastructures.Queue;
+import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
@@ -985,7 +986,7 @@ public class Player extends Humanoid implements Timeable {
 			boolean wasDown = this.getIsKeyDown(gk);
 			boolean isPcKeyDown = Gdx.input.isKeyPressed(KeyMapping
 					.gameKeyToInt(gk));
-			boolean isAndroidKeyDown = getIsAndroidKeyDown(gk);
+			boolean isAndroidKeyDown = Gamestate.getIsAndroidKeyDown(gk);
 			boolean isDown = isPcKeyDown || isAndroidKeyDown;
 			this.setIsKeyDown(gk, isDown);
 			if (!wasDown && isDown) {
@@ -994,62 +995,6 @@ public class Player extends Humanoid implements Timeable {
 				this.keyreleased(gk);
 			}
 		}
-	}
-
-	private boolean getIsAndroidKeyDown(GameKeys gk) {
-		boolean result;
-		boolean isFirstInRegion = false;
-		boolean isSecondInRegion = false;
-		boolean isFirstTouched = Gdx.input.isTouched();
-		boolean isSecondTouched = Gdx.input.isTouched(1);
-		int firstTouchX = Gdx.input.getX();
-		int firstTouchY = Gdx.input.getY();
-		int secondTouchX = Gdx.input.getX(1);
-		int secondTouchY = Gdx.input.getY(1);
-		int height = Gdx.graphics.getHeight();
-		int width = Gdx.graphics.getWidth();
-
-		switch (gk) {
-		case ATTACK:
-			break;
-		case DOWN:
-			isFirstInRegion = firstTouchY > 2 * height / 3;
-			isSecondInRegion = secondTouchY > 2 * height / 3;
-			break;
-		case INTERACT:
-			break;
-		case JUMP:
-			isFirstInRegion = firstTouchX > width / 3
-					&& firstTouchY > height / 3 && firstTouchX < 2 * width / 3
-					&& firstTouchY < 2 * height / 3;
-			isSecondInRegion = secondTouchX > width / 3
-					&& secondTouchY > height / 3
-					&& secondTouchX < 2 * width / 3
-					&& secondTouchY < 2 * height / 3;
-			break;
-		case LEFT:
-			isFirstInRegion = firstTouchX < width / 3;
-			isSecondInRegion = secondTouchX < width / 3;
-			break;
-		case RIGHT:
-			isFirstInRegion = firstTouchX > 2 * width / 3;
-			isSecondInRegion = secondTouchX > 2 * width / 3;
-			break;
-		case SELECT:
-			break;
-		case START:
-			break;
-		case UP:
-			isFirstInRegion = firstTouchY < height / 3;
-			isSecondInRegion = secondTouchY < height / 3;
-			break;
-		default:
-			break;
-
-		}
-		result = (isFirstTouched && isFirstInRegion)
-				|| (isSecondTouched && isSecondInRegion);
-		return result;
 	}
 
 	public String getDirectionsAsString() {

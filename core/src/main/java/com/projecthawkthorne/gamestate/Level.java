@@ -20,11 +20,12 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
-import com.projecthawkthorne.client.HawkthorneParentGame;
 import com.projecthawkthorne.client.audio.AudioCache;
 import com.projecthawkthorne.content.Boundary;
+import com.projecthawkthorne.content.Game;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.UUID;
@@ -45,6 +46,7 @@ import com.projecthawkthorne.hardoncollider.Collider;
 public class Level extends Gamestate {
 
 	public static final String SRC_MAPS = "data/maps/";
+	private static final boolean IS_Y_DOWN = false;
 	private String title;
 	private Map<UUID, Node> nodes = new HashMap<UUID, Node>();
 	private Level spawnLevel;
@@ -56,8 +58,9 @@ public class Level extends Gamestate {
 	private List<Node> liquids = new ArrayList<Node>();
 	private float trackingX = 0;
 	private float trackingY = 0;
+	private BatchTiledMapRenderer tileMapRenderer;
+	private OrthographicCamera cam;
 	private static Map<String, Level> levelMap = new HashMap<String,Level>();
-	private static HawkthorneParentGame context;
 
 
 	public static Map<String, Level> getLevelMap() {
@@ -68,8 +71,11 @@ public class Level extends Gamestate {
 		this.name = name;
 		this.collider = new Collider();
 		this.loadNodes(name);
-
+		tileMapRenderer = new OrthogonalTiledMapRenderer(this.tiledMap);
 		this.spawnLevel = this;
+		cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		cam.setToOrtho(IS_Y_DOWN);
+		cam.zoom = 0.5f;
 	}
 		
 	public static Level get(String name) {
@@ -257,6 +263,8 @@ public class Level extends Gamestate {
 		Player player = Player.getSingleton();
 		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
 			player.die();
+		}else if (Gdx.input.isKeyPressed(Keys.P)) {
+			context.setScreen(GenericGamestate.get("pause"));
 		}
 		player.processKeyActions();
 		Set<Player> players = this.getPlayers();
@@ -271,8 +279,7 @@ public class Level extends Gamestate {
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-		
+		cam.setToOrtho(IS_Y_DOWN, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
 	@Override
@@ -288,8 +295,7 @@ public class Level extends Gamestate {
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-		
+		//context.setScreen(GenericGamestate.get("pause"));
 	}
 
 	@Override
@@ -306,7 +312,8 @@ public class Level extends Gamestate {
 	}
 
 	@Override
-	public void draw(OrthographicCamera cam, SpriteBatch batch, OrthogonalTiledMapRenderer tileMapRenderer) {
+	public void draw(SpriteBatch batch) {
+		batch.setProjectionMatrix(cam.combined);
 		trackPlayerWithCam(Player.getSingleton(), cam);
 		TiledMap map = this.getTiledMap();
 		tileMapRenderer.setView(cam);
@@ -349,6 +356,9 @@ public class Level extends Gamestate {
 		for (Node liquid : liquids) {
 			liquid.draw(batch);
 		}
+		if(Game.DEBUG){
+			this.collider.draw();
+		}
 	}
 
 	private void trackPlayerWithCam(Player player, OrthographicCamera cam) {
@@ -380,7 +390,4 @@ public class Level extends Gamestate {
 		cam.update(true);
 	}
 
-	public static void setContext(HawkthorneParentGame hawkthorneParentGame) {
-		context = hawkthorneParentGame;
-	}
 }

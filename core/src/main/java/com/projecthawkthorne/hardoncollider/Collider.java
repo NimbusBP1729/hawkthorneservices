@@ -7,7 +7,6 @@ package com.projecthawkthorne.hardoncollider;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import com.projecthawkthorne.hardoncollider.Bound;
 
 /**
  * the collision detection class
@@ -236,5 +235,9 @@ public class Collider {
 	 */
 	public Iterator<Bound> getBoxes() {
 		return shapeMap.iterator();
+	}
+
+	public void draw() {
+		throw new UnsupportedOperationException("implement shape drawing");
 	}
 }
