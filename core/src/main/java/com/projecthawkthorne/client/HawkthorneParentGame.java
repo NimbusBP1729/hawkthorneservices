@@ -40,15 +40,15 @@ public class HawkthorneParentGame extends Game {
 		((Gamestate) this.getScreen()).draw(spriteBatch);
 		spriteBatch.end();
 	}
-
-	public Screen getLastScreen() {
-		return this.lastScreen;
-	}
 	
 	@Override
 	public void setScreen(Screen screen){
 		this.lastScreen = this.getScreen();
 		super.setScreen(screen);
+	}
+
+	public void goBack() {
+		this.setScreen(this.lastScreen);
 	}
 
 }

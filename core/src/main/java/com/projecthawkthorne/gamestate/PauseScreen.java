@@ -53,23 +53,15 @@ public class PauseScreen extends GenericGamestate {
 	@Override
 	public void keypressed(GameKeys gk) {
 	    switch(gk){
-		case ATTACK:
-			break;
 		case DOWN:
 			this.option = (this.option + 1) % 5;
             AudioCache.playSfx("click");
 			break;
-		case INTERACT:
-			break;
 		case JUMP:
-			break;
-		case LEFT:
-			break;
-		case RIGHT:
+			AudioCache.playSfx("confirm");
+			context.goBack();
 			break;
 		case SELECT:
-			break;
-		case START:
 			break;
 		case UP:
 			this.option = ((this.option - 1) % 5 + 5) % 5;
@@ -83,12 +75,6 @@ public class PauseScreen extends GenericGamestate {
 
 	@Override
 	public void keyreleased(GameKeys gk) {
-	    switch(gk){
-		case ATTACK:
-			context.setScreen(context.getLastScreen());
-		default:
-			break;
-	    }
 	}
 
 	@Override
