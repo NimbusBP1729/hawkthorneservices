@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.projecthawkthorne.client.audio.AudioCache;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.KeyMapping;
@@ -28,22 +27,22 @@ public class PauseScreen extends GenericGamestate {
 
 	@Override
 	public void show() {
-		AudioCache.playMusic(musicFile);
+		Assets.playMusic(musicFile);
 	}
 
 	@Override
 	public void hide() {
-		AudioCache.stopMusic(musicFile);
+		Assets.stopMusic(musicFile);
 	}
 
 	@Override
 	public void pause() {
-		AudioCache.stopMusic(musicFile);
+		Assets.stopMusic(musicFile);
 	}
 
 	@Override
 	public void resume() {
-		AudioCache.playMusic(musicFile);
+		Assets.playMusic(musicFile);
 	}
 
 	@Override
@@ -55,17 +54,17 @@ public class PauseScreen extends GenericGamestate {
 	    switch(gk){
 		case DOWN:
 			this.option = (this.option + 1) % 5;
-            AudioCache.playSfx("click");
+            Assets.playSfx("click");
 			break;
 		case JUMP:
-			AudioCache.playSfx("confirm");
+			Assets.playSfx("confirm");
 			context.goBack();
 			break;
 		case SELECT:
 			break;
 		case UP:
 			this.option = ((this.option - 1) % 5 + 5) % 5;
-            AudioCache.playSfx("click");
+            Assets.playSfx("click");
 			break;
 		default:
 			break;

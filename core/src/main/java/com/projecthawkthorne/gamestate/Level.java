@@ -23,7 +23,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
-import com.projecthawkthorne.client.audio.AudioCache;
+import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Boundary;
 import com.projecthawkthorne.content.Game;
 import com.projecthawkthorne.content.GameKeys;
@@ -302,7 +302,7 @@ public class Level extends Gamestate {
 	public void resume() {
 		String musicFile = this.getTiledMap().getProperties()
 	                        .get("soundtrack", String.class);
-	    AudioCache.playMusic(musicFile);
+	    Assets.playMusic(musicFile);
 	}
 
 	@Override
