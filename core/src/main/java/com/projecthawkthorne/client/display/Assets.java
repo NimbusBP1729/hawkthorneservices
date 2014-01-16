@@ -24,7 +24,6 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
@@ -40,8 +39,6 @@ public class Assets {
 	public static CharacterSpriteMap characterSpriteMap = new CharacterSpriteMap();
 	public static NodeSpriteMap nodeSpriteMap = new NodeSpriteMap();
 
-	/** map for default sprites */
-	public static HashMap<String, Animation> standard;
 	private static Texture defaultTexture;
 	public static Texture bboxTexture;
 	private static AssetManager manager;
@@ -56,16 +53,8 @@ public class Assets {
 	public static void load(AssetManager assetManager) {
 		manager = assetManager;
 		manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-		standard = new HashMap<String, Animation>();
 		defaultTexture = loadTexture("defaultTexture.png");
 		bboxTexture = loadTexture("bboxTexture.png");
-
-		standard.put("node", new Animation(0.2f,
-				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
-				new TextureRegion(defaultTexture, 288, 0, 48, 48)));
-		standard.put("bbox", new Animation(0.2f,
-				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
-				new TextureRegion(bboxTexture, 288, 0, 48, 48)));
 	}
 	
 	
