@@ -112,8 +112,7 @@ public class Assets {
 		String fullName = "fonts/font.fnt";
 		manager.load(fullName, BitmapFont.class);
 		manager.finishLoading();
-		BitmapFont font = manager.get(fullName, BitmapFont.class);
-		return font;
+		return manager.get(fullName, BitmapFont.class);
 	}
 	
 	public static TiledMap getTiledMap(String mapName){

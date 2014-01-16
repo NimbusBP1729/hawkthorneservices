@@ -54,17 +54,17 @@ public class PauseScreen extends GenericGamestate {
 	public void keypressed(GameKeys gk) {
 	    switch(gk){
 		case DOWN:
-			this.option = (this.option + 1) % 5;
+			this.option = (this.option + 1) % 2;
             Assets.playSfx("click");
 			break;
 		case JUMP:
 			Assets.playSfx("confirm");
-			context.goBack();
+			makeSelection(this.option);
 			break;
 		case SELECT:
 			break;
 		case UP:
-			this.option = ((this.option - 1) % 5 + 5) % 5;
+			this.option = (this.option - 1 + 2) % 2;
             Assets.playSfx("click");
 			break;
 		case START:
@@ -75,6 +75,14 @@ public class PauseScreen extends GenericGamestate {
 			break;
 	    
 	    }
+	}
+
+	private void makeSelection(int selection) {
+		if(selection == 0){
+			context.goBack();
+		}else if(selection == 1){
+			Gdx.app.exit();
+		}
 	}
 
 	@Override
@@ -102,11 +110,8 @@ public class PauseScreen extends GenericGamestate {
 	    batch.setColor( 0, 0, 0, 1 );
 	    BitmapFont font = Assets.getFont();
 		font.setScale(0.8f, -0.8f);
-		font.draw(batch, "Controls", 198, 101);
-	    font.draw(batch, "Options", 198, 131);
-	    font.draw(batch, "Quit to Map", 198, 161);
-	    font.draw(batch, "Quit to Menu", 198, 191);
-	    font.draw(batch, "Quit to Desktop", 198, 221);
+		font.draw(batch, "Return to game", 198, 101);
+	    font.draw(batch, "Quit", 198, 131);
 	    batch.setColor( 1, 1, 1, 1 );
 	    batch.draw(this.arrow, 156, 96 + 30 * this.option);
 	    String back = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.START)) + ": BACK TO GAME";
