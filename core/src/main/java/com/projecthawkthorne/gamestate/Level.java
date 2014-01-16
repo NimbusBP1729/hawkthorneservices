@@ -294,7 +294,7 @@ public class Level extends Gamestate {
 	@Override
 	public void resume() {
 		this.tiledMap = Assets.getTiledMap(name);
-		this.tileMapRenderer.setMap(this.tiledMap);
+		this.tileMapRenderer= new OrthogonalTiledMapRenderer(this.tiledMap);
 		String musicFile = this.tiledMap.getProperties()
 	                        .get("soundtrack", String.class);
 	    Assets.playMusic(musicFile);
