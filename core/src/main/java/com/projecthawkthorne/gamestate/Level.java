@@ -72,7 +72,17 @@ public class Level extends Gamestate {
 		this.tileMapRenderer = new OrthogonalTiledMapRenderer(null);
 		cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.setToOrtho(IS_Y_DOWN);
-		cam.zoom = 0.5f;
+		switch(Gdx.app.getType()){
+		case Android:
+			cam.zoom = 0.3f;
+			break;
+		case iOS:
+			cam.zoom = 0.3f;
+			break;
+		default:
+			cam.zoom = 0.5f;
+			break;
+		}
 	}
 		
 	public static Level get(String name) {
@@ -289,6 +299,7 @@ public class Level extends Gamestate {
 		String musicFile = this.tiledMap.getProperties()
                 .get("soundtrack", String.class);
 		Assets.stopMusic(musicFile);
+		//context.setScreen("pause");
 	}
 
 	@Override

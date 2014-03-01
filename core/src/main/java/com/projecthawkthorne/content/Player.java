@@ -30,7 +30,6 @@ import com.projecthawkthorne.content.nodes.State;
 import com.projecthawkthorne.content.nodes.Weapon;
 import com.projecthawkthorne.datastructures.Queue;
 import com.projecthawkthorne.gamestate.Gamestate;
-import com.projecthawkthorne.gamestate.GenericGamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
@@ -247,7 +246,7 @@ public class Player extends Humanoid implements Timeable {
 		}
 		
 		if(button==GameKeys.START){
-			Gamestate.getContext().setScreen(GenericGamestate.get("pause"));
+			Gamestate.getContext().setScreen("pause");
 		}
 
 		// if (this.inventory.isVisible()) {
@@ -992,7 +991,7 @@ public class Player extends Humanoid implements Timeable {
 			boolean wasDown = this.getIsKeyDown(gk);
 			boolean isPcKeyDown = Gdx.input.isKeyPressed(KeyMapping
 					.gameKeyToInt(gk));
-			boolean isAndroidKeyDown = Gamestate.getIsAndroidKeyDown(gk);
+			boolean isAndroidKeyDown = Gamestate.getContext().getControlsOverlay().getIsAndroidKeyDown(gk);
 			boolean isDown = isPcKeyDown || isAndroidKeyDown;
 			this.setIsKeyDown(gk, isDown);
 			if (!wasDown && isDown) {

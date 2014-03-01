@@ -20,15 +20,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.TextureLoader.TextureParameter;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class Assets {
-	private static final String SRC_IMAGES = "data/maps/images/";
+	private static final String SRC_IMAGES = "data/images/";
 	private static final String SRC_AUDIO = "data/audio/";
 	private static final String SRC_MAPS = "data/maps/";
 	
@@ -45,7 +47,10 @@ public class Assets {
 	
 	public static Texture loadTexture(String file) {
 		String fullName = SRC_IMAGES + file;
-		manager.load(fullName, Texture.class);
+		TextureParameter param = new TextureParameter();
+		param.magFilter = TextureFilter.Nearest;
+		param.minFilter = TextureFilter.Nearest;
+		manager.load(fullName, Texture.class, param);
 		manager.finishLoading();
 		return manager.get(fullName, Texture.class);
 	}

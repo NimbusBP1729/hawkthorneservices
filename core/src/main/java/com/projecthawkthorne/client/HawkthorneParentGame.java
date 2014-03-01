@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Gamestate;
+import com.projecthawkthorne.gamestate.GenericGamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.timer.Timer;
 
@@ -19,6 +20,7 @@ public class HawkthorneParentGame extends Game {
 	protected Player trackedPlayer;
 	protected long lastTime = 0;
 	private Screen lastScreen;
+	private UISimpleTest scene;
 	
 	@Override
 	public void create() {
@@ -26,6 +28,8 @@ public class HawkthorneParentGame extends Game {
 		Gdx.input.setCatchBackKey(true);
 		Gdx.input.setInputProcessor(new HawkInputProcessor());
 		spriteBatch = new SpriteBatch();
+		scene = new UISimpleTest();
+		scene.create();
 		Gamestate.setContext(this);
 		this.setScreen(Level.get(START_LEVEL));
 	}
@@ -38,10 +42,40 @@ public class HawkthorneParentGame extends Game {
 		this.lastTime = currentTime;
 		long maxDt = 100;
 		dt = maxDt < dt ? maxDt : dt;
+
+		//handles all time updates
 		this.getScreen().render(dt/1000f);
+		switch(Gdx.app.getType()){
+		case Android:
+		case iOS:
+		case Desktop:
+			this.scene.update(dt);
+			break;
+		default:
+			break;
+		
+		}
+		
+		//handles all drawing to the screen
 		spriteBatch.begin();
 		((Gamestate) this.getScreen()).draw(spriteBatch);
+		switch(Gdx.app.getType()){
+		case Android:
+		case iOS:
+		case Desktop:
+			this.scene.render();
+			break;
+		default:
+			break;
+		
+		}
 		spriteBatch.end();
+	}
+	
+	@Override
+	public void resize(int width, int height){
+		super.resize(width, height);
+		scene.resize(width, height);
 	}
 	
 	@Override
@@ -49,9 +83,16 @@ public class HawkthorneParentGame extends Game {
 		this.lastScreen = this.getScreen();
 		super.setScreen(screen);
 	}
+	public void setScreen(String screenName){
+		setScreen(GenericGamestate.get(screenName));
+	}
 
 	public void goBack() {
 		this.setScreen(this.lastScreen);
+	}
+
+	public UISimpleTest getControlsOverlay() {
+		return scene;
 	}
 
 }

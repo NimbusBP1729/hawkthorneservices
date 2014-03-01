@@ -8,8 +8,8 @@ public class HawkthorneGameDesktop {
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.useGL20 = true;
-		config.width = 1055;
-		config.height = 672;
+		config.width = 800;
+		config.height = 480;
 		new LwjglApplication(new HawkthorneGame(), config);
 	}
 }

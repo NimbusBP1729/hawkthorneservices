@@ -19,7 +19,6 @@ public class PauseScreen extends GenericGamestate {
 	private String musicFile = "daybreak";
 	private OrthographicCamera cam = new OrthographicCamera(528, 336);
 
-
 	@Override
 	public void resize(int width, int height) {
 	}
