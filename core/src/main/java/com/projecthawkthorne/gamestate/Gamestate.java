@@ -6,7 +6,6 @@ import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.projecthawkthorne.client.HawkthorneParentGame;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.UUID;
@@ -48,7 +47,7 @@ public abstract class Gamestate implements Screen{
 				+ this.getClass().getName() + ") has no nodes");
 	}
 
-	public abstract void draw(SpriteBatch batch);
+	public abstract void draw();
 
 	public static final void setContext(HawkthorneParentGame game) {
 		context = game;

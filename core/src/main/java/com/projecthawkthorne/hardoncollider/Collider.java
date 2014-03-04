@@ -63,24 +63,32 @@ public class Collider {
 		} else if (a instanceof Rectangle && b instanceof Rectangle) {
 			Rectangle r1 = (Rectangle) a;
 			Rectangle r2 = (Rectangle) b;
-			return Collider.intersects(r1, r2);
+			return Rectangle.intersects(r1, r2);
+		} else if (a instanceof Polygon && b instanceof Rectangle) {
+			Polygon p1 = (Polygon) a;
+			Rectangle r2 = (Rectangle) b;
+			return Polygon.intersects(p1, r2);
+		} else if (b instanceof Polygon && a instanceof Rectangle) {
+			Polygon p1 = (Polygon) b;
+			Rectangle r2 = (Rectangle) a;
+			return Polygon.intersects(p1, r2);
 		} else {
 			throw new UnsupportedOperationException("invalid argument type:"
 					+ a.getClass() + "," + b.getClass());
 		}
 	}
-
+	
 	/**
-	 * returns true if the two rectangles have intersected
+	 * returns true if the two objects collide
 	 * 
 	 * @param a
-	 *            a rectangle
+	 *            a polygon
 	 * @param b
-	 *            another rectangle
-	 * @return true if the two rectangles have intersected
+	 *            a rectangle
+	 * @return true if the two objects collide
 	 */
-	private static boolean intersects(Rectangle a, Rectangle b) {
-		return Rectangle.intersects(a, b);
+	private static boolean intersects(Polygon a, Rectangle b) {
+		return Collider.intersects(b, a);
 	}
 
 	/**

@@ -7,8 +7,22 @@ package com.projecthawkthorne.hardoncollider;
  * 
  */
 public abstract class Bound {
-	public static float[] FLOAT_ARRAY = new float[4];
 	private Collidable node;
+	public static float[] FLOAT_ARRAY = new float[4];
+
+	// TODO if rectangular points are supplied return a rectangle
+	/**
+	 * create a new bound with an array of x-values and an array of y-values. If
+	 * the points indicate a rectangle it's better to use the other create()
+	 * method.
+	 * 
+	 * @param x
+	 * @param y
+	 * @return the bound
+	 */
+	public static Bound create(int[] x, int[] y) {
+		return new Polygon(x, y);
+	}
 
 	/**
 	 * create a rectangular bound
@@ -46,6 +60,11 @@ public abstract class Bound {
 	}
 
 	/**
+	 * draws this bounding box
+	 */
+	public abstract void draw();
+
+	/**
 	 * results in corners={minX,minY,maxX,maxY}
 	 * 
 	 * @param corners
@@ -59,7 +78,7 @@ public abstract class Bound {
 	 * @param newX
 	 * @param newY
 	 */
-	public void moveTo(float newX, float newY) {
+	public void moveTo(float newX, float newY){
 		setX(newX);
 		setY(newY);
 	}
@@ -124,12 +143,11 @@ public abstract class Bound {
 	public abstract float getHeight();
 
 	private float[] tmp = new float[4];
-
+	
 	public float getY() {
 		this.bbox(tmp);
 		return tmp[1];
 	}
-
 	public float getX() {
 		this.bbox(tmp);
 		return tmp[0];
@@ -139,22 +157,21 @@ public abstract class Bound {
 	 * increments the width by 1 unit
 	 */
 	public void incWidth() {
-		this.setWidth(getWidth() + 2);
+		this.setWidth(getWidth()+2);
 	}
-
 	/**
 	 * increments the height by 1 unit
 	 */
 	public void incHeight() {
-		this.setHeight(getHeight() + 2);
+		this.setHeight(getHeight()+2);
 	}
 
 	public void decWidth() {
-		this.setWidth(getWidth() - 2);
+		this.setWidth(getWidth()-2);
 	}
 
 	public void decHeight() {
-		this.setHeight(getHeight() - 2);
+		this.setHeight(getHeight()-2);
 	}
 
 }

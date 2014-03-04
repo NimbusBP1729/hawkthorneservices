@@ -1,5 +1,8 @@
 package com.projecthawkthorne.gamestate;
 
+import static com.projecthawkthorne.client.HawkthorneParentGame.HEIGHT;
+import static com.projecthawkthorne.client.HawkthorneParentGame.WIDTH;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -57,6 +60,7 @@ public class Level extends Gamestate {
 	private float trackingY = 0;
 	private BatchTiledMapRenderer tileMapRenderer;
 	private OrthographicCamera cam;
+	private SpriteBatch batch = new SpriteBatch();
 	private static Map<String, Level> levelMap = new HashMap<String,Level>();
 
 
@@ -70,19 +74,9 @@ public class Level extends Gamestate {
 		this.loadNodes(name);
 		this.spawnLevel = this;
 		this.tileMapRenderer = new OrthogonalTiledMapRenderer(null);
-		cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		cam = new OrthographicCamera(WIDTH, HEIGHT);
 		cam.setToOrtho(IS_Y_DOWN);
-		switch(Gdx.app.getType()){
-		case Android:
-			cam.zoom = 0.3f;
-			break;
-		case iOS:
-			cam.zoom = 0.3f;
-			break;
-		default:
-			cam.zoom = 0.5f;
-			break;
-		}
+		cam.zoom = 0.5f;
 	}
 		
 	public static Level get(String name) {
@@ -116,6 +110,17 @@ public class Level extends Gamestate {
 				this.nodes.put(node.getId(), node);
 			}
 		}
+		
+		// floor is deprecated
+		MapLayer blockGroup = this.getNodeGroupByName("block");
+		if (blockGroup != null) {
+			for (MapObject t : blockGroup.getObjects()) {
+				Node node;
+				t.getProperties().put("level", levelName);
+				node = new Floor((RectangleMapObject) t, this);
+				this.nodes.put(node.getId(), node);
+			}
+		}
 
 		MapLayer wallGroup = this.getNodeGroupByName("wall");
 		if (wallGroup != null) {
@@ -132,7 +137,7 @@ public class Level extends Gamestate {
 			for (MapObject t : platformGroup.getObjects()) {
 				Node node;
 				t.getProperties().put("level", levelName);
-				node = new Platform((RectangleMapObject) t, this);
+				node = new Platform(t, this);
 				this.nodes.put(node.getId(), node);
 			}
 		}
@@ -148,8 +153,20 @@ public class Level extends Gamestate {
 					node = new Door((RectangleMapObject) t, this);
 				} else if ("ladder".equals(typeName)) {
 					node = new Ladder((RectangleMapObject) t, this);
+				} else if ("climbable".equals(typeName)) {
+					node = new Ladder((RectangleMapObject) t, this);
+				} else if ("cow".equals(typeName)) {
+					continue;
+				} else if ("npc".equals(typeName)) {
+					continue;
+				} else if ("material".equals(typeName)) {
+					continue;
+				} else if ("savepoint".equals(typeName)) {
+					continue;
+				} else if ("info".equals(typeName)) {
+					continue;
 				} else {
-					Gdx.app.error("typeName is not recognized:", typeName);
+					Gdx.app.error("typeName is not recognized", typeName);
 				}
 			} catch (Exception e) {
 				Gdx.app.error("error loading a type", typeName);
@@ -279,7 +296,6 @@ public class Level extends Gamestate {
 
 	@Override
 	public void resize(int width, int height) {
-		cam.setToOrtho(IS_Y_DOWN, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
 	@Override
@@ -318,8 +334,8 @@ public class Level extends Gamestate {
 	}
 
 	@Override
-	public void draw(SpriteBatch batch) {
-		batch.setProjectionMatrix(cam.combined);
+	public void draw() {
+		
 		trackPlayerWithCam(Player.getSingleton(), cam);
 		TiledMap map = this.tiledMap;
 		TiledMapTileLayer tmtl = (TiledMapTileLayer) this.tiledMap.getLayers().get(0);
@@ -343,9 +359,10 @@ public class Level extends Gamestate {
 		}
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
-		batch.end();
 		tileMapRenderer.render();
+		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
+		
 
 		liquids.clear();
 		for (Node n : this.getNodeMap().values()) {
@@ -356,19 +373,21 @@ public class Level extends Gamestate {
 					n.draw(batch);
 				}
 			} catch (Exception e) {
-				Gdx.app.error("error drawing " + n.getClass(), e.getMessage(),
-						e);
+				Gdx.app.error("error drawing " + n.getClass(), e.getMessage(), e);
 			}
 		}
+		
 		for (Player player : this.getPlayers()) {
 			player.draw(batch);
 		}
+
 		for (Node liquid : liquids) {
 			liquid.draw(batch);
 		}
 		if(Game.DEBUG){
 			this.collider.draw(batch);
 		}
+		batch.end();
 	}
 
 	private void trackPlayerWithCam(Player player, OrthographicCamera cam) {

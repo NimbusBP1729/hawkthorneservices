@@ -13,25 +13,31 @@ import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.timer.Timer;
 
 public class HawkthorneParentGame extends Game {
+
+	public static final int WIDTH = 480;
+	public static final int HEIGHT = 270;
+	
 	private SpriteBatch spriteBatch;
-	public static Mode MODE;
 	public static final String START_LEVEL = "town";
 	public String trackedLevel = START_LEVEL;
 	protected Player trackedPlayer;
 	protected long lastTime = 0;
 	private Screen lastScreen;
-	private UISimpleTest scene;
+	private HawkthorneUserInterface userInterface;
+	
 	
 	@Override
 	public void create() {
 		Assets.load(new AssetManager());
 		Gdx.input.setCatchBackKey(true);
 		Gdx.input.setInputProcessor(new HawkInputProcessor());
-		spriteBatch = new SpriteBatch();
-		scene = new UISimpleTest();
-		scene.create();
+		userInterface = new HawkthorneUserInterface();
+		userInterface.create();
 		Gamestate.setContext(this);
-		this.setScreen(Level.get(START_LEVEL));
+
+		Level level = Level.get(START_LEVEL);
+		this.setScreen(level);
+		Level.switchState(level, level.getDoor("main"), Player.getSingleton());
 	}
 
 	@Override
@@ -45,37 +51,17 @@ public class HawkthorneParentGame extends Game {
 
 		//handles all time updates
 		this.getScreen().render(dt/1000f);
-		switch(Gdx.app.getType()){
-		case Android:
-		case iOS:
-		case Desktop:
-			this.scene.update(dt);
-			break;
-		default:
-			break;
-		
-		}
+		this.userInterface.update(dt);
 		
 		//handles all drawing to the screen
-		spriteBatch.begin();
-		((Gamestate) this.getScreen()).draw(spriteBatch);
-		switch(Gdx.app.getType()){
-		case Android:
-		case iOS:
-		case Desktop:
-			this.scene.render();
-			break;
-		default:
-			break;
-		
-		}
-		spriteBatch.end();
+		((Gamestate) this.getScreen()).draw();
+		this.userInterface.draw();
 	}
 	
 	@Override
 	public void resize(int width, int height){
 		super.resize(width, height);
-		scene.resize(width, height);
+		userInterface.resize(width, height);
 	}
 	
 	@Override
@@ -91,8 +77,8 @@ public class HawkthorneParentGame extends Game {
 		this.setScreen(this.lastScreen);
 	}
 
-	public UISimpleTest getControlsOverlay() {
-		return scene;
+	public HawkthorneUserInterface getControlsOverlay() {
+		return userInterface;
 	}
 
 }

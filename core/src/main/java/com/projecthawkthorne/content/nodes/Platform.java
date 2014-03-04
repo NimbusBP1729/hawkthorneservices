@@ -6,7 +6,7 @@ package com.projecthawkthorne.content.nodes;
 
 import java.util.Iterator;
 
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.MapObject;
 import com.projecthawkthorne.content.FloorCollidable;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
@@ -23,8 +23,8 @@ public class Platform extends Node {
 
 	private boolean canDrop = true;
 
-	public Platform(RectangleMapObject obj, Level level) {
-		super(obj, level);
+	public Platform(MapObject t, Level level) {
+		super(t, level);
 		level.getCollider().setPassive(this.bb);
 	}
 

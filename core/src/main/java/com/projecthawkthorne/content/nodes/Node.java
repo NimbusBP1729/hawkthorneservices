@@ -16,6 +16,7 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.math.Rectangle;
 import com.projecthawkthorne.client.display.Animation;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Direction;
@@ -103,7 +104,7 @@ public abstract class Node extends Collidable {
 	/** the collider associated with this object's level */
 	private Collider collider;
 	/** the tiled object this object uses */
-	private RectangleMapObject obj;
+	private MapObject obj;
 	/**
 	 * each client will have their own if this is final
 	 */
@@ -134,37 +135,45 @@ public abstract class Node extends Collidable {
 
 	/**
 	 * 
-	 * @param obj
+	 * @param t
 	 *            tiled object that represent this node
 	 * @param level
 	 *            the level this node will reside in
 	 */
-	public Node(RectangleMapObject obj, Level level) {
-		this(obj, level, UUID.randomUUID());
+	public Node(MapObject t, Level level) {
+		this(t, level, UUID.randomUUID());
 	}
 
 	/**
 	 * 
-	 * @param obj
+	 * @param t
 	 *            tiled object that represent this node
 	 * @param level
 	 *            the level this node will reside in
 	 */
-	public Node(RectangleMapObject obj, Level level, UUID id) {
+	public Node(MapObject t, Level level, UUID id) {
 		this.id = id;
 		this.dead = false;
 		this.level = level;
-		this.obj = obj;
+		this.obj = t;
 
 		this.playersTouched = new HashSet<Player>();
 
-		this.name = obj.getName();
-		this.x = obj.getRectangle().x;
-		this.y = obj.getRectangle().y;
-		this.width = obj.getRectangle().width;
-		this.height = obj.getRectangle().height;
+		this.name = t.getName();
+		Rectangle br;
+		if(t instanceof RectangleMapObject){
+			br = ((RectangleMapObject) t).getRectangle();
+		}else if(t instanceof PolygonMapObject){
+			br = ((PolygonMapObject) t).getPolygon().getBoundingRectangle();
+		}else{
+			throw new UnsupportedOperationException("type ("+t.getClass()+") is not supported");
+		}
+		this.x = br.x;
+		this.y = br.y;
+		this.width = br.width;
+		this.height = br.height;
 
-		this.properties = obj.getProperties();
+		this.properties = t.getProperties();
 		this.type = properties.get("type", String.class);
 		if (properties.get("width") != null) {
 			this.width = properties.get("width", Float.class);
@@ -172,7 +181,7 @@ public abstract class Node extends Collidable {
 		if (properties.get("height") != null) {
 			this.height = properties.get("height", Float.class);
 		}
-		this.setBound(obj);
+		this.setBound(t);
 
 	}
 
@@ -219,11 +228,44 @@ public abstract class Node extends Collidable {
 
 		if (obj instanceof PolylineMapObject) {
 			throw new UnsupportedOperationException(
-					"polygons aren't supported yet");
+					"polylines aren't supported yet");
 		} else if (obj instanceof PolygonMapObject) {
+			PolygonMapObject pObj = (PolygonMapObject) obj;
+			if (this.properties.get("bbox_width") != null) {
+				this.bbox_width = Float.parseFloat(this.properties.get(
+						"bbox_width", String.class));
+			}
+			if (this.properties.get("bbox_height") != null) {
+				this.bbox_height = Float.parseFloat(this.properties.get(
+						"bbox_height", String.class));
+			}
 
-			throw new UnsupportedOperationException(
-					"polygons aren't supported yet");
+			if (this.bbox_width < 0 && this.properties.get("width") != null) {
+				this.bbox_width = Float.parseFloat(this.properties.get("width",
+						String.class));
+			}
+			if (this.bbox_height < 0 && this.properties.get("height") != null) {
+				this.bbox_height = Float.parseFloat(this.properties.get(
+						"height", String.class));
+			}
+			if (this.bbox_width < 0) {
+				this.bbox_width = width;
+			}
+			if (this.bbox_height < 0) {
+				this.bbox_height = height;
+			}
+			if (this.bbox_width < 0 || this.bbox_height < 0) {
+				Gdx.app.error("Node error", "no bounds for:" + this.type + ","
+						+ this.name);
+			}
+			float[] vals = pObj.getPolygon().getVertices();
+			int [] xVals = new int [vals.length/2];
+			int [] yVals = new int [vals.length/2];
+			for(int i=0; i<vals.length; i+=2){
+				xVals[i/2] = (int) vals[i];
+				yVals[i/2] = (int) vals[i+1];
+			}
+			this.bb = Bound.create(xVals, yVals);
 		} else {
 			if (this.properties.get("bbox_width") != null) {
 				this.bbox_width = Float.parseFloat(this.properties.get(

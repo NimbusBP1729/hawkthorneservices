@@ -12,12 +12,9 @@ import java.util.Map;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.projecthawkthorne.client.HawkthorneGame;
-import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.client.display.Animation;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.nodes.Climbable;
@@ -959,9 +956,6 @@ public class Player extends Humanoid implements Timeable {
 	}
 
 	public static Player getSingleton() {
-		if (HawkthorneGame.MODE != Mode.CLIENT && HawkthorneGame.MODE != Mode.SINGLEPLAYER) {
-			throw new UnsupportedOperationException();
-		}
 		if (singleton == null) {
 			singleton = new Player(Player.getPlayerTiledObject()
 					,UUID.randomUUID());
@@ -1027,9 +1021,13 @@ public class Player extends Humanoid implements Timeable {
 
 	@Override
 	public void draw(SpriteBatch batch) {
+		
+		
 		Animation anim = Assets.characterSpriteMap.lookUp(this.getCharacter().getName(),
 				this.getCharacter().getCostume(), this.getState());
+		
 		if (anim == null) {
+			
 			Gdx.app.error(
 					"drawing error",
 					"create player entry animation for (name,costume,STATE)=("
@@ -1047,9 +1045,15 @@ public class Player extends Humanoid implements Timeable {
 				batch.draw(tr, this.x + tr.getRegionWidth(), this.y,
 						-tr.getRegionWidth(), tr.getRegionHeight());
 			}
+			
 		}
-		BitmapFont font = Assets.getFont();
-		font.setScale(1, 1);
-		font.drawMultiLine(batch, this.getUsername(), this.x,this.y + 60);
+		
+//		BitmapFont font = Assets.getFont();
+//		font.setScale(1, 1);
+//		
+//		font.drawMultiLine(batch, this.getUsername(), this.x,this.y + 60);
+		
+		
+		
 	}
 }
