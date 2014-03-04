@@ -4,6 +4,8 @@
  */
 package com.projecthawkthorne.content;
 
+import static com.projecthawkthorne.client.HawkthorneGame.START_LEVEL;
+
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -102,7 +104,7 @@ public class Player extends Humanoid implements Timeable {
 	}
 
 	private Player(RectangleMapObject obj, UUID id) {
-		this(obj, null, id);
+		this(obj, Level.get(START_LEVEL), id);
 	}
 
 	private static RectangleMapObject getPlayerTiledObject() {
@@ -115,7 +117,7 @@ public class Player extends Humanoid implements Timeable {
 		obj.setName(Integer.toString(Player.playerCount++));
 		obj.getProperties().put("bbox_width", Integer.toString(Math.round(18)));
 		obj.getProperties()
-				.put("bbox_height", Integer.toString(Math.round(44)));
+				.put("bbox_height", Integer.toString(Math.round(36)));
 		return obj;
 	}
 

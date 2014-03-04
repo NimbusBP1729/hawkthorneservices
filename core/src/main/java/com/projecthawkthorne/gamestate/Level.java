@@ -1,7 +1,7 @@
 package com.projecthawkthorne.gamestate;
 
-import static com.projecthawkthorne.client.HawkthorneParentGame.HEIGHT;
-import static com.projecthawkthorne.client.HawkthorneParentGame.WIDTH;
+import static com.projecthawkthorne.client.HawkthorneGame.HEIGHT;
+import static com.projecthawkthorne.client.HawkthorneGame.WIDTH;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +24,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector3;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Boundary;
 import com.projecthawkthorne.content.Game;
@@ -61,6 +62,7 @@ public class Level extends Gamestate {
 	private BatchTiledMapRenderer tileMapRenderer;
 	private OrthographicCamera cam;
 	private SpriteBatch batch = new SpriteBatch();
+	private Vector3 mousePosition = new Vector3();
 	private static Map<String, Level> levelMap = new HashMap<String,Level>();
 
 
@@ -73,7 +75,6 @@ public class Level extends Gamestate {
 		this.collider = new Collider();
 		this.loadNodes(name);
 		this.spawnLevel = this;
-		this.tileMapRenderer = new OrthogonalTiledMapRenderer(null);
 		cam = new OrthographicCamera(WIDTH, HEIGHT);
 		cam.setToOrtho(IS_Y_DOWN);
 		cam.zoom = 0.5f;
@@ -164,6 +165,16 @@ public class Level extends Gamestate {
 				} else if ("savepoint".equals(typeName)) {
 					continue;
 				} else if ("info".equals(typeName)) {
+					continue;
+				}  else if ("enemy".equals(typeName)) {
+					continue;
+				}  else if ("scenetrigger".equals(typeName)) {
+					continue;
+				}  else if ("breakable_block".equals(typeName)) {
+					continue;
+				} else if ("spawn".equals(typeName)) {
+					continue;
+				} else if ("killing_floor".equals(typeName)) {
 					continue;
 				} else {
 					Gdx.app.error("typeName is not recognized", typeName);
@@ -321,7 +332,7 @@ public class Level extends Gamestate {
 	@Override
 	public void resume() {
 		this.tiledMap = Assets.getTiledMap(name);
-		this.tileMapRenderer= new OrthogonalTiledMapRenderer(this.tiledMap);
+		this.tileMapRenderer= new OrthogonalTiledMapRenderer(this.tiledMap, batch);
 		String musicFile = this.tiledMap.getProperties()
 	                        .get("soundtrack", String.class);
 	    Assets.playMusic(musicFile);
@@ -342,7 +353,9 @@ public class Level extends Gamestate {
 		float mapHeight = tmtl.getHeight() * tmtl.getTileHeight();
 		float mapWidth = tmtl.getWidth() * tmtl.getTileWidth();
 
-		tileMapRenderer.setView(cam.combined, 0, 0, mapWidth, mapHeight);
+		batch.setProjectionMatrix(cam.combined);
+
+		tileMapRenderer.setView(cam);
 		tileMapRenderer.setMap(map);
 		try {
 			float r = Float.parseFloat(map.getProperties().get("red",
@@ -360,7 +373,6 @@ public class Level extends Gamestate {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
 		tileMapRenderer.render();
-		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
 		
 
@@ -384,10 +396,16 @@ public class Level extends Gamestate {
 		for (Node liquid : liquids) {
 			liquid.draw(batch);
 		}
-		if(Game.DEBUG){
-			this.collider.draw(batch);
-		}
 		batch.end();
+		if(Game.DEBUG){
+			this.collider.draw(cam);
+			batch.begin();
+			mousePosition.x = Gdx.input.getX();
+			mousePosition.y = Gdx.input.getY();
+			cam.unproject(mousePosition);
+			//System.out.println("("+mousePosition.x+","+mousePosition.y+")");
+			batch.end();
+		}
 	}
 
 	private void trackPlayerWithCam(Player player, OrthographicCamera cam) {

@@ -16,12 +16,11 @@ public abstract class Bound {
 	 * the points indicate a rectangle it's better to use the other create()
 	 * method.
 	 * 
-	 * @param x
-	 * @param y
+	 * @param vertices
 	 * @return the bound
 	 */
-	public static Bound create(int[] x, int[] y) {
-		return new Polygon(x, y);
+	public static Bound create(float [] vertices) {
+		return new Polygon(vertices);
 	}
 
 	/**
@@ -109,6 +108,17 @@ public abstract class Bound {
 	 *         the vertical line x=xVal
 	 */
 	public abstract float getSmallestY(float xVal);
+	
+	/**
+	 * returns the largest y value within this bound at location x = xVal<br>
+	 * in other words, the maximum of the intersection of <br>
+	 * vertical line at xVal and the bounded region <br>
+	 * 
+	 * @param xVal
+	 * @return largest y-value in the bound intersecting <br>
+	 *         the vertical line x=xVal
+	 */
+	public abstract float getLargestY(float xVal);
 
 	/**
 	 * scales the width to be of size newWidth <br>

@@ -118,6 +118,13 @@ class Rectangle extends Bound {
 	public float getSmallestY(float xVal) {
 		float[] corners = FLOAT_ARRAY;
 		this.bbox(corners);
+		return corners[3];
+	}
+	
+	@Override
+	public float getLargestY(float xVal) {
+		float[] corners = FLOAT_ARRAY;
+		this.bbox(corners);
 		return corners[1];
 	}
 

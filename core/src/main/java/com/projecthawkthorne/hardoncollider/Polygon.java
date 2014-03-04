@@ -7,7 +7,7 @@ package com.projecthawkthorne.hardoncollider;
  * 
  */
 class Polygon extends Bound {
-	java.awt.Polygon p;
+	protected com.badlogic.gdx.math.Polygon p;
 
 	/**
 	 * creates a new polygon with the arrays given
@@ -17,26 +17,19 @@ class Polygon extends Bound {
 	 * @param y
 	 *            an array of the y coordinates of the polygon
 	 */
-	Polygon(int[] x, int[] y) {
-		if (x == null || y == null) {
+	Polygon(float[] vertices) {
+		if (vertices  == null) {
 			throw new NullPointerException(
 					"Polygon requires non-null x and y coordinates");
-		} else if (x.length < 3) {
+		} else if (vertices.length%2 != 0) {
 			throw new IllegalArgumentException(
-					"Polygon requires at least 3 x values. Found " + x.length);
-		} else if (y.length < 3) {
+					"Polygon requires even amount of vertices. Found " + vertices.length);
+		} else if (vertices.length < 6) {
 			throw new IllegalArgumentException(
-					"Polygon requires at least 3 y values. Found " + y.length);
-		} else if (x.length != y.length) {
-			throw new IllegalArgumentException(
-					"Polygon requires the same amount of x and y values. Found "
-							+ x.length + "," + y.length);
-
+					"Polygon requires at least 3 vertices values. Found " + vertices.length);
 		}
-		p = new java.awt.Polygon();
-		p.xpoints = x;
-		p.ypoints = y;
-		p.npoints = p.xpoints.length;
+		p = new com.badlogic.gdx.math.Polygon();
+		p.setVertices(vertices);
 
 	}
 
@@ -50,13 +43,13 @@ class Polygon extends Bound {
 	 * @return true if the polygons are likely to have intersected
 	 */
 	public static boolean intersects(Polygon a, Polygon b) {
-		for (int i = 0; i < a.p.npoints; i++) {
-			if (b.p.contains(a.p.xpoints[i], a.p.ypoints[i])) {
+		for (int i = 0; i < a.getVertices().length; i+=2) {
+			if (b.p.contains(a.getVertices()[i], a.getVertices()[i+1])) {
 				return true;
 			}
 		}
-		for (int i = 0; i < b.p.npoints; i++) {
-			if (a.p.contains(b.p.xpoints[i], b.p.ypoints[i])) {
+		for (int i = 0; i < b.getVertices().length; i+=2) {
+			if (a.p.contains(b.getVertices()[i], b.getVertices()[i+1])) {
 				return true;
 			}
 		}
@@ -71,16 +64,16 @@ class Polygon extends Bound {
 				|| b.p.contains(r2.x + r2.width, r2.y + r2.height)) {
 			return true;
 		}
-		for (int i = 0; i < b.p.npoints; i++) {
-			if (isBetween(b.p.xpoints[i], r2.x, r2.x+r2.width) &&
-				isBetween(b.p.ypoints[i], r2.y, r2.y+r2.height)) {
+		for (int i = 0; i < b.getVertices().length; i+=2) {
+			if (isBetween(b.getVertices()[i], r2.x, r2.x+r2.width) &&
+				isBetween(b.getVertices()[i+1], r2.y, r2.y+r2.height)) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	private static boolean isBetween(int testX, float bound1, float bound2) {
+	private static boolean isBetween(float testX, float bound1, float bound2) {
 		if(testX > bound1 && testX > bound2) {
 			return false;
 		} else if(testX < bound1 && testX < bound2) {
@@ -106,9 +99,9 @@ class Polygon extends Bound {
 		float maxX = -Float.MAX_VALUE;
 		float maxY = -Float.MAX_VALUE;
 		float x, y;
-		for (int i = 0; i < p.npoints; i++) {
-			x = p.xpoints[i];
-			y = p.ypoints[i];
+		for (int i = 0; i < p.getVertices().length; i+=2) {
+			x = p.getVertices()[i];
+			y = p.getVertices()[i+1];
 			minX = x < minX ? x : minX;
 			minY = y < minY ? y : minY;
 			maxX = x > maxX ? x : maxX;
@@ -127,8 +120,8 @@ class Polygon extends Bound {
 		this.bbox(corners);
 		float minX = corners[0];
 		float offsetX = newX - minX;
-		for (int i = 0; i < this.p.npoints; i++) {
-			this.p.xpoints[i] += offsetX;
+		for (int i = 0; i < p.getVertices().length; i+=2) {
+			this.p.getVertices()[i] += offsetX;
 		}
 	}
 
@@ -138,8 +131,8 @@ class Polygon extends Bound {
 		this.bbox(corners);
 		float minY = corners[1];
 		float offsetY = newY - minY;
-		for (int i = 0; i < this.p.npoints; i++) {
-			this.p.ypoints[i] += offsetY;
+		for (int i = 0; i < p.getVertices().length; i+=2) {
+			this.p.getVertices()[i+1] += offsetY;
 		}
 	}
 
@@ -148,13 +141,13 @@ class Polygon extends Bound {
 		float x1, x2, y1, y2;
 		float minY = Float.MAX_VALUE;
 		float curY;
-		int n = this.p.npoints;
+		int n = this.p.getVertices().length;
 
-		for (int i = 0; i < n; i++) {
-			x1 = this.p.xpoints[(i) % n];
-			x2 = this.p.xpoints[(i + 1) % n];
-			y1 = this.p.ypoints[(i) % n];
-			y2 = this.p.ypoints[(i + 1) % n];
+		for (int i = 0; i < n; i+=2) {
+			x1 = this.p.getVertices()[(i) % n];
+			x2 = this.p.getVertices()[(i + 2) % n];
+			y1 = this.p.getVertices()[(i + 1) % n];
+			y2 = this.p.getVertices()[(i + 3) % n];
 			if ((xVal < x1 && xVal > x2) || (xVal > x1 && xVal < x2)) {
 				if (x1 == x2) {
 					curY = y1;
@@ -168,6 +161,32 @@ class Polygon extends Bound {
 	}
 
 	@Override
+	public float getLargestY(float xVal) {
+		float x1, x2, y1, y2;
+		float maxY = -Float.MAX_VALUE;
+		float curY;
+		int n = this.p.getVertices().length;
+
+		for (int i = 0; i < n; i+=2) {
+			x1 = this.p.getVertices()[(i) % n];
+			x2 = this.p.getVertices()[(i + 2) % n];
+			y1 = this.p.getVertices()[(i + 1) % n];
+			y2 = this.p.getVertices()[(i + 3) % n];
+			if ((xVal < x1 && xVal > x2) || (xVal > x1 && xVal < x2)) {
+				if (x1 == x2) {
+					curY = y1;
+				} else {
+					curY = (y2 - y1) / (x2 - x1) * (xVal - x1) + y1;
+				}
+				maxY = curY > maxY ? curY : maxY;
+			}
+		}
+		return maxY;
+	}
+	
+	
+
+	@Override
 	public void draw() {
 		// TODO Auto-generated method stub
 
@@ -178,9 +197,9 @@ class Polygon extends Bound {
 		float[] corners = new float[4];
 		this.bbox(corners);
 		float oldWidth = corners[2] - corners[0];
-		int n = this.p.npoints;
-		for (int i = 0; i < n; i++) {
-			this.p.xpoints[i] = Math.round(this.p.xpoints[i] * newWidth
+		int n = this.p.getVertices().length;
+		for (int i = 0; i < n; i+=2) {
+			this.p.getVertices()[i] = Math.round(this.p.getVertices()[i] * newWidth
 					/ oldWidth);
 		}
 	}
@@ -190,9 +209,9 @@ class Polygon extends Bound {
 		float[] corners = new float[4];
 		this.bbox(corners);
 		float oldHeight = corners[2] - corners[0];
-		int n = this.p.npoints;
+		int n = this.p.getVertices().length;
 		for (int i = 0; i < n; i++) {
-			this.p.xpoints[i] = Math.round(this.p.xpoints[i] * newHeight
+			this.p.getVertices()[i+1] = Math.round(this.p.getVertices()[i+1] * newHeight
 					/ oldHeight);
 		}
 	}
@@ -207,5 +226,9 @@ class Polygon extends Bound {
 	public float getHeight() {
 		float[] corners = new float[4];
 		return corners[3] - corners[1];
+	}
+
+	public float[] getVertices() {
+		return p.getVertices();
 	}
 }

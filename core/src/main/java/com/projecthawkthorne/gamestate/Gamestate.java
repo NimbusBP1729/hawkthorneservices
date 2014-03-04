@@ -6,14 +6,14 @@ import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.projecthawkthorne.client.HawkthorneParentGame;
+import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.UUID;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.Node;
 
 public abstract class Gamestate implements Screen{
-	protected static HawkthorneParentGame context;
+	protected static HawkthorneGame context;
 	private Set<Player> players = new HashSet<Player>();
 
 	public abstract String getName();
@@ -49,11 +49,11 @@ public abstract class Gamestate implements Screen{
 
 	public abstract void draw();
 
-	public static final void setContext(HawkthorneParentGame game) {
+	public static final void setContext(HawkthorneGame game) {
 		context = game;
 	}
 
-	public static HawkthorneParentGame getContext() {
+	public static HawkthorneGame getContext() {
 		return context;
 	}
 

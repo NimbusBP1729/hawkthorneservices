@@ -39,25 +39,27 @@ public class Platform extends Node {
 		}
 
 		if (player.velocityY < 0) {
-			FloorCollidable floorPushable = (FloorCollidable) node;
-			float[] floorCorners = Bound.FLOAT_ARRAY;
-			this.bb.bbox(floorCorners);
-			// float y1 = this.bb.getSmallestY(nodeCorners[0]);
-			// float y2 = this.bb.getSmallestY(nodeCorners[2]);
-			// float floorY = Math.min(y1, y2);
-
-			// TODO: use getSmallestY and getLargestY instead
-			float floorLeft = floorCorners[0];
-			float floorTop = floorCorners[1];
-			float floorRight = floorCorners[2];
-			float floorBottom = floorCorners[3];
-
 			float[] nodeCorners = Bound.FLOAT_ARRAY;
 			node.bb.bbox(nodeCorners);
 			float nodeLeft = nodeCorners[0];
 			float nodeTop = nodeCorners[1];
 			float nodeRight = nodeCorners[2];
 			float nodeBottom = nodeCorners[3];
+
+			FloorCollidable floorPushable = (FloorCollidable) node;
+			float[] floorCorners = Bound.FLOAT_ARRAY;
+			this.bb.bbox(floorCorners);
+			float y1 = this.bb.getLargestY(nodeLeft);
+			float y2 = this.bb.getLargestY(nodeRight);
+			float floorTop = Math.max(y1, y2);
+			
+			float y3 = this.bb.getSmallestY(nodeLeft);
+			float y4 = this.bb.getSmallestY(nodeRight);
+			float floorBottom = Math.min(y3, y4);
+
+			// TODO: use getSmallestY and getLargestY instead
+			float floorLeft = floorCorners[0];
+			float floorRight = floorCorners[2];
 
 			float wallBuffer = 0;
 			boolean onTop = nodeBottom < floorTop && nodeTop > floorTop;

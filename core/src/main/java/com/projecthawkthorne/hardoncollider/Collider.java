@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.projecthawkthorne.client.display.Assets;
+import com.badlogic.gdx.graphics.GL30;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 /**
  * the collision detection class
@@ -31,6 +33,7 @@ public class Collider {
 	private long updateThreshold = 0;
 	/** the last update time */
 	private long lastUpdateTime = 0;
+	private ShapeRenderer shapeRenderer = new ShapeRenderer();
 
 	public Collider() {
 		this.init();
@@ -260,24 +263,34 @@ public class Collider {
 	 * method in a collider for libgdx
 	 * @param batch
 	 */
-	public void draw(SpriteBatch batch) {
+	public void draw(OrthographicCamera cam) {
+		Gdx.gl.glEnable(GL30.GL_BLEND);
+		shapeRenderer.setProjectionMatrix(cam.combined);
+		shapeRenderer.begin(ShapeType.Line);
 		for(Bound bound: shapeMap){
 			if(ghosts.contains(bound)){
-				batch.setColor(0, 0, 1, 0.25f);
+				shapeRenderer.setColor(0, 0, 1, 0.35f);
 			}else if(passives.contains(bound)){
-				batch.setColor(0, 1, 0, 0.25f);
+				shapeRenderer.setColor(0, 1, 0, 0.35f);
 			}else if(actives.contains(bound)){
-				batch.setColor(1, 0, 0, 0.25f);
+				shapeRenderer.setColor(1, 0, 0, 0.35f);
 			}else{
-				batch.setColor(0, 0, 0, 0.25f);
+				shapeRenderer.setColor(0, 0, 0, 0.35f);
 			}
-			float x = bound.getX();
-			float y = bound.getY();
-			float width = bound.getWidth();
-			float height = bound.getHeight();
-			Texture texture = Assets.bboxTexture;
-			batch.draw(texture, x, y, width, height);
+			if (bound instanceof Rectangle) {
+				float x = bound.getX();
+				float y = bound.getY();
+				float width = bound.getWidth();
+				float height = bound.getHeight();
+				shapeRenderer.rect(x, y, width, height);
+			}else if(bound instanceof Polygon){
+				Polygon pb = (Polygon) bound;
+				shapeRenderer.polygon(pb.getVertices());
+			}else{
+				Gdx.app.error("incorrect type", bound.getClass().getName());
+			}
 		}
-		batch.setColor(Color.WHITE);
+		shapeRenderer.end();
+		shapeRenderer.setColor(Color.WHITE);
 	}
 }

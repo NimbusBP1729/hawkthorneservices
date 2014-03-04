@@ -1,11 +1,11 @@
 package com.projecthawkthorne.java;
 
-import static com.projecthawkthorne.client.HawkthorneParentGame.HEIGHT;
-import static com.projecthawkthorne.client.HawkthorneParentGame.WIDTH;
+import static com.projecthawkthorne.client.HawkthorneGame.HEIGHT;
+import static com.projecthawkthorne.client.HawkthorneGame.WIDTH;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.projecthawkthorne.client.HawkthorneParentGame;
+import com.projecthawkthorne.client.HawkthorneGame;
 
 public class HawkthorneGameDesktop {
 
@@ -13,6 +13,6 @@ public class HawkthorneGameDesktop {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = WIDTH;
 		config.height = HEIGHT;
-		new LwjglApplication(new HawkthorneParentGame(), config);
+		new LwjglApplication(new HawkthorneGame(), config);
 	}
 }

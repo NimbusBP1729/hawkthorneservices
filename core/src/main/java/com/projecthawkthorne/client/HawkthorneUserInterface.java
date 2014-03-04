@@ -1,7 +1,7 @@
 package com.projecthawkthorne.client;
 
-import static com.projecthawkthorne.client.HawkthorneParentGame.HEIGHT;
-import static com.projecthawkthorne.client.HawkthorneParentGame.WIDTH;
+import static com.projecthawkthorne.client.HawkthorneGame.HEIGHT;
+import static com.projecthawkthorne.client.HawkthorneGame.WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

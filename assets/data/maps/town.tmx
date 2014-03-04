@@ -56,12 +56,12 @@
    eJztlDEOwjAMRc1IlIEFhjDARZBYunGDjr1IjsJRepQeBVsQVLkphBglspQvfampZOXnxQ5A05pu6Asz/vM1M2lSD42fVLwHa/Bz6APuuwe403qr6A6pB5HZFNxXyG4BrkeAM3F0z/VYOoNmITsf2NG3dn4dnqEruJ9jtormNyYpP3zH6D1LlsH5nfOjWQZ4v4m+VI5/KZcfnnuK9NL4rc6yGuI3n2my+YFjyFHrTc3lh2dczKJLqIvV5NzDpxxGAT/L5jCVH5/fFX5ekqNk/w2YdXh9b5pF3jWLfGoW+QEeRjcV
   </data>
  </layer>
- <layer name="foreground" width="80" height="14" opacity="0.56">
+ <layer name="foreground" width="80" height="14">
   <data encoding="base64" compression="zlib">
    eJztlM0KgCAQhL1G1yC69kd1649ez0dvJSKTUFJhtfaDOZjOMO1hGSOIb5OCkkMcuUr0ZDRDJyrsAhHTYhcIBNtdtnrK8eXHRuyyVHPfgXpFw+W95byZQ/Lg1/UICbG/alADmgxvt4dvuXI2Zeh6CAqHDGxKw708v/N/1fmZMnz0CI0ZtIBGC28u+ZllhtwDxF0yCIL4LzuNIwup
   </data>
  </layer>
- <layer name="accents" width="80" height="14" opacity="0.49">
+ <layer name="accents" width="80" height="14">
   <data encoding="base64" compression="zlib">
    eJztks0KQEAUhZX/BUrKBi+AlYXCw82jO5KapBR3Qs5XX01Tc2buaSyLEEKIDR3oQg/6MHj0RfKYnDE93lNC8a/gaMbcYDb7u5et9xfCTOiuMyIYw0Q49y//r4AlrIRz/9JfDRvYCud+ob9uVfUXzy3rAY5w2u3fZZtRz5TqjxDyLWYJuAqz
   </data>

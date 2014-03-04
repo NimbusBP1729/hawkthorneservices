@@ -220,11 +220,6 @@ public abstract class Node extends Collidable {
 	 * @param obj
 	 */
 	public void setBound(MapObject obj) {
-		if (!(level instanceof Level)) {
-			return;
-		}
-		Level lvl = (Level) this.level;
-		this.collider = lvl.getCollider();
 
 		if (obj instanceof PolylineMapObject) {
 			throw new UnsupportedOperationException(
@@ -258,14 +253,7 @@ public abstract class Node extends Collidable {
 				Gdx.app.error("Node error", "no bounds for:" + this.type + ","
 						+ this.name);
 			}
-			float[] vals = pObj.getPolygon().getVertices();
-			int [] xVals = new int [vals.length/2];
-			int [] yVals = new int [vals.length/2];
-			for(int i=0; i<vals.length; i+=2){
-				xVals[i/2] = (int) vals[i];
-				yVals[i/2] = (int) vals[i+1];
-			}
-			this.bb = Bound.create(xVals, yVals);
+			this.bb = Bound.create(pObj.getPolygon().getVertices());
 		} else {
 			if (this.properties.get("bbox_width") != null) {
 				this.bbox_width = Float.parseFloat(this.properties.get(
@@ -298,7 +286,11 @@ public abstract class Node extends Collidable {
 					this.bbox_height);
 		}
 
-		this.collider.addBox(this.bb);
+
+		if (level instanceof Level) {
+			Level lvl = (Level) this.level;
+			lvl.getCollider().addBox(this.bb);
+		}
 		this.bb.setUserData(this);
 	}
 
