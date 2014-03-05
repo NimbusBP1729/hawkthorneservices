@@ -25,6 +25,7 @@ public class Platform extends Node {
 
 	public Platform(MapObject t, Level level) {
 		super(t, level);
+		canDrop = "true".equals(t.getProperties().get("drop",String.class));
 		level.getCollider().setPassive(this.bb);
 	}
 
