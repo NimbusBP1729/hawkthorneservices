@@ -501,7 +501,7 @@ public class Player extends Humanoid implements Timeable {
 			} else {
 				this.velocityY = 0;
 			}
-		} else if (this.footprint == null || this.isJumping()) {
+		} else if (this.getFootprint() == null || this.isJumping()) {
 			this.velocityY = this.velocityY + Game.gravity * dt;
 		}
 
@@ -1057,5 +1057,13 @@ public class Player extends Humanoid implements Timeable {
 		
 		
 		
+	}
+
+	public Footprint getFootprint() {
+		return footprint;
+	}
+
+	public void setFootprint(Footprint footprint) {
+		this.footprint = footprint;
 	}
 }

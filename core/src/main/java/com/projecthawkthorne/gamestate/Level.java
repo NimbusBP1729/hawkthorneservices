@@ -27,6 +27,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Boundary;
+import com.projecthawkthorne.content.Footprint;
 import com.projecthawkthorne.content.Game;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
@@ -63,6 +64,7 @@ public class Level extends Gamestate {
 	private OrthographicCamera cam;
 	private SpriteBatch batch = new SpriteBatch();
 	private Vector3 mousePosition = new Vector3();
+	private boolean isFloorSpace;
 	private static Map<String, Level> levelMap = new HashMap<String,Level>();
 
 
@@ -97,6 +99,7 @@ public class Level extends Gamestate {
 		int mapHeight = prop.get("height", Integer.class);
 		int tilePixelWidth = prop.get("tilewidth", Integer.class);
 		int tilePixelHeight = prop.get("tileheight", Integer.class);
+		this.isFloorSpace = this.getNodeGroupByName("floorspace")!=null;
 
 		this.boundary.width = mapWidth * tilePixelWidth;
 		this.boundary.height = mapHeight * tilePixelHeight;
@@ -280,6 +283,7 @@ public class Level extends Gamestate {
 				bb = player.getBb();
 			}
 			((Level) newLevel).getCollider().addBox(bb);
+			player.setFootprint(((Level) newLevel).isFloorSpace ? new Footprint() : null);
 			// this.moveBoundingBox();
 			// this.attack_box = PlayerAttack.new(collider,self);;
 		}
