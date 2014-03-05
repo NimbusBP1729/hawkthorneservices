@@ -17,7 +17,7 @@ public class Character {
 	private String costume;
 
 	public Character() {
-		name = "abed";
+		name = "garrett";
 		costume = "base";
 	}
 
