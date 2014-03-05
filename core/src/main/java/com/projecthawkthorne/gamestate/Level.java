@@ -378,19 +378,13 @@ public class Level extends Gamestate {
 
 		tileMapRenderer.setView(cam);
 		tileMapRenderer.setMap(map);
-		try {
-			float r = Float.parseFloat(map.getProperties().get("red",
-					String.class)) / 255.0f;
-			float g = Float.parseFloat(map.getProperties().get("green",
-					String.class)) / 255.0f;
-			float b = Float.parseFloat(map.getProperties().get("blue",
-					String.class)) / 255.0f;
-			Gdx.gl.glClearColor(r, g, b, 1);
-		} catch (NullPointerException e) {
-			Gdx.app.error(e.getClass().getName(),
-					"Error loading background: default to white");
-			Gdx.gl.glClearColor(1, 1, 1, 1);
-		}
+		float r = Float.parseFloat(map.getProperties().get("red", "255",
+				String.class)) / 255.0f;
+		float g = Float.parseFloat(map.getProperties().get("green", "255",
+				String.class)) / 255.0f;
+		float b = Float.parseFloat(map.getProperties().get("blue", "255",
+				String.class)) / 255.0f;
+		Gdx.gl.glClearColor(r, g, b, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
 		tileMapRenderer.render();
