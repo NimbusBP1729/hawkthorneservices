@@ -105,8 +105,8 @@
   <object x="3432" y="744" width="72" height="48"/>
   <object x="3504" y="744" width="144" height="24"/>
   <object x="2016" y="768" width="192" height="432"/>
-  <object x="2232" y="720" width="144" height="144"/>
-  <object x="2376" y="720" width="120" height="96"/>
+  <object x="2232" y="720" width="264" height="96"/>
+  <object x="2232" y="816" width="144" height="48"/>
   <object x="2208" y="912" width="312" height="288"/>
   <object x="2400" y="600" width="96" height="120"/>
   <object x="2328" y="576" width="168" height="24"/>

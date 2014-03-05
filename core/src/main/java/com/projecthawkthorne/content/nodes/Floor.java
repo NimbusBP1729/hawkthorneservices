@@ -30,11 +30,6 @@ public class Floor extends Node {
 			FloorCollidable floorPushable = (FloorCollidable) node;
 			float[] floorCorners = Bound.FLOAT_ARRAY;
 			this.bb.bbox(floorCorners);
-			// float y1 = this.bb.getSmallestY(nodeCorners[0]);
-			// float y2 = this.bb.getSmallestY(nodeCorners[2]);
-			// float floorY = Math.min(y1, y2);
-
-			// TODO: use getSmallestY and getLargestY instead
 			float floorLeft = floorCorners[0];
 			float floorTop = floorCorners[1];
 			float floorRight = floorCorners[2];
@@ -48,30 +43,54 @@ public class Floor extends Node {
 			float nodeBottom = nodeCorners[3];
 
 			float wallBuffer = 1;
-			boolean onTop = nodeBottom < floorTop && nodeTop > floorTop;
-			boolean onBottom = nodeBottom < floorBottom && nodeTop > floorBottom;
-			boolean onRight = nodeLeft < floorRight && nodeRight > floorRight;
-			boolean onLeft = nodeLeft < floorLeft && nodeRight > floorLeft;
-			
-			if(onTop){
+			float topDiff = nodeBottom-floorTop;
+			float bottomDiff = floorBottom - nodeTop;
+			float rightDiff = floorLeft - nodeRight;
+			float leftDiff = nodeLeft - floorRight;
+
+			if(topDiff <0 && topDiff > min(rightDiff, leftDiff, bottomDiff)){
 				floorPushable.floorPushback(this.bb, floorTop);
-			}else if(onRight){
-				floorPushable.wallPushback(this.bb
-						, floorRight + wallBuffer,
-						false);
-			}else if(onLeft){
+			}else if(bottomDiff < 0 && bottomDiff > min(rightDiff, leftDiff, topDiff)){
+				floorPushable.ceilingPushback(this.bb, floorBottom);
+			}else if(rightDiff < 0 && rightDiff > min(bottomDiff, leftDiff, topDiff)){
 				floorPushable.wallPushback(this.bb
 						, floorLeft - wallBuffer,
 						true);
-			}else if(onBottom){
-				floorPushable.ceilingPushback(this.bb, floorBottom);
+			}else if(leftDiff < 0 && leftDiff > min(bottomDiff, rightDiff, topDiff)){
+				floorPushable.wallPushback(this.bb
+						, floorRight + wallBuffer,
+						false);
+			}else{
+				System.out.println("uh-oh");
 			}
-
 		}
 		if (node instanceof Humanoid) {
 			Humanoid p = (Humanoid) node;
 			p.dropFromPlatform(null);
 		}
+	}
+
+	private float min(float val1, float val2, float val3) {
+		
+		float res;
+		if(val1 >= 0 && val2 >= 0 && val3 >= 0){
+			res = -Float.MAX_VALUE;
+		}else if(val1 >= 0 && val2 >= 0){
+			res = val3;
+		}else if(val1 >= 0 && val3 >= 0){
+			res = val2;
+		}else if(val2 >= 0 && val3 >= 0){
+			res = val1;
+		}else if(val1 >= 0){
+			res = Math.max(val2, val3);
+		}else if(val2 >= 0){
+			res = Math.max(val1, val3);
+		}else if(val3 >= 0){
+			res = Math.max(val1, val2);
+		}else{
+			res = Math.max(val1,Math.max(val2, val3));
+		}
+		return res<-0.2? res : res;
 	}
 
 	@Override
