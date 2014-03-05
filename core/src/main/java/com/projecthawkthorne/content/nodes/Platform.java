@@ -52,7 +52,7 @@ public class Platform extends Node {
 		float y1 = this.bb.getLargestY(nodeLeft);
 		float y2 = this.bb.getLargestY(nodeRight);
 		float floorTop = Math.max(y1, y2);
-		if(floorTop < nodeTop){
+		if(floorTop - nodeTop < -24){
 			floorPushable.floorPushback(this.bb, floorTop);
 		}
 	}
