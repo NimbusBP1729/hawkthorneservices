@@ -271,7 +271,7 @@ public class Player extends Humanoid implements Timeable {
 			}
 		}
 
-		if (button == GameKeys.INTERACT && !this.interactive_collide) {
+		if (button == GameKeys.ATTACK && !this.interactive_collide) {
 			if ((this.currently_held != null)
 					&& !(this.currently_held instanceof Weapon)) {
 				if (this.keyDown.get(GameKeys.DOWN)) {

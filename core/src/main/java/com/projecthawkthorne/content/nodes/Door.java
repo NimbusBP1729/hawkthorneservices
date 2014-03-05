@@ -36,7 +36,7 @@ public class Door extends Node {
 			return;
 		}
 		player.isTransporting = true;
-		if (this.instant || player.getIsKeyDown(GameKeys.INTERACT)) {
+		if (this.instant) {
 			Level destLevel = Level.get(destLevelName);
 			Door door = destLevel.getDoor(this.properties.get("to",
 					String.class));
@@ -44,6 +44,18 @@ public class Door extends Node {
 		}
 		player.isTransporting = false;
 
+	}
+	
+	public boolean playerKeypressed(GameKeys button, Player player) {
+		if(button == GameKeys.INTERACT && destLevelName!=null){
+			Level destLevel = Level.get(destLevelName);
+			Door door = destLevel.getDoor(this.properties.get("to",
+					String.class));
+			Level.switchState(destLevel, door, player);
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	@Override
