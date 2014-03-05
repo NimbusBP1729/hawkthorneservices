@@ -90,7 +90,7 @@ public class Floor extends Node {
 		}else{
 			res = Math.max(val1,Math.max(val2, val3));
 		}
-		return res<-0.2? res : res;
+		return res;
 	}
 
 	@Override

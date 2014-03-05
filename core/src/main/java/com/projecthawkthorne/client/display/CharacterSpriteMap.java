@@ -19,7 +19,7 @@ public class CharacterSpriteMap {
 		case CROUCH:
 			anim = new Animation(0.2f,
 					com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
-					new TextureRegion(loadTexture("characters/"+name+"/"+costume+".png"), 8 * 48, 2 * 48, 48, 48));
+					new TextureRegion(loadTexture("characters/"+name+"/"+costume+".png"), 9 * 48, 4 * 48, 48, 48));
 			break;
 		case CROUCHWALK:
 			break;
@@ -66,7 +66,7 @@ public class CharacterSpriteMap {
 		case JUMP:
 			anim = new Animation(0.2f,
 				com.badlogic.gdx.graphics.g2d.Animation.NORMAL,
-				new TextureRegion(loadTexture("characters/"+name+"/"+costume+".png"), 288, 0, 48, 48));
+				new TextureRegion(loadTexture("characters/"+name+"/"+costume+".png"), 0 * 48, 2 * 48, 48, 48));
 			break;
 		case WALK:
 			anim = new Animation(0.2f,
