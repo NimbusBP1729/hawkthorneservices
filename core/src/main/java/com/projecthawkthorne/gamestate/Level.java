@@ -260,6 +260,7 @@ public class Level extends Gamestate {
 		player.getJumpQueue().flush();
 		player.getCharacter().reset();
 		player.velocityY = player.velocityX = 0;
+		player.getCollisionList().clear();
 		if (door != null) {
 			player.x = door.x + door.width / 2 - player.width / 2;
 			player.y = door.y;
