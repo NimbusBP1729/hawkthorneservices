@@ -179,6 +179,22 @@ public class Level extends Gamestate {
 					continue;
 				} else if ("killing_floor".equals(typeName)) {
 					continue;
+				} else if ("sprite".equals(typeName)) {
+					continue;
+				} else if ("throwable".equals(typeName)) {
+					continue;
+				} else if ("dealer".equals(typeName)) {
+					continue;
+				} else if ("hiddendoortrigger".equals(typeName)) {
+					continue;
+				} else if ("splat".equals(typeName)) {
+					continue;
+				} else if ("ceiling_hippy".equals(typeName)) {
+					continue;
+				} else if ("hippy".equals(typeName)) {
+					continue;
+				} else if ("airplane".equals(typeName)) {
+					continue;
 				} else {
 					Gdx.app.error("typeName is not recognized", typeName);
 				}
