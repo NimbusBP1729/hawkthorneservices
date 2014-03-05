@@ -24,8 +24,8 @@ public class Platform extends Node {
 	private boolean canDrop = true;
 
 	public Platform(MapObject t, Level level) {
-		super(t, level);
-		canDrop = "true".equals(t.getProperties().get("drop",String.class));
+ 		super(t, level);
+		canDrop = !"false".equals(t.getProperties().get("drop",String.class));
 		level.getCollider().setPassive(this.bb);
 	}
 
