@@ -42,7 +42,7 @@ public class Floor extends Node {
 			float nodeRight = nodeCorners[2];
 			float nodeBottom = nodeCorners[3];
 
-			float wallBuffer = 1;
+			float wallBuffer = 0;
 			float topDiff = nodeBottom-floorTop;
 			float bottomDiff = floorBottom - nodeTop;
 			float rightDiff = floorLeft - nodeRight;
@@ -50,6 +50,10 @@ public class Floor extends Node {
 
 			if(topDiff <0 && topDiff > min(rightDiff, leftDiff, bottomDiff)){
 				floorPushable.floorPushback(this.bb, floorTop);
+				if (node instanceof Humanoid) {
+					Humanoid p = (Humanoid) node;
+					p.dropFromPlatform(null);
+				}
 			}else if(bottomDiff < 0 && bottomDiff > min(rightDiff, leftDiff, topDiff)){
 				floorPushable.ceilingPushback(this.bb, floorBottom);
 			}else if(rightDiff < 0 && rightDiff > min(bottomDiff, leftDiff, topDiff)){
@@ -61,31 +65,27 @@ public class Floor extends Node {
 						, floorRight + wallBuffer,
 						false);
 			}else{
-				System.out.println("uh-oh");
+				//do nothing
 			}
-		}
-		if (node instanceof Humanoid) {
-			Humanoid p = (Humanoid) node;
-			p.dropFromPlatform(null);
 		}
 	}
 
 	private float min(float val1, float val2, float val3) {
 		
 		float res;
-		if(val1 >= 0 && val2 >= 0 && val3 >= 0){
+		if(val1 > 0 && val2 > 0 && val3 > 0){
 			res = -Float.MAX_VALUE;
-		}else if(val1 >= 0 && val2 >= 0){
+		}else if(val1 > 0 && val2 > 0){
 			res = val3;
-		}else if(val1 >= 0 && val3 >= 0){
+		}else if(val1 > 0 && val3 > 0){
 			res = val2;
-		}else if(val2 >= 0 && val3 >= 0){
+		}else if(val2 > 0 && val3 > 0){
 			res = val1;
-		}else if(val1 >= 0){
+		}else if(val1 > 0){
 			res = Math.max(val2, val3);
-		}else if(val2 >= 0){
+		}else if(val2 > 0){
 			res = Math.max(val1, val3);
-		}else if(val3 >= 0){
+		}else if(val3 > 0){
 			res = Math.max(val1, val2);
 		}else{
 			res = Math.max(val1,Math.max(val2, val3));
