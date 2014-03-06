@@ -47,7 +47,8 @@ public class Door extends Node {
 	}
 	
 	public boolean playerKeypressed(GameKeys button, Player player) {
-		if(button == GameKeys.INTERACT && destLevelName!=null){
+		if((button == GameKeys.INTERACT || button == GameKeys.UP)
+				&& destLevelName!=null){
 			Level destLevel = Level.get(destLevelName);
 			Door door = destLevel.getDoor(this.properties.get("to",
 					String.class));

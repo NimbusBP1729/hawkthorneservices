@@ -4,6 +4,7 @@
  */
 package com.projecthawkthorne.content;
 
+import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.nodes.State;
 
 /**
@@ -22,6 +23,11 @@ public class Character {
 	}
 
 	void setState(State state) {
+		if(this.state!=State.WALK && state == State.WALK){
+			Assets.playSfx("footsteps3",true);
+		}else if(this.state==State.WALK && state != State.WALK){
+			Assets.stopSfx("footsteps3");
+		}
 		this.state = state;
 	}
 

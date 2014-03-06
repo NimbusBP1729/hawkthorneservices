@@ -18,6 +18,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -36,6 +37,8 @@ import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.Floor;
 import com.projecthawkthorne.content.nodes.Ladder;
 import com.projecthawkthorne.content.nodes.Liquid;
+import com.projecthawkthorne.content.nodes.MovementLine;
+import com.projecthawkthorne.content.nodes.MovingPlatform;
 import com.projecthawkthorne.content.nodes.Node;
 import com.projecthawkthorne.content.nodes.Platform;
 import com.projecthawkthorne.hardoncollider.Bound;
@@ -54,6 +57,11 @@ public class Level extends Gamestate {
 	private Level spawnLevel;
 	private final String name;
 	private java.util.Map<String, Door> doors = new HashMap<String, Door>();
+	private java.util.Map<String, MovementLine> movementLines = new HashMap<String, MovementLine>();
+	public java.util.Map<String, MovementLine> getMovementLines() {
+		return movementLines;
+	}
+
 	private Boundary boundary = new Boundary();
 	private TiledMap tiledMap;
 	private Collider collider;
@@ -146,6 +154,16 @@ public class Level extends Gamestate {
 			}
 		}
 
+		MapLayer movementGroup = this.getNodeGroupByName("movement");
+		if (movementGroup != null) {
+			for (MapObject t : movementGroup.getObjects()) {
+				MovementLine node;
+				t.getProperties().put("level", levelName);
+				node = new MovementLine((PolylineMapObject) t);
+				this.movementLines.put(node.name, node);
+			}
+		}
+
 		MapLayer nodeGroup = this.getNodeGroupByName("nodes");
 		for (MapObject t : nodeGroup.getObjects()) {
 			Node node = null;
@@ -159,6 +177,8 @@ public class Level extends Gamestate {
 					node = new Ladder((RectangleMapObject) t, this);
 				} else if ("climbable".equals(typeName)) {
 					node = new Ladder((RectangleMapObject) t, this);
+				} else if ("movingplatform".equals(typeName)) {
+					node = new MovingPlatform((RectangleMapObject) t, this);
 				} else if ("cow".equals(typeName)) {
 					continue;
 				} else if ("npc".equals(typeName)) {
@@ -270,6 +290,7 @@ public class Level extends Gamestate {
 	 *            the player being transported
 	 */
 	public static void switchState(Gamestate newLevel, Door door, Player player) {
+		System.out.println("level = "+newLevel.getName());
 		Gamestate oldLevel = player.getLevel();
 		if (oldLevel != null) {
 			oldLevel.removePlayer(player);

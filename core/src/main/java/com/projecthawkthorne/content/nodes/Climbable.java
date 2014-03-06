@@ -2,7 +2,6 @@ package com.projecthawkthorne.content.nodes;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.Game;
-import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Level;
 
@@ -19,11 +18,6 @@ public abstract class Climbable extends Node {
 	protected void collide(Node node) {
 		if (node instanceof Player) {
 			Player h = (Player) node;
-			if (h.isClimbing()
-					&& (h.getIsKeyDown(GameKeys.LEFT) || h
-							.getIsKeyDown(GameKeys.RIGHT))) {
-				h.unClimb(this);
-			}
 			h.setClimbable(this);
 		}
 	}

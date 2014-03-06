@@ -302,7 +302,7 @@ public abstract class Node extends Collidable {
 	 * 
 	 * @param dt
 	 */
-	public final void update(long dt) {
+	public void update(long dt) {
 		this.updateVelocity(dt);
 		this.x = this.x + this.velocityX * dt;
 		this.y = this.y + this.velocityY * dt;

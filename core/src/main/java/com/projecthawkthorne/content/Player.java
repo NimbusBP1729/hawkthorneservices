@@ -461,6 +461,8 @@ public class Player extends Humanoid implements Timeable {
 
 		if (jumped && !this.isJumping() && this.solid_ground()
 				&& !this.isRebounding() && !this.isLiquid_drag()) {
+
+			Assets.playSfx("jump");
 			this.setJumping(true);
 			if (this.getCheat().isJumpHigh()) {
 				this.velocityY = this.highJumpStrength;
@@ -473,6 +475,8 @@ public class Player extends Humanoid implements Timeable {
 
 		} else if (jumped && !this.isJumping() && this.solid_ground()
 				&& !this.isRebounding() && this.isLiquid_drag()) {
+
+			Assets.playSfx("jump");
 			// Jumping through heavy liquid:
 			this.setJumping(true);
 			this.velocityY = this.liquidJumpStrength;
@@ -482,6 +486,7 @@ public class Player extends Humanoid implements Timeable {
 		}
 		if (halfjumped && !this.isRebounding() && this.isJumping()
 				&& this.solid_ground()) {
+			Assets.playSfx("jump");
 			this.velocityY = this.halfJumpStrength;
 		}
 

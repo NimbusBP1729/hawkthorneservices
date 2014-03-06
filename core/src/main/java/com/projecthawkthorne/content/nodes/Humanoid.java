@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.projecthawkthorne.content.FloorCollidable;
 import com.projecthawkthorne.content.Footprint;
+import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.PlayerState;
 import com.projecthawkthorne.content.UUID;
 import com.projecthawkthorne.gamestate.Level;
@@ -88,6 +89,7 @@ public abstract class Humanoid extends Node implements FloorCollidable {
 
 		this.setSpriteStates(PlayerState.CLIMBING);
 		this.isClimbing = true;
+		Player.getSingleton().setJumping(false);
 	}
 
 	/**

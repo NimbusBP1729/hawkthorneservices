@@ -31,6 +31,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class Assets {
 	private static final String SRC_IMAGES = "data/images/";
+	private static final String SRC_SPRITE_IMAGES = "data/";
 	private static final String SRC_AUDIO = "data/audio/";
 	private static final String SRC_MAPS = "data/maps/";
 	
@@ -44,9 +45,7 @@ public class Assets {
 	private static Texture defaultTexture;
 	public static Texture bboxTexture;
 	private static AssetManager manager;
-	
-	public static Texture loadTexture(String file) {
-		String fullName = SRC_IMAGES + file;
+	public static Texture loadTextureOrSprite(String fullName) {
 		TextureParameter param = new TextureParameter();
 		param.magFilter = TextureFilter.Nearest;
 		param.minFilter = TextureFilter.Nearest;
@@ -54,23 +53,44 @@ public class Assets {
 		manager.finishLoading();
 		return manager.get(fullName, Texture.class);
 	}
-
+	
+	public static Texture loadTexture(String textureFile) {
+		String fullName = SRC_IMAGES + textureFile;
+		return loadTextureOrSprite(fullName);
+	}
+	
+	public static Texture loadSprite(String spriteFile) {
+		String fullName = SRC_SPRITE_IMAGES + spriteFile;
+		return loadTextureOrSprite(fullName);
+	}
+	
 	public static void load(AssetManager assetManager) {
 		manager = assetManager;
 		manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		defaultTexture = loadTexture("defaultTexture.png");
 		bboxTexture = loadTexture("bboxTexture.png");
 	}
-	
-	
-	public static void playSfx(String soundFile) {
+
+	public static void playSfx(String soundFile, boolean looping) {
 		String fullName = SRC_AUDIO + "sfx/" + soundFile + ".ogg";
 		manager.load(fullName, Music.class);
 		manager.finishLoading();
 		Music music = manager.get(fullName, Music.class);
 		music.setVolume(0.13f);
-		music.setLooping(false);
+		music.setLooping(looping);
 		music.play();
+	}
+	
+	public static void playSfx(String soundFile) {
+		playSfx(soundFile,false);
+	}
+	
+	public static void stopSfx(String soundFile) {
+		String fullName = SRC_AUDIO + "sfx/" + soundFile + ".ogg";
+		manager.load(fullName, Music.class);
+		manager.finishLoading();
+		Music music = manager.get(fullName, Music.class);
+		music.stop();
 	}
 
 	public static void stopMusic(String soundFile) {
