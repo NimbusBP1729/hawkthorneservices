@@ -28,7 +28,6 @@ public class HawkthorneGame extends Game {
 	public void create() {
 		Assets.load(new AssetManager());
 		Gdx.input.setCatchBackKey(true);
-		Gdx.input.setInputProcessor(new HawkInputProcessor());
 		userInterface = new HawkthorneUserInterface();
 		userInterface.create();
 		Gamestate.setContext(this);
