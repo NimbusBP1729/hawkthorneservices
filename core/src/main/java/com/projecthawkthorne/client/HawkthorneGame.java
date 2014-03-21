@@ -29,7 +29,7 @@ public class HawkthorneGame extends Game {
 		Assets.load(new AssetManager());
 		Gdx.input.setCatchBackKey(true);
 		userInterface = new HawkthorneUserInterface();
-		userInterface.create();
+		Gdx.input.setInputProcessor(userInterface);
 		Gamestate.setContext(this);
 
 		Level level = Level.get(START_LEVEL);
