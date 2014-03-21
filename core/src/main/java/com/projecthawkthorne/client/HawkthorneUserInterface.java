@@ -119,14 +119,18 @@ public class HawkthorneUserInterface implements InputProcessor{
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		startX = screenX;
-		startY = screenY;
+		if(!dragging){
+			startX = screenX;
+			startY = screenY;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		dragging = false;
+		if(dragPointer == pointer){
+			dragging = false;
+		}
 		return false;
 	}
 
