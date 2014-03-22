@@ -140,8 +140,10 @@ public class HawkthorneUserInterface implements InputProcessor{
 			dragging = true;
 			dragPointer = pointer;
 		}
-		currentX = screenX;
-		currentY = screenY;	
+		if (dragPointer == pointer) {
+			currentX = screenX;
+			currentY = screenY;
+		}
 		return false;
 	}
 
