@@ -4,6 +4,7 @@ import static com.projecthawkthorne.client.HawkthorneGame.HEIGHT;
 import static com.projecthawkthorne.client.HawkthorneGame.WIDTH;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -64,6 +65,10 @@ public class HawkthorneUserInterface implements InputProcessor{
 		boolean result = false;
 		if (!Gdx.input.isTouched()) {
 			return false;
+		}
+		
+		if(gk == GameKeys.START && Gdx.input.isKeyPressed(Keys.BACK)){
+			result = true;
 		}
 		
 		if(dragging){

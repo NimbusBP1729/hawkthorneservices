@@ -243,10 +243,6 @@ public class Player extends Humanoid implements Timeable {
 		if (this.dead) {
 			return false;
 		}
-		
-		if(button==GameKeys.START){
-			Gamestate.getContext().setScreen("pause");
-		}
 
 		// if (this.inventory.isVisible()) {
 		// this.inventory.keypressed(button);
@@ -996,8 +992,10 @@ public class Player extends Humanoid implements Timeable {
 			boolean isDown = isPcKeyDown || isAndroidKeyDown;
 			this.setIsKeyDown(gk, isDown);
 			if (!wasDown && isDown) {
+				Gdx.app.log("keypress", gk.toString());
 				this.keypressed(gk);
 			} else if (wasDown && !isDown) {
+				Gdx.app.log("keyrelease", gk.toString());
 				this.keyreleased(gk);
 			}
 		}

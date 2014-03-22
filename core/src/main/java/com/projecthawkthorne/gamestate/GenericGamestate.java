@@ -33,8 +33,10 @@ public abstract class GenericGamestate extends Gamestate {
 			this.setIsKeyDown(gk, isDown);
 			if(lifeTime > 1f){
 				if (!wasDown && isDown) {
+					Gdx.app.log("keypress", "how: "+gk.toString());
 					this.keypressed(gk);
 				} else if (wasDown && !isDown) {
+					Gdx.app.log("keyrelease", "how: "+gk.toString());
 					this.keyreleased(gk);
 				}
 			}

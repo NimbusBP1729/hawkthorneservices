@@ -85,7 +85,14 @@ public class Level extends Gamestate {
 		this.spawnLevel = this;
 		cam = new OrthographicCamera(WIDTH, HEIGHT);
 		cam.setToOrtho(IS_Y_DOWN);
-		cam.zoom = 0.5f;
+		switch(Gdx.app.getType()){
+		case Android:
+			cam.zoom = 0.25f;
+			break;
+		default:
+			cam.zoom = 0.5f;
+			break;
+		}
 	}
 		
 	public static Level get(String name) {
@@ -333,6 +340,10 @@ public class Level extends Gamestate {
 		Player player = Player.getSingleton();
 		if (Gdx.input.isKeyPressed(Keys.DEL)) {
 			player.die();
+		}
+
+		if (Gdx.input.isKeyPressed(Keys.BACK) || Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+			Gamestate.getContext().setScreen("pause");
 		}
 		player.processKeyActions();
 		Set<Player> players = this.getPlayers();

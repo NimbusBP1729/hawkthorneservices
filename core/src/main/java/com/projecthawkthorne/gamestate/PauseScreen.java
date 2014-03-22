@@ -101,6 +101,7 @@ public class PauseScreen extends GenericGamestate {
 		cam.zoom = 1f;
 		cam.update(true);
 		batch.setProjectionMatrix(cam.combined);
+		batch.begin();
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 	    batch.draw(this.background, 
@@ -120,6 +121,7 @@ public class PauseScreen extends GenericGamestate {
 	    		+  ": SELECT ITEM";
 	    font.draw(batch, back, 25, 25);
 	    font.draw(batch, howto, 25, 55);
+	    batch.end();
 	}
 
 }
