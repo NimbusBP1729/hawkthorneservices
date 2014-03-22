@@ -25,7 +25,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector3;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Boundary;
 import com.projecthawkthorne.content.Footprint;
@@ -71,7 +70,6 @@ public class Level extends Gamestate {
 	private BatchTiledMapRenderer tileMapRenderer;
 	private OrthographicCamera cam;
 	private SpriteBatch batch = new SpriteBatch();
-	private Vector3 mousePosition = new Vector3();
 	private boolean isFloorSpace;
 	private static Map<String, Level> levelMap = new HashMap<String,Level>();
 
@@ -435,12 +433,6 @@ public class Level extends Gamestate {
 		batch.end();
 		if(Game.DEBUG){
 			this.collider.draw(cam);
-			batch.begin();
-			mousePosition.x = Gdx.input.getX();
-			mousePosition.y = Gdx.input.getY();
-			cam.unproject(mousePosition);
-			//System.out.println("("+mousePosition.x+","+mousePosition.y+")");
-			batch.end();
 		}
 	}
 
