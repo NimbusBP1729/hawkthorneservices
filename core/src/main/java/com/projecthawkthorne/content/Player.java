@@ -17,6 +17,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.projecthawkthorne.client.HawkthorneGame;
+import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.client.display.Animation;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.nodes.Climbable;
@@ -32,6 +34,9 @@ import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
+import com.projecthawkthorne.socket.Client;
+import com.projecthawkthorne.socket.Command;
+import com.projecthawkthorne.socket.MessageBundle;
 import com.projecthawkthorne.timer.Timeable;
 import com.projecthawkthorne.timer.Timer;
 
@@ -959,10 +964,18 @@ public class Player extends Humanoid implements Timeable {
 	}
 
 	public static Player getSingleton() {
+		if (HawkthorneGame.MODE == Mode.SERVER) {
+			throw new UnsupportedOperationException();
+		}
 		if (singleton == null) {
 			singleton = new Player(Player.getPlayerTiledObject()
 					,UUID.randomUUID());
 			System.out.println("creating player: " + singleton.id);
+			MessageBundle message = new MessageBundle();
+			message.setEntityId(singleton.getId());
+			message.setCommand(Command.REGISTERPLAYER);
+			message.setParams(singleton.getUsername(),HawkthorneGame.START_LEVEL,"main");
+			Client.getSingleton().send(message);
 			playerMap.put(singleton.id, singleton);
 		}
 		return singleton;
@@ -994,9 +1007,21 @@ public class Player extends Humanoid implements Timeable {
 			if (!wasDown && isDown) {
 				Gdx.app.log("keypress", gk.toString());
 				this.keypressed(gk);
+
+				MessageBundle mb = new MessageBundle();
+				mb.setEntityId(Player.getSingleton().getId());
+				mb.setCommand(Command.KEYPRESSED);
+				mb.setParams(gk.toString());
+				Client.getSingleton().send(mb);
 			} else if (wasDown && !isDown) {
 				Gdx.app.log("keyrelease", gk.toString());
 				this.keyreleased(gk);
+
+				MessageBundle mb = new MessageBundle();
+				mb.setEntityId(Player.getSingleton().getId());
+				mb.setCommand(Command.KEYRELEASED);
+				mb.setParams(gk.toString());
+				Client.getSingleton().send(mb);
 			}
 		}
 	}

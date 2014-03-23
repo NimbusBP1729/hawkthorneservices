@@ -13,6 +13,6 @@ public class HawkthorneGameHtml extends GwtApplication {
 
 	@Override
 	public GwtApplicationConfiguration getConfig() {
-		return new GwtApplicationConfiguration(960, 640);
+		return new GwtApplicationConfiguration(480, 320);
 	}
 }

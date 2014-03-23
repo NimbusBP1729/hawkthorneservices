@@ -25,6 +25,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
+import com.projecthawkthorne.client.HawkthorneGame;
+import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Boundary;
 import com.projecthawkthorne.content.Footprint;
@@ -43,6 +45,9 @@ import com.projecthawkthorne.content.nodes.Platform;
 import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
 import com.projecthawkthorne.hardoncollider.Collider;
+import com.projecthawkthorne.socket.Client;
+import com.projecthawkthorne.socket.Command;
+import com.projecthawkthorne.socket.MessageBundle;
 
 /**
  * 
@@ -69,7 +74,7 @@ public class Level extends Gamestate {
 	private float trackingY = 0;
 	private BatchTiledMapRenderer tileMapRenderer;
 	private OrthographicCamera cam;
-	private SpriteBatch batch = new SpriteBatch();
+	private static SpriteBatch batch = new SpriteBatch();
 	private boolean isFloorSpace;
 	private static Map<String, Level> levelMap = new HashMap<String,Level>();
 
@@ -332,20 +337,31 @@ public class Level extends Gamestate {
 		
 		context.setScreen(newLevel);
 
+		if (HawkthorneGame.MODE == Mode.CLIENT && player.getId() == Player.getSingleton().getId()) {
+			MessageBundle mb = new MessageBundle();
+			mb.setEntityId(Player.getSingleton().getId());
+			mb.setCommand(Command.SWITCHLEVEL);
+			mb.setParams(newLevel.getName(), door.name);
+			Client.getSingleton().send(mb);
+		}
+
 	}
 
 	@Override
 	public void render(float delta) {
 		long dt = (long) (delta*1000);
-		Player player = Player.getSingleton();
-		if (Gdx.input.isKeyPressed(Keys.DEL)) {
+		if (Gdx.input.isKeyPressed(Keys.DEL) && HawkthorneGame.MODE == Mode.CLIENT) {
+			Player player = Player.getSingleton();
 			player.die();
 		}
 
 		if (Gdx.input.isKeyPressed(Keys.BACK) || Gdx.input.isKeyPressed(Keys.ESCAPE)) {
 			Gamestate.getContext().setScreen("pause");
 		}
-		player.processKeyActions();
+		if (HawkthorneGame.MODE == Mode.CLIENT) {
+			Player player = Player.getSingleton();
+			player.processKeyActions();
+		}
 		Set<Player> players = this.getPlayers();
 		for (Player p : players) {
 			p.update(dt);
@@ -397,8 +413,14 @@ public class Level extends Gamestate {
 
 	@Override
 	public void draw() {
-		
-		trackPlayerWithCam(Player.getSingleton(), cam);
+
+		if(HawkthorneGame.MODE == Mode.CLIENT){
+			trackPlayerWithCam(Player.getSingleton(), cam);
+		}else if(HawkthorneGame.MODE == Mode.SERVER){
+			trackPlayerWithCam(null, cam);
+		}else {
+			throw new UnsupportedOperationException("unknown game mode");
+		}
 		TiledMap map = this.tiledMap;
 		TiledMapTileLayer tmtl = (TiledMapTileLayer) this.tiledMap.getLayers().get(0);
 		float mapHeight = tmtl.getHeight() * tmtl.getTileHeight();

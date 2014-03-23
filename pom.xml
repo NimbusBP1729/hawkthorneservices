@@ -64,6 +64,12 @@
 			</modules>
 		</profile>
 		<profile>
+			<id>server</id>
+			<modules>
+				<module>hawkthorneservices-server</module>
+			</modules>
+		</profile>
+		<profile>
 			<id>client</id>
 			<modules>
 				<module>hawkthorneservices-client</module>
