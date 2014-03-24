@@ -18,6 +18,7 @@ import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.KeyMapping;
 import com.projecthawkthorne.socket.tcp.Results;
 import com.projecthawkthorne.socket.tcp.Status;
+import com.projecthawkthorne.socket.udp.Server;
 
 public class Lobby extends GenericGamestate {
 
@@ -74,6 +75,7 @@ public class Lobby extends GenericGamestate {
 				context.setScreen(level);
 				break;
 			case SERVER:
+				Server.getSingleton();
 				level = Level.get(HawkthorneGame.START_LEVEL);
 				context.setScreen(level);
 				break;

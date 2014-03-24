@@ -1,5 +1,6 @@
 package com.projecthawkthorne.client;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -39,6 +40,7 @@ public class HawkthorneGame extends Game {
 	
 	@Override
 	public void create() {
+		Gdx.app.setLogLevel(Application.LOG_INFO);
 		Assets.load();
 		skin = new Skin();
 		LabelStyle ls = new LabelStyle();

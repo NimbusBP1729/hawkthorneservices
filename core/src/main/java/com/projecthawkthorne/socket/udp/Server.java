@@ -10,8 +10,8 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
+import com.badlogic.gdx.Gdx;
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.GameKeys;
@@ -33,7 +33,6 @@ public class Server {
 			receiveData.length);
 	private DatagramPacket sendPacket = new DatagramPacket(sendData,
 			sendData.length);
-	Logger log = Logger.getLogger(this.getClass().getName());
 	public static Map<UUID, InetSocketAddress> addressMap = new HashMap<UUID, InetSocketAddress>();
 
 	private Server() {
@@ -43,12 +42,11 @@ public class Server {
 		} catch (Exception e) {
 			port = 12345;
 		}
-		log.setLevel(java.util.logging.Level.WARNING);
-		System.out.println("creating server at port:" + port);
+		Gdx.app.log("server", "creating server at port:" + port);
 		try {
-			System.out.println("creating server at address:" + InetAddress.getLocalHost());
+			Gdx.app.log("server", "creating server at address:" + InetAddress.getLocalHost());
 		} catch (UnknownHostException e) {
-			System.out.println("using address: error resolving address");
+			Gdx.app.error("server", "error resolving address");
 		}
 		
 		try {
@@ -56,7 +54,7 @@ public class Server {
 			serverSocket.setSoTimeout(17);// ~1/60 seconds
 
 		} catch (SocketException ex) {
-			log.log(java.util.logging.Level.SEVERE, ex.getMessage(), ex);
+			Gdx.app.error("server", ex.getMessage(), ex);
 		}
 
 	}
@@ -91,7 +89,7 @@ public class Server {
 			return receivePacket;
 		} catch (SocketTimeoutException ex) {
 		} catch (IOException ex) {
-			log.log(java.util.logging.Level.SEVERE, ex.getMessage(), ex);
+			Gdx.app.error("server", ex.getMessage(), ex);
 		}
 		return null;
 	}
@@ -118,14 +116,14 @@ public class Server {
 		sendPacket.setData(sendData);
 		sendPacket.setAddress(ip);
 		sendPacket.setPort(port);
-		log.log(java.util.logging.Level.INFO,
+		Gdx.app.debug("server",
 				"TO CLIENT: " + message + "\n" + "   socket: " + ip + ","
 						+ port + "\n" + "     time: "
 						+ System.currentTimeMillis() + "\n");
 		try {
 			serverSocket.send(sendPacket);
 		} catch (IOException ex) {
-			log.log(java.util.logging.Level.SEVERE, ex.getMessage(), ex);
+			Gdx.app.error("server", ex.getMessage(), ex);
 			return false;
 		}
 		return true;

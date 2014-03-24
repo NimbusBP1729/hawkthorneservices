@@ -6,8 +6,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
-import java.util.logging.Logger;
 
+import com.badlogic.gdx.Gdx;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.UUID;
@@ -28,7 +28,6 @@ public class Client {
 	public int serverPort;
 	public InetAddress serverIp;
 	private static Client singleton;
-	private Logger log = Logger.getLogger(this.getClass().getName());
 
 	/**
 	 * private because this is invoked as a singleton
@@ -42,14 +41,12 @@ public class Client {
 
 			this.serverPort = serverPort;
 			this.serverIp = serverIp;
-			log.setLevel(java.util.logging.Level.WARNING);
-
-			System.out.println("Connecting to server at address:port==" + this.serverIp.getHostAddress() + ":"+ this.serverPort);
+			Gdx.app.log("client", "Connecting to server at address:port==" + this.serverIp.getHostAddress() + ":"+ this.serverPort);
 			sendPacket = new DatagramPacket(sendData, sendData.length,
 					this.serverIp, this.serverPort);
 
 		} catch (SocketException ex) {
-			log.log(java.util.logging.Level.SEVERE, ex.getMessage(), ex);
+			Gdx.app.error("client", ex.getMessage());
 		}
 	}
 
@@ -66,7 +63,7 @@ public class Client {
 			return receivePacket;
 		} catch (SocketTimeoutException e) {
 		} catch (Exception e) {
-			log.log(java.util.logging.Level.SEVERE, e.getMessage(), e);
+			Gdx.app.error("client", e.getMessage());
 		}
 		return null;
 	}
@@ -89,11 +86,11 @@ public class Client {
 			sendData = message.getBytes();
 			sendPacket.setData(sendData);
 			clientSocket.send(sendPacket);
-			log.log(java.util.logging.Level.INFO, "TO SERVER: " + message);
-			log.log(java.util.logging.Level.INFO, "     time: " + System.currentTimeMillis());
+			Gdx.app.debug("client", "TO SERVER: " + message);
+			Gdx.app.debug("client", "     time: " + System.currentTimeMillis());
 			return true;
 		} catch (Exception e) {
-			log.log(java.util.logging.Level.SEVERE, e.getMessage(), e);
+			Gdx.app.error("client", e.getMessage());
 			return false;
 		}
 	}
