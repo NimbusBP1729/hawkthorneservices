@@ -3,16 +3,22 @@ package com.projecthawkthorne.client;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane.ScrollPaneStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.GenericGamestate;
-import com.projecthawkthorne.gamestate.Lobby;
-import com.projecthawkthorne.socket.Client;
-import com.projecthawkthorne.socket.Command;
-import com.projecthawkthorne.socket.MessageBundle;
+import com.projecthawkthorne.socket.tcp.QueryInterface;
+import com.projecthawkthorne.socket.udp.Client;
+import com.projecthawkthorne.socket.udp.Command;
+import com.projecthawkthorne.socket.udp.MessageBundle;
 import com.projecthawkthorne.timer.Timer;
 
 public class HawkthorneGame extends Game {
@@ -28,16 +34,45 @@ public class HawkthorneGame extends Game {
 	private Screen lastScreen;
 	private HawkthorneUserInterface userInterface;
 	private long lastPositionBroadcast = System.currentTimeMillis();
+	private QueryInterface query;
+	private Skin skin;
 	
 	@Override
 	public void create() {
-		Assets.load(new AssetManager());
+		Assets.load();
+		skin = new Skin();
+		LabelStyle ls = new LabelStyle();
+		ls.font = Assets.getFont();
+		ls.fontColor = Color.WHITE;
+		skin.add("default", ls);
+
+		skin.add("header", ls);
+		
+		ScrollPaneStyle sps = new ScrollPaneStyle();
+		skin.add("default", sps);
+		
+		TextButtonStyle tbs = new TextButtonStyle();
+		tbs.down = new NinePatchDrawable(Assets.loadNinePatch("button.png"));
+		tbs.up = new NinePatchDrawable(Assets.loadNinePatch("button.png"));
+		tbs.font = Assets.getFont();
+		tbs.fontColor = Color.WHITE;
+		skin.add("default", tbs);
+		
+		TextFieldStyle tfs = new TextFieldStyle();
+		tfs.font = Assets.getFont();
+		tfs.fontColor = Color.WHITE;
+		skin.add("default", tfs);
+		
+		
+		
+		query = new QueryInterface(this);
+		
 		Gdx.input.setCatchBackKey(true);
 		userInterface = new HawkthorneUserInterface();
 		Gdx.input.setInputProcessor(userInterface);
 		Gamestate.setContext(this);
 		
-		Lobby lobby = new Lobby();
+		Screen lobby = GenericGamestate.get("lobby");
 		this.setScreen(lobby);
 	}
 
@@ -58,8 +93,12 @@ public class HawkthorneGame extends Game {
 		((Gamestate) this.getScreen()).draw();
 		this.userInterface.draw();
 		if (HawkthorneGame.MODE == Mode.CLIENT) {
+			Player player = Player.getSingleton();
 
-			Client client = Client.getSingleton();
+			Client client = player.getClient();
+			if(client == null){
+				return;
+			}
 			MessageBundle msg;
 			int msgCount = 0;
 			long processingDuration = System.currentTimeMillis();
@@ -74,8 +113,7 @@ public class HawkthorneGame extends Game {
 			// updateStatus(msgCount,processingDuration);
 			// printStatusPeriodically();
 
-			Player player = Player.getSingleton();
-
+			
 			if (currentTime - this.lastPositionBroadcast > 50) {
 				MessageBundle mb = new MessageBundle();
 				mb.setEntityId(player.getId());
@@ -113,6 +151,14 @@ public class HawkthorneGame extends Game {
 
 	public HawkthorneUserInterface getControlsOverlay() {
 		return userInterface;
+	}
+
+	public QueryInterface getQuery() {
+		return query;
+	}
+
+	public Skin getSkin() {
+		return skin;
 	}
 
 }

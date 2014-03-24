@@ -2,24 +2,25 @@ package com.projecthawkthorne.gamestate;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.projecthawkthorne.client.HawkthorneGame;
-import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.KeyMapping;
+import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.socket.tcp.Results;
 import com.projecthawkthorne.socket.tcp.Status;
 
-public class Lobby extends GenericGamestate {
+public class ServerSelection extends GenericGamestate {
 
 	private TextureRegion background = new TextureRegion(Assets.loadTexture("menu/pause.png"));
 	private int option = 0;
@@ -28,6 +29,11 @@ public class Lobby extends GenericGamestate {
 	private OrthographicCamera cam = new OrthographicCamera(528, 336);
 	private SpriteBatch batch = new SpriteBatch();
 	private Results result = new Results();
+	private List<List<String>> table = new ArrayList<List<String>>();
+	
+	public ServerSelection(){
+		context.getQuery().getServerList(result, table);
+	}
 
 	@Override
 	public void resize(int width, int height) {
@@ -61,32 +67,15 @@ public class Lobby extends GenericGamestate {
 	
 	@Override
 	public void render(float dt){
-		if(result.getStatus() != Status.LOADING){
-			super.render(dt);
-		}
-		
-		if(result.getStatus() == Status.SUCCESS){
-			result = new Results();
-			Screen level;
-			switch(HawkthorneGame.MODE){
-			case CLIENT:
-				level = GenericGamestate.get("serverSelection");
-				context.setScreen(level);
-				break;
-			case SERVER:
-				level = Level.get(HawkthorneGame.START_LEVEL);
-				context.setScreen(level);
-				break;
-				
-			}
-		}
+		super.render(dt);
 	}
 
 	@Override
 	public void keypressed(GameKeys gk) {
+		int tableSize = table.size();
 	    switch(gk){
 		case DOWN:
-			this.option = (this.option + 1) % 2;
+			this.option = (this.option + 1) %  tableSize;
             Assets.playSfx("click");
 			break;
 		case JUMP:
@@ -96,12 +85,11 @@ public class Lobby extends GenericGamestate {
 		case SELECT:
 			break;
 		case UP:
-			this.option = (this.option - 1 + 2) % 2;
+			this.option = (this.option - 1 + tableSize) % tableSize;
             Assets.playSfx("click");
 			break;
 		case START:
-			Gdx.app.getApplicationListener().dispose();
-			Gdx.app.exit();
+			context.goBack();
 			break;
 		default:
 			break;
@@ -111,15 +99,12 @@ public class Lobby extends GenericGamestate {
 
 	private void makeSelection(int selection) {
 		try{
-			if(selection == 0){
-				HawkthorneGame.MODE = Mode.SERVER;
-				int port = 12345;
-				context.getQuery().registerServer(InetAddress.getLocalHost().getHostAddress().toString(), port, result);
-			}else if(selection == 1){
-				HawkthorneGame.MODE = Mode.CLIENT;
-				String username = "NimbusBP1729";
-				context.getQuery().registerPlayer(InetAddress.getLocalHost().getHostAddress().toString(), username, result);
-			}
+			String address = table.get(selection).get(0);
+			int port = Integer.valueOf(table.get(selection).get(1));
+			String username = "NimbusBP1729";
+			Player.getSingleton().registerPlayer(InetAddress.getByName(address), port);
+			Level level = Level.get(HawkthorneGame.START_LEVEL);
+			context.setScreen(level);
 		}catch(UnknownHostException uhe){
 			Gdx.app.log("Lobby", "unknown host");
 		}
@@ -151,11 +136,23 @@ public class Lobby extends GenericGamestate {
 	    batch.setColor( 0, 0, 0, 1 );
 	    BitmapFont font = Assets.getFont();
 		font.setScale(0.8f, -0.8f);
-		font.draw(batch, "SERVER", 198, 101);
-	    font.draw(batch, "CLIENT", 198, 131);
+
+		int offset = 30;
+		if(result.getStatus()!=Status.SUCCESS){
+			font.draw(batch, result.getStatus().toString(), 128, 77);
+		}else{
+			font.draw(batch, "IP Address", 128, 101-offset);
+			font.draw(batch, "Port", 310, 101-offset);
+		for(int i=0; i< table.size(); i++){
+			List<String> row = table.get(i);
+			font.draw(batch, row.get(0), 128, 101 + offset*i);
+			font.draw(batch, row.get(1), 310, 101 + offset*i);
+		}
+		}
+		
 	    batch.setColor( 1, 1, 1, 1 );
-	    batch.draw(this.arrow, 156, 96 + 30 * this.option);
-	    String back = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.START)) + ": EXIT GAME";
+	    batch.draw(this.arrow, 100, 96 + 30 * this.option);
+	    String back = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.START)) + ": GO BACK";
 	    String howto = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.ATTACK)) 
 	    		+  " OR " + Keys.toString(KeyMapping.gameKeyToInt(GameKeys.JUMP)) 
 	    		+  ": SELECT ITEM";

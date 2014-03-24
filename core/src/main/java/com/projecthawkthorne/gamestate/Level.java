@@ -45,9 +45,8 @@ import com.projecthawkthorne.content.nodes.Platform;
 import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
 import com.projecthawkthorne.hardoncollider.Collider;
-import com.projecthawkthorne.socket.Client;
-import com.projecthawkthorne.socket.Command;
-import com.projecthawkthorne.socket.MessageBundle;
+import com.projecthawkthorne.socket.udp.Command;
+import com.projecthawkthorne.socket.udp.MessageBundle;
 
 /**
  * 
@@ -342,7 +341,7 @@ public class Level extends Gamestate {
 			mb.setEntityId(Player.getSingleton().getId());
 			mb.setCommand(Command.SWITCHLEVEL);
 			mb.setParams(newLevel.getName(), door.name);
-			Client.getSingleton().send(mb);
+			player.getClient().send(mb);
 		}
 
 	}

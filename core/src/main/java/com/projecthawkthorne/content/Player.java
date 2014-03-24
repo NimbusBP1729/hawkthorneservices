@@ -6,6 +6,7 @@ package com.projecthawkthorne.content;
 
 import static com.projecthawkthorne.client.HawkthorneGame.START_LEVEL;
 
+import java.net.InetAddress;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -34,9 +35,9 @@ import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.Level;
 import com.projecthawkthorne.hardoncollider.Bound;
 import com.projecthawkthorne.hardoncollider.Collidable;
-import com.projecthawkthorne.socket.Client;
-import com.projecthawkthorne.socket.Command;
-import com.projecthawkthorne.socket.MessageBundle;
+import com.projecthawkthorne.socket.udp.Client;
+import com.projecthawkthorne.socket.udp.Command;
+import com.projecthawkthorne.socket.udp.MessageBundle;
 import com.projecthawkthorne.timer.Timeable;
 import com.projecthawkthorne.timer.Timer;
 
@@ -92,6 +93,7 @@ public class Player extends Humanoid implements Timeable {
 	private String username;
 	/** the list of nodes this player needs fresh information about */
 	public Set<Node> updateList = new HashSet<Node>();
+	private Client client;
 	private static Player singleton;
 
 	private Player(RectangleMapObject obj, Level level, UUID id) {
@@ -962,6 +964,15 @@ public class Player extends Humanoid implements Timeable {
 	public void setJumping(boolean jumping) {
 		this.jumping = jumping;
 	}
+	
+	public void registerPlayer(InetAddress serverIp, int serverPort){
+		MessageBundle message = new MessageBundle();
+		message.setEntityId(singleton.getId());
+		message.setCommand(Command.REGISTERPLAYER);
+		message.setParams(singleton.getUsername(),HawkthorneGame.START_LEVEL,"main");
+		client = new Client(serverIp, serverPort);
+		getClient().send(message);
+	}
 
 	public static Player getSingleton() {
 		if (HawkthorneGame.MODE == Mode.SERVER) {
@@ -971,11 +982,6 @@ public class Player extends Humanoid implements Timeable {
 			singleton = new Player(Player.getPlayerTiledObject()
 					,UUID.randomUUID());
 			System.out.println("creating player: " + singleton.id);
-			MessageBundle message = new MessageBundle();
-			message.setEntityId(singleton.getId());
-			message.setCommand(Command.REGISTERPLAYER);
-			message.setParams(singleton.getUsername(),HawkthorneGame.START_LEVEL,"main");
-			Client.getSingleton().send(message);
 			playerMap.put(singleton.id, singleton);
 		}
 		return singleton;
@@ -1005,23 +1011,23 @@ public class Player extends Humanoid implements Timeable {
 			boolean isDown = isPcKeyDown || isAndroidKeyDown;
 			this.setIsKeyDown(gk, isDown);
 			if (!wasDown && isDown) {
-				Gdx.app.log("keypress", gk.toString());
+				Gdx.app.log("keypress(p)", gk.toString());
 				this.keypressed(gk);
 
 				MessageBundle mb = new MessageBundle();
 				mb.setEntityId(Player.getSingleton().getId());
 				mb.setCommand(Command.KEYPRESSED);
 				mb.setParams(gk.toString());
-				Client.getSingleton().send(mb);
+				getClient().send(mb);
 			} else if (wasDown && !isDown) {
-				Gdx.app.log("keyrelease", gk.toString());
+				Gdx.app.log("keyrelease(p)", gk.toString());
 				this.keyreleased(gk);
 
 				MessageBundle mb = new MessageBundle();
 				mb.setEntityId(Player.getSingleton().getId());
 				mb.setCommand(Command.KEYRELEASED);
 				mb.setParams(gk.toString());
-				Client.getSingleton().send(mb);
+				getClient().send(mb);
 			}
 		}
 	}
@@ -1093,5 +1099,9 @@ public class Player extends Humanoid implements Timeable {
 
 	public void setFootprint(Footprint footprint) {
 		this.footprint = footprint;
+	}
+
+	public Client getClient() {
+		return client;
 	}
 }

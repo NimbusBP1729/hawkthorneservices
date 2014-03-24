@@ -1,4 +1,4 @@
-package com.projecthawkthorne.socket;
+package com.projecthawkthorne.socket.udp;
 
 import java.net.DatagramPacket;
 import java.net.InetSocketAddress;

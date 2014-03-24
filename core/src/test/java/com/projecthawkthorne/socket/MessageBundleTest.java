@@ -7,6 +7,9 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 import com.projecthawkthorne.content.UUID;
+import com.projecthawkthorne.socket.udp.Command;
+import com.projecthawkthorne.socket.udp.MessageBundle;
+import com.projecthawkthorne.socket.udp.SocketUtils;
 
 public class MessageBundleTest extends TestCase {
 	DatagramPacket packet = new DatagramPacket(new byte[1024], 1024);
@@ -112,6 +115,35 @@ public class MessageBundleTest extends TestCase {
 //		p.setIsKeyDown(GameKeys.RIGHT, false);
 //		assertEquals("1100",p.getDirectionsAsString());
 //		
+//	}
+	
+//	@Test
+//	@Ignore
+//	public void testIntegration() throws UnknownHostException {
+//		HawkthorneGame.MODE = Mode.CLIENT;
+//		MessageBundle mb = new MessageBundle();
+//		mb.setCommand(Command.PING);
+//		mb.setEntityId(UUID.fromString("06017070-525b-40bc-88bf-ac6f7857d48c"));
+//		mb.setParams("hello","world");
+//		
+//		Player p = Player.getSingleton();
+//		p.registerPlayer(InetAddress.getByName("localhost"), 12345);
+//		Client client = p.getClient();
+//		client.send(mb);
+//		
+//		MessageBundle output = null;
+//		do{
+//			output = client.receive();
+//		}while(output==null);
+//		
+//		assertEquals(Command.PONG, output.getCommand());
+//		UUID id = mb.getEntityId();
+//		assertEquals(UUID.fromString("06017070-525b-40bc-88bf-ac6f7857d48c"),
+//				id);
+//		assertEquals(2, output.getParams().length);
+//		assertEquals("hello", output.getParams()[0]);
+//		assertEquals("world", output.getParams()[1]);
+//		assertEquals(12345, output.getSocketAddress().getPort());
 //	}
 
 	

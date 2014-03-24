@@ -10,6 +10,7 @@ import com.projecthawkthorne.content.KeyMapping;
 
 public abstract class GenericGamestate extends Gamestate {
 	
+	private static Screen serverSelection = new ServerSelection();
 	private Map<GameKeys, Boolean> keyMap = new HashMap<GameKeys, Boolean>();
 	private float lifeTime = 0;
 
@@ -22,7 +23,7 @@ public abstract class GenericGamestate extends Gamestate {
 		return b == null ? false : b;
 	}
 	
-	public final void render(float dt){
+	public void render(float dt){
 		lifeTime += dt;
 		for (GameKeys gk : GameKeys.values()) {
 			boolean wasDown = this.getIsKeyDown(gk);
@@ -33,10 +34,10 @@ public abstract class GenericGamestate extends Gamestate {
 			this.setIsKeyDown(gk, isDown);
 			if(lifeTime > 1f){
 				if (!wasDown && isDown) {
-					Gdx.app.log("keypress", "how: "+gk.toString());
+					Gdx.app.log("keypress(g)", gk.toString());
 					this.keypressed(gk);
 				} else if (wasDown && !isDown) {
-					Gdx.app.log("keyrelease", "how: "+gk.toString());
+					Gdx.app.log("keyrelease(g)", gk.toString());
 					this.keyreleased(gk);
 				}
 			}
@@ -60,12 +61,18 @@ public abstract class GenericGamestate extends Gamestate {
 		lifeTime = 0;
 	}
 
+
 	public static Screen get(String state) {
 		if("pause".equals(state)){
 			return new PauseScreen();
+		}else if("lobby".equals(state)){
+			return new Lobby();
+		}else if("serverSelection".equals(state)){
+			return serverSelection;
 		}else{
 			throw new UnsupportedOperationException(state);
 		}
 	}
+
 
 }

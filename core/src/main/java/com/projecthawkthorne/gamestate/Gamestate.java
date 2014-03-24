@@ -15,7 +15,7 @@ import com.projecthawkthorne.content.nodes.Node;
 public abstract class Gamestate implements Screen{
 	protected static HawkthorneGame context;
 	private Set<Player> players = new HashSet<Player>();
-
+	
 	public abstract String getName();
 
 	final void addPlayer(Player player) {

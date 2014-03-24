@@ -1,4 +1,4 @@
-package com.projecthawkthorne.socket;
+package com.projecthawkthorne.socket.udp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

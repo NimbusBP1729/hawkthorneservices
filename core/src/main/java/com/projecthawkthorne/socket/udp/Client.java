@@ -1,4 +1,4 @@
-package com.projecthawkthorne.socket;
+package com.projecthawkthorne.socket.udp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -6,11 +6,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 import java.util.logging.Logger;
 
-import com.projecthawkthorne.client.HawkthorneGame;
-import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.UUID;
@@ -38,22 +35,13 @@ public class Client {
 	 * 
 	 * @param port
 	 */
-	private Client() {
+	public Client(InetAddress serverIp, int serverPort) {
 		try {
 			this.clientSocket = new DatagramSocket();
 			this.clientSocket.setSoTimeout(17);// ~1/60 seconds
 
-			try {
-				this.serverPort = Integer.valueOf(System.getenv("HAWK_PORT"));
-			} catch (Exception e) {
-				this.serverPort = 12345;
-			}
-			try {
-				this.serverIp = InetAddress.getByName(System
-						.getenv("HAWK_ADDRESS"));
-			} catch (Exception e) {
-				this.serverIp = InetAddress.getLocalHost();
-			}
+			this.serverPort = serverPort;
+			this.serverIp = serverIp;
 			log.setLevel(java.util.logging.Level.WARNING);
 
 			System.out.println("Connecting to server at address:port==" + this.serverIp.getHostAddress() + ":"+ this.serverPort);
@@ -62,26 +50,9 @@ public class Client {
 
 		} catch (SocketException ex) {
 			log.log(java.util.logging.Level.SEVERE, ex.getMessage(), ex);
-		} catch (UnknownHostException ex) {
-			log.log(java.util.logging.Level.SEVERE, ex.getMessage(), ex);
 		}
 	}
 
-	/**
-	 * returns one identical server every time
-	 * 
-	 * @return the client
-	 */
-	public static Client getSingleton() {
-		if (HawkthorneGame.MODE != Mode.CLIENT) {
-			throw new UnsupportedOperationException(
-					"must be a client to use this method");
-		}
-		if (singleton == null) {
-			singleton = new Client();
-		}
-		return singleton;
-	}
 
 	/**
 	 * receives a UDP datagram from a server
