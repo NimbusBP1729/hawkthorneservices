@@ -44,6 +44,10 @@ public class ServerSelection extends GenericGamestate {
 	@Override
 	public void show() {
 		super.show();
+		initialized = false;
+		result.setStatus(Status.LOADING);
+		table.clear();
+		
 		Assets.playMusic(musicFile);
 	}
 
@@ -119,7 +123,6 @@ public class ServerSelection extends GenericGamestate {
 			int port = Integer.valueOf(table.get(selection).get(1));
 			Player player = Player.getSingleton();
 			player.registerPlayer(InetAddress.getByName(address), port);
-			String username = player.getUsername();
 			Level level = Level.get(HawkthorneGame.START_LEVEL);
 			context.setScreen(level);
 		}catch(UnknownHostException uhe){
