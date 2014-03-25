@@ -27,7 +27,6 @@ public class Client {
 
 	public int serverPort;
 	public InetAddress serverIp;
-	private static Client singleton;
 
 	/**
 	 * private because this is invoked as a singleton
