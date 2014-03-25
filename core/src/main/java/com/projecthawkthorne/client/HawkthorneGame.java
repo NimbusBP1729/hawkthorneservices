@@ -43,8 +43,17 @@ public class HawkthorneGame extends Game {
 		Gdx.input.setInputProcessor(userInterface);
 		Gamestate.setContext(this);
 		
-		Screen lobby = GenericGamestate.get("lobby");
-		this.setScreen(lobby);
+		switch(Gdx.app.getType()){
+		case Desktop:
+			Screen lobby = GenericGamestate.get("lobby");
+			this.setScreen(lobby);
+			break;
+		default:
+			HawkthorneGame.MODE = Mode.CLIENT;
+			Screen serverSelection = GenericGamestate.get("serverSelection");
+			this.setScreen(serverSelection);
+			break;
+		}
 	}
 
 	@Override
