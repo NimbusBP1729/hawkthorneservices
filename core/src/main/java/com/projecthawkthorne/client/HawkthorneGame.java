@@ -4,14 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane.ScrollPaneStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.gamestate.Gamestate;
@@ -36,36 +29,11 @@ public class HawkthorneGame extends Game {
 	private HawkthorneUserInterface userInterface;
 	private long lastPositionBroadcast = System.currentTimeMillis();
 	private QueryInterface query;
-	private Skin skin;
 	
 	@Override
 	public void create() {
-		Gdx.app.setLogLevel(Application.LOG_INFO);
+		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		Assets.load();
-		skin = new Skin();
-		LabelStyle ls = new LabelStyle();
-		ls.font = Assets.getFont();
-		ls.fontColor = Color.WHITE;
-		skin.add("default", ls);
-
-		skin.add("header", ls);
-		
-		ScrollPaneStyle sps = new ScrollPaneStyle();
-		skin.add("default", sps);
-		
-		TextButtonStyle tbs = new TextButtonStyle();
-		tbs.down = new NinePatchDrawable(Assets.loadNinePatch("button.png"));
-		tbs.up = new NinePatchDrawable(Assets.loadNinePatch("button.png"));
-		tbs.font = Assets.getFont();
-		tbs.fontColor = Color.WHITE;
-		skin.add("default", tbs);
-		
-		TextFieldStyle tfs = new TextFieldStyle();
-		tfs.font = Assets.getFont();
-		tfs.fontColor = Color.WHITE;
-		skin.add("default", tfs);
-		
-		
 		
 		query = new QueryInterface(this);
 		
@@ -158,9 +126,4 @@ public class HawkthorneGame extends Game {
 	public QueryInterface getQuery() {
 		return query;
 	}
-
-	public Skin getSkin() {
-		return skin;
-	}
-
 }
