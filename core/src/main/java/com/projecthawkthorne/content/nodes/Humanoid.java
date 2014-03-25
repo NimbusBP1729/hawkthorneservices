@@ -89,7 +89,8 @@ public abstract class Humanoid extends Node implements FloorCollidable {
 
 		this.setSpriteStates(PlayerState.CLIMBING);
 		this.isClimbing = true;
-		Player.getSingleton().setJumping(false);
+		Player player = (Player) this;
+		player.setJumping(false);
 	}
 
 	/**
