@@ -13,6 +13,7 @@ import com.projecthawkthorne.socket.tcp.QueryInterface;
 import com.projecthawkthorne.socket.udp.Client;
 import com.projecthawkthorne.socket.udp.Command;
 import com.projecthawkthorne.socket.udp.MessageBundle;
+import com.projecthawkthorne.socket.udp.Server;
 import com.projecthawkthorne.timer.Timer;
 
 public class HawkthorneGame extends Game {
@@ -21,7 +22,7 @@ public class HawkthorneGame extends Game {
 	public static final int HEIGHT = 360;
 	
 	public static final String START_LEVEL = "town";
-	public static Mode MODE = Mode.SERVER;
+	public static Mode MODE = null;
 	public String trackedLevel = START_LEVEL;
 	protected Player trackedPlayer;
 	protected long lastTime = 0;
@@ -96,6 +97,25 @@ public class HawkthorneGame extends Game {
 						player.getDirectionsAsString());
 				this.lastPositionBroadcast = currentTime;
 				client.send(mb);
+			}
+		}else if (HawkthorneGame.MODE == Mode.SERVER) {
+			Server server = Server.getSingleton();
+			
+			MessageBundle msg;
+			int msgCount = 0;
+			long processingDuration = System.currentTimeMillis();
+			while ((msg = server.receive()) != null) {
+				server.handleMessage(msg);
+				msgCount++;
+			}
+			processingDuration = System.currentTimeMillis()
+					- processingDuration;
+
+			// must be called together
+			// updateStatus(msgCount,processingDuration);
+			// printStatusPeriodically();
+
+			if (currentTime - this.lastPositionBroadcast > 50) {
 			}
 		}
 	}
