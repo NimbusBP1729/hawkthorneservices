@@ -17,7 +17,6 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.projecthawkthorne.client.HawkthorneGame;
-import com.projecthawkthorne.gamestate.Level;
 
 //mockup class for all queries
 public class QueryInterface {
@@ -115,8 +114,6 @@ public class QueryInterface {
 
 		results.setStatus(Status.LOADING);
 		Gdx.net.sendHttpRequest(httpRequest, new HttpResponseListener(){
-			private int ipWidth = 500;
-			private int portWidth = 500;
 
 			@Override
 			public void handleHttpResponse(HttpResponse httpResponse) {
@@ -148,5 +145,4 @@ public class QueryInterface {
 			
 		});
 	}
-
 }

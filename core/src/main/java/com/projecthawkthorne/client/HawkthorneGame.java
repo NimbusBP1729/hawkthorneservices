@@ -30,10 +30,17 @@ public class HawkthorneGame extends Game {
 	private HawkthorneUserInterface userInterface;
 	private long lastPositionBroadcast = System.currentTimeMillis();
 	private QueryInterface query;
+	private MessageBundle mb = new MessageBundle();
+	
+	private long processingDurationSum = 0;
+	private int processingCountSum = 0;
+	private int processingIterations = 0;
+	private long lastIterationInfo = 0;
+	private MessageBundle pingMsg = new MessageBundle();
 	
 	@Override
 	public void create() {
-		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+		Gdx.app.setLogLevel(Application.LOG_INFO);
 		Assets.load();
 		
 		query = new QueryInterface(this);
@@ -90,18 +97,17 @@ public class HawkthorneGame extends Game {
 					- processingDuration;
 
 			// must be called together
-			// updateStatus(msgCount,processingDuration);
-			// printStatusPeriodically();
+			updateStatus(msgCount,processingDuration);
+			printStatusPeriodically();
 
 			
 			if (currentTime - this.lastPositionBroadcast > 50) {
-				MessageBundle mb = new MessageBundle();
 				mb.setEntityId(player.getId());
 				mb.setCommand(Command.POSITIONVELOCITYUPDATE);
-				String x = Float.toString(MathUtils.round(player.x));
-				String y = Float.toString(MathUtils.round(player.y));
-				String vX = Float.toString(MathUtils.round(player.velocityX));
-				String vY = Float.toString(MathUtils.round(player.velocityY));
+				String x = Float.toString(roundTwoDecimals(player.x));
+				String y = Float.toString(roundTwoDecimals(player.y));
+				String vX = Float.toString(roundTwoDecimals(player.velocityX));
+				String vY = Float.toString(roundTwoDecimals(player.velocityY));
 				mb.setParams(x, y, vX, vY, player.getState().toString(),
 						player.getDirectionsAsString());
 				this.lastPositionBroadcast = currentTime;
@@ -121,14 +127,18 @@ public class HawkthorneGame extends Game {
 					- processingDuration;
 
 			// must be called together
-			// updateStatus(msgCount,processingDuration);
-			// printStatusPeriodically();
+			updateStatus(msgCount,processingDuration);
+			printStatusPeriodically();
 
 			if (currentTime - this.lastPositionBroadcast > 50) {
 			}
 		}
 	}
 	
+	private float roundTwoDecimals(float val) {
+		return MathUtils.round(val*100)/100;
+	}
+
 	@Override
 	public void resize(int width, int height){
 		super.resize(width, height);
@@ -155,4 +165,29 @@ public class HawkthorneGame extends Game {
 	public QueryInterface getQuery() {
 		return query;
 	}
+	
+	protected void updateStatus(int msgCount, long processingDuration) {
+		processingDurationSum += processingDuration;
+		processingCountSum += msgCount;
+		processingIterations++;
+	}
+
+	protected final void printStatusPeriodically() {
+		long now = System.currentTimeMillis();
+		if(now-lastIterationInfo > 30000){
+			System.out.println("avg. processing duration=="+1.0f*processingDurationSum/processingIterations);
+			System.out.println("avg. msg processed      =="+1.0f*processingCountSum/processingIterations);
+			System.out.println("iterations              =="+processingIterations);
+			if(MODE==Mode.CLIENT){
+				pingMsg.setCommand(Command.PING);
+				pingMsg.setEntityId(Player.getSingleton().getId());
+				pingMsg.setParams(String.valueOf(System.currentTimeMillis()));
+				Player.getSingleton().getClient().send(pingMsg);
+			}
+			System.out.println("================================================");
+
+			lastIterationInfo = now;
+		}
+	}
+
 }
