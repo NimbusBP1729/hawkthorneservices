@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -30,9 +31,10 @@ public class ServerSelection extends GenericGamestate {
 	private SpriteBatch batch = new SpriteBatch();
 	private Results result = new Results();
 	private List<List<String>> table = new ArrayList<List<String>>();
+	private boolean initialized = false;
 	
 	public ServerSelection(){
-		context.getQuery().getServerList(result, table);
+		result.setStatus(Status.LOADING);
 	}
 
 	@Override
@@ -68,6 +70,10 @@ public class ServerSelection extends GenericGamestate {
 	@Override
 	public void render(float dt){
 		super.render(dt);
+		if(!initialized){
+			context.getQuery().getServerList(result, table);
+			initialized = true;
+		}
 	}
 
 	@Override
@@ -75,18 +81,28 @@ public class ServerSelection extends GenericGamestate {
 		int tableSize = table.size();
 	    switch(gk){
 		case DOWN:
-			this.option = (this.option + 1) %  tableSize;
-            Assets.playSfx("click");
+			if(tableSize <= 0){
+				Assets.playSfx("cancel");
+			}else{
+				this.option = (this.option + 1) %  tableSize;
+				Assets.playSfx("click");
+			}
 			break;
 		case JUMP:
 			Assets.playSfx("confirm");
-			makeSelection(this.option);
+			if (tableSize > 0){
+				makeSelection(this.option);
+			}
 			break;
 		case SELECT:
 			break;
 		case UP:
-			this.option = (this.option - 1 + tableSize) % tableSize;
-            Assets.playSfx("click");
+			if(tableSize <= 0){
+				Assets.playSfx("cancel");
+			}else{
+				this.option = (this.option - 1 + tableSize) % tableSize;
+				Assets.playSfx("click");
+			}
 			break;
 		case START:
 			context.goBack();
@@ -101,8 +117,9 @@ public class ServerSelection extends GenericGamestate {
 		try{
 			String address = table.get(selection).get(0);
 			int port = Integer.valueOf(table.get(selection).get(1));
-			String username = "NimbusBP1729";
-			Player.getSingleton().registerPlayer(InetAddress.getByName(address), port);
+			Player player = Player.getSingleton();
+			player.registerPlayer(InetAddress.getByName(address), port);
+			String username = player.getUsername();
 			Level level = Level.get(HawkthorneGame.START_LEVEL);
 			context.setScreen(level);
 		}catch(UnknownHostException uhe){
@@ -127,37 +144,40 @@ public class ServerSelection extends GenericGamestate {
 		cam.update(true);
 		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-	    batch.draw(this.background, 
-	      cam.viewportWidth / 2 - this.background.getRegionWidth() / 2,
-	      cam.viewportHeight / 2 - this.background.getRegionHeight() / 2);
 
 	    batch.setColor( 0, 0, 0, 1 );
 	    BitmapFont font = Assets.getFont();
+	    font.setColor(Color.GREEN);
 		font.setScale(0.8f, -0.8f);
 
 		int offset = 30;
 		if(result.getStatus()!=Status.SUCCESS){
 			font.draw(batch, result.getStatus().toString(), 128, 77);
+		}else if(table.size() <= 0){
+			font.draw(batch, "No servers found", 128, 77);
 		}else{
-			font.draw(batch, "IP Address", 128, 101-offset);
-			font.draw(batch, "Port", 310, 101-offset);
-		for(int i=0; i< table.size(); i++){
-			List<String> row = table.get(i);
-			font.draw(batch, row.get(0), 128, 101 + offset*i);
-			font.draw(batch, row.get(1), 310, 101 + offset*i);
-		}
+			font.draw(batch, "IP Address", 98, 101 - offset);
+			font.draw(batch, "Port", 310, 101 - offset);
+			font.draw(batch, "Players", 410, 101 - offset);
+			for (int i = 0; i < table.size(); i++) {
+				List<String> row = table.get(i);
+				font.draw(batch, row.get(0), 98, 101 + offset * i);
+				font.draw(batch, row.get(1), 310, 101 + offset * i);
+				font.draw(batch, row.get(2), 410, 101 + offset * i);
+			}
 		}
 		
 	    batch.setColor( 1, 1, 1, 1 );
-	    batch.draw(this.arrow, 100, 96 + 30 * this.option);
+	    batch.draw(this.arrow, 70, 96 + 30 * this.option);
 	    String back = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.START)) + ": GO BACK";
 	    String howto = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.ATTACK)) 
 	    		+  " OR " + Keys.toString(KeyMapping.gameKeyToInt(GameKeys.JUMP)) 
 	    		+  ": SELECT ITEM";
 	    font.draw(batch, back, 25, 25);
 	    font.draw(batch, howto, 25, 55);
+	    font.setColor(Color.WHITE);
 	    batch.end();
 	}
 

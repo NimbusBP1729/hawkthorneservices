@@ -28,15 +28,10 @@ public class Client {
 	public int serverPort;
 	public InetAddress serverIp;
 
-	/**
-	 * private because this is invoked as a singleton
-	 * 
-	 * @param port
-	 */
-	public Client(InetAddress serverIp, int serverPort) {
+	private Client(InetAddress serverIp, int serverPort, int timeout) {
 		try {
 			this.clientSocket = new DatagramSocket();
-			this.clientSocket.setSoTimeout(17);// ~1/60 seconds
+			this.clientSocket.setSoTimeout(timeout);// ~1/60 seconds
 
 			this.serverPort = serverPort;
 			this.serverIp = serverIp;
@@ -47,6 +42,20 @@ public class Client {
 		} catch (SocketException ex) {
 			Gdx.app.error("client", ex.getMessage());
 		}
+	}
+	
+	
+	
+	/**
+	 * 
+	 * @param port
+	 */
+	public Client(InetAddress serverIp, int serverPort) {
+		this(serverIp, serverPort, 17);
+	}
+	
+	public static Client getNewQueryClient(InetAddress serverIp, int serverPort){
+		return new Client(serverIp, serverPort, 1000);
 	}
 
 

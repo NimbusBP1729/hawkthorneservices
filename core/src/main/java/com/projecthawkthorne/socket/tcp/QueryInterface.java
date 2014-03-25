@@ -1,6 +1,8 @@
 package com.projecthawkthorne.socket.tcp;
 
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +19,10 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.projecthawkthorne.client.HawkthorneGame;
+import com.projecthawkthorne.content.Player;
+import com.projecthawkthorne.socket.udp.Client;
+import com.projecthawkthorne.socket.udp.Command;
+import com.projecthawkthorne.socket.udp.MessageBundle;
 
 //mockup class for all queries
 public class QueryInterface {
@@ -115,6 +121,10 @@ public class QueryInterface {
 		results.setStatus(Status.LOADING);
 		Gdx.net.sendHttpRequest(httpRequest, new HttpResponseListener(){
 
+			private MessageBundle pingMsg = new MessageBundle();
+			private Client client;
+			private MessageBundle msg = new MessageBundle();
+
 			@Override
 			public void handleHttpResponse(HttpResponse httpResponse) {
 				String resp = httpResponse.getResultAsString();
@@ -125,10 +135,31 @@ public class QueryInterface {
 					List<String> currentRow = new ArrayList<String>();
 					JsonValue currentVal = val.get(i);
 					String ipAddress = currentVal.get("ip_address").asString();
-					String port = currentVal.get("port").asString();
-					currentRow.add(ipAddress);
-					currentRow.add(port);
-					table.add(currentRow);
+					int port = currentVal.get("port").asInt();
+					try {
+						client = Client.getNewQueryClient(InetAddress.getByName(ipAddress),port);
+					} catch (UnknownHostException e) {
+						e.printStackTrace();
+						continue;
+					}
+						
+					pingMsg.setCommand(Command.GETPLAYERCOUNT);
+					pingMsg.setEntityId(Player.getSingleton().getId());
+					pingMsg.setParams(String.valueOf(System.currentTimeMillis()));
+					client.send(pingMsg);
+					
+					msg = client.receive();
+					if(msg != null){
+						String incomingAddress = msg.getSocketAddress().getHostName();
+						String incomingPort = String.valueOf(msg.getSocketAddress()
+							.getPort());
+						String playerCount = msg.getParams()[0];
+					
+						currentRow.add(ipAddress);
+						currentRow.add(port+"");
+						currentRow.add(playerCount);
+						table.add(currentRow);
+					}
 				}
 				results.setStatus(Status.SUCCESS);
 			}

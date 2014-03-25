@@ -178,12 +178,6 @@ public class HawkthorneGame extends Game {
 			System.out.println("avg. processing duration=="+1.0f*processingDurationSum/processingIterations);
 			System.out.println("avg. msg processed      =="+1.0f*processingCountSum/processingIterations);
 			System.out.println("iterations              =="+processingIterations);
-			if(MODE==Mode.CLIENT){
-				pingMsg.setCommand(Command.PING);
-				pingMsg.setEntityId(Player.getSingleton().getId());
-				pingMsg.setParams(String.valueOf(System.currentTimeMillis()));
-				Player.getSingleton().getClient().send(pingMsg);
-			}
 			System.out.println("================================================");
 
 			lastIterationInfo = now;

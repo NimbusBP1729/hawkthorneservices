@@ -79,7 +79,6 @@ public class Lobby extends GenericGamestate {
 				level = Level.get(HawkthorneGame.START_LEVEL);
 				context.setScreen(level);
 				break;
-				
 			}
 		}
 	}
@@ -115,7 +114,12 @@ public class Lobby extends GenericGamestate {
 		try{
 			if(selection == 0){
 				HawkthorneGame.MODE = Mode.SERVER;
-				int port = 12345;
+				int port;
+				try {
+					port = Integer.valueOf(System.getenv("HAWK_PORT"));
+				} catch (Exception e) {
+					port = 12345;
+				}
 				context.getQuery().registerServer(InetAddress.getLocalHost().getHostAddress().toString(), port, result);
 			}else if(selection == 1){
 				HawkthorneGame.MODE = Mode.CLIENT;

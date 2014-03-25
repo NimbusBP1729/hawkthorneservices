@@ -33,6 +33,7 @@ public class Server {
 			receiveData.length);
 	private DatagramPacket sendPacket = new DatagramPacket(sendData,
 			sendData.length);
+	private MessageBundle response = new MessageBundle();
 	public static Map<UUID, InetSocketAddress> addressMap = new HashMap<UUID, InetSocketAddress>();
 
 	private Server() {
@@ -221,10 +222,15 @@ public class Server {
 			p.moveBoundingBox();
 			this.sendToAllExcept(msg, p.getId());
 		} else if (msg.getCommand() == Command.PING) {
-			MessageBundle response = new MessageBundle();
 			response.setCommand(Command.PONG);
 			response.setEntityId(msg.getEntityId());
 			response.setParams(msg.getParams());
+			InetSocketAddress sockAddr = msg.getSocketAddress();
+			this.send(response, sockAddr.getAddress(), sockAddr.getPort());
+		} else if (msg.getCommand() == Command.GETPLAYERCOUNT) {
+			response.setCommand(Command.SENDPLAYERCOUNT);
+			response.setEntityId(msg.getEntityId());
+			response.setParams(String.valueOf(Player.getPlayerMap().size()));
 			InetSocketAddress sockAddr = msg.getSocketAddress();
 			this.send(response, sockAddr.getAddress(), sockAddr.getPort());
 		} else {
