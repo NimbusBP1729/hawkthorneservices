@@ -41,5 +41,9 @@ public class MessageBundle {
 	public InetSocketAddress getSocketAddress() {
 		return socketAddress;
 	}
+	
+	public String toString(){
+		return SocketUtils.bundleToString(this);
+	}
 
 }
