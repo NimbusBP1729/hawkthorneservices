@@ -55,7 +55,7 @@ public class Client {
 	}
 	
 	public static Client getNewQueryClient(InetAddress serverIp, int serverPort){
-		return new Client(serverIp, serverPort, 10);
+		return new Client(serverIp, serverPort, 1000);
 	}
 
 

@@ -189,4 +189,8 @@ public class Assets {
 		TextureRegion texture = new TextureRegion(manager.get(fullName, Texture.class), x, y, width, height);
 		return texture;
 	}
+
+	public static void dispose() {
+		manager.dispose();
+	}
 }

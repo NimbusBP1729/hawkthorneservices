@@ -339,11 +339,11 @@ public class Level extends Gamestate {
 			// this.moveBoundingBox();
 			// this.attack_box = PlayerAttack.new(collider,self);;
 		}
-		
-		context.setScreen(newLevel);
 
 		if (HawkthorneGame.MODE == Mode.CLIENT 
 				&& player.getId() == Player.getSingleton().getId()) {
+			
+			context.setScreen(newLevel);
 			MessageBundle mb = new MessageBundle();
 			mb.setEntityId(Player.getSingleton().getId());
 			mb.setCommand(Command.SWITCHLEVEL);
@@ -394,16 +394,20 @@ public class Level extends Gamestate {
 					|| Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT)) {
 				boost = 6;
 			}
-			if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+			if (Gdx.input.isKeyPressed(Keys.LEFT) 
+					|| context.getUserInterface().getIsAndroidKeyDown(GameKeys.LEFT)) {
 				trackingX -= (5 + boost);
 			}
-			if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			if (Gdx.input.isKeyPressed(Keys.RIGHT)
+				|| context.getUserInterface().getIsAndroidKeyDown(GameKeys.RIGHT)) {
 				trackingX += (5 + boost);
 			}
-			if (Gdx.input.isKeyPressed(Keys.UP)) {
+			if (Gdx.input.isKeyPressed(Keys.UP)
+				|| context.getUserInterface().getIsAndroidKeyDown(GameKeys.UP)) {
 				trackingY += (5 + boost);
 			}
-			if (Gdx.input.isKeyPressed(Keys.DOWN)) {
+			if (Gdx.input.isKeyPressed(Keys.DOWN)
+					|| context.getUserInterface().getIsAndroidKeyDown(GameKeys.DOWN)) {
 				trackingY -= (5 + boost);
 			}
 

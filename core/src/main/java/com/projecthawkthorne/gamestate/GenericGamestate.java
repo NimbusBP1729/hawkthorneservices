@@ -28,7 +28,7 @@ public abstract class GenericGamestate extends Gamestate {
 			boolean wasDown = this.getIsKeyDown(gk);
 			boolean isPcKeyDown = Gdx.input.isKeyPressed(KeyMapping
 						.gameKeyToInt(gk));
-			boolean isAndroidKeyDown = Gamestate.getContext().getControlsOverlay().getIsAndroidKeyDown(gk);
+			boolean isAndroidKeyDown = Gamestate.getContext().getUserInterface().getIsAndroidKeyDown(gk);
 			boolean isDown = isPcKeyDown || isAndroidKeyDown;
 			this.setIsKeyDown(gk, isDown);
 			if(lifeTime > 1f){

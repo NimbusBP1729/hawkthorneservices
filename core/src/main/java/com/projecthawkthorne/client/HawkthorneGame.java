@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.projecthawkthorne.client.display.Assets;
@@ -27,7 +28,7 @@ public class HawkthorneGame extends MyGame {
 	private SpriteBatch spriteBatch;
 	//private OrthographicCamera cam;
 	public static Mode MODE;
-	public static final String START_LEVEL = "town";
+	public static final String START_LEVEL = "multiplayer";
 	public String trackedLevel = START_LEVEL;
 	public Player trackedPlayer;
 	protected float trackingX = 0;
@@ -53,10 +54,23 @@ public class HawkthorneGame extends MyGame {
 	public void create() {
 		Assets.load();
 		userInterface = new HawkthorneUserInterface();
+		Gdx.input.setCatchBackKey(true);
+		Gdx.input.setInputProcessor(userInterface);
+		
+		
 		Gamestate.setContext(this);
 		spriteBatch = new SpriteBatch();
 		query = new QueryInterface(this);
-		this.setScreen(GenericGamestate.get("lobby"));
+		
+		switch(Gdx.app.getType()){
+		case Desktop:
+			this.setScreen(GenericGamestate.get("lobby"));
+			break;
+		default:
+			HawkthorneGame.MODE = Mode.CLIENT;
+			this.setScreen(GenericGamestate.get("serverSelection"));
+			break;
+		}
 	}
 	
 	protected void updateStatus(int msgCount, long processingDuration) {
@@ -210,9 +224,10 @@ public class HawkthorneGame extends MyGame {
 
 	@Override
 	public void dispose() {
+		Assets.dispose();
 	}
 
-	public HawkthorneUserInterface getControlsOverlay() {
+	public HawkthorneUserInterface getUserInterface() {
 		return userInterface;
 	}
 

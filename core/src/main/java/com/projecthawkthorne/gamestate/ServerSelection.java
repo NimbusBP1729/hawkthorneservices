@@ -74,7 +74,11 @@ public class ServerSelection extends GenericGamestate {
 	public void update(float dt){
 		super.update(dt);
 		if(!initialized){
-			context.getQuery().getServerList(result, table);
+			try {
+				context.getQuery().getServerList(result, table);
+			} catch (UnknownHostException e) {
+				result.setStatus(Status.REQUEST_FAILED);
+			}
 			initialized = true;
 		}
 	}

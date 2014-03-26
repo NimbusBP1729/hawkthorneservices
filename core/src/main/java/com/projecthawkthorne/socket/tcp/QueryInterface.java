@@ -28,25 +28,22 @@ public class QueryInterface {
 	}
 
 	
-	public void getServerList(final Results results, final List<List<String>> table) {
-		MessageBundle pingMsg = new MessageBundle();
-		MessageBundle msg = new MessageBundle();
+	public void getServerList(final Results results, final List<List<String>> table) throws UnknownHostException {
+		final MessageBundle pingMsg = new MessageBundle();
+		final byte[] ip = InetAddress.getLocalHost().getAddress();
 
-		String ipBase = "192.168.0.";
 		table.clear();
-		for (int i = 0; i <= 255; i++) {
-		    String ipAddress = ipBase+i;
+		for (int i = 0; i < 255; i++) {
+		    ip[3] = (byte) i;
 			int port;
 			try {
 				port = Integer.valueOf(System.getenv("HAWK_PORT"));
 			} catch (Exception e) {
 				port = 12345;
 			}
-			List<String> currentRow = new ArrayList<String>();
-			Client client;
+			final Client client;
 			try {
-				client = Client.getNewQueryClient(
-						InetAddress.getByName(ipAddress), port);
+				client = Client.getNewQueryClient(InetAddress.getByAddress(ip), port);
 			} catch (UnknownHostException e) {
 				e.printStackTrace();
 				continue;
@@ -55,20 +52,27 @@ public class QueryInterface {
 			pingMsg.setCommand(Command.GETPLAYERCOUNT);
 			pingMsg.setEntityId(Player.getSingleton().getId());
 			pingMsg.setParams(String.valueOf(System.currentTimeMillis()));
-			client.send(pingMsg);
+			
+			
+			new Thread(){
+				public void run(){
+					client.send(pingMsg);
 
-			msg = client.receive();
-			if (msg != null) {
-				String incomingAddress = msg.getSocketAddress().getHostName();
-				String incomingPort = String.valueOf(msg.getSocketAddress()
-						.getPort());
-				String playerCount = msg.getParams()[0];
+					MessageBundle msg = client.receive();
+					if (msg != null) {
+						String playerCount = msg.getParams()[0];
+						String incomingAddress = msg.getSocketAddress().getAddress().getHostAddress();
+						int incomingPort = msg.getSocketAddress().getPort();
+						
+						List<String> currentRow = new ArrayList<String>();
 
-				currentRow.add(ipAddress);
-				currentRow.add(port + "");
-				currentRow.add(playerCount);
-				table.add(currentRow);
-			}
+						currentRow.add(incomingAddress);
+						currentRow.add(incomingPort + "");
+						currentRow.add(playerCount);
+						table.add(currentRow);
+					}
+				}
+			}.start();
 
 			results.setStatus(Status.SUCCESS);
 		}
