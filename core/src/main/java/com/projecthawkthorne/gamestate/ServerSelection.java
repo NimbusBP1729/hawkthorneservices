@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.KeyMapping;
@@ -72,8 +71,8 @@ public class ServerSelection extends GenericGamestate {
 	}
 	
 	@Override
-	public void render(float dt){
-		super.render(dt);
+	public void update(float dt){
+		super.update(dt);
 		if(!initialized){
 			context.getQuery().getServerList(result, table);
 			initialized = true;
@@ -123,8 +122,9 @@ public class ServerSelection extends GenericGamestate {
 			int port = Integer.valueOf(table.get(selection).get(1));
 			Player player = Player.getSingleton();
 			player.registerPlayer(InetAddress.getByName(address), port);
-			Level level = Level.get(HawkthorneGame.START_LEVEL);
-			context.setScreen(level);
+//			Level level = Level.get(HawkthorneGame.START_LEVEL);
+//			Level.switchState(level, level.getDoor("main"), player);
+//			context.setScreen(level);
 		}catch(UnknownHostException uhe){
 			Gdx.app.log("Lobby", "unknown host");
 		}
@@ -141,7 +141,7 @@ public class ServerSelection extends GenericGamestate {
 	}
 
 	@Override
-	public void draw() {
+	public void draw(Player p) {
 		cam.setToOrtho(true, 528, 336);
 		cam.zoom = 1f;
 		cam.update(true);

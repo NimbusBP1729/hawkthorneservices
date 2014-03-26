@@ -4,11 +4,11 @@ import static com.projecthawkthorne.client.HawkthorneGame.HEIGHT;
 import static com.projecthawkthorne.client.HawkthorneGame.WIDTH;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -30,7 +30,6 @@ import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Boundary;
 import com.projecthawkthorne.content.Footprint;
-import com.projecthawkthorne.content.Game;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.UUID;
@@ -76,6 +75,11 @@ public class Level extends Gamestate {
 	private static SpriteBatch batch = new SpriteBatch();
 	private boolean isFloorSpace;
 	private static Map<String, Level> levelMap = new HashMap<String,Level>();
+	
+	private static final Player[] EMPTY_PLAYER_ARRAY = new Player[0];
+	boolean switchCharacterKeyDown = false;
+	private int trackedPlayerIndex = 0;
+
 
 
 	public static Map<String, Level> getLevelMap() {
@@ -85,6 +89,7 @@ public class Level extends Gamestate {
 	private Level(String name) {
 		this.name = name;
 		this.collider = new Collider();
+		
 		this.loadNodes(name);
 		this.spawnLevel = this;
 		cam = new OrthographicCamera(WIDTH, HEIGHT);
@@ -109,8 +114,9 @@ public class Level extends Gamestate {
 	}
 
 	private void loadNodes(String levelName) {
-		
 		this.tiledMap = Assets.getTiledMap(levelName.trim());
+		tileMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, batch);
+
 		MapProperties prop = tiledMap.getProperties();
 		int mapWidth = prop.get("width", Integer.class);
 		int mapHeight = prop.get("height", Integer.class);
@@ -336,7 +342,8 @@ public class Level extends Gamestate {
 		
 		context.setScreen(newLevel);
 
-		if (HawkthorneGame.MODE == Mode.CLIENT && player.getId() == Player.getSingleton().getId()) {
+		if (HawkthorneGame.MODE == Mode.CLIENT 
+				&& player.getId() == Player.getSingleton().getId()) {
 			MessageBundle mb = new MessageBundle();
 			mb.setEntityId(Player.getSingleton().getId());
 			mb.setCommand(Command.SWITCHLEVEL);
@@ -347,32 +354,67 @@ public class Level extends Gamestate {
 	}
 
 	@Override
-	public void render(float delta) {
+	public void update(float delta) {
 		long dt = (long) (delta*1000);
+		tileMapRenderer.setView(cam);
 		if (Gdx.input.isKeyPressed(Keys.DEL) && HawkthorneGame.MODE == Mode.CLIENT) {
 			Player player = Player.getSingleton();
 			player.die();
 		}
 
 		if (Gdx.input.isKeyPressed(Keys.BACK) || Gdx.input.isKeyPressed(Keys.ESCAPE)) {
-			Gamestate.getContext().setScreen("pause");
+			Gamestate.getContext().setScreen(GenericGamestate.get("pause"));
 		}
 		if (HawkthorneGame.MODE == Mode.CLIENT) {
 			Player player = Player.getSingleton();
 			player.processKeyActions();
 		}
-		Set<Player> players = this.getPlayers();
-		for (Player p : players) {
-			p.update(dt);
-		}
+		
 		for(Node node : this.nodes.values()){
 			node.update(dt);
 		}
+		
+		if(HawkthorneGame.MODE == Mode.SERVER){
+			if (!switchCharacterKeyDown 
+					&& Gdx.input.isKeyPressed(Keys.S)
+					&& this.getPlayers().size()>0) {
+				Player[] players = this.getPlayers().toArray(EMPTY_PLAYER_ARRAY);
+				trackedPlayerIndex = (trackedPlayerIndex+1)%players.length;
+				context.trackedPlayer = players[trackedPlayerIndex];
+			}
+			switchCharacterKeyDown = Gdx.input.isKeyPressed(Keys.S);
+			if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+				if(context.trackedPlayer!=null){
+					context.trackedLevel = context.trackedPlayer.getLevel().getName();
+				}
+				context.trackedPlayer = null;
+			}
+			int boost = 0;
+			if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)
+					|| Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT)) {
+				boost = 6;
+			}
+			if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+				trackingX -= (5 + boost);
+			}
+			if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+				trackingX += (5 + boost);
+			}
+			if (Gdx.input.isKeyPressed(Keys.UP)) {
+				trackingY += (5 + boost);
+			}
+			if (Gdx.input.isKeyPressed(Keys.DOWN)) {
+				trackingY -= (5 + boost);
+			}
+
+		} 
+		
 		this.collider.update();
 	}
 
 	@Override
 	public void resize(int width, int height) {
+		//cam.setToOrtho(IS_Y_DOWN, width, height);
 	}
 
 	@Override
@@ -411,60 +453,97 @@ public class Level extends Gamestate {
 	}
 
 	@Override
-	public void draw() {
-
-		if(HawkthorneGame.MODE == Mode.CLIENT){
-			trackPlayerWithCam(Player.getSingleton(), cam);
-		}else if(HawkthorneGame.MODE == Mode.SERVER){
-			trackPlayerWithCam(null, cam);
-		}else {
-			throw new UnsupportedOperationException("unknown game mode");
+	/**
+	 * renders a level with respect to a player or some trackedPosition if a
+	 * player is not available
+	 * 
+	 * @param player
+	 */
+	public void draw(Player player) {
+		TiledMap map = tiledMap;
+		try {
+			float r = Float.parseFloat(map.getProperties().get("red",
+					String.class)) / 255.0f;
+			float g = Float.parseFloat(map.getProperties().get("green",
+					String.class)) / 255.0f;
+			float b = Float.parseFloat(map.getProperties().get("blue",
+					String.class)) / 255.0f;
+			Gdx.gl.glClearColor(r, g, b, 1);
+		} catch (NullPointerException e) {
+			Gdx.app.error(e.getClass().getName(),
+					"Error loading background: default to white");
+			Gdx.gl.glClearColor(1, 1, 1, 1);
 		}
-		TiledMap map = this.tiledMap;
-		TiledMapTileLayer tmtl = (TiledMapTileLayer) this.tiledMap.getLayers().get(0);
-		float mapHeight = tmtl.getHeight() * tmtl.getTileHeight();
-		float mapWidth = tmtl.getWidth() * tmtl.getTileWidth();
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+		float x;
+		float y;
+		try {
+			TiledMapTileLayer tmtl = (TiledMapTileLayer) (map.getLayers()
+					.get(0));
+			float mapHeight = tmtl.getHeight() * tmtl.getTileHeight();
+			float mapWidth = tmtl.getWidth() * tmtl.getTileWidth();
+
+			if (player != null) {
+				x = player.x + player.width / 2;
+				y = player.y;
+				trackingX = x;
+				trackingY = y;
+			} else {
+				x = trackingX;
+				y = trackingY;
+			}
+			cam.position.set(
+					limit(x, cam.zoom * cam.viewportWidth / 2, mapWidth
+							- cam.zoom * cam.viewportWidth / 2),
+					limit(y, cam.zoom * cam.viewportHeight / 2, mapHeight), 0);
+		} catch (Exception e) {
+			Gdx.app.error(e.getClass().getName(),
+					"camera position error: using default (0,0)");
+			e.printStackTrace();
+			x = 0;
+			y = 0;
+		}
+		cam.update(true);
 
 		batch.setProjectionMatrix(cam.combined);
+		if (!(this.getTiledMap().equals(tileMapRenderer.getMap()))) {
+			tileMapRenderer.setMap(this.getTiledMap());
+			String musicFile = this.getTiledMap().getProperties()
+					.get("soundtrack", String.class);
+			Assets.playMusic(musicFile);
+		}
 
 		tileMapRenderer.setView(cam);
-		tileMapRenderer.setMap(map);
-		float r = Float.parseFloat(map.getProperties().get("red", "255",
-				String.class)) / 255.0f;
-		float g = Float.parseFloat(map.getProperties().get("green", "255",
-				String.class)) / 255.0f;
-		float b = Float.parseFloat(map.getProperties().get("blue", "255",
-				String.class)) / 255.0f;
-		Gdx.gl.glClearColor(r, g, b, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-
 		tileMapRenderer.render();
-		batch.begin();
-		
 
+		batch.begin();
+		this.drawEntities(batch);
+		batch.end();
+
+	}
+
+	public void drawEntities(SpriteBatch batch) {
 		liquids.clear();
-		for (Node n : this.getNodeMap().values()) {
+		Collection<Node> nodes = this.getNodeMap().values();
+		for (Node n : nodes) {
 			try {
 				if (n instanceof Liquid) {
 					liquids.add(n);
 				} else {
 					n.draw(batch);
 				}
+
 			} catch (Exception e) {
-				Gdx.app.error("error drawing " + n.getClass(), e.getMessage(), e);
+				Gdx.app.error("error drawing " + n.getClass(), e.getMessage(),
+						e);
 			}
 		}
-		
+
 		for (Player player : this.getPlayers()) {
 			player.draw(batch);
 		}
-
 		for (Node liquid : liquids) {
 			liquid.draw(batch);
-		}
-		batch.end();
-		if(Game.DEBUG){
-			this.collider.draw(cam);
 		}
 	}
 
@@ -495,6 +574,29 @@ public class Level extends Gamestate {
 						, mapHeight)
 				, 0);
 		cam.update(true);
+	}
+
+	public TiledMap getTiledMap() {
+		return tiledMap;
+	}
+	
+
+	/**
+	 * bounds x between bound1 and bound2
+	 * 
+	 * @param x
+	 * @param bound1
+	 * @param bound2
+	 * @return
+	 */
+	private float limit(float x, float bound1, float bound2) {
+		if (x < bound1 && x < bound2) {
+			return Math.min(bound1, bound2);
+		} else if (x > bound1 && x > bound2) {
+			return Math.max(bound1, bound2);
+		} else {
+			return x;
+		}
 	}
 
 }

@@ -2,7 +2,6 @@ package com.projecthawkthorne.gamestate;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -13,6 +12,7 @@ import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.KeyMapping;
+import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.socket.udp.Server;
 
 public class Lobby extends GenericGamestate {
@@ -55,8 +55,8 @@ public class Lobby extends GenericGamestate {
 	}
 	
 	@Override
-	public void render(float dt){
-		super.render(dt);
+	public void update(float dt){
+		super.update(dt);
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class Lobby extends GenericGamestate {
 	}
 
 	private void makeSelection(int selection) {
-		Screen level;
+		Gamestate level;
 		if(selection == 0){
 			HawkthorneGame.MODE = Mode.SERVER;
 			Server.getSingleton();
@@ -111,7 +111,7 @@ public class Lobby extends GenericGamestate {
 	}
 
 	@Override
-	public void draw() {
+	public void draw(Player p) {
 		cam.setToOrtho(true, 528, 336);
 		cam.zoom = 1f;
 		cam.update(true);

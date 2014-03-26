@@ -4,13 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.KeyMapping;
 
 public abstract class GenericGamestate extends Gamestate {
 	
-	private static Screen serverSelection = new ServerSelection();
+	private static Gamestate serverSelection = new ServerSelection();
 	private Map<GameKeys, Boolean> keyMap = new HashMap<GameKeys, Boolean>();
 	private float lifeTime = 0;
 
@@ -23,7 +22,7 @@ public abstract class GenericGamestate extends Gamestate {
 		return b == null ? false : b;
 	}
 	
-	public void render(float dt){
+	public void update(float dt){
 		lifeTime += dt;
 		for (GameKeys gk : GameKeys.values()) {
 			boolean wasDown = this.getIsKeyDown(gk);
@@ -62,7 +61,7 @@ public abstract class GenericGamestate extends Gamestate {
 	}
 
 
-	public static Screen get(String state) {
+	public static Gamestate get(String state) {
 		if("pause".equals(state)){
 			return new PauseScreen();
 		}else if("lobby".equals(state)){

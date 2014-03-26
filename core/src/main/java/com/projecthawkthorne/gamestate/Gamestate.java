@@ -5,14 +5,13 @@ import java.util.Map;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.UUID;
 import com.projecthawkthorne.content.nodes.Door;
 import com.projecthawkthorne.content.nodes.Node;
 
-public abstract class Gamestate implements Screen{
+public abstract class Gamestate{
 	protected static HawkthorneGame context;
 	private Set<Player> players = new HashSet<Player>();
 	
@@ -47,7 +46,7 @@ public abstract class Gamestate implements Screen{
 				+ this.getClass().getName() + ") has no nodes");
 	}
 
-	public abstract void draw();
+	public abstract void draw(Player player);
 
 	public static final void setContext(HawkthorneGame game) {
 		context = game;
@@ -57,5 +56,24 @@ public abstract class Gamestate implements Screen{
 		return context;
 	}
 
+	public abstract void hide();
+
+	public abstract void pause();
+
+	public abstract void resume();
+
+	public abstract void show();
+
+	public abstract void resize(int width, int height);
+
+
+	public abstract void dispose();
+	
+	public abstract void update(float dt);
+//	
+//	public final void render(){throw new UnsupportedOperationException();}
+//	public final void render(long dt){throw new UnsupportedOperationException();}
+//	public final void render(float dt){throw new UnsupportedOperationException();}
+//
 
 }

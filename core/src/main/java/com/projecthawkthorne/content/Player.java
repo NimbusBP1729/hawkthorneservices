@@ -4,8 +4,6 @@
  */
 package com.projecthawkthorne.content;
 
-import static com.projecthawkthorne.client.HawkthorneGame.START_LEVEL;
-
 import java.net.InetAddress;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -111,7 +109,7 @@ public class Player extends Humanoid implements Timeable {
 	}
 
 	private Player(RectangleMapObject obj, UUID id) {
-		this(obj, Level.get(START_LEVEL), id);
+		this(obj, null, id);
 	}
 
 	private static RectangleMapObject getPlayerTiledObject() {
@@ -356,7 +354,7 @@ public class Player extends Humanoid implements Timeable {
 		this.damageTaken = damage;
 		this.health = Math.max(this.health - damage, 0);
 		// }
-
+		
 		if (this.health <= 0) {
 			// the true death
 			this.dead = true;
@@ -1013,21 +1011,24 @@ public class Player extends Humanoid implements Timeable {
 			if (!wasDown && isDown) {
 				Gdx.app.log("keypress(p)", gk.toString());
 				this.keypressed(gk);
-
-				MessageBundle mb = new MessageBundle();
-				mb.setEntityId(Player.getSingleton().getId());
-				mb.setCommand(Command.KEYPRESSED);
-				mb.setParams(gk.toString());
-				getClient().send(mb);
+				if(client!=null){
+					MessageBundle mb = new MessageBundle();
+					mb.setEntityId(Player.getSingleton().getId());
+					mb.setCommand(Command.KEYPRESSED);
+					mb.setParams(gk.toString());
+					getClient().send(mb);
+				}
 			} else if (wasDown && !isDown) {
 				Gdx.app.log("keyrelease(p)", gk.toString());
 				this.keyreleased(gk);
 
-				MessageBundle mb = new MessageBundle();
-				mb.setEntityId(Player.getSingleton().getId());
-				mb.setCommand(Command.KEYRELEASED);
-				mb.setParams(gk.toString());
-				getClient().send(mb);
+				if(client!=null){
+					MessageBundle mb = new MessageBundle();
+					mb.setEntityId(Player.getSingleton().getId());
+					mb.setCommand(Command.KEYRELEASED);
+					mb.setParams(gk.toString());
+					getClient().send(mb);
+				}
 			}
 		}
 	}

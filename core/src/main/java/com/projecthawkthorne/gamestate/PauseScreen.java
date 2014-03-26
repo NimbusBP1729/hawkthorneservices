@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.KeyMapping;
+import com.projecthawkthorne.content.Player;
 
 public class PauseScreen extends GenericGamestate {
 
@@ -96,7 +97,7 @@ public class PauseScreen extends GenericGamestate {
 	}
 
 	@Override
-	public void draw() {
+	public void draw(Player p) {
 		cam.setToOrtho(true, 528, 336);
 		cam.zoom = 1f;
 		cam.update(true);
