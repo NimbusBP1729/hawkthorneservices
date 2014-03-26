@@ -197,7 +197,7 @@ public class HawkthorneGame extends MyGame {
 	}
 
 	private float roundTwoDecimals(float val) {
-		return MathUtils.round(val*100)/100;
+		return MathUtils.round(val*100)/100.0f;
 	}
 
 	@Override
