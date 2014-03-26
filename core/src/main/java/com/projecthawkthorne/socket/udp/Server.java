@@ -36,7 +36,7 @@ public class Server {
 	private MessageBundle response = new MessageBundle();
 	public static Map<UUID, InetSocketAddress> addressMap = new HashMap<UUID, InetSocketAddress>();
 
-	private Server() {
+	private Server() throws SocketException {
 		int port;
 		try {
 			port = Integer.valueOf(System.getenv("HAWK_PORT"));
@@ -49,14 +49,10 @@ public class Server {
 		} catch (UnknownHostException e) {
 			Gdx.app.error("server", "error resolving address");
 		}
-		
-		try {
-			serverSocket = new DatagramSocket(port);
-			serverSocket.setSoTimeout(17);// ~1/60 seconds
 
-		} catch (SocketException ex) {
-			Gdx.app.error("server", ex.getMessage(), ex);
-		}
+
+		serverSocket = new DatagramSocket(port);
+		serverSocket.setSoTimeout(17);// ~1/60 seconds
 
 	}
 
@@ -64,16 +60,17 @@ public class Server {
 	 * returns one identical server every time
 	 * 
 	 * @return the server
+	 * @throws SocketException 
 	 */
-	public static Server getSingleton() {
+	public static Server getSingleton() throws SocketException {
+		if (singleton == null) {
+			singleton = new Server();
+		}
 		if (HawkthorneGame.MODE != Mode.SERVER) {
 			throw new UnsupportedOperationException(
 					"must be a server to use this method");
 		}
 
-		if (singleton == null) {
-			singleton = new Server();
-		}
 		return singleton;
 	}
 

@@ -1,5 +1,6 @@
 package com.projecthawkthorne.client;
 
+import java.net.SocketException;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -148,7 +149,12 @@ public class HawkthorneGame extends MyGame {
 			}
 
 		}else if(HawkthorneGame.MODE == Mode.SERVER){
-			Server server = Server.getSingleton();
+			Server server = null;
+			try {
+				server = Server.getSingleton();
+			} catch (SocketException e) {
+				Gdx.app.error("game", "server may already be in use");
+			}
 
 			//receive info
 			int msgCount = 0;
@@ -196,7 +202,7 @@ public class HawkthorneGame extends MyGame {
 					String vY = Float.toString(roundTwoDecimals(player.velocityY));
 					mb.setParams(x, y, vX, vY, player.getState().toString(),player.getDirectionsAsString());
 					this.lastPositionBroadcast = currentTime;
-					Server.getSingleton().sendToAllExcept(mb, entry.getKey());
+					server.sendToAllExcept(mb, entry.getKey());
 				}
 			}		
 

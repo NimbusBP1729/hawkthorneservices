@@ -1,7 +1,10 @@
 package com.projecthawkthorne.gamestate;
 
+import java.net.SocketException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -23,6 +26,7 @@ public class Lobby extends GenericGamestate {
 	private String musicFile = "daybreak";
 	private OrthographicCamera cam = new OrthographicCamera(528, 336);
 	private SpriteBatch batch = new SpriteBatch();
+	private String warning = "";
 
 	@Override
 	public void resize(int width, int height) {
@@ -65,6 +69,7 @@ public class Lobby extends GenericGamestate {
 		case DOWN:
 			this.option = (this.option + 1) % 2;
             Assets.playSfx("click");
+            warning = "";
 			break;
 		case JUMP:
 			Assets.playSfx("confirm");
@@ -75,6 +80,7 @@ public class Lobby extends GenericGamestate {
 		case UP:
 			this.option = (this.option - 1 + 2) % 2;
             Assets.playSfx("click");
+            warning = "";
 			break;
 		case START:
 			Gdx.app.getApplicationListener().dispose();
@@ -89,14 +95,20 @@ public class Lobby extends GenericGamestate {
 	private void makeSelection(int selection) {
 		Gamestate level;
 		if(selection == 0){
-			HawkthorneGame.MODE = Mode.SERVER;
-			Server.getSingleton();
-			level = Level.get(HawkthorneGame.START_LEVEL);
-			context.setScreen(level);
+			try {
+				Server.getSingleton();
+				HawkthorneGame.MODE = Mode.SERVER;
+				level = Level.get(HawkthorneGame.START_LEVEL);
+				context.setScreen(level);
+				warning = "";
+			} catch (SocketException e) {
+				warning = "server may already be in use";
+			}
 		}else if(selection == 1){
 			HawkthorneGame.MODE = Mode.CLIENT;
 			level = GenericGamestate.get("serverSelection");
 			context.setScreen(level);
+			warning = "";
 		}
 	}
 
@@ -136,6 +148,12 @@ public class Lobby extends GenericGamestate {
 	    		+  ": SELECT ITEM";
 	    font.draw(batch, back, 25, 25);
 	    font.draw(batch, howto, 25, 55);
+	    
+	    
+	    font.setColor(Color.RED);
+	    font.draw(batch, warning, 60, 305);
+	    
+	    font.setColor(Color.WHITE);
 	    batch.end();
 	}
 
