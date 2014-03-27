@@ -43,6 +43,7 @@ public class ServerSelection extends GenericGamestate {
 	@Override
 	public void show() {
 		super.show();
+		option = 0;
 		initialized = false;
 		result.setStatus(Status.LOADING);
 		table.clear();
