@@ -8,6 +8,7 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
 import com.badlogic.gdx.Gdx;
+import com.projecthawkthorne.content.Character;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.UUID;
@@ -127,8 +128,10 @@ public class Client {
 		} else if (msg.getCommand() == Command.REGISTERPLAYER) {
 			Player p = Player.getConnectedPlayer(msg.getEntityId());
 			p.setUsername(msg.getParams()[0]);
-			Level newLevel = Level.get(msg.getParams()[1]);
-			Door door = newLevel.getDoor(msg.getParams()[2]);
+			p.setCharacter(new Character(msg.getParams()[1],msg.getParams()[2]));			
+			Level newLevel = Level.get(msg.getParams()[3]);
+			Door door = newLevel.getDoor(msg.getParams()[4]);
+			
 			Level.switchState(newLevel, door, p);
 		} else if (msg.getCommand() == Command.SWITCHLEVEL) {
 			UUID id = msg.getEntityId();

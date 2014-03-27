@@ -83,7 +83,6 @@ public class Lobby extends GenericGamestate {
             warning = "";
 			break;
 		case START:
-			Gdx.app.getApplicationListener().dispose();
 			Gdx.app.exit();
 			break;
 		default:
@@ -94,13 +93,13 @@ public class Lobby extends GenericGamestate {
 
 	private void makeSelection(int selection) {
 		Gamestate level;
+		warning = "";
 		if(selection == 0){
 			try {
 				HawkthorneGame.MODE = Mode.SERVER;
 				Server.getSingleton();
 				level = Level.get(HawkthorneGame.START_LEVEL);
 				context.setScreen(level);
-				warning = "";
 			} catch (SocketException e) {
 				HawkthorneGame.MODE = null;
 				warning = "server may already be in use";
@@ -109,7 +108,6 @@ public class Lobby extends GenericGamestate {
 			HawkthorneGame.MODE = Mode.CLIENT;
 			level = GenericGamestate.get("serverSelection");
 			context.setScreen(level);
-			warning = "";
 		}
 	}
 

@@ -18,8 +18,16 @@ public class Character {
 	private String costume;
 
 	public Character() {
-		name = "garrett";
-		costume = "base";
+		this("garrett");
+	}
+	
+	public Character(String name, String costume) {
+		this.name = name;
+		this.costume = costume;
+	}
+
+	public Character(String name) {
+		this (name, "base");
 	}
 
 	void setState(State state) {

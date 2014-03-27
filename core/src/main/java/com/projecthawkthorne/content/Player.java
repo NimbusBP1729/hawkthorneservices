@@ -967,7 +967,7 @@ public class Player extends Humanoid implements Timeable {
 		MessageBundle message = new MessageBundle();
 		message.setEntityId(singleton.getId());
 		message.setCommand(Command.REGISTERPLAYER);
-		message.setParams(singleton.getUsername(),HawkthorneGame.START_LEVEL,"main");
+		message.setParams(singleton.getUsername(),singleton.getCharacter().getName(),singleton.getCharacter().getCostume(),HawkthorneGame.START_LEVEL,"main");
 		client = new Client(serverIp, serverPort);
 		getClient().send(message);
 	}

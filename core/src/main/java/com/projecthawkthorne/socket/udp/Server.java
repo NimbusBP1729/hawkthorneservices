@@ -14,6 +14,7 @@ import java.util.Map;
 import com.badlogic.gdx.Gdx;
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
+import com.projecthawkthorne.content.Character;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.UUID;
@@ -164,20 +165,25 @@ public class Server {
 			addressMap.put(id, msg.getSocketAddress());
 			Player newPlayer = Player.getConnectedPlayer(id);
 			newPlayer.setUsername(msg.getParams()[0]);
+			newPlayer.setCharacter(new Character(msg.getParams()[1],msg.getParams()[2]));
 			
-			Level newLevel = Level.get(msg.getParams()[1]);
-			Door door = newLevel.getDoor(msg.getParams()[2]);
+			Level newLevel = Level.get(msg.getParams()[3]);
+			Door door = newLevel.getDoor(msg.getParams()[4]);
 			Level.switchState(newLevel, door, newPlayer);
 
 			//tell everyone about the new kid
 			this.sendToAllExcept(msg, id);
 			
-			//tell the new kid about everyone
+			//tell the new kid about everyone but himself
 			for(Player p: Player.getPlayerMap().values()){
+				if(p.getId() == id){
+					continue;
+				}
 				InetSocketAddress sockAddr = msg.getSocketAddress();
 				MessageBundle mb = new MessageBundle();
 				mb.setCommand(Command.REGISTERPLAYER);
-				mb.setParams(p.getUsername(),HawkthorneGame.START_LEVEL,"main");
+				Character character = p.getCharacter();
+				mb.setParams(p.getUsername(), character.getName(), character.getCostume(), HawkthorneGame.START_LEVEL,"main");
 				mb.setEntityId(p.getId());
 				this.send(mb, sockAddr.getAddress(), sockAddr.getPort());
 			}
