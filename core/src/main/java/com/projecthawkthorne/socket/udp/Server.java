@@ -63,12 +63,12 @@ public class Server {
 	 * @throws SocketException 
 	 */
 	public static Server getSingleton() throws SocketException {
-		if (singleton == null) {
-			singleton = new Server();
-		}
 		if (HawkthorneGame.MODE != Mode.SERVER) {
 			throw new UnsupportedOperationException(
 					"must be a server to use this method");
+		}
+		if (singleton == null) {
+			singleton = new Server();
 		}
 
 		return singleton;

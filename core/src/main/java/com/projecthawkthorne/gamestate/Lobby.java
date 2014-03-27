@@ -96,12 +96,13 @@ public class Lobby extends GenericGamestate {
 		Gamestate level;
 		if(selection == 0){
 			try {
-				Server.getSingleton();
 				HawkthorneGame.MODE = Mode.SERVER;
+				Server.getSingleton();
 				level = Level.get(HawkthorneGame.START_LEVEL);
 				context.setScreen(level);
 				warning = "";
 			} catch (SocketException e) {
+				HawkthorneGame.MODE = null;
 				warning = "server may already be in use";
 			}
 		}else if(selection == 1){
