@@ -37,6 +37,7 @@ public class HawkthorneGame extends MyGame {
 	protected long lastTime = 0;
 	protected long lastPositionBroadcast = System.currentTimeMillis();
 	protected static final boolean IS_Y_DOWN = false;
+	private static final Level[] EMPTY_LEVEL_ARRAY = new Level [0];
 	
 
 	private long lastIterationInfo = 0;
@@ -172,7 +173,8 @@ public class HawkthorneGame extends MyGame {
 			
 			//update
 			Map<String, Level> levels = Level.getLevelMap();
-			for (Level level : levels.values()) {
+			Level [] lvls = levels.values().toArray(EMPTY_LEVEL_ARRAY);
+			for (Level level : lvls) {
 				Set<Player> players = level.getPlayers();
 				for (Player player : players) {
 					player.update(dt);

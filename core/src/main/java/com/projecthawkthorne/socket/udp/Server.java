@@ -183,7 +183,8 @@ public class Server {
 				MessageBundle mb = new MessageBundle();
 				mb.setCommand(Command.REGISTERPLAYER);
 				Character character = p.getCharacter();
-				mb.setParams(p.getUsername(), character.getName(), character.getCostume(), HawkthorneGame.START_LEVEL,"main");
+				//door is "main" only because i required one
+				mb.setParams(p.getUsername(), character.getName(), character.getCostume(), p.getLevel().getName(),"main");
 				mb.setEntityId(p.getId());
 				this.send(mb, sockAddr.getAddress(), sockAddr.getPort());
 			}
