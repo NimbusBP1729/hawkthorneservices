@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.GameKeys;
 import com.projecthawkthorne.content.KeyMapping;
@@ -128,9 +129,9 @@ public class ServerSelection extends GenericGamestate {
 			int port = Integer.valueOf(table.get(selection).get(1));
 			Player player = Player.getSingleton();
 			player.registerPlayer(InetAddress.getByName(address), port);
-//			Level level = Level.get(HawkthorneGame.START_LEVEL);
-//			Level.switchState(level, level.getDoor("main"), player);
-//			context.setScreen(level);
+			Level level = Level.get(HawkthorneGame.START_LEVEL);
+			Level.switchState(level, level.getDoor("main"), player);
+			context.setScreen(level);
 		}catch(UnknownHostException uhe){
 			Gdx.app.log("Lobby", "unknown host");
 		}

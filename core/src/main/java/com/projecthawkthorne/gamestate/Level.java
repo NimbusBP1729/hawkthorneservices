@@ -195,44 +195,9 @@ public class Level extends Gamestate {
 					node = new Ladder((RectangleMapObject) t, this);
 				} else if ("movingplatform".equals(typeName)) {
 					node = new MovingPlatform((RectangleMapObject) t, this);
-				} else if ("cow".equals(typeName)) {
-					continue;
-				} else if ("npc".equals(typeName)) {
-					continue;
-				} else if ("material".equals(typeName)) {
-					continue;
-				} else if ("savepoint".equals(typeName)) {
-					continue;
-				} else if ("info".equals(typeName)) {
-					continue;
-				}  else if ("enemy".equals(typeName)) {
-					continue;
-				}  else if ("scenetrigger".equals(typeName)) {
-					continue;
-				}  else if ("breakable_block".equals(typeName)) {
-					continue;
-				} else if ("spawn".equals(typeName)) {
-					continue;
-				} else if ("killing_floor".equals(typeName)) {
-					continue;
-				} else if ("sprite".equals(typeName)) {
-					continue;
-				} else if ("throwable".equals(typeName)) {
-					continue;
-				} else if ("dealer".equals(typeName)) {
-					continue;
-				} else if ("hiddendoortrigger".equals(typeName)) {
-					continue;
-				} else if ("splat".equals(typeName)) {
-					continue;
-				} else if ("ceiling_hippy".equals(typeName)) {
-					continue;
-				} else if ("hippy".equals(typeName)) {
-					continue;
-				} else if ("airplane".equals(typeName)) {
-					continue;
 				} else {
-					Gdx.app.error("typeName is not recognized", typeName);
+					Gdx.app.error("node is not recognized", typeName);
+					continue;
 				}
 			} catch (Exception e) {
 				Gdx.app.error("error loading a type", typeName);
