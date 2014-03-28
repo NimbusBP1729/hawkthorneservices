@@ -14,7 +14,7 @@
 		<gwt.version>2.5.0</gwt.version>
 		<gwt.maven.version>2.5.0</gwt.maven.version>
 		<junit.version>4.11</junit.version>
-		
+		<robovm.maven.version>0.0.6.1</robovm.maven.version>
  	</properties>
 
 	<repositories>
