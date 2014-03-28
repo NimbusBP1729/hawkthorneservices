@@ -27,13 +27,14 @@ public class ServerSelection extends GenericGamestate {
 	private TextureRegion arrow = new TextureRegion(Assets.loadTexture("menu/arrow.png"));
 	private String musicFile = "daybreak";
 	private OrthographicCamera cam = new OrthographicCamera(528, 336);
-	private SpriteBatch batch = new SpriteBatch();
+	private SpriteBatch batch;
 	private Results result = new Results();
 	private List<List<String>> table = new ArrayList<List<String>>();
 	private boolean initialized = false;
 	
 	public ServerSelection(){
 		result.setStatus(Status.LOADING);
+		batch = context.getBatch();
 	}
 
 	@Override
@@ -113,7 +114,7 @@ public class ServerSelection extends GenericGamestate {
 			}
 			break;
 		case START:
-			context.goBack();
+			context.setScreen(context.characterSelection);
 			break;
 		default:
 			break;

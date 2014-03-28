@@ -11,9 +11,13 @@ import com.badlogic.gdx.math.MathUtils;
 import com.projecthawkthorne.client.display.Assets;
 import com.projecthawkthorne.content.Player;
 import com.projecthawkthorne.content.UUID;
+import com.projecthawkthorne.gamestate.CharacterSelection;
 import com.projecthawkthorne.gamestate.Gamestate;
 import com.projecthawkthorne.gamestate.GenericGamestate;
 import com.projecthawkthorne.gamestate.Level;
+import com.projecthawkthorne.gamestate.Lobby;
+import com.projecthawkthorne.gamestate.PauseScreen;
+import com.projecthawkthorne.gamestate.ServerSelection;
 import com.projecthawkthorne.socket.tcp.QueryInterface;
 import com.projecthawkthorne.socket.udp.Client;
 import com.projecthawkthorne.socket.udp.Command;
@@ -26,10 +30,9 @@ public class HawkthorneGame extends MyGame {
 	public static final int WIDTH = 640;
 	public static final int HEIGHT = 360;
 	
-	private SpriteBatch spriteBatch;
 	//private OrthographicCamera cam;
 	public static Mode MODE;
-	public static final String START_LEVEL = "multiplayer";
+	public static final String START_LEVEL = "town";
 	public String trackedLevel = START_LEVEL;
 	public Player trackedPlayer;
 	protected float trackingX = 0;
@@ -50,27 +53,39 @@ public class HawkthorneGame extends MyGame {
 	private HawkthorneUserInterface userInterface;
 	private Gamestate lastScreen;
 	private QueryInterface query;
+	private SpriteBatch batch;
 	
-
+	public GenericGamestate serverSelection;
+	public GenericGamestate characterSelection;
+	public GenericGamestate lobby;
+	public GenericGamestate pause;
+	
 	@Override
 	public void create() {
 		Assets.load();
 		userInterface = new HawkthorneUserInterface();
 		Gdx.input.setCatchBackKey(true);
 		Gdx.input.setInputProcessor(userInterface);
-		
-		
+
+		batch = new SpriteBatch();
 		Gamestate.setContext(this);
-		spriteBatch = new SpriteBatch();
 		query = new QueryInterface(this);
 		
+		
+		//define screens
+		serverSelection = new ServerSelection();
+		characterSelection = new CharacterSelection();
+		lobby = new Lobby();
+		pause = new PauseScreen();
+
+		//set down some screens, yup
 		switch(Gdx.app.getType()){
 		case Desktop:
-			this.setScreen(GenericGamestate.get("lobby"));
+			this.setScreen(lobby);
 			break;
 		default:
 			HawkthorneGame.MODE = Mode.CLIENT;
-			this.setScreen(GenericGamestate.get("serverSelection"));
+			this.setScreen(characterSelection);
 			break;
 		}
 	}
@@ -154,7 +169,7 @@ public class HawkthorneGame extends MyGame {
 			try {
 				server = Server.getSingleton();
 			} catch (SocketException e) {
-				Gdx.app.error("game", "server may already be in use");
+				Gdx.app.error("game", "server may already be created");
 			}
 
 			//receive info
@@ -185,10 +200,8 @@ public class HawkthorneGame extends MyGame {
 			//drawing
 			if (trackedPlayer == null) {
 				Level.get(trackedLevel).draw(trackedPlayer);
-				//levelRender(Level.get(trackedLevel), null);
 			} else {
 				trackedPlayer.getLevel().draw(trackedPlayer);
-				//levelRender((Level) trackedPlayer.getLevel(), trackedPlayer);
 			}
 			
 			//send info
@@ -240,7 +253,11 @@ public class HawkthorneGame extends MyGame {
 	}
 
 	public void goBack() {
-		this.setScreen(lastScreen);
+		if(lastScreen==null){
+			Gdx.app.exit();
+		}else{
+			this.setScreen(lastScreen);
+		}
 	}
 	
 	@Override
@@ -251,6 +268,10 @@ public class HawkthorneGame extends MyGame {
 
 	public QueryInterface getQuery() {
 		return query;
+	}
+
+	public SpriteBatch getBatch() {
+		return batch;
 	}
 
 }

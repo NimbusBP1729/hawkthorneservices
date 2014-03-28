@@ -31,12 +31,14 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.projecthawkthorne.client.CharacterBundle;
 
 public class Assets {
 	private static final String SRC_IMAGES = "data/images/";
 	private static final String SRC_SPRITE_IMAGES = "data/";
 	private static final String SRC_AUDIO = "data/audio/";
 	private static final String SRC_MAPS = "data/maps/";
+	private static final String SRC_CHARACTERS = "data/images/characters/";
 	
 	/** */
 	public static Map<String, Texture> spriteCache = new HashMap<String, Texture>();
@@ -48,6 +50,14 @@ public class Assets {
 	private static Texture defaultTexture;
 	public static Texture bboxTexture;
 	private static AssetManager manager;
+	
+	public static void load() {
+		manager = new AssetManager();
+		manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+		defaultTexture = loadTexture("defaultTexture.png");
+		bboxTexture = loadTexture("bboxTexture.png");
+	}
+	
 	public static Texture loadTextureOrSprite(String fullName) {
 		TextureParameter param = new TextureParameter();
 		param.magFilter = TextureFilter.Nearest;
@@ -65,13 +75,6 @@ public class Assets {
 	public static Texture loadSprite(String spriteFile) {
 		String fullName = SRC_SPRITE_IMAGES + spriteFile;
 		return loadTextureOrSprite(fullName);
-	}
-	
-	public static void load() {
-		manager = new AssetManager();
-		manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-		defaultTexture = loadTexture("defaultTexture.png");
-		bboxTexture = loadTexture("bboxTexture.png");
 	}
 
 	public static void playSfx(String soundFile, boolean looping) {
@@ -193,4 +196,19 @@ public class Assets {
 	public static void dispose() {
 		manager.dispose();
 	}
+
+	public static CharacterBundle  getCharacter(String name) {
+		String fullName = SRC_CHARACTERS+name+"/base.png";
+		TextureParameter param = new TextureParameter();
+		param.magFilter = TextureFilter.Nearest;
+		param.minFilter = TextureFilter.Nearest;
+		manager.load(fullName, Texture.class, param);
+		manager.finishLoading();
+		TextureRegion texture = new TextureRegion(manager.get(fullName, Texture.class), 0, 48, 48, -48);
+		CharacterBundle bundle = new CharacterBundle();
+		bundle.setName(name);
+		bundle.setTexture(texture);
+		return bundle;
+	}
+
 }

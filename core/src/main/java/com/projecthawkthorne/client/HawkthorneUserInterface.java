@@ -63,9 +63,6 @@ public class HawkthorneUserInterface implements InputProcessor{
 	public boolean getIsAndroidKeyDown(GameKeys gk) {
 
 		boolean result = false;
-		if (!Gdx.input.isTouched()) {
-			return false;
-		}
 		
 		if(gk == GameKeys.START && Gdx.input.isKeyPressed(Keys.BACK)){
 			result = true;
@@ -118,7 +115,6 @@ public class HawkthorneUserInterface implements InputProcessor{
 
 	@Override
 	public boolean keyTyped(char character) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

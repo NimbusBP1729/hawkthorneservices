@@ -55,7 +55,7 @@ public abstract class Gamestate{
 	public static HawkthorneGame getContext() {
 		return context;
 	}
-
+	
 	public abstract void hide();
 
 	public abstract void pause();

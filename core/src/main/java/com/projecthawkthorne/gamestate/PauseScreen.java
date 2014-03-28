@@ -19,7 +19,7 @@ public class PauseScreen extends GenericGamestate {
 	private TextureRegion arrow = new TextureRegion(Assets.loadTexture("menu/arrow.png"));
 	private String musicFile = "daybreak";
 	private OrthographicCamera cam = new OrthographicCamera(528, 336);
-	private SpriteBatch batch = new SpriteBatch();
+	private SpriteBatch batch = context.getBatch();
 
 	@Override
 	public void resize(int width, int height) {

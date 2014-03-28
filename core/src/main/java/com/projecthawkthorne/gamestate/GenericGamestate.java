@@ -9,7 +9,6 @@ import com.projecthawkthorne.content.KeyMapping;
 
 public abstract class GenericGamestate extends Gamestate {
 	
-	private static Gamestate serverSelection = new ServerSelection();
 	private Map<GameKeys, Boolean> keyMap = new HashMap<GameKeys, Boolean>();
 	private float lifeTime = 0;
 
@@ -28,10 +27,10 @@ public abstract class GenericGamestate extends Gamestate {
 			boolean wasDown = this.getIsKeyDown(gk);
 			boolean isPcKeyDown = Gdx.input.isKeyPressed(KeyMapping
 						.gameKeyToInt(gk));
-			boolean isAndroidKeyDown = Gamestate.getContext().getUserInterface().getIsAndroidKeyDown(gk);
+			boolean isAndroidKeyDown = context.getUserInterface().getIsAndroidKeyDown(gk);
 			boolean isDown = isPcKeyDown || isAndroidKeyDown;
 			this.setIsKeyDown(gk, isDown);
-			if(lifeTime > 1f){
+			if(lifeTime > 0.5f){
 				if (!wasDown && isDown) {
 					Gdx.app.log("keypress(g)", gk.toString());
 					this.keypressed(gk);
@@ -59,19 +58,4 @@ public abstract class GenericGamestate extends Gamestate {
 	public void show() {
 		lifeTime = 0;
 	}
-
-
-	public static Gamestate get(String state) {
-		if("pause".equals(state)){
-			return new PauseScreen();
-		}else if("lobby".equals(state)){
-			return new Lobby();
-		}else if("serverSelection".equals(state)){
-			return serverSelection;
-		}else{
-			throw new UnsupportedOperationException(state);
-		}
-	}
-
-
 }

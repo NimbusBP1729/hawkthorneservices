@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -1085,10 +1086,13 @@ public class Player extends Humanoid implements Timeable {
 			
 		}
 		
-//		BitmapFont font = Assets.getFont();
-//		font.setScale(1, 1);
-//		
-//		font.drawMultiLine(batch, this.getUsername(), this.x,this.y + 60);
+		try{
+			BitmapFont font = Assets.getFont();
+			font.setScale(0.5f);
+			font.drawMultiLine(batch, this.getUsername(), this.x,this.y + 60);
+		}catch(Exception e){
+			Gdx.app.error("player", "can't write username");
+		}
 		
 		
 		

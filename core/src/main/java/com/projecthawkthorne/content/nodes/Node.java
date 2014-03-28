@@ -94,7 +94,6 @@ public abstract class Node extends Collidable {
 	protected float bboxOffsetY = 0;
 	/** the bounding box used by this node */
 	protected Bound bb;
-	// protected SpriteBatch batch = new SpriteBatch();
 	// protected Texture objectTexture;// = new
 	// Texture(Gdx.files.internal(IMAGES_FOLDER
 	// + "defaultObject.png"));

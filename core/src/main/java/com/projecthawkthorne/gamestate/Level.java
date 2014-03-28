@@ -24,7 +24,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.MathUtils;
 import com.projecthawkthorne.client.HawkthorneGame;
 import com.projecthawkthorne.client.Mode;
 import com.projecthawkthorne.client.display.Assets;
@@ -72,7 +71,7 @@ public class Level extends Gamestate {
 	private float trackingY = 0;
 	private BatchTiledMapRenderer tileMapRenderer;
 	private OrthographicCamera cam;
-	private static SpriteBatch batch = new SpriteBatch();
+	private static SpriteBatch batch;
 	private boolean isFloorSpace;
 	private static Map<String, Level> levelMap = new HashMap<String,Level>();
 	
@@ -89,6 +88,8 @@ public class Level extends Gamestate {
 	private Level(String name) {
 		this.name = name;
 		this.collider = new Collider();
+		
+		batch = context.getBatch();
 		
 		this.loadNodes(name);
 		this.spawnLevel = this;
@@ -115,7 +116,7 @@ public class Level extends Gamestate {
 
 	private void loadNodes(String levelName) {
 		this.tiledMap = Assets.getTiledMap(levelName.trim());
-		tileMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, batch);
+		tileMapRenderer = new OrthogonalTiledMapRenderer( tiledMap, batch);
 
 		MapProperties prop = tiledMap.getProperties();
 		int mapWidth = prop.get("width", Integer.class);
@@ -363,7 +364,7 @@ public class Level extends Gamestate {
 		}
 
 		if (Gdx.input.isKeyPressed(Keys.BACK) || Gdx.input.isKeyPressed(Keys.ESCAPE)) {
-			Gamestate.getContext().setScreen(GenericGamestate.get("pause"));
+			context.setScreen(context.pause);
 		}
 		if (HawkthorneGame.MODE == Mode.CLIENT) {
 			Player player = Player.getSingleton();
@@ -549,35 +550,6 @@ public class Level extends Gamestate {
 		for (Node liquid : liquids) {
 			liquid.draw(batch);
 		}
-	}
-
-	private void trackPlayerWithCam(Player player, OrthographicCamera cam) {
-		TiledMapTileLayer tmtl = (TiledMapTileLayer) this.tiledMap.getLayers().get(0);
-		float mapHeight = tmtl.getHeight() * tmtl.getTileHeight();
-		float mapWidth = tmtl.getWidth() * tmtl.getTileWidth();
-
-		float x;
-		float y;
-		if (player != null) {
-			x = player.x + player.width / 2;
-			y = player.y;
-			trackingX = x;
-			trackingY = y;
-		} else {
-			x = trackingX;
-			y = trackingY;
-		}
-		cam.position.set(
-				MathUtils.clamp(
-						x
-						, cam.zoom * cam.viewportWidth / 2
-						, mapWidth - cam.zoom * cam.viewportWidth / 2)
-				, MathUtils.clamp(
-						y
-						, cam.zoom * cam.viewportHeight / 2
-						, mapHeight)
-				, 0);
-		cam.update(true);
 	}
 
 	public TiledMap getTiledMap() {
