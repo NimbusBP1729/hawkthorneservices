@@ -32,7 +32,7 @@ public class HawkthorneGame extends MyGame {
 	
 	//private OrthographicCamera cam;
 	public static Mode MODE;
-	public static final String START_LEVEL = "town";
+	public static final String START_LEVEL = "greendale-exterior";
 	public String trackedLevel = START_LEVEL;
 	public Player trackedPlayer;
 	protected float trackingX = 0;

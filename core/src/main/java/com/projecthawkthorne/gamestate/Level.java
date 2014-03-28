@@ -323,24 +323,23 @@ public class Level extends Gamestate {
 	public void update(float delta) {
 		long dt = (long) (delta*1000);
 		tileMapRenderer.setView(cam);
-		if (Gdx.input.isKeyPressed(Keys.DEL) && HawkthorneGame.MODE == Mode.CLIENT) {
-			Player player = Player.getSingleton();
-			player.die();
-		}
-
-		if (Gdx.input.isKeyPressed(Keys.BACK) || Gdx.input.isKeyPressed(Keys.ESCAPE)) {
-			context.setScreen(context.pause);
-		}
-		if (HawkthorneGame.MODE == Mode.CLIENT) {
-			Player player = Player.getSingleton();
-			player.processKeyActions();
-		}
-		
 		for(Node node : this.nodes.values()){
 			node.update(dt);
 		}
-		
-		if(HawkthorneGame.MODE == Mode.SERVER){
+		this.collider.update();
+
+		if (HawkthorneGame.MODE == Mode.CLIENT) {
+			if (Gdx.input.isKeyPressed(Keys.DEL)) {
+				Player player = Player.getSingleton();
+				player.die();
+			}
+
+			if (Gdx.input.isKeyPressed(Keys.BACK) || Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+				context.setScreen(context.pause);
+			}
+			Player player = Player.getSingleton();
+			player.processKeyActions();
+		}else if(HawkthorneGame.MODE == Mode.SERVER){
 			if (!switchCharacterKeyDown 
 					&& Gdx.input.isKeyPressed(Keys.S)
 					&& this.getPlayers().size()>0) {
@@ -378,8 +377,6 @@ public class Level extends Gamestate {
 			}
 
 		} 
-		
-		this.collider.update();
 	}
 
 	@Override
@@ -440,8 +437,6 @@ public class Level extends Gamestate {
 					String.class)) / 255.0f;
 			Gdx.gl.glClearColor(r, g, b, 1);
 		} catch (NullPointerException e) {
-			Gdx.app.error(e.getClass().getName(),
-					"Error loading background: default to white");
 			Gdx.gl.glClearColor(1, 1, 1, 1);
 		}
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);

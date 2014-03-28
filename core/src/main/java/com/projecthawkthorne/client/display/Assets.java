@@ -19,6 +19,7 @@ package com.projecthawkthorne.client.display;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.BitmapFontLoader.BitmapFontParameter;
 import com.badlogic.gdx.assets.loaders.TextureLoader.TextureParameter;
@@ -100,10 +101,15 @@ public class Assets {
 	}
 
 	public static void stopMusic(String soundFile) {
-		if(soundFile!=null){
-			Music music = manager.get(SRC_AUDIO+"music/"+soundFile+".ogg", Music.class);
-			music.stop();
+		try{
+			if(soundFile!=null){
+				Music music = manager.get(SRC_AUDIO+"music/"+soundFile+".ogg", Music.class);
+				music.stop();
+			}
+		}catch(Exception e){
+			Gdx.app.error("music", "soundFile:"+soundFile+" loading error");
 		}
+
 	}
 
 	public static void playMusic(String soundFile) {
@@ -115,14 +121,18 @@ public class Assets {
 			playMusic("level",volume);
 			return;
 		}
-		String fullName = SRC_AUDIO+"music/"+soundFile+".ogg";
-		Music music;
-		manager.load(fullName, Music.class);
-		manager.finishLoading();
-		music = manager.get(fullName, Music.class);
-		music.setVolume(volume);
-		music.setLooping(true);
-		music.play();
+		try{
+			String fullName = SRC_AUDIO+"music/"+soundFile+".ogg";
+			Music music;
+			manager.load(fullName, Music.class);
+			manager.finishLoading();
+			music = manager.get(fullName, Music.class);
+			music.setVolume(volume);
+			music.setLooping(true);
+			music.play();
+		}catch(Exception e){
+			Gdx.app.error("music", "soundFile:"+soundFile+" loading error");
+		}
 	}
 
 	/**
