@@ -141,8 +141,7 @@ public class Lobby extends GenericGamestate {
 	    batch.setColor( 1, 1, 1, 1 );
 	    batch.draw(this.arrow, 236, 146 + 30 * this.option);
 	    String back = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.START)) + ": EXIT GAME";
-	    String howto = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.ATTACK)) 
-	    		+  " OR " + Keys.toString(KeyMapping.gameKeyToInt(GameKeys.JUMP)) 
+	    String howto = "<JUMP> OR " + Keys.toString(KeyMapping.gameKeyToInt(GameKeys.JUMP)) 
 	    		+  ": SELECT ITEM";
 	    font.draw(batch, back, 25, 25);
 	    font.draw(batch, howto, 25, 55);
