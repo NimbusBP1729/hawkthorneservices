@@ -112,10 +112,10 @@ public class PauseScreen extends GenericGamestate {
 	    batch.setColor( 0, 0, 0, 1 );
 	    BitmapFont font = Assets.getFont();
 		font.setScale(0.8f, -0.8f);
-		font.draw(batch, "Return to game", 198, 101);
-	    font.draw(batch, "Quit", 198, 131);
+		font.draw(batch, "Return to game", 180, 141);
+	    font.draw(batch, "Quit", 180, 171);
 	    batch.setColor( 1, 1, 1, 1 );
-	    batch.draw(this.arrow, 156, 96 + 30 * this.option);
+	    batch.draw(this.arrow, 150, 130 + 30 * this.option);
 	    String back = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.START)) + ": BACK TO GAME";
 	    String howto = "<JUMP> OR " + Keys.toString(KeyMapping.gameKeyToInt(GameKeys.JUMP)) 
 	    		+  ": SELECT ITEM";

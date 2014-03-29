@@ -76,7 +76,7 @@ public class CharacterSelection extends GenericGamestate {
 	public void keypressed(GameKeys gk) {
 	    int cListSize = characterList.size();
 		switch(gk){
-		case DOWN:
+		case RIGHT:
 			this.option = (this.option + 1) % cListSize;
             Assets.playSfx("click");
             warning = "";
@@ -87,7 +87,7 @@ public class CharacterSelection extends GenericGamestate {
 			break;
 		case SELECT:
 			break;
-		case UP:
+		case LEFT:
 			this.option = (this.option - 1 + cListSize) % cListSize;
             Assets.playSfx("click");
             warning = "";
@@ -140,9 +140,9 @@ public class CharacterSelection extends GenericGamestate {
 	    batch.setColor( 1, 1, 1, 1 );
 
 	    for(int i = 0; i< characterList.size(); i++){
-			batch.draw(characterList.get(i).getTexture(), 256, 106 + 48 * i, 48, 48);
+			batch.draw(characterList.get(i).getTexture(), 216 + 80 * i, 146 , 48, 48);
 		}
-	    batch.draw(this.arrow, 230, 120 + 48 * this.option);
+	    batch.draw(this.arrow, 200 + 80 * this.option, 160);
 	    String back = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.START)) + ": GO BACK";
 	    String howto = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.ATTACK)) 
 	    		+  " OR " + Keys.toString(KeyMapping.gameKeyToInt(GameKeys.JUMP)) 

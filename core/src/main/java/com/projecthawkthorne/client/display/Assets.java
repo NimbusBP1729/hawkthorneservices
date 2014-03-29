@@ -28,10 +28,10 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.MathUtils;
 import com.projecthawkthorne.client.CharacterBundle;
 
 public class Assets {
@@ -65,7 +65,13 @@ public class Assets {
 		param.minFilter = TextureFilter.Nearest;
 		manager.load(fullName, Texture.class, param);
 		manager.finishLoading();
-		return manager.get(fullName, Texture.class);
+		Texture t = manager.get(fullName, Texture.class);
+		if(!MathUtils.isPowerOfTwo(t.getWidth())
+				|| !MathUtils.isPowerOfTwo(t.getHeight()) ){
+			System.err.println(fullName +" not power of two");
+			System.err.println(t.getWidth()+"x"+t.getHeight());
+		}
+		return t;
 	}
 	
 	public static Texture loadTexture(String textureFile) {
@@ -169,37 +175,19 @@ public class Assets {
 		return manager.get(fullName, TiledMap.class);
 	}
 
-	public static NinePatch loadNinePatch(String file) {
-		return loadNinePatch(file, 20);
-	}
-	
-	public static NinePatch loadNinePatch(String file, int cellSize) {
-		//assumes a square ninepatch of 3tx3t dimensions
-		int t = cellSize;
-		NinePatch np = new NinePatch(
-				Assets.loadTextureRegion(file,  0, 0, t, t)
-				,Assets.loadTextureRegion(file, t, 0, t, t)
-				,Assets.loadTextureRegion(file, 2*t, 0, t, t)
-				
-				,Assets.loadTextureRegion(file, 0, t, t, t)
-				,Assets.loadTextureRegion(file, t, t, t, t)
-				,Assets.loadTextureRegion(file, 2*t, t, t, t)
-				
-				,Assets.loadTextureRegion(file, 0, 2*t, t, t)
-				,Assets.loadTextureRegion(file, t, 2*t, t, t)
-				,Assets.loadTextureRegion(file, 2*t, 2*t, t, t)
-				);
-		return np;
-	}
-	
-	public static TextureRegion loadTextureRegion(String file, int x, int y, int width, int height) {
-		String fullName = "images/"+file;
+	public static TextureRegion loadTextureRegion(String fullName, int x, int y, int width, int height) {
 		TextureParameter param = new TextureParameter();
-		param.magFilter = TextureFilter.Linear;
-		param.minFilter = TextureFilter.Linear;
+		param.magFilter = TextureFilter.Nearest;
+		param.minFilter = TextureFilter.Nearest;
 		manager.load(fullName, Texture.class, param);
 		manager.finishLoading();
 		TextureRegion texture = new TextureRegion(manager.get(fullName, Texture.class), x, y, width, height);
+		Texture t = texture.getTexture();
+		if(!MathUtils.isPowerOfTwo(t.getWidth())
+				|| !MathUtils.isPowerOfTwo(t.getHeight()) ){
+			System.err.println(fullName +" not power of two");
+			System.err.println(t.getWidth()+"x"+t.getHeight());
+		}
 		return texture;
 	}
 
@@ -209,12 +197,7 @@ public class Assets {
 
 	public static CharacterBundle  getCharacter(String name) {
 		String fullName = SRC_CHARACTERS+name+"/base.png";
-		TextureParameter param = new TextureParameter();
-		param.magFilter = TextureFilter.Nearest;
-		param.minFilter = TextureFilter.Nearest;
-		manager.load(fullName, Texture.class, param);
-		manager.finishLoading();
-		TextureRegion texture = new TextureRegion(manager.get(fullName, Texture.class), 0, 48, 48, -48);
+		TextureRegion texture = Assets.loadTextureRegion(fullName, 0, 48, 48, -48);
 		CharacterBundle bundle = new CharacterBundle();
 		bundle.setName(name);
 		bundle.setTexture(texture);
