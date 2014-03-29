@@ -35,7 +35,7 @@ public class HawkthorneUserInterface implements InputProcessor{
 	
 	
 	public HawkthorneUserInterface(){
-		cam = new OrthographicCamera(WIDTH/2, HEIGHT/2);
+		cam = new OrthographicCamera(WIDTH, HEIGHT);
 		cam.setToOrtho(IS_Y_DOWN);
 		cam.zoom = 0.5f;
 		cam.update();
@@ -44,7 +44,7 @@ public class HawkthorneUserInterface implements InputProcessor{
 	}
 
 	public void draw() {
-		cam.zoom = 1f;
+		cam.zoom = 0.5f;
 		batch.setProjectionMatrix(cam.combined);
 		cam.update();
 		
@@ -114,7 +114,7 @@ public class HawkthorneUserInterface implements InputProcessor{
 		}
 		
 		if(dragging){
-			int min = 5;
+			int min = 50;
 			if(currentX - startX > min && gk == GameKeys.RIGHT){
 				result = true;
 			} else if(currentX - startX < -min && gk == GameKeys.LEFT){
