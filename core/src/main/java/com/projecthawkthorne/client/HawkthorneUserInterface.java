@@ -115,7 +115,7 @@ public class HawkthorneUserInterface implements InputProcessor{
 		}
 		
 		if(dragging){
-			int min = 50;
+			int min = 75;
 			if(currentX - startX > min && gk == GameKeys.RIGHT){
 				result = true;
 			} else if(currentX - startX < -min && gk == GameKeys.LEFT){
