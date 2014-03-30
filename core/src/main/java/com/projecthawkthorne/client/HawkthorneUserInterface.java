@@ -87,6 +87,7 @@ public class HawkthorneUserInterface implements InputProcessor{
 		
 		if(getIsAndroidKeyDown(GameKeys.JUMP)){
 			font.setColor(1, 0, 0, 0.5f);
+			font.setScale(1, -1);
 			font.drawMultiLine(batch, "JUMP", jumpX-30, jumpY-10);
 			font.setColor(Color.WHITE);
 		}
