@@ -45,8 +45,8 @@ public class HawkthorneUserInterface implements InputProcessor{
 
 	public void draw() {
 		cam.zoom = 0.5f;
-		batch.setProjectionMatrix(cam.combined);
 		cam.update();
+		batch.setProjectionMatrix(cam.combined);
 		
 		batch.begin();
 		if(dragging){

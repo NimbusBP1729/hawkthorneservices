@@ -144,8 +144,7 @@ public class CharacterSelection extends GenericGamestate {
 		}
 	    batch.draw(this.arrow, 200 + 80 * this.option, 160);
 	    String back = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.START)) + ": GO BACK";
-	    String howto = Keys.toString(KeyMapping.gameKeyToInt(GameKeys.ATTACK)) 
-	    		+  " OR " + Keys.toString(KeyMapping.gameKeyToInt(GameKeys.JUMP)) 
+	    String howto = "<JUMP> OR " + Keys.toString(KeyMapping.gameKeyToInt(GameKeys.JUMP)) 
 	    		+  ": SELECT ITEM";
 	    font.draw(batch, back, 25, 25);
 	    font.draw(batch, howto, 25, 55);
